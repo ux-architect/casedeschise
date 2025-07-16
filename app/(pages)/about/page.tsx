@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { getProject } from "@/sanity/sanity.query";
-import type { ProjectType } from "@/types";
+import type { TestType } from "@/types";
 import { PortableText } from "@portabletext/react";
 // import { BiEnvelope, BiFile } from "react-icons/bi";
 
 export default async function About() {
-  const profile: ProjectType[] = await getProject();
+  const profile: TestType[] = await getProject();
 
   return (
     <main className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
