@@ -31,5 +31,14 @@ export const projectFields = [
     title: "Descriere",
     type: "array",
     of: [{ type: "block" }],
-  }
+  },
+  {
+      name: 'slug',
+      type: 'slug',
+      title: 'Slug',
+      options: {
+        source: 'name', // Generates slug from the title
+        maxLength: 96,
+      }
+    },
 ];

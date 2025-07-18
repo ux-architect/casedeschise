@@ -1,9 +1,9 @@
-import { getProjects, getProject } from "@/sanity/sanity.query";
+import { getProjects, getProjectTest } from "@/sanity/sanity.query";
 import type { TestType } from "@/types";
 import ProjectList from "../components/project-list";
 
 export default async function Home() {
-  const project: TestType[] = await getProject();
+  const project: TestType[] = await getProjectTest();
   const projectsSibiu = await getProjects("projects-sibiu");
   const projectsValcea = await getProjects("projects-valcea");
   const allProjects = [...projectsSibiu, ...projectsValcea];
@@ -37,7 +37,7 @@ export default async function Home() {
 
       </section>
 
-      <ProjectList houses={allProjects}/>
+      <ProjectList projects={allProjects}/>
     </main>
   );
 }

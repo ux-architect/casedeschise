@@ -1,5 +1,24 @@
 import { PortableTextBlock } from "sanity";
 
+export type SiteInfoType = {
+  _id: string,
+
+  coverSibiu: {
+    image: string
+  }[];
+
+  coverValcea: {
+    image: string
+  }[];
+
+  team: {
+    image: string,
+    name: string,
+    role: string
+  }[];
+
+};
+
 export type TestType = {
   _id: string,
   fullName: string,
@@ -26,4 +45,5 @@ export type ProjectType = {
   },
   address: string,
   description: PortableTextBlock[],
+  slug: { current: string }
 };
