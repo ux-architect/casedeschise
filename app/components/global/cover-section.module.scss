@@ -1,42 +1,83 @@
 .cover-section{
     background-size: cover;
     background-position: center;
-    min-height: 100%;
+    height: calc(100vh - 40px);
     width: 100%;
     position:relative;
 
     &::after{
-      content:'';
-      width:100%;
-      height:100%;
-      background-color: #000;
-      opacity:0.3;
+        content:'';
+        width:100%;
+        height:100%;
+        background-color: #000;
+        opacity:0.2;
+        position:absolute;
+        z-index:0;
+      }
+
+ :global{
+
+      .logo{
+        width:185px;
+        height:80px;
+        position:absolute;
+        z-index:1;
+
+        top: 40px;
+        left: 12%;
+      }
+
+    .title{
       position:absolute;
-      z-index:0;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index:1;
+      top:35%;
+      margin-left: 10%;
+      width:80%;
+
     }
 
-  .title{
-    position:absolute;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index:1;
-    top:50%;
-    margin-left: 10%;
-    width:80%;
+    .subtitle{
+      position:absolute;
+      background-size: contain;
+      background-position: center;
+      background-repeat: no-repeat;
+      z-index:1;
+      top:55%;
+      margin-left: 25%;
+      width:50%;
 
+    }
+
+
+  @media (max-width: 768px) {
+
+
+      .logo{
+        top:35%;
+        left:unset;
+        width:100%;
+        height:160px;
+
+        &.for-valcea{
+          height:105px;
+          top: 45%;
+        }
+      }
+
+      .title{
+        display:none;
+      }
+
+      .subtitle{
+        z-index:1;
+        top:85%;
+        margin-left: 10%;
+        width:80%;
+    }
   }
 
-  .subtitle{
-    position:absolute;
-    background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
-    z-index:1;
-    top:70%;
-    margin-left: 25%;
-    width:50%;
-
-  }
-
+ }
 }

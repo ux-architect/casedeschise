@@ -24,6 +24,9 @@ export async function getGeneralInfo() {
   return client.fetch(
     groq`*[_type == "general-info"][0]{
     _id,
+    coverMain[]{
+      "image": asset->url
+    },
     coverSibiu[]{
       "image": asset->url
     },

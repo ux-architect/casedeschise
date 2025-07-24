@@ -16,7 +16,8 @@
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "sanity": "^3.99.0",
-    "sass": "^1.89.2"
+    "sass": "^1.89.2",
+    "swiper": "^11.2.10"
   },
   "devDependencies": {
     "@portabletext/react": "^3.2.1",

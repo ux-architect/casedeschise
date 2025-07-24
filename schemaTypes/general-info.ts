@@ -16,6 +16,12 @@ const generalInfo = {
      hidden: true,
    }),
      {
+      name: 'coverMain',
+      title: 'Cover Main',
+      type: 'array',
+      of: [{ type: 'image', options: { hotspot: true } }],
+    },
+     {
       name: 'coverSibiu',
       title: 'Cover Sibiu',
       type: 'array',

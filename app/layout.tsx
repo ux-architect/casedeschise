@@ -6,13 +6,13 @@ const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({children}: {children: React.ReactNode}) {
   return (
-    <html lang="en">
+    <html lang="ro">
       <link rel="icon" href="/favicon.jpg" />
     <head>
 
     </head>
 
-      <body className={`${inter.className} bg-zinc-900 text-white`}>
+      <body className={`${inter.className}`}>
         {children}
       </body>
     </html>

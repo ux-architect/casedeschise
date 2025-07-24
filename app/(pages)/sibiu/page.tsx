@@ -16,7 +16,6 @@ export default async function Sibiu() {
       <TeamSection page={"sibiu"}/>
       <ProjectList projects={projects}/>
 
-      
     </>
   );
 }

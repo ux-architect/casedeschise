@@ -7,50 +7,32 @@ import { getGeneralInfo } from "@/sanity/sanity.query";
 
 export default async function CoverSection({ page = 'sibiu' }: { page: string; }) {
   const generalInfo: SiteInfoType = await getGeneralInfo();
- let url_cover, url_title, url_subtitle;
+ let url_cover, url_title, url_subtitle, url_logo;
   
   if(page == "sibiu"){
-    url_cover = generalInfo.coverSibiu?.[0]?.image;
-    url_title = generalInfo.coverSibiu?.[1]?.image;
-    url_subtitle = generalInfo.coverSibiu?.[2]?.image;
+    url_cover = generalInfo.coverSibiu?.[0]?.image || "";
+    url_title = generalInfo.coverSibiu?.[1]?.image || "";
+    url_subtitle = generalInfo.coverSibiu?.[2]?.image || "";
+    url_logo = "images/case-sibiu-color.png";
   }
 if(page == "valcea"){
-    url_cover = generalInfo.coverValcea?.[0]?.image;
-    url_title = generalInfo.coverValcea?.[1]?.image;
-    url_subtitle = generalInfo.coverValcea?.[2]?.image;
+    url_cover = generalInfo.coverValcea?.[0]?.image || "";
+    url_title = generalInfo.coverValcea?.[1]?.image || "";
+    url_subtitle = generalInfo.coverValcea?.[2]?.image || "";
+    url_logo = "images/case-valcea-color.png";
   }
 
   return (
 
-    <div
-        className={`${styles['cover-section']} cover-image overlay`}
-        style={{ backgroundImage: url_cover ? `url(${url_cover})` : undefined }}
-        >
+    <div className={`${styles['cover-section']} overlay`} >
+
+        <Image src={`${url_cover}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="cover"/>
+        <div className={`logo for-${page}`}><Image src={`${url_logo}`} className="object-contain" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="cover"/></div>
+
+        <img className={'title'} src={ url_title } ></img>
+        <img className={'subtitle'} src={ url_subtitle }></img>
 
 
-        <img
-          className={`${styles['title']}`}
-          src={ url_title }
-        ></img>
-
-        <img
-          className={`${styles['subtitle']}`}
-          src={ url_subtitle }
-        ></img>
-
-
-          {/* <Image
-              src={generalInfo.coverSibiu?.[1]?.image}
-              className="object-cover"
-              alt="cover-image"
-              
-            />
-            <Image
-              src={generalInfo.coverSibiu?.[2]?.image}
-              className="object-cover"
-              alt="cover-image"
-              
-            /> */}
     </div>
   );
 }

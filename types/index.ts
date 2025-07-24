@@ -3,13 +3,9 @@ import { PortableTextBlock } from "sanity";
 export type SiteInfoType = {
   _id: string,
 
-  coverSibiu: {
-    image: string
-  }[];
-
-  coverValcea: {
-    image: string
-  }[];
+  coverMain: { image: string }[];
+  coverSibiu: { image: string}[];
+  coverValcea: {image: string }[];
 
   team: {
     image: string,
