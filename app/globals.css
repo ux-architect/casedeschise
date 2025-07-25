@@ -21,3 +21,58 @@ body {
     clear: both;
     height: 0;
 }
+
+.font-bold{
+  font-weight: bold;
+}
+
+.btn{
+  display: block;
+  width:140px;
+  height:30px;
+  border: 2px solid #CEFB08;
+  color: #CEFB08;
+  font-weight:900;
+  border-radius: 15px;
+  line-height:26px;
+  text-align: center;
+
+  &:hover{
+    background-color:#CEFB08;
+    color: #000;
+  }
+
+  .primary{
+
+  }
+
+
+}
+
+.hide-long-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hide-long-text-6{
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.hide-long-text-9{
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.has-portable-text p{
+  min-height: 12px;
+  width: 100%;
+}
