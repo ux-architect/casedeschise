@@ -36,7 +36,7 @@ export default function Navbar ({ generalInfo, page = 'sibiu' }: { generalInfo:S
   const url_cover = isSibiu ? url_cover_sibiu : isValcea ? url_cover_valcea : null;
 
   const [navOpen, setNavOpen] = useState(false)
-  // const [menuActive, setMenuActive] = useState(false)
+ 
   var cssClass_navIsActive = navOpen ? "open" : '';
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
 
@@ -68,6 +68,7 @@ export default function Navbar ({ generalInfo, page = 'sibiu' }: { generalInfo:S
             <Link href="/services/seo" className="dropdown-link">Parteneri</Link>
             <Link href="/services/seo" className="dropdown-link">Sustinatori</Link>
             <Link href="/services/seo" className="dropdown-link">Devino gazda</Link>
+            <Link href="/map" className="dropdown-link">Harta</Link>
           </Dropdown>
 
           <Link href="/about" className="link">Arhiva</Link>

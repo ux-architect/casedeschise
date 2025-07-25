@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { GoogleMap, LoadScript, Marker } from "@react-google-maps/api";
 
@@ -23,7 +25,6 @@ const grayscaleStyle = [
 ];
 
 const GoogleMapComponent: React.FC = () => (
-  <LoadScript googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
@@ -40,7 +41,6 @@ const GoogleMapComponent: React.FC = () => (
     >
       <Marker position={center} />
     </GoogleMap>
-  </LoadScript>
 );
 
 export default GoogleMapComponent;

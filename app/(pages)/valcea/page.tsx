@@ -1,7 +1,7 @@
 import { getProjects} from "@/sanity/sanity.query";
 import ProjectList from "../../components/project-list";
-import TeamSection from "@/app/components/global/team-section";
 import CoverSection from "@/app/components/global/cover-section";
+import TeamSection from "@/app/components/global/team-section";
 
 export default async function Valcea() {
 
@@ -9,9 +9,9 @@ export default async function Valcea() {
 
   return (
     <>
-    <CoverSection page={"valcea"}/>
-    <TeamSection page={"valcea"}/>
-    <ProjectList projects={projects} />
+      <CoverSection page={"valcea"}/>
+      <TeamSection page={"valcea"}/>
+      <ProjectList projects={projects} />
     </>
   );
 }

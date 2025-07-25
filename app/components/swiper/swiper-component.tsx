@@ -8,7 +8,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
 
-export default function SwiperComponent({ images, projectName }: { images: string[]; projectName: string }) {
+export default function SwiperComponent({ images, projectName }: { images: { image: string }[]; projectName: string }) {
   return (
     <Swiper
       className={`${styles['swiper-component']}`}
@@ -18,9 +18,9 @@ export default function SwiperComponent({ images, projectName }: { images: strin
       slidesPerView={1}
       pagination={true}
     >
-      {images.map((src, idx) => (
+      {images?.map((src, idx) => (
         <SwiperSlide key={idx}>
-          <Image src={src} className="object-cover" alt={`${projectName} logo`} fill />
+          <Image src={src.image} className="object-cover" alt={`${projectName} logo`} fill />
         </SwiperSlide>
       ))}
     </Swiper>

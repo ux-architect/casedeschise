@@ -1,38 +1,16 @@
 import { groq } from "next-sanity";
 import client from "./sanity.client";
 
-export async function getProjectTest() {
-  return client.fetch(
-    groq`*[_type == "project-name"]{
-      _id,
-      slug,
-      fullName,
-      headline,
-      profileImage {alt, "image": asset->url},
-      shortBio,
-      location,
-      fullBio,
-      email,
-      "resumeURL": resumeURL.asset->url,
-      socialLinks,
-      skills
-    }`
-  );
-}
-
 export async function getGeneralInfo() {
   return client.fetch(
     groq`*[_type == "general-info"][0]{
     _id,
-    coverMain[]{
-      "image": asset->url
-    },
-    coverSibiu[]{
-      "image": asset->url
-    },
-    coverValcea[]{
-      "image": asset->url
-    },
+    coverMain[]{"image": asset->url},
+    coverSibiu[]{"image": asset->url},
+    coverValcea[]{"image": asset->url},
+    misionStatement1,
+    misionStatement2,
+
     team[]{
       name,
       role,
@@ -48,9 +26,14 @@ export async function getProject(slug: string) {
       _id,
       slug,
       name,
-      profileImage {alt, "image": asset->url},
+      profileImage {"image": asset->url},
+      images[]{"image": asset->url},
       address,
+      visitTime,
+      transport,
+      gps,
       description,
+      otherInfo,
     }`,
     { slug }
   );
@@ -62,7 +45,7 @@ export async function getProjects(projectType: string) {
       _id,
       slug,
       name,
-      profileImage {alt, "image": asset->url},
+      profileImage {"image": asset->url},
       address,
       description,
     }`,

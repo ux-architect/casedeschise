@@ -7,6 +7,9 @@ export type SiteInfoType = {
   coverSibiu: { image: string}[];
   coverValcea: {image: string }[];
 
+  misionStatement1: PortableTextBlock[],
+  misionStatement2: PortableTextBlock[],
+
   team: {
     image: string,
     name: string,
@@ -15,31 +18,19 @@ export type SiteInfoType = {
 
 };
 
-export type TestType = {
-  _id: string,
-  fullName: string,
-  headline: string,
-  profileImage: {
-    alt: string,
-    image: string
-  },
-  shortBio: string,
-  email: string,
-  fullBio: PortableTextBlock[],
-  location: string,
-  resumeURL: string,
-  socialLinks: string[],
-  skills: string[],
-};
-
 export type ProjectType = {
   _id: string,
   name: string,
-  profileImage: {
-    alt: string,
-    image: string
-  },
+  profileImage: {image: string},
+  images: {image: string }[];
+
   address: string,
+  visitTime: string[],
+  transport: string,
+  gps: string,
+
   description: PortableTextBlock[],
+  otherInfo: PortableTextBlock[],
+
   slug: { current: string }
 };

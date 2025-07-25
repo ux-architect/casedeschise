@@ -1,25 +1,47 @@
 
-import Image from "next/image";
 import styles from './page.module.scss';
 import { getProject } from "@/sanity/sanity.query";
 import { ProjectType } from "@/types";
-import SwiperComponent from "@/app/components/swiper-component";
+import SwiperComponent from "@/app/components/swiper/swiper-component";
+import { PortableText } from "next-sanity";
+import GoogleMapComponent from "@/app/components/google-maps/google-map";
+
 
 export default async function ProjectPage({ params}: {params: Promise<{ slug: string }>;}) {
   const { slug } = await params;
   const project = await getProject(slug) as ProjectType;
-
+  
   return (
-    <main className={`${styles['page-container']} aaa`}>
+    <main className={`${styles['page-container']} `}>
 
-      <SwiperComponent
-        images={[project.profileImage.image, project.profileImage.image, project.profileImage.image]}
-        projectName={project.name}
-      />
+      <section className="swiper-section">
+        <SwiperComponent images={project?.images} projectName={project?.name}/>
+      </section>
+      
+      <section className="info border-bottom">
+          <div className="col col-1">{project?.name}</div>
+          <div className="col col-2">
+            {project?.visitTime?.map((time, idx) => (
+              <div key={idx}>{time}</div>
+            ))}
+          </div>
+      </section>
 
+      <section className="info border-bottom">
+          <div className="col col-1">{project?.address}</div>
+          <div className="col col-2">{project?.transport}</div>
+      </section>
 
-      {/* <h1>{project.name}</h1>
-      <Image src={project.profileImage.image} className="object-cover" alt={`${project.name} logo`} fill /> */}
+      <section className="info border-bottom">
+          <div className="col col-1"><PortableText value={project?.description} /></div>
+          <div className="col col-2"><GoogleMapComponent /></div>
+      </section>
+
+      <section className="info border-bottom">
+          <div className="col col-1"><PortableText value={project?.otherInfo} /></div>
+          <div className="col col-2"></div>
+      </section>
+
     </main>
   );
 }

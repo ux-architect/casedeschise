@@ -1,5 +1,5 @@
 import { defineField } from "sanity";
-import { projectFields } from "./objects/project-fields";
+
 
 const generalInfo = {
   name: "general-info",
@@ -32,6 +32,20 @@ const generalInfo = {
       title: 'Cover Valcea',
       type: 'array',
       of: [{ type: 'image', options: { hotspot: true } }],
+    },
+
+    {
+      name: 'misionStatement1',
+      title: 'Misiune (coloana 1)',
+      type: "array",
+      of: [{type: "block"}],
+    },
+
+    {
+      name: 'misionStatement2',
+      title: 'Misiune (coloana 2)',
+      type: "array",
+      of: [{type: "block"}],
     },
    
     //Echipa///////////////

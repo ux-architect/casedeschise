@@ -1,12 +1,10 @@
-"use client";
+
 
 import dynamic from "next/dynamic";
 import type { NextPage } from "next";
+import GoogleMapComponent from "@/app/components/google-maps/google-map";
 
-const GoogleMapComponent = dynamic(
-  () => import("../../components/google-map"),
-  { ssr: false }
-);
+
 
 const Home: NextPage = () => (
   <div>
