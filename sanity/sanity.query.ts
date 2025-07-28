@@ -1,7 +1,8 @@
 import { groq } from "next-sanity";
 import client from "./sanity.client";
+import { SiteInfoType } from "@/types";
 
-export async function getGeneralInfo() {
+export async function getGeneralInfo(): Promise<SiteInfoType> {
   return client.fetch(
     groq`*[_type == "general-info"][0]{
     _id,
@@ -10,6 +11,7 @@ export async function getGeneralInfo() {
     coverValcea[]{"image": asset->url},
     misionStatement1,
     misionStatement2,
+    contactFormImage{"image": asset->url},
 
     team[]{
       name,
@@ -17,7 +19,7 @@ export async function getGeneralInfo() {
       "image": image.asset->url
     }
   }
-`);
+`,{},{next: { revalidate: 3 }, }); // 1-hour ISR cache
 }
 
 export async function getProject(slug: string) {

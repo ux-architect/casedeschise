@@ -5,6 +5,7 @@ import { ProjectType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-component";
 import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
+import { ContactForm } from '@/app/components/contact-form/contact-form';
 
 
 export default async function ProjectPage({ params}: {params: Promise<{ slug: string }>;}) {
@@ -12,36 +13,39 @@ export default async function ProjectPage({ params}: {params: Promise<{ slug: st
   const project = await getProject(slug) as ProjectType;
   
   return (
-    <main className={`${styles['page-container']} `}>
+    <>
+      <main className={`${styles['page-container']} `}>
 
-      <section className="swiper-section">
-        <SwiperComponent images={project?.images} projectName={project?.name}/>
-      </section>
-      
-      <section className="info border-bottom">
+        <section className="swiper-section">
+          <SwiperComponent images={project?.images} projectName={project?.name} />
+        </section>
+
+        <section className="info border-bottom">
           <div className="col col-1">{project?.name}</div>
           <div className="col col-2">
             {project?.visitTime?.map((time, idx) => (
               <div key={idx}>{time}</div>
             ))}
           </div>
-      </section>
+        </section>
 
-      <section className="info border-bottom">
+        <section className="info border-bottom">
           <div className="col col-1">{project?.address}</div>
           <div className="col col-2">{project?.transport}</div>
-      </section>
+        </section>
 
-      <section className="info border-bottom">
+        <section className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.description} /></div>
           <div className="col col-2"><GoogleMapComponent /></div>
-      </section>
+        </section>
 
-      <section className="info border-bottom">
+        <section className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.otherInfo} /></div>
           <div className="col col-2"></div>
-      </section>
+        </section>
 
-    </main>
+      </main>
+      <section className="contact-section position-relative"><ContactForm /></section>
+    </>
   );
 }

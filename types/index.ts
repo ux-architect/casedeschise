@@ -10,6 +10,8 @@ export type SiteInfoType = {
   misionStatement1: PortableTextBlock[],
   misionStatement2: PortableTextBlock[],
 
+  contactFormImage: {image: string };
+
   team: {
     image: string,
     name: string,

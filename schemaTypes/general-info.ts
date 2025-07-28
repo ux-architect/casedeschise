@@ -47,6 +47,13 @@ const generalInfo = {
       type: "array",
       of: [{type: "block"}],
     },
+
+    {
+      name: 'contactFormImage',
+      title: 'Imagine Devino Gazda',
+      type: 'image',
+      options: { hotspot: true },
+    },
    
     //Echipa///////////////
     {

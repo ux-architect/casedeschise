@@ -21,7 +21,7 @@ export default async function MainLayout({children}: {children: React.ReactNode}
                     <div className="float-left w-full" > {children} </div>
                   </ProvideJS_GoogleMaps> 
 
-              <Footer /> 
+              {/* <Footer />  */}
             </>
 
   );

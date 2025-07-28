@@ -5,6 +5,7 @@ import TeamSection from "@/app/components/global/team-section";
 import styles from './page.module.scss';
 import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
 import MissionSection from "@/app/components/global/mission-section";
+import { ContactForm } from "@/app/components/contact-form/contact-form";
 
 export default async function Sibiu() {
 
@@ -26,10 +27,11 @@ export default async function Sibiu() {
 
       <section className="swiper-section"><SwiperResponsive projects={projects1}/></section>
       <section className="swiper-section"><SwiperResponsive projects={projects2} odd={true}/></section>
-      
-      <TeamSection page={"sibiu"}/>
 
-      <ProjectList projects={projects}/>
+      <section className="team-section"><TeamSection page={"sibiu"}/></section>
+
+      <ContactForm />
+      {/* <ProjectList projects={projects}/> */}
 
     </main>
   );
