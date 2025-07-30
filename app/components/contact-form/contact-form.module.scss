@@ -1,6 +1,6 @@
 
 
-.namespace-wrapper{
+.namespace-container{
 
  :global{
 
@@ -47,14 +47,6 @@
          height:50px;
          width:100%;
          padding:12px;
-
-         &.sibiu{
-            border-color: #CEFB08;
-         }
-
-         &.valcea{
-            border-color: #ff0db9;
-         }
       }
 
       .form-group.name{

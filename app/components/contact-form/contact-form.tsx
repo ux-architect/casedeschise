@@ -6,22 +6,14 @@ import Image from "next/image";
 import { SiteInfoType } from '@/types';
 import { useGlobalInfo } from '@/app/context/global-info-context';
 import styles from './contact-form.module.scss';
-import { usePathname } from 'next/navigation';
 
 export function ContactForm() {
   
-  const pathname = usePathname()
-  const isSibiu = pathname === '/sibiu' || pathname.startsWith('/sibiu/')
-  const isValcea = pathname === '/valcea' || pathname.startsWith('/valcea/')
-  const cssClass_city = isSibiu ? "sibiu" : isValcea ? "valcea" : "";
-
   const generalInfo: SiteInfoType = useGlobalInfo();
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Record<string, string[]>>({})
 
-
-  
   const handleSubmit = async (formData: FormData) => {
     setStatus('loading')
     const result = await sendContactEmail(formData)
@@ -36,19 +28,19 @@ export function ContactForm() {
   }
 
   return (
-    <div className={`${styles['namespace-wrapper']}`}>
-      <section className={` ${cssClass_city} contact-section position-relative`}>
+    <div className={`${styles['namespace-container']}`}>
+      <section className={` contact-section position-relative`}>
 
         <Image src={generalInfo?.contactFormImage?.image || "/should-not-happen.jpg"} className="object-cover overlay" alt={`contact form background`} fill />
-        <form action={handleSubmit} className={` ${cssClass_city} contact-form clearfix`}>
+        <form action={handleSubmit} className={` contact-form clearfix`}>
 
           <div className='form-group name'>
-            <input className={cssClass_city} name="name" placeholder='Nume și prenume' />
+            <input className={'diff-sibiu-valcea'} name="name" placeholder='Nume și prenume' />
             {errors.name && <p className="text-red-500">{errors.name.join(', ')}</p>}
           </div>
 
           <div className='form-group address'>
-            <input className={cssClass_city} name="address" placeholder='Adresa' />
+            <input className={'diff-sibiu-valcea'} name="address" placeholder='Adresa' />
             {errors.address && <p className="text-red-500">{errors.address.join(', ')}</p>}
           </div>
 
@@ -56,7 +48,7 @@ export function ContactForm() {
 
             {['locuire', 'Administrativ/birouri', 'servicii/turism', 'atelier/studio', 'mixt'].map((label) => (
               <label key={label} className="">
-                <input className={cssClass_city} type="checkbox" name="options" value={label} />
+                <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={label} />
                 <span>{label}</span>
               </label>
             ))}
@@ -64,13 +56,13 @@ export function ContactForm() {
           </fieldset>
 
           <div className='form-group details'>
-            <textarea className={cssClass_city} name="details" rows={4} placeholder='De ce ar merita vizitată aceasă clădire?' ></textarea>
+            <textarea className={'diff-sibiu-valcea'} name="details" rows={4} placeholder='De ce ar merita vizitată aceasă clădire?' ></textarea>
             {errors.details && <p className="text-red-500">{errors.details.join(', ')}</p>}
           </div>
 
           
           <div id="submit" className='w-100'>
-              <button type="submit" disabled={status === 'loading'} className={`btn btn-primary ${cssClass_city}`}>Trimite</button>
+              <button type="submit" disabled={status === 'loading'} className={`btn btn-primary btn-invert ${'diff-sibiu-valcea'}`}>Trimite</button>
               {status === 'success' && <div className="success">Mesaj trimis cu succes!</div>}
           </div>
           

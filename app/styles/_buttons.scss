@@ -10,36 +10,27 @@
   line-height:26px;
   text-align: center;
   cursor:pointer;
+  text-decoration: unset;
 
   
 
   &.btn-primary{
     border: 2px solid #CEFB08;
     color: #CEFB08;
-
-    &.sibiu{
-      border: 2px solid #CEFB08;
-      color: #CEFB08;
-
-      &:hover{
-        background-color:#CEFB08;
-        color: #000;
-      }
-    }
-
-    &.valcea{
-      border: 2px solid  #ff0db9;
-      color: #ff0db9;
-      &:hover{
-        background-color:#ff0db9;;
-        color: #000;
-      }
-    }
-
     &:hover{
       background-color:#CEFB08;
       color: #000;
     }
+
+    &.btn-invert{
+        background-color:#CEFB08 ;
+        color: #000 ;
+        &:hover{
+          color: #CEFB08;
+          background:transparent !important;
+        }
+
+      }
     
   }
 
@@ -56,4 +47,50 @@
   }
 
 
+}
+
+body.city-is-sibiu{
+  .btn.diff-sibiu-valcea{
+    &.btn-primary{
+      border: 2px solid #CEFB08;
+      color: #CEFB08;
+      &:hover{
+        background-color:#CEFB08;
+        color: #000;
+      }
+
+      &.btn-invert{
+        background-color:#CEFB08;
+        color: #000;
+        &:hover{
+          color: #CEFB08;
+        }
+
+      }
+    }
+  }
+
+}
+
+body.city-is-valcea{
+  .btn.diff-sibiu-valcea{
+      &.btn-primary{
+      border: 2px solid  #ff0db9;
+      color: #ff0db9;
+      &:hover{
+        background-color:#ff0db9;
+        color: #000;
+      }
+
+      &.btn-invert{
+        background-color:#ff0db9;
+        color: #000;
+        &:hover{
+          color: #ff0db9;
+        }
+
+      }
+    }
+    }
+  
 }

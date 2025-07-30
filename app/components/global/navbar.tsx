@@ -24,16 +24,13 @@ const Dropdown = ({ label, children }: { label: ReactNode, children: ReactNode }
   )
 }
 
-export default function Navbar ({ generalInfo, page = 'sibiu' }: { generalInfo:SiteInfoType, page?: string; }){
+export default function Navbar ({ generalInfo}: { generalInfo:SiteInfoType }){
 
   const pathname = usePathname()
   const isSibiu = pathname === '/sibiu' || pathname.startsWith('/sibiu/')
-  const isValcea = pathname === '/valcea' || pathname.startsWith('/valcea/')
-  const cssClass_city = isSibiu ? "sibiu" : isValcea ? "valcea" : "";
+  const cssClass_city = isSibiu ? "sibiu" : "valcea";
 
-  let url_cover_sibiu = generalInfo?.coverMain?.[0]?.image ? urlFor(generalInfo?.coverMain?.[0]?.image).width(960).height(1080).auto('format').quality(99): null;
-  let url_cover_valcea = generalInfo?.coverMain?.[1]?.image ? urlFor(generalInfo?.coverMain?.[1]?.image).width(960).height(1080).auto('format').quality(99) : null;
-  const url_cover = isSibiu ? url_cover_sibiu : isValcea ? url_cover_valcea : null;
+  let url_cover= generalInfo?.siteEntryCover[cssClass_city]?.url ?? null;
 
   const [navOpen, setNavOpen] = useState(false)
  
@@ -41,7 +38,6 @@ export default function Navbar ({ generalInfo, page = 'sibiu' }: { generalInfo:S
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
 
   
-
   
   return (
 

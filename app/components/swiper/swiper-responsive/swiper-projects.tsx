@@ -21,7 +21,7 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
   const isValcea = pathname === '/valcea' || pathname.startsWith('/valcea/')
 
   const city :string = isSibiu ? "sibiu": "valcea";
-debugger
+
   return (
     <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay]} autoplay={{ delay: 26500, disableOnInteraction: false }} loop={true} slidesPerView={2}>
       {projects?.map((project, idx) => {
@@ -35,13 +35,13 @@ debugger
               </Link>
 
               <div className="col col-description">
-                <h6 className='font-bold'>{project?.name}</h6>
+                <h6 className='font-bold diff-sibiu-valcea'>{project?.name}</h6>
                 <span className="hide-long-text-9"><PortableText value={project?.description} /></span>
 
                 <Link className="btn btn-primary diff-sibiu-valcea" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
               </div>
 
-              <div className="pin"></div>
+              <div className="pin diff-sibiu-valcea diff-background"></div>
 
           </SwiperSlide>
         )})}

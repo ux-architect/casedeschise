@@ -6,9 +6,19 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
   return client.fetch(
     groq`*[_type == "general-info"][0]{
     _id,
-    coverMain[]{"image": asset->url},
-    coverSibiu[]{"image": asset->url},
-    coverValcea[]{"image": asset->url},
+
+    siteEntryCover {
+        sibiu{ image, "url": asset->url},
+        valcea{ image, "url": asset->url }
+      },
+
+    cityPageCover {
+      sibiu{ image, "url": asset->url},
+      valcea{ image, "url": asset->url }
+    },
+
+    eventDate,
+
     misionStatement1,
     misionStatement2,
     contactFormImage{"image": asset->url},
@@ -52,5 +62,69 @@ export async function getProjects(projectType: string) {
       description,
     }`,
     { projectType }
+  );
+}
+
+export async function getTour(slug: string) {
+  return client.fetch(
+     groq`*[_type in ['tour-sibiu', 'tour-valcea'] && slug.current == $slug][0]{
+      _id,
+      slug,
+      name,
+      profileImage {"image": asset->url},
+      images[]{"image": asset->url},
+      address,
+      visitTime,
+      transport,
+      gps,
+      description,
+    }`,
+    { slug }
+  );
+}
+
+export async function getTours(tourType: string) {
+  return client.fetch(
+    groq`*[_type in [$tourType]]{
+      _id,
+      slug,
+      name,
+      profileImage {"image": asset->url},
+      address,
+      description,
+    }`,
+    { tourType }
+  );
+}
+
+export async function getEvent(slug: string) {
+  return client.fetch(
+     groq`*[_type in ['event-sibiu', 'event-valcea'] && slug.current == $slug][0]{
+      _id,
+      slug,
+      name,
+      profileImage {"image": asset->url},
+      images[]{"image": asset->url},
+      address,
+      visitTime,
+      transport,
+      gps,
+      description,
+    }`,
+    { slug }
+  );
+}
+
+export async function getEvents(eventType: string) {
+  return client.fetch(
+    groq`*[_type in [$eventType]]{
+      _id,
+      slug,
+      name,
+      profileImage {"image": asset->url},
+      address,
+      description,
+    }`,
+    { eventType }
   );
 }

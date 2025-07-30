@@ -12,8 +12,6 @@ html{
 }
 
 body {
-  // background: var(--background);
-  // color: var(--foreground);
   font-family: var(--font-poppins);
   height:100%;
   width:100%;
@@ -26,4 +24,27 @@ body {
 
 .font-default {
   font-family: Arial, sans-serif;
+}
+
+body.city-is-sibiu{
+  .diff-sibiu-valcea{
+
+    color:#CEFB08;
+    border-color: #CEFB08 !important;
+    
+    &.diff-background{
+      background-color:#CEFB08;
+    }
+  }
+}
+
+body.city-is-valcea{
+  .diff-sibiu-valcea{
+      color:#ff0db9;
+      border-color: #ff0db9 !important;
+    
+    &.diff-background{
+      background-color:#ff0db9;
+    }
+  }
 }

@@ -1,5 +1,5 @@
 import { defineField } from "sanity";
-
+import  duoImage from "./objects/duo-image";
 
 const generalInfo = {
   name: "general-info",
@@ -15,24 +15,27 @@ const generalInfo = {
      initialValue: 'Pagina de start',
      hidden: true,
    }),
-     {
-      name: 'coverMain',
-      title: 'Cover Main',
-      type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
-    },
-     {
-      name: 'coverSibiu',
-      title: 'Cover Sibiu',
-      type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
-    },
-    {
-      name: 'coverValcea',
-      title: 'Cover Valcea',
-      type: 'array',
-      of: [{ type: 'image', options: { hotspot: true } }],
-    },
+
+     defineField({
+      name: 'siteEntryCover',
+      title: 'Coperta Website',
+      type: "duoImage",
+      
+      }),
+
+      defineField({
+      name: 'cityPageCover',
+      title: 'Coperta Pagina Sibiu/Valcea',
+      type: "duoImage",
+      
+      }),
+
+      defineField({
+        name: "eventDate",
+        title: "Data eveniment",
+        type: "string",
+      }),
+
 
     {
       name: 'misionStatement1',

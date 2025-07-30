@@ -3,9 +3,9 @@ import { PortableTextBlock } from "sanity";
 export type SiteInfoType = {
   _id: string,
 
-  coverMain: { image: string }[];
-  coverSibiu: { image: string}[];
-  coverValcea: {image: string }[];
+  siteEntryCover: SibiuAndValceaImageType,
+  cityPageCover: SibiuAndValceaImageType,
+  eventDate: string,
 
   misionStatement1: PortableTextBlock[],
   misionStatement2: PortableTextBlock[],
@@ -18,6 +18,11 @@ export type SiteInfoType = {
     role: string
   }[];
 
+};
+
+export type SibiuAndValceaImageType = {
+  sibiu: { url: string }; 
+  valcea: { url: string };
 };
 
 export type ProjectType = {
@@ -36,3 +41,36 @@ export type ProjectType = {
 
   slug: { current: string }
 };
+
+export type TourType = {
+  _id: string,
+  name: string,
+  profileImage: {image: string},
+  images: {image: string }[];
+
+  address: string,
+  visitTime: string[],
+  transport: string,
+  gps: string,
+
+  description: PortableTextBlock[],
+
+  slug: { current: string }
+};
+
+export type EventType = {
+  _id: string,
+  name: string,
+  profileImage: {image: string},
+  images: {image: string }[];
+
+  address: string,
+  visitTime: string[],
+  transport: string,
+  gps: string,
+
+  description: PortableTextBlock[],
+
+  slug: { current: string }
+};
+

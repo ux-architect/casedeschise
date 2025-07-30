@@ -1,15 +1,18 @@
-import { getProjects} from "@/sanity/sanity.query";
-import ProjectList from "../../components/project-list";
+import { getEvents, getProjects, getTours} from "@/sanity/sanity.query";
 import CoverSection from "@/app/components/global/cover-section";
 import TeamSection from "@/app/components/global/team-section";
 import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
 import MissionSection from "@/app/components/global/mission-section";
 import { ContactForm } from "@/app/components/contact-form/contact-form";
 import styles from './page.module.scss';
+import ToursSection from "@/app/components/components-server/tour-section";
+import EventSection from "@/app/components/components-server/event-section";
 
 export default async function Valcea() {
 
   let projects = await getProjects("projects-valcea");
+  var tours = await getTours("tours-valcea");
+  var events = await getEvents("events-valcea");
 
     projects = [...projects, ...projects, ...projects];
 
@@ -22,14 +25,16 @@ export default async function Valcea() {
       
       <CoverSection page={"valcea"}/>
       
-      
+      <ToursSection tours={tours} page={"valcea"}/>
+      <EventSection events={events} page={"valcea"}/>
+
       <section className="swiper-section"><SwiperResponsive projects={projects1}/></section>
       <section className="swiper-section"><SwiperResponsive projects={projects2} odd={true}/></section>
 
       <MissionSection page={"valcea"}/>
 
-      <section className="swiper-section"><SwiperResponsive projects={projects1}/></section>
-      <section className="swiper-section"><SwiperResponsive projects={projects2} odd={true}/></section>
+      {/* <section className="swiper-section"><SwiperResponsive projects={projects1}/></section>
+      <section className="swiper-section"><SwiperResponsive projects={projects2} odd={true}/></section> */}
 
       <section className="team-section"><TeamSection page={"valcea"}/></section>
 
