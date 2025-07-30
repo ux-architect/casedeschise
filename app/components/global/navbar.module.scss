@@ -1,24 +1,29 @@
 .nav {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2rem;
-  background: transparent;
-  margin-top:30px;
-  color: #cefb08;
-  text-transform: uppercase;
-  font-size:16px;
-  font-weight: 800;
-  position: absolute;
+  float:left;
   width: 100%;
-  z-index:8;
-
+  
   &:global(.valcea){
     color: #ff0db9;
   }
 
  
   :global{
+
+    .flex-container{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        background: transparent;
+        margin-top:30px;
+        color: #cefb08;
+        text-transform: uppercase;
+        font-size:16px;
+        font-weight: 800;
+        position: absolute;
+        width: 100%;
+        z-index:8;
+    }
 
     .mobile-menu-background{display:none;}
 

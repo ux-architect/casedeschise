@@ -1,12 +1,27 @@
 import { SiteInfoType } from "@/types";
-import "./globals.css";
-import { Inter } from "next/font/google";
+import "./styles/globals.scss";
+import localFont from 'next/font/local';
+
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import { GlobalInfoProvider } from "./context/global-info-provider";
 
 
-const inter = Inter({ subsets: ["latin"] });
+const poppins = localFont({
+  src: [
+    { path: './_fonts/Poppins-Regular.ttf', weight: '400', style: 'normal' },
+    // { path: './_fonts/Poppins-Bold.ttf', weight: '700', style: 'normal' }
+  ],
+  variable: '--font-poppins',
+  display: 'swap',
+});
 
+const safiro = localFont({
+  src: [
+    { path: './_fonts/safiro-medium.otf', weight: '400', style: 'normal' },
+  ],
+  variable: '--font-lora',
+  display: 'swap',
+});
 
 export default async function RootLayout({children}: {children: React.ReactNode}) {
 
@@ -19,7 +34,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 
     </head>
 
-      <body className={`${inter.className}`}>
+      <body className={`${poppins.variable} ${safiro.variable}`}>
 
         <GlobalInfoProvider value={generalInfo}> {/*  adds acces to generalInfo data on all child csr components */}
           {children}
@@ -29,3 +44,5 @@ export default async function RootLayout({children}: {children: React.ReactNode}
     </html>
   );
 }
+
+

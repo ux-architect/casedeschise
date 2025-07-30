@@ -14,7 +14,7 @@ export default async function TeamSection({ page = 'sibiu' }: { page: string; })
 
         <div className='col col-title'><Image src={titleUrl} className="object-fit" fill style={{ objectFit: "contain" }} sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="echipa"/></div>
         <div className='col col-members'>
-            {generalInfo.team.map((member, idx) => {
+            {generalInfo?.team?.map((member, idx) => {
               const hasImage : boolean = member.image ? true : false;
               const imgSource : string = hasImage ? member.image : "/images/member-placeholder.jpg";
               const cssClass = hasImage ? "" : "placeholder";

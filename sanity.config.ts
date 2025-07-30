@@ -7,7 +7,8 @@ export default defineConfig({
   name: 'default',
   title: 'casedeschise.ro',
 
-  projectId: 'x30qpt6x',
+  // projectId: 'x30qpt6x',
+  projectId: "4sefwx29", //ux.studio.sibiu
   dataset: 'production',
   basePath: "/studio",
 

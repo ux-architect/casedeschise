@@ -1,6 +1,6 @@
 export default function Footer() {
   return (
-    <footer className="float-left w-full">
+    <footer className="float-left w-100">
       <div className="">
         <small className=" duration-200 font-mono">
           All rights reserved &copy; {new Date().getFullYear()}

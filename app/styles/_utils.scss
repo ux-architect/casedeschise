@@ -1,0 +1,84 @@
+
+
+.clearfix::after {
+    display: block;
+    visibility: hidden;
+    content: "";
+    clear: both;
+    height: 0;
+}
+
+.position-relative{
+  position:relative;
+}
+
+.float-left{
+    float:left;
+}
+
+.float-right{
+    float:right;
+}
+
+///// size utils
+
+.w-100{
+  width:100%;
+}
+
+.w-1\/2{
+    width:50%;
+}
+
+.h-40{
+    height:40px;
+}
+
+
+/////// flex utils
+
+.flex-container {
+  display: flex;
+}
+
+//////// text utils
+.font-bold{
+  font-weight: bold;
+}
+
+
+.hide-long-text {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+.hide-long-text-6{
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+}
+
+.hide-long-text-9{
+    display: -webkit-box;
+    -webkit-line-clamp: 9;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+//////// sanity specific
+.has-portable-text p{
+  min-height: 12px;
+  width: 100%;
+}
+
+.object-cover
+ {
+    object-fit: cover;
+}
+

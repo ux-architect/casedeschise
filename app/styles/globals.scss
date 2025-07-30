@@ -1,0 +1,29 @@
+
+@import '_modern-normalize';
+@import '_utils';
+@import '_inputs';
+@import '_buttons';
+
+
+html{
+  height:100%;
+  width:100%;
+  overflow-y: scroll;
+}
+
+body {
+  // background: var(--background);
+  // color: var(--foreground);
+  font-family: var(--font-poppins);
+  height:100%;
+  width:100%;
+}
+
+
+.font-safiro {
+  font-family: var(--font-lora);
+}
+
+.font-default {
+  font-family: Arial, sans-serif;
+}

@@ -1,4 +1,5 @@
 
+
 import styles from './page.module.scss';
 import { getProject } from "@/sanity/sanity.query";
 import { ProjectType } from "@/types";
@@ -7,11 +8,11 @@ import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 
-export default async function ProjectPage({ params}: {params: Promise<{ slug: string }>;}) {
-  const { slug } = await params;
+export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
+  const { ["sibiu-valcea"]: city, slug } = await params;
   const project = await getProject(slug) as ProjectType;
 
-  const cssClass_city = "valcea" ;
+  const cssClass_city = city ;
 
   return (
     <>

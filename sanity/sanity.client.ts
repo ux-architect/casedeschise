@@ -3,7 +3,8 @@ import imageUrlBuilder from '@sanity/image-url'
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 
 const config: ClientConfig = {
-  projectId: "x30qpt6x",
+  // projectId: "x30qpt6x",
+  projectId: "4sefwx29", //ux.studio.sibiu
   dataset: "production",
   apiVersion: "2025-07-14",
   useCdn: false,

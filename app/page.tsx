@@ -8,8 +8,8 @@ import Image from "next/image";
 export default async function Home() {
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  let url_cover_sibiu = generalInfo.coverMain?.[0]?.image ? urlFor(generalInfo.coverMain?.[0]?.image).width(960).height(1080).auto('format').quality(99): null;
-  let url_cover_valcea = generalInfo.coverMain?.[1]?.image ? urlFor(generalInfo.coverMain?.[1]?.image).width(960).height(1080).auto('format').quality(99) : null;
+  let url_cover_sibiu = generalInfo?.coverMain?.[0]?.image ? urlFor(generalInfo?.coverMain?.[0]?.image).width(960).height(1080).auto('format').quality(99): null;
+  let url_cover_valcea = generalInfo?.coverMain?.[1]?.image ? urlFor(generalInfo?.coverMain?.[1]?.image).width(960).height(1080).auto('format').quality(99) : null;
 
   return (
      <div className = {styles['cover-main']}>

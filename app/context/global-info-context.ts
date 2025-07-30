@@ -1,3 +1,5 @@
+//global-info-context.ts
+
 'use client'
 
 import { createContext, useContext } from "react";

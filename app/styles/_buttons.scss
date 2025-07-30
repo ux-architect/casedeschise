@@ -1,0 +1,59 @@
+
+.btn{
+  display: block;
+  width:140px;
+  height:30px;
+  border: 2px solid #CEFB08;
+  color: #CEFB08;
+  font-weight:900;
+  border-radius: 15px;
+  line-height:26px;
+  text-align: center;
+  cursor:pointer;
+
+  
+
+  &.btn-primary{
+    border: 2px solid #CEFB08;
+    color: #CEFB08;
+
+    &.sibiu{
+      border: 2px solid #CEFB08;
+      color: #CEFB08;
+
+      &:hover{
+        background-color:#CEFB08;
+        color: #000;
+      }
+    }
+
+    &.valcea{
+      border: 2px solid  #ff0db9;
+      color: #ff0db9;
+      &:hover{
+        background-color:#ff0db9;;
+        color: #000;
+      }
+    }
+
+    &:hover{
+      background-color:#CEFB08;
+      color: #000;
+    }
+    
+  }
+
+  &.btn-secondary{
+    background-color:#CEFB08;
+      color: #000;
+    
+
+    &:hover{
+      background-color:transparent;
+      color: #CEFB08;
+      
+    }
+  }
+
+
+}
