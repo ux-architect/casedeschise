@@ -9,6 +9,13 @@ export const projectFields = [
       validation: (rule) => rule.required(),
     }),
 
+     defineField({
+      name: "year",
+      title: "Editia/Anul",
+      type: "string",
+      initialValue: (new Date().getFullYear()).toString(),
+      }),
+
     defineField({
       name: "profileImage",
       title: "Profile Image",
@@ -62,9 +69,18 @@ export const projectFields = [
       type: "slug",
       title: "Slug",
       options: {
-        source: "name",
-        maxLength: 96,
+        source: doc => {
+          const name = doc.name || ''
+          const year = doc.year || 'neincadrat'
+          return `${year}-${name}`
+        },
+        slugify: input =>
+          input
+            .toLowerCase()
+            .replace(/\s+/g, '-')
+            .slice(0, 200),
       },
+        validation: Rule => Rule.required(),
     }),
     
     defineField({

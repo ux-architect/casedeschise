@@ -1,3 +1,5 @@
+// schemaTypes/projects-sibiu.ts
+
 import { projectFields } from "./objects/project-fields";
 
 const projectsSibiu = {

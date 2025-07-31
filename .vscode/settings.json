@@ -1,0 +1,5 @@
+{
+  "explorer.fileNesting.patterns": {
+    "sanity.config.ts": "sanity.config.*.ts"
+  }
+}

@@ -3,7 +3,7 @@ import  duoImage from "./objects/duo-image";
 
 const generalInfo = {
   name: "general-info",
-  title: "Detalii",
+  title: "Setari website",
   type: "document",
 
  fields: [
@@ -65,29 +65,26 @@ const generalInfo = {
           type: 'array',
           of: [
             {
-              type: 'object',
-              fields: [
-                {
-                  name: 'image',
-                  title: 'Image',
-                  type: 'image',
-                  options: { hotspot: true },
-                },
-                {
-                  name: 'name',
-                  title: 'Nume',
-                  type: 'string',
-                },
-                {
-                  name: 'role',
-                  title: 'Rol',
-                  type: 'string',
-                }
-              ]
-            }
-          ]
-        }
+            type: 'object',
+            fields: [
+              { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
+              { name: 'name', title: 'Nume', type: 'string' },
+              { name: 'role', title: 'Rol', type: 'string' }
+            ]
+          }]
+     },
         ///////////////////////////////////
+
+    defineField({
+      name: 'currentYear',
+      title: 'Editia activa:',
+      type: 'string',
+      description: "Pe website se vor afisa proiecte/evenimente/tururi din editia selectata aici",
+      initialValue: (new Date().getFullYear()).toString(),
+      validation: (rule) => rule.required().error("O valoare e musai"),
+      options: {
+        list: ['2024', '2025', '2026']
+      }}),
   ]
 };
 
