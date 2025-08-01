@@ -85,3 +85,20 @@
     object-fit: cover;
 }
 
+.object-contain
+ {
+    object-fit: contain;
+}
+
+
+//////// mobile
+.is-mobile{
+  .hide-on-mobile{
+    display:none !important;
+  }
+}
+
+.hide-on-desktop{
+    display:none !important;
+  }
+

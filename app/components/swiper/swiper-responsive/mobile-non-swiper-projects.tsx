@@ -13,8 +13,8 @@ import { usePathname } from 'next/navigation';
 export default function MobileNonSwiperProjects({ projects }: { projects: ProjectType[] }) {
 
   const pathname = usePathname()
-  const isSibiu = pathname === '/sibiu' || pathname.startsWith('/sibiu/')
-  const isValcea = pathname === '/valcea' || pathname.startsWith('/valcea/')
+  const isSibiu = pathname.split('/').includes('sibiu');
+  const isValcea = pathname.split('/').includes('valcea');
   const city :string = isSibiu ? "sibiu": "valcea";
 
   return (
@@ -27,7 +27,7 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
               
                 <Link className="col col-image" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">
                   {/* <Image src={project?.images?.[0]?.image || "/should-not-happen.jpg"} className="object-cover" alt={`${project.name} logo`} fill /> */}
-                  <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover" alt={`${project.name} logo`} fill />
+                  <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${project.name} logo`} fill />
                 </Link>
 
                 <div className="col col-description">

@@ -12,6 +12,15 @@
   cursor:pointer;
   text-decoration: unset;
 
+  &.btn-large{
+    width: 200px;
+    height: 50px;
+    line-height:44px;
+    border-radius: 25px;
+    border-width: 3px;
+    font-size: 20px;
+  }
+
   
 
   &.btn-primary{

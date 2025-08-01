@@ -27,7 +27,8 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
       name,
       role,
       "image": image.asset->url
-    }
+    },
+    currentYear,
   }
 `,{},{next: { revalidate: 3 }, }); // 1-hour ISR cache
 }
@@ -51,17 +52,19 @@ export async function getProject(slug: string) {
   );
 }
 
-export async function getProjects(projectType: string) {
+export async function getProjects(projectType: string, year?: string) {
   return client.fetch(
-    groq`*[_type in [$projectType]]{
-      _id,
-      slug,
-      name,
-      profileImage {"image": asset->url},
-      address,
-      description,
-    }`,
-    { projectType }
+    groq`
+      *[_type == $projectType && (!defined($year) || year == $year)]{
+        _id,
+        slug,
+        name,
+        profileImage {"image": asset->url},
+        address,
+        description,
+      }
+    `,
+    { projectType, year: year ?? null }
   );
 }
 

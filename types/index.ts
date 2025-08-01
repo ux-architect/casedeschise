@@ -18,6 +18,8 @@ export type SiteInfoType = {
     role: string
   }[];
 
+  currentYear: string
+
 };
 
 export type SibiuAndValceaImageType = {

@@ -28,10 +28,10 @@ export function ContactForm() {
   }
 
   return (
-    <div className={`${styles['namespace-container']}`}>
-      <section className={` contact-section position-relative`}>
+    <div id="devino-gazda" className={`${styles['namespace-container']} clearfix float-left w-100`}>
+      <section className={` contact-section position-relative float-left`}>
 
-        <Image src={generalInfo?.contactFormImage?.image || "/should-not-happen.jpg"} className="object-cover overlay" alt={`contact form background`} fill />
+        <Image src={generalInfo?.contactFormImage?.image || "/should-not-happen.jpg"} className="object-cover overlay"  loading="lazy" alt={`contact form background`} fill />
         <form action={handleSubmit} className={` contact-form clearfix`}>
 
           <div className='form-group name'>

@@ -1,5 +1,7 @@
 
 @import '_modern-normalize';
+@import '_nav';
+
 @import '_utils';
 @import '_inputs';
 @import '_buttons';
@@ -9,6 +11,7 @@ html{
   height:100%;
   width:100%;
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 body {
@@ -35,6 +38,10 @@ body.city-is-sibiu{
     &.diff-background{
       background-color:#CEFB08;
     }
+
+    &:after, &:before{
+      border-color: #CEFB08;
+    }
   }
 }
 
@@ -46,5 +53,21 @@ body.city-is-valcea{
     &.diff-background{
       background-color:#ff0db9;
     }
+
+    &:after, &:before{
+      border-color: #ff0db9;
+    }
   }
+}
+
+
+body.still-loading{
+  .hide-while-still-loading{
+    opacity:0 !important;
+    
+  }
+}
+
+.hide-while-still-loading{
+  transition: opacity 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }

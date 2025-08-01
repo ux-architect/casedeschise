@@ -8,8 +8,8 @@ import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 
-export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
-  const { ["sibiu-valcea"]: city, slug } = await params;
+export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
+  const { year, ["sibiu-valcea"]: city, slug } = await params;
   const project = await getProject(slug) as ProjectType;
 
   const cssClass_city = city ;

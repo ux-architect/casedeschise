@@ -14,7 +14,7 @@
     "@sanity/structure": "^2.36.2",
     "@sanity/vision": "^4.2.0",
     "next": "^15.4.1",
-    "next-sanity": "^9.12.2",
+    "next-sanity": "^10.0.6",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "resend": "^4.7.0",

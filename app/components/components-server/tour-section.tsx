@@ -15,7 +15,7 @@ export default async function ToursSection({ tours, page }: { tours: TourType[],
 
   return (
 
-    <div className={`${styles['namespace-container']} `}>
+    <div id="tururi" className={`${styles['namespace-container']} `}>
 
       <section className={`tour-section clearfix`}>
         {tours?.map((tour, idx) => {
@@ -26,7 +26,7 @@ export default async function ToursSection({ tours, page }: { tours: TourType[],
                 
                   <Link className="col col-image" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">
 
-                    <Image src={tour?.profileImage.image || "/should-not-happen.jpg"} className="object-cover" alt={`${tour.name} logo`} fill />
+                    <Image src={tour?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${tour.name} logo`} fill />
                   </Link>
 
                   <div className="col col-description">

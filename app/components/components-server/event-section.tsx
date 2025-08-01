@@ -15,7 +15,7 @@ export default async function EventSection({ events, page }: { events: EventType
 
   return (
 
-    <div className={`${styles['namespace-container']} `}>
+    <div id="evenimente" className={`${styles['namespace-container']} `}>
 
       <section className={`event-section clearfix`}>
         {events?.map((event, idx) => {
@@ -26,7 +26,7 @@ export default async function EventSection({ events, page }: { events: EventType
                 
                   <Link className="col col-image" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">
 
-                    <Image src={event?.profileImage.image || "/should-not-happen.jpg"} className="object-cover" alt={`${event.name} logo`} fill />
+                    <Image src={event?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${event.name} logo`} fill />
                   </Link>
 
                   <div className="col col-description">
