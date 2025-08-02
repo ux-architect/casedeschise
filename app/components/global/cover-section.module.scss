@@ -73,16 +73,23 @@
 
 
     @media (max-width: 1600px) {
+
+      .logo{display:none;}
+      .event-title{
+             font-size:150px;
+       }
+
       .event-date{
-        top:65%;
+        top:55%;
       }
 
     }
 
-  @media (max-width: 768px) {
+  @media (max-width: 1200px) {
 
 
       .logo{
+        display:initial;
         top:35%;
         left:unset;
         width:100%;

@@ -9,12 +9,38 @@ export const projectFields = [
       validation: (rule) => rule.required(),
     }),
 
-     defineField({
-      name: "year",
-      title: "Editia/Anul",
-      type: "string",
-      initialValue: (new Date().getFullYear()).toString(),
-      }),
+    defineField({
+      name: "metadata",
+      title: "Ordonare",
+      type: "metadata", // <- the object defined above
+    }),
+    //  defineField({
+    //   name: "year",
+    //   title: "Editia/Anul",
+    //   type: "string",
+    //   initialValue: (new Date().getFullYear()).toString(),
+    //   }),
+
+    //   defineField({
+    //     name: 'sectiune',
+    //     title: 'Sectiune',
+    //     type: 'string',
+    //     options: {
+    //       list: [
+    //         { title: '1', value: '1' },
+    //         { title: '2', value: '2' },
+    //         { title: '3', value: '3' },
+    //         { title: '4', value: '4' },
+    //       ],
+    //       layout: 'dropdown' // optional, but explicitly sets it as a dropdown
+    //     }
+    //   }),
+
+    //   defineField({
+    //     name: "index",
+    //     title: "Index Ordine",
+    //     type: "string",
+    //   }),
 
     defineField({
       name: "profileImage",

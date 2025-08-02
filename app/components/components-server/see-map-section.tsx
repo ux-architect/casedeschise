@@ -17,7 +17,7 @@ const url_harta = `/images/vezi-harta-${page}.jpg`;
 
       <section className={`see-map-section clearfix`}>
         <Link href={`/2025/sibiu`}>
-            <Image src={`${url_harta}`} className="object-cover"  loading="lazy" fill sizes="100vw" alt="sibiu-cover"/>
+            <Image src={`${url_harta}`} className="object-cover"  loading="lazy" fill sizes="(max-width: 768px) 75vw, 100vw" alt="sibiu-cover"/>
         </Link>
       </section>
 

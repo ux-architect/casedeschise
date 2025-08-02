@@ -45,7 +45,9 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
 
         <section className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.description} /></div>
-          <div className="col col-2"><div className="map-container"><GoogleMapComponent /></div></div>
+          <div className="col col-2"><div className="map-container">
+            {/* <GoogleMapComponent /> */}
+            </div></div>
         </section>
 
         <section className="info border-bottom ">

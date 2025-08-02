@@ -30,6 +30,9 @@ export type SibiuAndValceaImageType = {
 export type ProjectType = {
   _id: string,
   name: string,
+
+  metadata?:{year?:string, section?:string, index?:string}
+
   profileImage: {image: string},
   images: {image: string }[];
 

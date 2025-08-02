@@ -39,6 +39,9 @@ export async function getProject(slug: string) {
       _id,
       slug,
       name,
+
+      metadata{"year":year, "section":section, "index":index},
+
       profileImage {"image": asset->url},
       images[]{"image": asset->url},
       address,
@@ -55,10 +58,13 @@ export async function getProject(slug: string) {
 export async function getProjects(projectType: string, year?: string) {
   return client.fetch(
     groq`
-      *[_type == $projectType && (!defined($year) || year == $year)]{
+      *[_type == $projectType && (!defined($year) || metadata.year == $year)]{
         _id,
         slug,
         name,
+
+        metadata{"year":year, "section":section, "index":index},
+
         profileImage {"image": asset->url},
         address,
         description,

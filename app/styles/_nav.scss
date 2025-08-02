@@ -92,6 +92,7 @@ nav#custom-responsive-nav {
 
 nav#custom-responsive-nav.open {
   display: flex;
+  background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 0%, rgb(0 0 0 / 46%) 0%, rgb(0 0 0 / 33%) 100%);
 }
 
 @media (max-width: 768px) {
@@ -116,6 +117,7 @@ nav#custom-responsive-nav.open {
         a.link {
             float: left;
             color: #fff;
+            font-size: 20px;
 
             &:after{
               border-color: #fff;
