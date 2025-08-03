@@ -3,6 +3,7 @@
 import React from "react"
 import { ObjectInputProps, set, PatchEvent } from "sanity"
 import { Flex, Box, Label, Stack } from "@sanity/ui"
+import styles from './metadata-input.module.scss';
 
 interface MetadataValue {
   year?: string
@@ -26,50 +27,36 @@ export default function HorizontalMetadataInput(
   }
 
   return (
-    <Flex gap={3} style={{ maxWidth: "100%", marginBottom: 8 }}>
+    <Flex gap={3} className={`${styles['namespace-container']} `}style={{ maxWidth: "100%", marginBottom: 8 }}>
+
       {/* YEAR */}
-      <Box flex={1}>
+      <Box flex={1} className="col col-1">
         <Stack space={2}>
-          <Label size={1}>{schemaType.fields[0].type.title}</Label>
-          <input
-            type="text"
-            value={value.year || ""}
-            onChange={e => handleChange("year", e.target.value)}
-            style={{ width: "100%", padding: "4px" }}
-          />
+          <Label size={1} className="label">{schemaType.fields[0].type.title}</Label>
+          <input type="text" value={value.year || ""} onChange={e => handleChange("year", e.target.value)}/>
         </Stack>
       </Box>
 
       {/* SECTION */}
-      <Box flex={1}>
+      <Box flex={1} className="col col-2">
         <Stack space={2}>
-          <Label size={1}>{schemaType.fields[1].type.title}</Label>
-          <select
-            value={value.section || ""}
-            onChange={e => handleChange("section", e.target.value)}
-            style={{ width: "100%", padding: "4px" }}
-          >
+          <Label size={1} className="label">{schemaType.fields[1].type.title}</Label>
+          <select  value={value.section || ""} onChange={e => handleChange("section", e.target.value)}>
             {sectionOptions.map(item => (
-              <option key={item.value} value={item.value}>
-                {item.title}
-              </option>
+              <option key={item.value} value={item.value}>{item.title}</option>
             ))}
           </select>
         </Stack>
       </Box>
 
       {/* INDEX */}
-      <Box flex={1}>
+      <Box flex={1} className="col col-3">
         <Stack space={2}>
-          <Label size={1}>{schemaType.fields[2].type.title}</Label>
-          <input
-            type="text"
-            value={value.index || ""}
-            onChange={e => handleChange("index", e.target.value)}
-            style={{ width: "100%", padding: "4px" }}
-          />
+          <Label size={1} className="label">{schemaType.fields[2].type.title}</Label>
+          <input type="text" value={value.index || ""} onChange={e => handleChange("index", e.target.value)} />
         </Stack>
       </Box>
+
     </Flex>
   )
 }

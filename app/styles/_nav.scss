@@ -88,6 +88,18 @@ nav#custom-responsive-nav {
   }
 }
 
+nav#custom-responsive-nav:not(.no-highlight-on-nav):before{
+  content:'';
+  position:absolute;
+  top:-30px;
+  width:100%;
+  height:400px;
+  pointer-events:none;
+  background: #000000;
+  background: linear-gradient(180deg,rgba(0, 0, 0, 0.56) 0%, rgba(255, 255, 255, 0) 100%);
+
+}
+
 ////mobile
 
 nav#custom-responsive-nav.open {

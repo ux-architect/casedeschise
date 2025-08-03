@@ -1,4 +1,4 @@
-import { getEvents, getProjects, getTours} from "@/sanity/sanity.query";
+import { getEvents, getGeneralInfo, getProjects, getTours} from "@/sanity/sanity.query";
 import CoverSection from "@/app/components/global/cover-section";
 import TeamSection from "@/app/components/global/team-section";
 import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
@@ -8,20 +8,33 @@ import styles from './page.module.scss';
 import ToursSection from "@/app/components/components-server/tour-section";
 import EventSection from "@/app/components/components-server/event-section";
 import SeeMapSection from "@/app/components/components-server/see-map-section";
+import { SiteInfoType } from "@/types";
 
 export default async function Valcea({ params}: {params: Promise<{ year:string}>}) {
 
   const { year } = await params;
 
-  let projects = await getProjects("projects-valcea", year);
-  var tours = await getTours("tours-valcea");
-  var events = await getEvents("events-valcea");
-
-    projects = [...projects, ...projects, ...projects];
-
-  const mid = Math.ceil(projects.length / 2);
-  const projects1 = projects.slice(0, mid);
-  const projects2 = projects.slice(mid);
+    const generalInfo: SiteInfoType = await getGeneralInfo();
+  
+    const projects = await getProjects("projects-valcea", year);
+    const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
+    const projects_section2 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "2");
+    const projects_section3 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "3");
+    const projects_section4 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "4");
+    // Optionally, for those with missing or unexpected section values:
+    const projects_other = projects.filter((p: { metadata: { section: any; }; }) => !["1", "2", "3", "4"].includes(p.metadata?.section ?? ""));
+  
+    projects_section1.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+    projects_section2.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+    projects_section3.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+    projects_section4.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  
+    projects_other.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  
+  
+  
+    var tours = await getTours("tours-sibiu");
+    var events = await getEvents("events-sibiu");
 
   return (
     <main className={`${styles['page-container']} `}>
@@ -29,16 +42,18 @@ export default async function Valcea({ params}: {params: Promise<{ year:string}>
       <CoverSection page={"valcea"}/>
       <SeeMapSection page={"valcea"} />
       
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/></section>)}
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
+
       <ToursSection tours={tours} page={"valcea"}/>
       <EventSection events={events} page={"valcea"}/>
 
-      <section className="swiper-section"><SwiperResponsive projects={projects1}/></section>
-      <section className="swiper-section"><SwiperResponsive projects={projects2} odd={true}/></section>
+     
 
       <MissionSection page={"valcea"}/>
 
-      {/* <section className="swiper-section"><SwiperResponsive projects={projects1}/></section>
-      <section className="swiper-section"><SwiperResponsive projects={projects2} odd={true}/></section> */}
 
       <section className="team-section"><TeamSection page={"valcea"}/></section>
 

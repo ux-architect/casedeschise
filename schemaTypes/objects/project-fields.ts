@@ -14,33 +14,6 @@ export const projectFields = [
       title: "Ordonare",
       type: "metadata", // <- the object defined above
     }),
-    //  defineField({
-    //   name: "year",
-    //   title: "Editia/Anul",
-    //   type: "string",
-    //   initialValue: (new Date().getFullYear()).toString(),
-    //   }),
-
-    //   defineField({
-    //     name: 'sectiune',
-    //     title: 'Sectiune',
-    //     type: 'string',
-    //     options: {
-    //       list: [
-    //         { title: '1', value: '1' },
-    //         { title: '2', value: '2' },
-    //         { title: '3', value: '3' },
-    //         { title: '4', value: '4' },
-    //       ],
-    //       layout: 'dropdown' // optional, but explicitly sets it as a dropdown
-    //     }
-    //   }),
-
-    //   defineField({
-    //     name: "index",
-    //     title: "Index Ordine",
-    //     type: "string",
-    //   }),
 
     defineField({
       name: "profileImage",
@@ -94,16 +67,21 @@ export const projectFields = [
       name: "slug",
       type: "slug",
       title: "Slug",
+      description: "Fără  diacritice sau caractere speciale aici!",
       options: {
         source: doc => {
-          const name = doc.name || ''
-          const year = doc.year || 'neincadrat'
-          return `${year}-${name}`
+          const name = (doc as any).name || ''
+          const year = (doc as any).metadata?.year || 'neincadrat'
+          
+          return `${name}`
         },
         slugify: input =>
           input
             .toLowerCase()
-            .replace(/\s+/g, '-')
+            .normalize('NFD')                         // Break diacritics into separate codepoints
+            .replace(/[\u0300-\u036f]/g, '')         // Remove diacritic marks
+            .replace(/\s+/g, '-')                    // Replace spaces with dashes
+            .replace(/[^a-z0-9\-]/g, '')             // Remove any other special characters
             .slice(0, 200),
       },
         validation: Rule => Rule.required(),

@@ -1,7 +1,5 @@
 'use client'
 import Link from "next/link"
-import Image from "next/image";
-import styles from './navbar.module.scss'
 import { useRef, useEffect, useState, ReactNode } from "react"
 import { usePathname } from "next/navigation"
 import { SiteInfoType } from "@/types"
@@ -36,11 +34,26 @@ export default function Navbar ({ generalInfo}: { generalInfo:SiteInfoType }){
   let url_cover = generalInfo?.siteEntryCover[cssClass_city]?.url ? urlFor(generalInfo?.siteEntryCover?.[cssClass_city].url).width(960).height(1080).auto('format').quality(99): null;
 
   const [navOpen, setNavOpen] = useState(false)
+  const [noHighlight, setNoHighlight] = useState(false);
 
   useEffect(() => {document.body.classList.toggle('mobile-nav-open', navOpen);}, [navOpen]);
- 
+  useEffect(() => {
+      const checkNoHighlight = () => {
+        const hasNoHighlightElement = document.querySelector('[data-no-highlight-on-nav]') !== null;
+        setNoHighlight(hasNoHighlightElement);
+      };
+
+      checkNoHighlight(); // Initial check on mount
+      const observer = new MutationObserver(checkNoHighlight);
+      observer.observe(document.body, {childList: true,subtree: true, });
+
+    return () => observer.disconnect();
+  }, []);
+
   var cssClass_navIsActive = navOpen ? "open" : '';
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
+  var cssClass_noHighlight = noHighlight ? "no-highlight-on-nav": "";
+
 
   const linkPrefix = "/" + generalInfo?.currentYear + "/" + cssClass_city ;
   
@@ -50,7 +63,7 @@ export default function Navbar ({ generalInfo}: { generalInfo:SiteInfoType }){
         <div id="#nav-mobile" className={`nav-mobile`}>
           <a className={`main-nav-toggle ${cssClass_menuIsActive} diff-sibiu-valcea`} href="#main-nav" onClick={e => { e.preventDefault(); setNavOpen(navOpen => !navOpen); } }><i className="diff-sibiu-valcea diff-background">Menu</i></a>
         </div>
-        <nav id="custom-responsive-nav" className={`${cssClass_navIsActive} hide-while-still-loading clearfix float-left`}>
+        <nav id="custom-responsive-nav" className={`${cssClass_navIsActive} ${cssClass_noHighlight} hide-while-still-loading clearfix float-left`}>
         <div className="flex-container">
           {/* <Image src={`${url_cover}`} className="object-cover mobile-menu-background" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="cover" /> */}
 

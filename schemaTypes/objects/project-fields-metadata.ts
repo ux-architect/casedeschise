@@ -7,6 +7,7 @@ export default defineType({
   name: 'metadata',
   title: 'Ordonare',
   type: 'object',
+  description: "Fără 'An' sau 'Secțiune' specificate, proiectul nu va apărea pe website (Neîncadrate).",
   fields: [
     {
       name: 'year',

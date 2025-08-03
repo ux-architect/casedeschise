@@ -11,6 +11,18 @@
       height: calc(100vh - 40px);
       width: 100%;
 
+      @media (max-width: 768px) {
+        height: 300px;
+
+        .swiper-pagination {
+          bottom:20px;
+          .swiper-pagination-bullet{
+            width: 12px;
+            height: 12px;
+          }
+        }
+      }
+
     }
   
     section.info{
@@ -116,11 +128,14 @@
       }
 
       @media (max-width: 768px) {
+            margin-top:0px;
+
         .col{
           
           h1{
             font-size:30px;
             line-height:40px;
+            margin-top:0;
             margin-bottom:20px;
           }
 
@@ -144,7 +159,7 @@
             padding:0 10px;
             margin-left:0;
             margin-right:0;
-            margin-top:30px;
+            // margin-top:30px;
             width:100%;
 
           }

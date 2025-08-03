@@ -1,5 +1,8 @@
 .nav-sibiu-valcea{
   height:40px;
+  position: relative;
+  z-index: 99;
+
    :global{
 
         a{

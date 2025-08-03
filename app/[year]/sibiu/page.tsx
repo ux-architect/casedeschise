@@ -24,37 +24,36 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
   // Optionally, for those with missing or unexpected section values:
   const projects_other = projects.filter((p: { metadata: { section: any; }; }) => !["1", "2", "3", "4"].includes(p.metadata?.section ?? ""));
 
+  projects_section1.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  projects_section2.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  projects_section3.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  projects_section4.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+
+  projects_other.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+
 
 
   var tours = await getTours("tours-sibiu");
   var events = await getEvents("events-sibiu");
 
-  // projects = [...projects, ...projects, ...projects];
-
-  // const mid = Math.ceil(projects.length / 2);
-  // const projects1 = projects.slice(0, mid);
-  // const projects2 = projects.slice(mid);
-
   return (
-    <main className={`${styles['page-container']} `}>
+    <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection page={"sibiu"} />
 
       <MissionSection page={"sibiu"}/>
 
       {/* <div style={{ height: '2800px' }} /> */}
-      <section id="cladiri" className="swiper-section "><SwiperResponsive projects={projects_section1}/></section>
-      <section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/></section>
+
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/></section>)}
+      
       <SeeMapSection page={"sibiu"} />
 
-      
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
       <ToursSection tours={tours} page={"sibiu"}/>
       <EventSection events={events} page={"sibiu"}/>
-
-      <section className="swiper-section"><SwiperResponsive projects={projects_section3}/></section>
-      <section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>
-
-
 
       <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>
 

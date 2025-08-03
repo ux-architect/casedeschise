@@ -29,8 +29,12 @@ function buildYearList(S: StructureBuilder, year: string) {
                 S.documentList()
                   .title(`${getSchemaTitle(type)} (${year})`)
                   .schemaType(type)
-                  .filter('_type == $type && metadata.year == $year')
+                  .filter('_type == $type && metadata.year == $year && metadata.section != "null"')
                   .params({ type, year })
+                  .defaultOrdering([
+                    { field: 'metadata.section', direction: 'asc' },
+                    { field: 'metadata.index', direction: 'asc' },
+                  ])
               )
           )
         )
@@ -45,7 +49,7 @@ function buildUncategorizedListItems(S: StructureBuilder) {
         S.documentList()
           .title(`${getSchemaTitle(type)} (Neîncadrate)`)
           .schemaType(type)
-          .filter('_type == $type && (!defined(metadata) || !defined(metadata.year))')
+          .filter('_type == $type && (!defined(metadata) || !defined(metadata.year) || !defined(metadata.section) || metadata.section == "null")')
           .params({ type })
       )
   )

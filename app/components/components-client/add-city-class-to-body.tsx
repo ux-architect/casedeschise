@@ -25,7 +25,7 @@ export default function AddCityClassToBody() {
 
   useEffect(() => {
     
-    const img = document.querySelector('img[data-wait-for-image="city-page-cover"]') as HTMLImageElement;
+    const img = document.querySelector('img[data-wait-for-image]') as HTMLImageElement;
     
     // Determine the class based on pathname
     const city = pathname.split('/').find((segment) => ['sibiu', 'valcea'].includes(segment)) || null;
@@ -38,6 +38,8 @@ export default function AddCityClassToBody() {
       document.body.classList.remove('still-loading');
       document.body.classList.add(cssClass);
     }).catch(() => {
+      document.body.classList.remove('still-loading');
+      document.body.classList.add(cssClass);
       console.warn('City image failed to load');
     });
 

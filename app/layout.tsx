@@ -17,7 +17,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   return (
     <html lang="ro">
 
-    <head></head>
+    <head><link rel="icon" href="/favicon.ico" /></head>
 
       <body className={`${poppins.variable} ${safiro.variable} city-is-sibiu still-loading`}>
           {children}

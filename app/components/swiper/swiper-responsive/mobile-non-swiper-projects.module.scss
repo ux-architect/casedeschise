@@ -6,7 +6,7 @@
 :global{
 
     .swiper-slide{
-      height:150vw;
+      // height:150vw;
       position:relative;
       background: #000;
       // margin-bottom:10px;
@@ -19,25 +19,31 @@
 
         &.col-image{
           height:33.333%;
+          height:220px;
         }
 
         &.col-description{
           height:66.666%;
+          height:220px;
           background: #000;
           padding:20px;
-          font-size:15px;
+          font-size:13px;
           text-align: justify;
           text-justify: inter-word;
 
           h6{
             text-align: left;
-            font-size:32px;
+            font-size:22px;
             color:#cefb08;
-            margin-bottom:20px;
+            margin-top:0px;
+            margin-bottom:0px;
           }
+        
+
           a.btn{
             position:absolute;
-            bottom:30px;
+            bottom:20px;
+            margin-left: calc(50% - 90px);
           }
         }
       }
@@ -50,7 +56,7 @@
         position:absolute;
         height:20px;
         width:20px;
-        top:calc(33.333% - 10px);
+        top:210px;
         right:30px;
         background-color:#cefb08;
         border-radius: 50%;
