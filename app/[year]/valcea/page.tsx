@@ -33,8 +33,10 @@ export default async function Valcea({ params}: {params: Promise<{ year:string}>
   
   
   
-    var tours = await getTours("tours-sibiu");
-    var events = await getEvents("events-sibiu");
+    var tours = await getTours("tours-valcea");
+    var events = await getEvents("events-valcea");
+    tours.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+    events.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
   return (
     <main className={`${styles['page-container']} `}>
@@ -48,6 +50,8 @@ export default async function Valcea({ params}: {params: Promise<{ year:string}>
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
       <ToursSection tours={tours} page={"valcea"}/>
+      <SeeMapSection page={"valcea"} />
+      
       <EventSection events={events} page={"valcea"}/>
 
      

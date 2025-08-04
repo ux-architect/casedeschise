@@ -73,6 +73,14 @@
     text-overflow: ellipsis;
 }
 
+.hide-long-text-12{
+    display: -webkit-box;
+    -webkit-line-clamp: 12;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 //////// sanity specific
 .has-portable-text p{
@@ -101,4 +109,8 @@
 .hide-on-desktop{
     display:none !important;
   }
-
+.is-mobile{
+  .hide-on-desktop{
+    display:initial !important;
+  }
+}

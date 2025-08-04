@@ -4,14 +4,13 @@
     
     overflow: hidden;
     float:left;
-    margin-top:30px;
-    margin-bottom:30px;
 
     :global{
 
     .tour-section{
         float:left;
         height:100%;
+        width:100%;
 
         .tour{
           float:left;
@@ -27,22 +26,148 @@
             text-justify: inter-word;
 
             h6{
+              margin:0;
               font-size:30px;
             }
 
             &.col-image{
                 height:100%;
                 position:relative;
+
+                .mobile-title{
+                      top: 20px;
+                      width:140px;
+                      text-align: center;
+                      font-size: 24px;
+                      background-color: #cefb08;
+                      padding: 4px;
+                      position: absolute;
+                      left:10px;
+                      color: #000;
+                }
+
+                a.btn{
+                  position:absolute;
+                  left:10px;
+                  bottom:10px;
+                  background-color:#00000088;
+
+                  &.btn-signup{
+                    bottom:50px;
+                }
+                }
             }
 
             &.col-description{
               padding:40px;
-              
+
+              a.btn{
+                color: #000;
+                border-color:#000;
+                position:absolute;
+                bottom:35px;
+
+                &.btn-signup{
+                  right:30px;
+                }
+              }
             }
 
+        }
 
+         .pin{
+              position:absolute;
+              height:20px;
+              width:20px;
+              bottom:40px;
+              right:calc(50% - 10px);
+              border-radius: 50%;
+            }
+
+         &.odd{
+              .col-image{
+                float:right;
+              }
+
+              .col-description{
+                float:left; 
+              }
+
+          }
+
+          // &:first-of-type .col-description{
+          //     border-top: 1px solid #000000;
+          // }
+          // &:last-of-type .col-description{
+          //     border-bottom: 1px solid #000000;
+          // }
         }
-        }
+      }
+
+
+      @media (max-width: 768px) {
+          .tour-section{
+              background: #ffffff;
+              padding-top: 10px;
+
+            .tour{ 
+              margin-bottom:10px;
+              height:auto;
+              &:last-of-type{margin-bottom:0px;}
+
+                .col{
+                  width:100%;
+
+                  &.col-image{
+                    height:300px;
+                    // border-top: 1px solid #000000;
+                    // border-bottom: 1px solid #000000;
+                  }
+
+                  &.col-description{
+                    position: absolute;
+                    background-color:#cefb08;
+                    height:100%;
+                    width:auto;
+                    padding:10px;
+                    background-color: #ffffffbd;
+                    border-right: 1px solid #000000;
+                    border-right: 10px solid #ffffff;
+
+                      h6{
+                        text-align: center;
+                        font-size: 24px;
+                        margin-top:60px;
+                        width:120px;
+                        text-align:center;
+                        text-transform: uppercase;
+                      }
+
+                     a.btn{
+                      position:absolute;
+                      left:10px;
+                      bottom:90px;
+                      width: 120px;
+                      font-size: 13px;
+                      border-color: #000 !important;
+
+                      &.btn-signup{
+                        bottom:50px;
+                      }
+                    }
+                  }
+              }
+
+
+              &.odd .col-description{
+                right:0;
+                border-right:none;
+                border-left: 10px solid #ffffff;
+              }
+            }
+
+          }
+
       }
     }
 }

@@ -33,7 +33,7 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
         return(
           <SwiperSlide key={idx} className={cssClass_odd}>
               <Link className="col col-image" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
-                  <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${project.name} logo`} fill />
+                  <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${project.name} cover image`} fill />
               </Link>
 
               <div className="col col-description">

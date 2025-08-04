@@ -35,12 +35,13 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
 
   var tours = await getTours("tours-sibiu");
   var events = await getEvents("events-sibiu");
+  tours.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  events.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection page={"sibiu"} />
-
-      <MissionSection page={"sibiu"}/>
+      
 
       {/* <div style={{ height: '2800px' }} /> */}
 
@@ -53,6 +54,10 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
       <ToursSection tours={tours} page={"sibiu"}/>
+      <SeeMapSection page={"sibiu"} />
+      
+      <MissionSection page={"sibiu"}/>
+      
       <EventSection events={events} page={"sibiu"}/>
 
       <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>

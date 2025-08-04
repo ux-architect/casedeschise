@@ -10,11 +10,10 @@ export const tourFields = [
     }),
 
     defineField({
-      name: "year",
-      title: "Editia/Anul",
-      type: "string",
-      initialValue: (new Date().getFullYear()).toString(),
-      }),
+      name: "metadata",
+      title: "Ordonare",
+      type: "tourMetadata", // <- the object defined above
+    }),
 
     defineField({
       name: "profileImage",
