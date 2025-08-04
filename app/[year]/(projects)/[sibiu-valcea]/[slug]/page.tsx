@@ -7,6 +7,7 @@ import SwiperComponent from "@/app/components/swiper/swiper-component";
 import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
+import SeeMapSection from '@/app/components/components-server/see-map-section';
 
 export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
   const { year, ["sibiu-valcea"]: city, slug } = await params;
@@ -43,14 +44,15 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
           )}
         </section>
 
-        <section className="info border-bottom">
+        <section id="details-and-map-section" className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.description} /></div>
           <div className="col col-2"><div className="map-container">
             {/* <GoogleMapComponent /> */}
+            <SeeMapSection page={city} />
             </div></div>
         </section>
 
-        <section className="info border-bottom ">
+        <section id="other-info-section" className="info border-bottom ">
           <div className="col col-1 has-portable-text"><PortableText value={project?.otherInfo} /></div>
           <div className="col col-2"></div>
         </section>

@@ -10,7 +10,7 @@ import { ProjectType, SiteInfoType } from '@/types';
 import { PortableText } from 'next-sanity';
 import { usePathname } from 'next/navigation';
 import { useGlobalInfo } from '@/app/context/global-info-context';
-import { Autoplay } from 'swiper/modules';
+import { Autoplay, Pagination } from 'swiper/modules';
 
 export default function MobileNonSwiperProjects({ projects }: { projects: ProjectType[] }) {
 
@@ -25,7 +25,7 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
   return (
     <section className={`${styles['mobile-non-swiper-projects']} clearfix`}>
 
-      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay]} autoplay={{ delay: 26500, disableOnInteraction: false }} loop={true} slidesPerView={1}>
+      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: 26500, disableOnInteraction: false }} pagination={true} loop={true} slidesPerView={1}>
         {projects?.map((project, idx) => {
           
           const slug: string = project?.slug?.current ?? '';
@@ -40,9 +40,9 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
                     </Link>
 
                     <div className="col col-description">
-                      <h6 className='font-bold hide-long-text'>{project?.name}</h6>
+                      <h6 className='font-bold hide-long-text diff-sibiu-valcea'>{project?.name}</h6>
                       <span className='hide-long-text-6'><PortableText value={project?.description} /></span>
-                      <Link className="btn btn-primary" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                      <Link className="btn btn-primary diff-sibiu-valcea" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     
                     <div className="pin"></div>
@@ -55,9 +55,9 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
                     </Link>
 
                     <div className="col col-description">
-                      <h6 className='font-bold hide-long-text'>{project?.name}</h6>
+                      <h6 className='font-bold hide-long-text diff-sibiu-valcea'>{project?.name}</h6>
                       <span className='hide-long-text-6'><PortableText value={project?.description} /></span>
-                      <Link className="btn btn-primary" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                      <Link className="btn btn-primary diff-sibiu-valcea" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     
                     

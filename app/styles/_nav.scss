@@ -214,19 +214,19 @@ nav#custom-responsive-nav.open {
         transform: rotate(-45deg);
         transform-origin: center;
         top: 50%;
-        border-color: #ffffff !important;
+        // border-color: #ffffff !important;
       }
 
       &:before {
         transform: rotate(45deg);
         transform-origin: center;
         top: 50%;
-        border-color: #ffffff !important;
+        // border-color: #ffffff !important;
       }
 
       i {
         opacity: 0;
-        background-color: #ffffff !important;
+        // background-color: #ffffff !important;
       }
     }
   }

@@ -2,13 +2,16 @@
 .namespace-container{
     width:100%;
     
-    overflow: hidden;
+    // overflow: hidden;
     float:left;
-    margin-top:30px;
-    margin-bottom:30px;
+    // margin-top:30px;
+    // margin-bottom:30px;
 
     :global{
       .see-map-section{
+        position:relative;
+        margin-top:0px;
+        margin-bottom:0px;
         height:500px;
 
         @media (max-width: 1200px) {
@@ -16,6 +19,9 @@
           }
 
         @media (max-width: 768px) {
+
+            width:calc(100% + 48px);
+            left:-24px;
             height: 40vw;
           }
 

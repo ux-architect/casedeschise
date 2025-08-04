@@ -13,7 +13,7 @@ const url_harta = `/images/vezi-harta-${page}.jpg`;
 
   return (
 
-    <div  className={`${styles['namespace-container']} `}>
+    <div  className={`${styles['namespace-container']} clearfix`}>
 
       <section className={`see-map-section clearfix`}>
         <Link href={`/2025/sibiu`}>

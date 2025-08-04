@@ -42,7 +42,16 @@ body.city-is-sibiu{
     &:after, &:before{
       border-color: #CEFB08;
     }
+
+    .swiper-pagination-bullet-active{
+              background:  #cefb08;
+    }
   }
+
+  .swiper-pagination-bullet-active{
+              background:  #cefb08 !important;
+    }
+  
 }
 
 body.city-is-valcea{
@@ -57,7 +66,13 @@ body.city-is-valcea{
     &:after, &:before{
       border-color: #ff0db9;
     }
+
+
   }
+
+  .swiper-pagination-bullet-active{
+              background:  #ff0db9 !important;
+    }
 }
 
 
