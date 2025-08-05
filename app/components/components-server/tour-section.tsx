@@ -29,9 +29,6 @@ export default async function ToursSection({ tours, page }: { tours: TourType[],
                 
                   <div className="col col-image" >
                     <Link href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={tour?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${tour.name} cover photo`} fill /></Link>
-                    {/* <h6 className='font-bold hide-on-desktop mobile-title'>{tour?.name}</h6>
-                    <Link className="btn btn-primary hide-on-desktop" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
-                    <Link className="btn btn-primary btn-signup hide-on-desktop" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link> */}
                   </div>
 
                   <div className="col col-description ">

@@ -12,14 +12,13 @@ export const tourFields = [
     defineField({
       name: "metadata",
       title: "Ordonare",
-      type: "tourMetadata", // <- the object defined above
+      type: "tourMetadata",
     }),
 
     defineField({
       name: "profileImage",
       title: "Profile Image",
       type: "image",
-      description: "Upload a profile picture",
       options: { hotspot: true },
     }),
 
@@ -27,7 +26,6 @@ export const tourFields = [
       name: "images",   // (change name if you want)
       title: "Imagini",
       type: "array",
-      description: "Prima imagine devine 'principala'",
       of: [{ type: "image", options: { hotspot: true },}],
     }),
 

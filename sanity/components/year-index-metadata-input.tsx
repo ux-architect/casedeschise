@@ -10,7 +10,7 @@ interface MetadataValue {
   index?: string
 }
 
-export default function TourMetadataInput(
+export default function YearIndexMetadataInput(
   props: ObjectInputProps<MetadataValue>
 ) {
   const { value = {}, onChange, schemaType } = props

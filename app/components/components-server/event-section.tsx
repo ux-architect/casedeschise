@@ -21,18 +21,22 @@ export default async function EventSection({ events, page }: { events: EventType
         {events?.map((event, idx) => {
           
           const slug: string = event?.slug?.current ?? '';
+          const isEvenSlide = idx % 2 === 0;
+          const isOddSlide = idx % 2 === 1;
+          const cssClass_odd = isOddSlide ? "odd" : "" ;
+
           return(
-            <div className="tour clearfix" key={idx}>
+            <div className={`event ${cssClass_odd} clearfix`} key={idx}>
                 
-                  <Link className="col col-image" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">
+                 <div className="col col-image" >
+                    <Link href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage1.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
+                  </div>
 
-                    <Image src={event?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${event.name} logo`} fill />
-                  </Link>
-
-                  <div className="col col-description">
+                  <div className="col col-description ">
                     <h6 className='font-bold'>{event?.name}</h6>
-                    <span className='hide-long-text-6'><PortableText value={event?.description} /></span>
-                    <Link className="btn btn-primary" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                    <span className='hide-long-text-12 hide-on-mobile'><PortableText value={event?.description} /></span>
+                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background btn-signup" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link>
                   </div>
                   
                   

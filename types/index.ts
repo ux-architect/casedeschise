@@ -65,7 +65,9 @@ export type TourType = {
 export type EventType = {
   _id: string,
   name: string,
-  profileImage: {image: string},
+  metadata?:{year?:string, index?:string}
+  profileImage1: {image: string},
+  profileImage2: {image: string},
   images: {image: string }[];
 
   address: string,

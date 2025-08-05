@@ -10,17 +10,22 @@ export const tourFields = [
     }),
 
     defineField({
-      name: "year",
-      title: "Editia/Anul",
-      type: "string",
-      initialValue: (new Date().getFullYear()).toString(),
-      }),
+      name: "metadata",
+      title: "Ordonare",
+      type: "eventMetadata",
+    }),
 
     defineField({
-      name: "profileImage",
-      title: "Profile Image",
+      name: "profileImage1",
+      title: "Profile Image I",
       type: "image",
-      description: "Upload a profile picture",
+      options: { hotspot: true },
+    }),
+
+    defineField({
+      name: "profileImage2",
+      title: "Profile Image II",
+      type: "image",
       options: { hotspot: true },
     }),
 
@@ -28,7 +33,6 @@ export const tourFields = [
       name: "images",   // (change name if you want)
       title: "Imagini",
       type: "array",
-      description: "Prima imagine devine 'principala'",
       of: [{ type: "image", options: { hotspot: true },}],
     }),
 

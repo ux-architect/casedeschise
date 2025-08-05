@@ -1,6 +1,6 @@
 // project-fields-metadata.ts
 
-import TourMetadataInput from '@/sanity/components/tour-metadata-input';
+import YearIndexMetadataInput from '@/sanity/components/year-index-metadata-input';
 import { defineType } from 'sanity';
 
 export default defineType({
@@ -22,6 +22,6 @@ export default defineType({
     },
   ],
   components: {
-    input: TourMetadataInput,
+    input: YearIndexMetadataInput,
   },
 });

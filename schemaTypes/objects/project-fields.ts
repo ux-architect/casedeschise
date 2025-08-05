@@ -19,7 +19,6 @@ export const projectFields = [
       name: "profileImage",
       title: "Profile Image",
       type: "image",
-      description: "Upload a profile picture",
       options: { hotspot: true },
     }),
 
