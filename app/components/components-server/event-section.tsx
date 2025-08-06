@@ -25,18 +25,32 @@ export default async function EventSection({ events, page }: { events: EventType
           const isOddSlide = idx % 2 === 1;
           const cssClass_odd = isOddSlide ? "odd" : "" ;
 
+          
+          const parts = event?.name.split('///').map(p => p.trim());
+          const title = parts[0];
+          const subtitle = parts[1];
+
           return(
             <div className={`event ${cssClass_odd} clearfix`} key={idx}>
                 
-                 <div className="col col-image" >
+                 <div className="col col-1 col-image" >
                     <Link href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage1.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
                   </div>
 
-                  <div className="col col-description ">
-                    <h6 className='font-bold'>{event?.name}</h6>
+                  <div className="col col-2 col-title  diff-sibiu-valcea diff-background" >
+                    <h6 className='font-bold title font-safiro'>{title}</h6>
+                    <h6 className='font-regular subtitle'>{subtitle}</h6>
+                  </div>
+
+                  <div className="col col-3" >
+                    <Link href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage2.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
+                  </div>
+
+
+
+                  <div className="col col-4 col-description ">
                     <span className='hide-long-text-12 hide-on-mobile'><PortableText value={event?.description} /></span>
-                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
-                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background btn-signup" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link>
+                    <Link className="btn btn-primary diff-sibiu-valcea " href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                   </div>
                   
                   

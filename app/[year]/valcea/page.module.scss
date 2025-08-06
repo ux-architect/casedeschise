@@ -6,6 +6,19 @@
   
 :global{
 
+  .section-title-on-mobile{
+    position:relative;
+    line-height:100px;
+    float:left;
+    width:100%;
+    font-size:50px;
+    font-weight: bold;
+    text-align: center;
+    color: #000 !important;
+    text-transform: uppercase;
+    margin-top:10px;
+  }
+
   section{
     position:relative;
   }

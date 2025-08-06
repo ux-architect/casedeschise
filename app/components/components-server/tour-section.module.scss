@@ -11,6 +11,9 @@
           float:left;
           height:100%;
           width:100%;
+          border-top: 1px solid #999;
+          border-bottom: 1px solid #999;
+          margin-top:10px;
 
           .tour{
             float:left;
@@ -85,6 +88,8 @@
           .tour-section{
               background: #ffffff;
               padding-top: 10px;
+              border:none;
+              margin-top:0;
 
             .tour{ 
               margin-bottom:10px;

@@ -4,8 +4,8 @@
     
     overflow: hidden;
     float:left;
-    margin-top:30px;
-    margin-bottom:30px;
+    // margin-top:30px;
+    // margin-bottom:30px;
 
     :global{
 
@@ -19,17 +19,22 @@
             width:100%;
             height: 420px;
             position:relative;
+            border-top: 1px solid #666;
+            border-bottom: 1px solid #666;
+            margin-bottom: 10px;
+
             .col{
               position:relative;
               height:100%;
-              width: 50%;
+              width: 25%;
               float:left;
               text-align: justify;
               text-justify: inter-word;
 
               h6{
                 margin:0;
-                font-size:30px;
+                font-size:20px;
+                color:black;
               }
 
               &.col-image{
@@ -42,14 +47,23 @@
 
                 a.btn{
                   color: #000;
-                  border-color:#000;
+                  border-color:#000 !important;
                   position:absolute;
                   bottom:35px;
-
-                  &.btn-signup{
-                    right:30px;
-                  }
                 }
+              }
+
+              &.col-title{
+                padding:40px;
+                .title{
+                  font-size: 28px;
+                }
+
+                .subtitle{
+                  margin-top:10px;
+                  font-size: 18px;
+                }
+
               }
 
           }
@@ -64,22 +78,12 @@
               }
 
           &.odd{
-                .col-image{
+                .col-1, .col-2, .col-3{
                   float:right;
-                }
-
-                .col-description{
-                  float:left; 
                 }
 
             }
 
-            // &:first-of-type .col-description{
-            //     border-top: 1px solid #000000;
-            // }
-            // &:last-of-type .col-description{
-            //     border-bottom: 1px solid #000000;
-            // }
           }
         }
 
@@ -91,61 +95,41 @@
             .event{ 
               margin-bottom:10px;
               height:auto;
+              border:none;
               &:last-of-type{margin-bottom:0px;}
 
                 .col{
                   width:100%;
 
                   &.col-image{
-                    height:300px;
-                    // border-top: 1px solid #000000;
-                    // border-bottom: 1px solid #000000;
+                    height:200px;
+                  }
+                  
+
+                  &.col-description,.col-3{
+                    display:none;
                   }
 
-                  &.col-description{
-                    position: absolute;
-                    background-color:#cefb08;
-                    height:100%;
-                    width:auto;
-                    padding:10px;
-                    background-color: #ffffffbd;
-                    border-right: 1px solid #000000;
-                    border-right: 10px solid #ffffff;
-
-                      h6{
-                        text-align: center;
-                        font-size: 24px;
-                        margin-top:60px;
-                        width:120px;
+                  &.col-title{
+                    padding:20px;
+                    // border-top: 1px solid #666 !important;
+                    // border-bottom: 1px solid #666 !important;
+                      .title{
+                        font-size:23px;
                         text-align:center;
-                        text-transform: uppercase;
                       }
-
-                     a.btn{
-                      position:absolute;
-                      left:10px;
-                      bottom:90px;
-                      width: 120px;
-                      font-size: 13px;
-                      border-color: #000 !important;
-
-                      &.btn-signup{
-                        bottom:50px;
+                      .subtitle{
+                        margin-top:5px;
+                        font-size:14px;
+                        text-align:center;
                       }
-                    }
+                    
                   }
               }
-
-
-              &.odd .col-description{
-                right:0;
-                border-right:none;
-                border-left: 10px solid #ffffff;
-              }
-            }
 
           }
 
       }
     }
+  }
 }
