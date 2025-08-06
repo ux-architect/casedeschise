@@ -16,7 +16,7 @@ export default function SwiperComponent({ images, projectName }: { images: { ima
       autoplay={{ delay: 26500, disableOnInteraction: false }}
       loop={true}
       slidesPerView={1}
-      pagination={true}
+      pagination={{ clickable: true }}
     >
       {images?.map((src, idx) => (
         <SwiperSlide key={idx}>

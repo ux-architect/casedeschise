@@ -45,7 +45,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
 
       {/* <div style={{ height: '2800px' }} /> */}
 
-      <div className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
+      <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/></section>)}
       
@@ -54,13 +54,13 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
-      <div className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Tururi :</div>
+      <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Tururi :</div>
       <ToursSection tours={tours} page={"sibiu"}/>
       {/* <SeeMapSection page={"sibiu"} /> */}
       
       <div className="hide-on-mobile"><MissionSection page={"sibiu"}/></div>
       
-      <div className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
+      <div id="evenimente" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
       <EventSection events={events} page={"sibiu"}/>
 
       <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>

@@ -15,7 +15,7 @@ export default async function ToursSection({ tours, page }: { tours: TourType[],
 
   return (
 
-    <div id="tururi" className={`${styles['namespace-container']} `}>
+    <div className={`${styles['namespace-container']} `}>
 
       <section className={`tour-section clearfix`}>
         {tours?.map((tour, idx) => {
@@ -28,14 +28,14 @@ export default async function ToursSection({ tours, page }: { tours: TourType[],
             <div className={`tour ${cssClass_odd} clearfix`} key={idx}>
                 
                   <div className="col col-image" >
-                    <Link href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={tour?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${tour.name} cover photo`} fill /></Link>
+                    <Link href={`${city}/tur/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={tour?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${tour.name} cover photo`} fill /></Link>
                   </div>
 
                   <div className="col col-description ">
                     <h6 className='font-bold'>{tour?.name}</h6>
                     <span className='hide-long-text-12 hide-on-mobile'><PortableText value={tour?.description} /></span>
-                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
-                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background btn-signup" href={`${city}/${slug}`} scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link>
+                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background" href={`${city}/tur/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background btn-signup" href={`${city}/tur/${slug}`} scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link>
                   </div>
                   
                   <div className="pin diff-sibiu-valcea diff-background hide-on-mobile"></div>

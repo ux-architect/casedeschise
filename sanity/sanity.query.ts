@@ -76,7 +76,7 @@ export async function getProjects(projectType: string, year?: string) {
 
 export async function getTour(slug: string) {
   return client.fetch(
-     groq`*[_type in ['tour-sibiu', 'tour-valcea'] && slug.current == $slug][0]{
+     groq`*[_type in ['tours-sibiu', 'tours-valcea'] && slug.current == $slug][0]{
       _id,
       slug,
       name,
@@ -110,7 +110,7 @@ export async function getTours(tourType: string) {
 
 export async function getEvent(slug: string) {
   return client.fetch(
-     groq`*[_type in ['event-sibiu', 'event-valcea'] && slug.current == $slug][0]{
+     groq`*[_type in ['events-sibiu', 'events-valcea'] && slug.current == $slug][0]{
       _id,
       slug,
       name,

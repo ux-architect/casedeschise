@@ -25,7 +25,7 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
   return (
     <section className={`${styles['mobile-non-swiper-projects']} clearfix`}>
 
-      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: 26500, disableOnInteraction: false }} pagination={true} loop={true} slidesPerView={1}>
+      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: 26500, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}>
         {projects?.map((project, idx) => {
           
           const slug: string = project?.slug?.current ?? '';

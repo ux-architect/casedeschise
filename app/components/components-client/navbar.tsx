@@ -70,7 +70,7 @@ export default function Navbar ({ generalInfo}: { generalInfo:SiteInfoType }){
           <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>
 
           <Dropdown label="Program">
-            <Link href="#cladiri" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Cladiri</Link>
+            <Link href="#obiective" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Cladiri</Link>
             <Link href="#tururi" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Tururi</Link>
             <Link href="#evenimente" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Evenimente</Link>
           </Dropdown>
