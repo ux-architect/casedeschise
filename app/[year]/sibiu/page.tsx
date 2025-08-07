@@ -14,7 +14,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
 
   const { year } = await params;
 
-  const generalInfo: SiteInfoType = await getGeneralInfo();
+  // const generalInfo: SiteInfoType = await getGeneralInfo();
 
   const projects = await getProjects("projects-sibiu", year);
   const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");

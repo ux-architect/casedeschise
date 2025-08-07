@@ -1,9 +1,10 @@
 'use client'
 import Link from "next/link"
 import { useRef, useEffect, useState, ReactNode } from "react"
+import Image from "next/image";
 import { usePathname } from "next/navigation"
 import { SiteInfoType } from "@/types"
-import { urlFor } from "@/sanity/sanity.client";
+
 
 
 // Minimal, reusable Dropdown component
@@ -11,15 +12,15 @@ const Dropdown = ({ label, children }: { label: ReactNode, children: ReactNode }
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    const h = (e: MouseEvent) => ref.current && !ref.current.contains(e.target as Node) && setOpen(false)
-    open && document.addEventListener('mousedown', h)
-    return () => document.removeEventListener('mousedown', h)
+    const h = (e: MouseEvent | TouchEvent) => { ref.current && !ref.current.contains(e.target as Node) && setOpen(false)}
+    open && document.addEventListener('click', h)
+    return () => document.removeEventListener('click', h)
   }, [open])
 
   const cssClass_open: string  = open? "open" : "";
   return (
-    <div ref={ref} className="dropdown-container">
-      <a className="link diff-sibiu-valcea" aria-haspopup="true" aria-expanded={open} type="button" onClick={() => setOpen(v => !v)}>{label}</a>
+    <div ref={ref} className={`dropdown-container ${cssClass_open}`} >
+      <a className="link diff-sibiu-valcea" aria-haspopup="true" aria-expanded={open} type="button" onClick={() => { setOpen(v => { return !v})}}>{label}</a>
       <div className={`dropdown-menu ${cssClass_open}`} role="menu">{children}</div>
     </div>
   )
@@ -31,12 +32,35 @@ export default function Navbar ({ generalInfo}: { generalInfo:SiteInfoType }){
   const isSibiu = pathname.split('/').includes('sibiu');
   const cssClass_city = isSibiu ? "sibiu" : "valcea";
 
-  let url_cover = generalInfo?.siteEntryCover[cssClass_city]?.url ? urlFor(generalInfo?.siteEntryCover?.[cssClass_city].url).width(960).height(1080).auto('format').quality(99): null;
-
   const [navOpen, setNavOpen] = useState(false)
   const [noHighlight, setNoHighlight] = useState(false);
 
-  useEffect(() => {document.body.classList.toggle('mobile-nav-open', navOpen);}, [navOpen]);
+
+// prevent scrolling when nav is open
+useEffect(() => {
+  if (navOpen) {
+    const scrollY = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollY}px`;
+    document.body.style.width = '100%';
+    document.body.classList.add('mobile-nav-open');
+  } else {
+    const html = document.documentElement;
+    const prevScrollBehavior = html.style.scrollBehavior;
+    html.style.scrollBehavior = 'auto';
+
+    const scrollY = document.body.style.top;
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, parseInt(scrollY || '0') * -1);
+
+    html.style.scrollBehavior = prevScrollBehavior;
+    document.body.classList.remove('mobile-nav-open');
+  }
+}, [navOpen]);
+
+
   useEffect(() => {
       const checkNoHighlight = () => {
         const hasNoHighlightElement = document.querySelector('[data-no-highlight-on-nav]') !== null;
@@ -50,45 +74,64 @@ export default function Navbar ({ generalInfo}: { generalInfo:SiteInfoType }){
     return () => observer.disconnect();
   }, []);
 
+  // sticky mobile menu
+  useEffect(() => {
+    const addStickyClassToNav = () => {
+      
+      const navMobile = document.getElementById("nav-mobile");
+      if (!navMobile || window.innerWidth >= 768) return;
+      const scrollElem = document.scrollingElement || document.documentElement;
+      if (scrollElem.scrollTop > window.innerHeight) {navMobile.classList.add("scrolled-past-100vh");} 
+      else {navMobile.classList.remove("scrolled-past-100vh");}
+    };
+
+    requestAnimationFrame(() => { setTimeout(addStickyClassToNav, 100);});
+
+    window.addEventListener("scroll", addStickyClassToNav);
+    return () => window.removeEventListener("scroll", addStickyClassToNav);
+  });
+
   var cssClass_navIsActive = navOpen ? "open" : '';
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
   var cssClass_noHighlight = noHighlight ? "no-highlight-on-nav": "";
 
+  let url_cover = generalInfo?.cityPageCover?.[cssClass_city]?.url || null;
+  let url_logo = `/images/case-${cssClass_city}-color.png`;
 
   const linkPrefix = "/" + generalInfo?.currentYear + "/" + cssClass_city ;
   
   return (
 
       <>
-        <div id="#nav-mobile" className={`nav-mobile`}>
+        <div id="nav-mobile" className={`nav-mobile`}>
           <a className={`main-nav-toggle ${cssClass_menuIsActive} diff-sibiu-valcea`} href="#main-nav" onClick={e => { e.preventDefault(); setNavOpen(navOpen => !navOpen); } }><i className="diff-sibiu-valcea diff-background">Menu</i></a>
         </div>
         <nav id="custom-responsive-nav" className={`${cssClass_navIsActive} ${cssClass_noHighlight} hide-while-still-loading clearfix float-left`}>
-        <div className="flex-container">
-          {/* <Image src={`${url_cover}`} className="object-cover mobile-menu-background" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="cover" /> */}
+          {/* <Image src={`${url_cover}`} className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/> */}
+          <div className="flex-container">
+  
+            <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>
 
-          <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>
+            <Dropdown label="Program">
+              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Cladiri</Link>
+              <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Tururi</Link>
+              <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Evenimente</Link>
+            </Dropdown>
 
-          <Dropdown label="Program">
-            <Link href="#obiective" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Cladiri</Link>
-            <Link href="#tururi" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Tururi</Link>
-            <Link href="#evenimente" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Evenimente</Link>
-          </Dropdown>
+            <Dropdown label="Comunitate">
+              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Echipa</Link>
+              <Link href={`${linkPrefix}#voluntari`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Voluntari</Link>
+              <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Parteneri</Link>
+              <Link href={`${linkPrefix}#sustinatori`}  className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Sustinatori</Link>
+              <Link href={`${linkPrefix}#devino-gazda`}  className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Devino gazda</Link>
+              <Link href={`${linkPrefix}#harta`}  className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Harta</Link>
+            </Dropdown>
 
-          <Dropdown label="Comunitate">
-            <Link href="/services/design" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Echipa</Link>
-            <Link href="/services/development" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Voluntari</Link>
-            <Link href="/services/seo" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Parteneri</Link>
-            <Link href="/services/seo" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Sustinatori</Link>
-            <Link href="#devino-gazda" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Devino gazda</Link>
-            <Link href="/map" className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Harta</Link>
-          </Dropdown>
+            <Link href={`${linkPrefix}#arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhiva</Link>
+            <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Contact</Link>
+            <Link href={`${linkPrefix}#faq`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
 
-          <Link href="#devino-gazda" className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhiva</Link>
-          <Link href="/contact" className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Contact</Link>
-          <Link href="/contact" className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
-
-        </div>
+          </div>
         </nav>
       </>
         

@@ -8,6 +8,7 @@ import ProvideJS_GoogleMaps from "../components/google-maps/google-map-provider"
 import AddCityClassToBody from "../components/components-client/add-city-class-to-body";
 import AddMobileClassToBody from "../components/components-client/add-mobile-class-to-body";
 import { GlobalInfoProvider } from "../context/global-info-provider";
+import AddScrolledClassToBody from "../components/components-client/add-scrolled-class-to-body";
 
 
 
@@ -19,6 +20,7 @@ export default async function MainLayout({children}: {children: React.ReactNode}
             <GlobalInfoProvider value={generalInfo}> {/*  adds acces to generalInfo data on all child csr components */}
               <AddCityClassToBody/>
               <AddMobileClassToBody/>
+              <AddScrolledClassToBody/>
 
               <Nav_Sibiu_Valcea generalInfo = {generalInfo}/>
               <Navbar generalInfo = {generalInfo} /> 
