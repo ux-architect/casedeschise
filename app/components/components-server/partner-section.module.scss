@@ -1,0 +1,78 @@
+
+.namespace-container{
+    width:100%;
+    overflow: hidden;
+    float:left;
+        position: relative;
+    :global{
+
+      .partner-section{
+          position: relative;
+          float:left;
+          height:180px;
+          width:100%;
+          border-bottom:1px solid #000;
+          color:black;
+          padding: 0 10%;
+
+          &:last-of-type{
+              border:none;
+            }
+
+          .col{
+            width:50%;
+            float:left;
+            position:relative;
+          }
+          
+
+          h2{
+            font-size:18px;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            width:100%;
+          }
+         .partner{
+            float:left;
+            width:50%;
+            height:100px;
+            width:200px;
+            padding-right: 40px;
+
+            &.large-1{
+              width: 260px;
+            }
+            &.large-2{
+              width: 270px;
+            }
+ 
+         }
+
+         .logo{
+          float:left;
+          width:100%;
+          height:100%;
+          position: relative;
+
+          &.has-label:after{
+                content:attr(data-label);
+                position:absolute;
+                top:-30px;
+                color: #000000;
+                font-size:18px;
+                font-weight: 500;
+                letter-spacing: 2px;
+              }
+         }
+
+         &#initiator{
+          padding-top:50px;
+         }
+
+      @media (max-width: 768px) {
+
+      }
+    }
+  }
+}

@@ -73,7 +73,32 @@ const generalInfo = {
             ]
           }]
      },
-        ///////////////////////////////////
+
+    //Sponsori///////////////
+    defineField({
+          name: 'partners',
+          title: 'Parteneri',
+          type: 'array',
+          of: [
+            {
+            type: 'object',
+            fields: [
+              { name: 'name', title: 'Nume', type: 'string' },
+               { name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true } },
+              { name: 'type', title: 'Tip', type: 'string',
+                        options: {
+                          list: [
+                            { title: 'Doar Partener', value: 'partner' },
+                            { title: 'Partner Mobilitate', value: 'mobility-partner' },
+                            { title: 'Partner Media', value: 'media-partner' },
+                            { title: 'Sponsor', value: 'sponsor' },
+                            // Add more options here
+                          ] }
+              },
+              { name: 'link', title: 'Link/Website', type: 'string' },
+            ]
+          }]
+     }),
 
     defineField({
       name: 'currentYear',

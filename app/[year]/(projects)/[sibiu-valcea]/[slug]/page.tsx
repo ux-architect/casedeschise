@@ -8,12 +8,15 @@ import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 import SeeMapSection from '@/app/components/components-server/see-map-section';
+import PartnerSection from '@/app/components/components-server/partner-section';
 
 export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
   const { year, ["sibiu-valcea"]: city, slug } = await params;
   const project = await getProject(slug) as ProjectType;
 
-  const cssClass_city = city ;
+    const parts = project?.name.split('///').map(p => p.trim());
+    const title = parts[0];
+    const subtitle = parts[1];
 
   return (
     <>
@@ -22,12 +25,18 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
         <section className="swiper-section"><SwiperComponent images={project?.images} projectName={project?.name} /></section>
 
         <section className="info border-bottom">
-          <div className="col col-1 h1"><h1>{project?.name}</h1></div>
+
+          <div className="col col-1">
+            <h1 className='font-bold title font-safiro'>{title}</h1>
+            <h1 className='font-regular subtitle'>{subtitle}</h1>
+          </div>
+
           <div className="col col-2">
             {project?.visitTime?.map((time, idx) => (
               <span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>
             ))}
           </div>
+
         </section>
 
         <section className="info border-bottom">
@@ -59,6 +68,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
 
       </main>
 
+      <PartnerSection page={city} />
       <ContactForm />
     </>
   );

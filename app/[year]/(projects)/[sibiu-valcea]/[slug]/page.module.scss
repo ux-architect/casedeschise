@@ -61,6 +61,12 @@
                 font-weight: bold;
                 font-size:40px;
                 line-height: 50px;
+
+                &.title{}
+
+                &.subtitle{
+                  font-size:20px;
+                }
               }
 
           span.date{
@@ -136,14 +142,22 @@
         .col{
           
           h1{
-            font-size:30px;
+            
             line-height:40px;
             margin-top:0;
-            margin-bottom:20px;
+            margin-bottom:0px;
+
+            &.title{ font-size:30px; }
+
+            &.subtitle{
+              font-size:20px;
+              line-height:30px;
+            }
           }
 
           span.date{
                 font-size:24px;
+                margin-top:20px;
               }
 
           .map-container{
@@ -161,14 +175,7 @@
 
             &.has-portable-text p{
               margin: 0;
-              // margin-top: 11px;
-              // line-height: 20px;
-              strong{
-                // margin-right:12px;
-                // margin-bottom:24px;
-                // float:left;
-                // clear:both;
-              }
+
             }
           }
 

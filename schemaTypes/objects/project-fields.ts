@@ -5,6 +5,7 @@ export const projectFields = [
     defineField({
       name: "name",
       title: "Nume",
+      description: "Optional se poate folosi conventia: Titlu///Subtitlu",
       type: "string",
       validation: (rule) => rule.required(),
     }),
@@ -26,7 +27,6 @@ export const projectFields = [
       name: "images",   // (change name if you want)
       title: "Imagini",
       type: "array",
-      description: "Prima imagine devine 'principala'",
       of: [{ type: "image", options: { hotspot: true },}],
     }),
 

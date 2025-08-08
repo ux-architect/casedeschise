@@ -9,7 +9,6 @@
       float:left;
       width:100%;
       overflow:hidden;
-      margin-top:10px;
 
       &:after{
       content:'';
@@ -51,12 +50,12 @@
       }
 
       .form-group.name{
-         width:500px;
+         width:45%;
          float:left;
       }
 
       .form-group.address{
-         width:500px;
+         width:45%;
          float:right;
       }
 
@@ -127,8 +126,9 @@
             
          }
       }
-    
-      @media (max-width: 768px) {
+
+
+      @media (max-width: 1200px) {
             .form-group{
                width:100% !important;
                float:left;

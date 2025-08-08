@@ -25,11 +25,17 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
   const year = generalInfo?.currentYear;
   
 
+
   return (
     <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay]} autoplay={{ delay: 26500, disableOnInteraction: false }} loop={true} slidesPerView={2}>
       {projects?.map((project, idx) => {
 
         const slug: string = project?.slug?.current ?? '';
+
+        const parts = project?.name.split('///').map(p => p.trim());
+        const title = parts[0];
+        const subtitle = parts[1];
+
         return(
           <SwiperSlide key={idx} className={cssClass_odd}>
               <Link className="col col-image" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
@@ -37,8 +43,11 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
               </Link>
 
               <div className="col col-description">
-                <h6 className='font-bold diff-sibiu-valcea'>{project?.name}</h6>
-                <span className="hide-long-text-9"><PortableText value={project?.description} /></span>
+
+                <h6 className='font-bold title font-safiro diff-sibiu-valcea'>{title}</h6>
+                <h6 className='font-regular subtitle diff-sibiu-valcea'>{subtitle}</h6>
+
+                <span className="description hide-long-text-9"><PortableText value={project?.description} /></span>
 
                 <Link className="btn btn-primary diff-sibiu-valcea" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
               </div>

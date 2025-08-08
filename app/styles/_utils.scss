@@ -34,11 +34,23 @@
     height:40px;
 }
 
+.ml-20{
+  margin-left:20px;
+}
+
+.ml-30{
+  margin-left:30px;
+}
+
 
 /////// flex utils
 
 .flex-container {
   display: flex;
+}
+
+.position-absolute{
+  position:absolute !important;
 }
 
 //////// text utils
@@ -64,29 +76,18 @@
   overflow: hidden;
 }
 
-.hide-long-text-6{
-    display: -webkit-box;
-    -webkit-line-clamp: 6;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-
+@mixin hide-long-text($lines) {
+  display: -webkit-box;
+  -webkit-line-clamp: $lines;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-.hide-long-text-9{
-    display: -webkit-box;
-    -webkit-line-clamp: 9;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-.hide-long-text-12{
-    display: -webkit-box;
-    -webkit-line-clamp: 12;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
+@for $i from 4 through 12 {
+  .hide-long-text-#{$i} {
+    @include hide-long-text($i);
+  }
 }
 
 //////// graphics utils

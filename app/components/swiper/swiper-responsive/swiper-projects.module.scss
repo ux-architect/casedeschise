@@ -27,7 +27,18 @@
             margin:0;
             text-align: left;
             font-size:32px;
-            margin-bottom:20px;
+            
+
+            &.title{
+                font-size:32px;
+            }
+
+            &.subtitle{
+                font-size:20px;
+            }
+          }
+          .description{
+            margin-top:20px;
           }
         }
       }

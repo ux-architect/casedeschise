@@ -4,6 +4,7 @@ import { useRef, useEffect, useState, ReactNode } from "react"
 import Image from "next/image";
 import { usePathname } from "next/navigation"
 import { SiteInfoType } from "@/types"
+import Nav_Sibiu_Valcea from "../global/nav-sibiu-valcea";
 
 
 
@@ -103,11 +104,13 @@ useEffect(() => {
   return (
 
       <>
+      
+
         <div id="nav-mobile" className={`nav-mobile`}>
           <a className={`main-nav-toggle ${cssClass_menuIsActive} diff-sibiu-valcea`} href="#main-nav" onClick={e => { e.preventDefault(); setNavOpen(navOpen => !navOpen); } }><i className="diff-sibiu-valcea diff-background">Menu</i></a>
         </div>
         <nav id="custom-responsive-nav" className={`${cssClass_navIsActive} ${cssClass_noHighlight} hide-while-still-loading clearfix float-left`}>
-          {/* <Image src={`${url_cover}`} className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/> */}
+          {/* <Nav_Sibiu_Valcea generalInfo = {generalInfo} className="position-absolute"/> */}
           <div className="flex-container">
   
             <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>

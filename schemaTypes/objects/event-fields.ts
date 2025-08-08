@@ -5,6 +5,7 @@ export const tourFields = [
     defineField({
       name: "name",
       title: "Nume",
+      description: "Optional se poate folosi conventia: Titlu///Subtitlu",
       type: "string",
       validation: (rule) => rule.required(),
     }),

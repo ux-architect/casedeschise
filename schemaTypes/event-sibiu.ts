@@ -1,4 +1,5 @@
 import { tourFields } from "./objects/event-fields";
+import { splitNamePreview } from "./objects/split-name-preview";
 
 const eventSibiu = {
   name: "events-sibiu",
@@ -9,25 +10,7 @@ const eventSibiu = {
     ...tourFields,
   ],
 
-  preview: {
-    select: { title: 'name', },
-    prepare(selection: { title?: string }) {
-      let mainTitle = selection.title ?? '';
-      let subtitle;
-
-      if (mainTitle.includes('///')) {
-        const parts = mainTitle.split('///').map(p => p.trim());
-        mainTitle = parts[0];
-        subtitle = parts[1];
-      }
-
-      return {
-        title: mainTitle,
-        subtitle: subtitle,
-        // media: yourImageField,
-      };
-    }
-  }
+  preview: splitNamePreview,
 }
 
 export default eventSibiu;

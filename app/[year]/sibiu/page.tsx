@@ -9,6 +9,7 @@ import ToursSection from "@/app/components/components-server/tour-section";
 import EventSection from "@/app/components/components-server/event-section";
 import SeeMapSection from "@/app/components/components-server/see-map-section";
 import { SiteInfoType } from "@/types";
+import PartnerSection from "@/app/components/components-server/partner-section";
 
 export default async function Sibiu({ params}: {params: Promise<{ year:string }>;}) {
 
@@ -42,7 +43,6 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection page={"sibiu"} />
       
-
       {/* <div style={{ height: '2800px' }} /> */}
 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
@@ -64,9 +64,8 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <EventSection events={events} page={"sibiu"}/>
 
       <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>
-
-      {/* <section className="swiper-section"><SwiperResponsive projects={projects_other} odd={true}/></section> */}
-
+      
+      <PartnerSection page={"sibiu"} />
       <ContactForm />
 
     </main>

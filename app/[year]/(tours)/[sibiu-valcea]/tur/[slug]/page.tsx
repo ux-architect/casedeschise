@@ -8,6 +8,7 @@ import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 import SeeMapSection from '@/app/components/components-server/see-map-section';
+import PartnerSection from '@/app/components/components-server/partner-section';
 
 export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
@@ -51,6 +52,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
       </main>
 
+      <PartnerSection page={city} />
       <ContactForm />
     </>
   );

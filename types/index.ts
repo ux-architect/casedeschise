@@ -18,6 +18,13 @@ export type SiteInfoType = {
     role: string
   }[];
 
+  partners: {
+    name: string,
+    logo: string,
+    type: string,
+    link:string,
+  }[];
+
   currentYear: string
 
 };

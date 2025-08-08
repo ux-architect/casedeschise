@@ -17,7 +17,7 @@ export default async function Home() {
         <div className="section"  aria-label={'Sibiu'}>
           <div className="logos clearfix"><Link href="https://www.oarsbvl.ro/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link></div>
           <Link href={`/${generalInfo.currentYear}/sibiu`}><div className="title" style={{ backgroundImage: `url(/images/case-sibiu.png)` }}></div></Link>
-          <Image src={`${url_cover_sibiu}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="sibiu-cover"/>
+          <Image src={`${url_cover_sibiu}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
         </div>
 
 
@@ -27,7 +27,7 @@ export default async function Home() {
             <Link href="https://oar.archi/timbrul-de-arhitectura/"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
           </div>
           <Link href={`/${generalInfo.currentYear}/valcea`}><div className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></div></Link>
-          <Image src={`${url_cover_valcea}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="valcea-cover" />
+          <Image src={`${url_cover_valcea}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
         </div>
 
       </div>

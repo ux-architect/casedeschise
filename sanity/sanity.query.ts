@@ -23,11 +23,9 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     misionStatement2,
     contactFormImage{"image": asset->url},
 
-    team[]{
-      name,
-      role,
-      "image": image.asset->url
-    },
+    team[]{name, role, "image": image.asset->url },
+    partners[]{name, "logo": logo.asset->url, type, link },
+
     currentYear,
   }
 `,{},{next: { revalidate: 3 }, }); // 1-hour ISR cache

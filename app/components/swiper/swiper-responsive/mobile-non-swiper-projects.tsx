@@ -29,41 +29,33 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
         {projects?.map((project, idx) => {
           
           const slug: string = project?.slug?.current ?? '';
-          const isEvenSlide = idx % 2 === 0;
-          const isOddSlide = idx % 2 === 1;
+
+          const parts = project?.name.split('///').map(p => p.trim());
+          const title = parts[0];
+          const subtitle = parts[1];
+
+          const cssClass_descriptionLines = subtitle ? "hide-long-text-5": "hide-long-text-6";
+
           return(
             <SwiperSlide key={idx} className='clearfix'>
-                {isEvenSlide && (
+                
                   <>
                     <Link className="col col-image" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
                       <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${project.name} logo`} fill />
                     </Link>
 
                     <div className="col col-description">
-                      <h6 className='font-bold hide-long-text diff-sibiu-valcea'>{project?.name}</h6>
-                      <span className='hide-long-text-6'><PortableText value={project?.description} /></span>
+                      <h6 className='font-bold title font-safiro diff-sibiu-valcea'>{title}</h6>
+                      <h6 className='font-regular subtitle diff-sibiu-valcea'>{subtitle}</h6>
+
+                      <span className={cssClass_descriptionLines}><PortableText value={project?.description} /></span>
                       <Link className="btn btn-primary diff-sibiu-valcea" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     
                     <div className="pin"></div>
 
-                  </>)}
-                {isOddSlide && (
-                  <>
-                    <Link className="col col-image" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
-                      <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${project.name} logo`} fill />
-                    </Link>
-
-                    <div className="col col-description">
-                      <h6 className='font-bold hide-long-text diff-sibiu-valcea'>{project?.name}</h6>
-                      <span className='hide-long-text-6'><PortableText value={project?.description} /></span>
-                      <Link className="btn btn-primary diff-sibiu-valcea" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
-                    </div>
-                    
-                    
-                    <div className="pin"></div>
-                  </>)}
-
+                  </>
+                
 
             </SwiperSlide>)
           
