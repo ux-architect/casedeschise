@@ -8,7 +8,7 @@ import { SiteInfoType } from "@/types"
 
 
 // Minimal, reusable Dropdown component
-const Dropdown = ({ label, children }: { label: ReactNode, children: ReactNode }) => {
+const Dropdown = ({ label, children, className }: { label: ReactNode, children: ReactNode, className?: string; }) => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
   useEffect(() => {
@@ -19,7 +19,7 @@ const Dropdown = ({ label, children }: { label: ReactNode, children: ReactNode }
 
   const cssClass_open: string  = open? "open" : "";
   return (
-    <div ref={ref} className={`dropdown-container ${cssClass_open}`} >
+    <div ref={ref} className={`dropdown-container ${className} ${cssClass_open}`} >
       <a className="link diff-sibiu-valcea" aria-haspopup="true" aria-expanded={open} type="button" onClick={() => { setOpen(v => { return !v})}}>{label}</a>
       <div className={`dropdown-menu ${cssClass_open}`} role="menu">{children}</div>
     </div>
@@ -112,19 +112,19 @@ useEffect(() => {
   
             <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>
 
-            <Dropdown label="Program">
-              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Cladiri</Link>
-              <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Tururi</Link>
-              <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Evenimente</Link>
+            <Dropdown label="Program" className="smaller">
+              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Cladiri<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Tururi<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Evenimente<span className="line">]</span></Link>
             </Dropdown>
 
-            <Dropdown label="Comunitate">
-              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Echipa</Link>
-              <Link href={`${linkPrefix}#voluntari`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Voluntari</Link>
-              <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Parteneri</Link>
-              <Link href={`${linkPrefix}#sustinatori`}  className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Sustinatori</Link>
-              <Link href={`${linkPrefix}#devino-gazda`}  className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Devino gazda</Link>
-              <Link href={`${linkPrefix}#harta`}  className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Harta</Link>
+            <Dropdown label="Comunitate" className="smaller">
+              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Echipa<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#voluntari`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Voluntari<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#sustinatori`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Sustinatori<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#devino-gazda`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Devino gazda<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#harta`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Harta <span className="line">]</span></Link>
             </Dropdown>
 
             <Link href={`${linkPrefix}#arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhiva</Link>
