@@ -40,6 +40,10 @@ body.city-is-sibiu{
       background-color:#CEFB08;
     }
 
+    &.diff-hover:hover{
+      color:#CEFB08;
+    }
+
     &:after, &:before{
       border-color: #CEFB08;
     }
@@ -62,6 +66,10 @@ body.city-is-valcea{
     
     &.diff-background{
       background-color:#ff0db9;
+    }
+
+    &.diff-hover:hover{
+      color:#ff0db9;
     }
 
     &:after, &:before{

@@ -1,0 +1,38 @@
+
+
+import styles from './footer-section.module.scss';
+import Link from 'next/link';
+
+
+export default async function FooterSection({ page = 'sibiu' }: { page: string; }) {
+
+const linkPrefix = "/" + "2024" + "/" + page ;
+
+  return (
+    <div  className={`${styles['namespace-container']} clearfix`}>
+          <section id="faq" className = {`${'footer-section'} clearfix`}>
+            
+            <div className="col col-1">
+                <div>Sibiu, str. Mitropoliei, nr. 17</div>
+                <div>contact@casedeschise.ro</div>
+                <div>0744 444 444</div>
+            </div>
+
+            <div className="col col-2">
+              <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea diff-hover">Despre</Link>
+              <Link href={`${linkPrefix}#sponsori`} className="link diff-sibiu-valcea diff-hover">Comunitate</Link>
+              <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea diff-hover">Arhiva</Link>
+              <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea diff-hover">FAQ</Link>
+            </div>
+
+            <div className="col col-2">
+              <Link href={`${linkPrefix}#harta`} className="link diff-sibiu-valcea diff-hover">Harta</Link>
+              <Link href={`${linkPrefix}#obiective`} className="link diff-sibiu-valcea diff-hover">Cladiri</Link>
+              <Link href={`${linkPrefix}#tururi`} className="link diff-sibiu-valcea diff-hover">Tururi</Link>
+              <Link href={`${linkPrefix}#evenimente`} className="link diff-sibiu-valcea diff-hover">Evenimente</Link>
+            </div>
+
+          </section>
+    </div>
+  );
+}

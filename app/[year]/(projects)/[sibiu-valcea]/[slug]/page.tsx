@@ -9,14 +9,16 @@ import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
+import FooterSection from '@/app/components/components-server/footer-section';
+import FaqSection from '@/app/components/components-server/faq-section';
 
 export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
   const { year, ["sibiu-valcea"]: city, slug } = await params;
   const project = await getProject(slug) as ProjectType;
 
     const parts = project?.name.split('///').map(p => p.trim());
-    const title = parts[0];
-    const subtitle = parts[1];
+    const title = parts[0]  || '';
+    const subtitle = parts[1]  || '';
 
   return (
     <>
@@ -68,8 +70,10 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
 
       </main>
 
+      <FaqSection page={city} />
       <PartnerSection page={city} />
       <ContactForm />
+      <FooterSection page={city}/>
     </>
   );
 }

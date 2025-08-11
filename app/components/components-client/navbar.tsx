@@ -127,12 +127,12 @@ useEffect(() => {
               <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#sustinatori`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Sustinatori<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#devino-gazda`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Devino gazda<span className="line">]</span></Link>
-              <Link href={`${linkPrefix}#harta`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Harta <span className="line">]</span></Link>
+              <Link href={`/harta`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Harta <span className="line">]</span></Link>
             </Dropdown>
 
-            <Link href={`${linkPrefix}#arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhiva</Link>
+            <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhiva</Link>
             <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Contact</Link>
-            <Link href={`${linkPrefix}#faq`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
+            <Link href={`/faq`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
 
           </div>
         </nav>
