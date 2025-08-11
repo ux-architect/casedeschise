@@ -31,11 +31,15 @@
               text-align: justify;
               text-justify: inter-word;
 
-              h6{
-                margin:0;
-                font-size:20px;
-                color:black;
-              }
+              // .title-link{
+              //   text-decoration: none;
+                h6{
+                  margin:0;
+                  font-size:20px;
+                  color:black !important;
+                  text-decoration: none;
+                }
+              // }
 
               &.col-image{
                   height:100%;

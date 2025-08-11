@@ -25,7 +25,7 @@ export default async function CoverSection({ page = 'sibiu' }: { page: CityKey; 
         <h2 className={'event-date hide-while-still-loading diff-sibiu-valcea font-safiro'}>{generalInfo?.eventDate}</h2>
         
         <div id="signup" className="w-100 clearfix hide-while-still-loading">
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea" href={`/`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link  className="btn btn-primary btn-large diff-sibiu-valcea" href={`/contact`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </div>
         
     </div>

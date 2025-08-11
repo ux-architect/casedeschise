@@ -65,6 +65,7 @@ export async function getProjects(projectType: string, year?: string) {
 
         profileImage {"image": asset->url},
         address,
+        gps,
         description,
       }
     `,

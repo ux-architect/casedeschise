@@ -26,7 +26,7 @@ export default async function MainLayout({children}: {children: React.ReactNode}
               <Navbar generalInfo = {generalInfo} /> 
 
                   {/* <ProvideJS_GoogleMaps> */}
-                    <div className="float-left w-100" > {children} </div>
+                    <div className="float-left w-100 h-100"  > {children} </div>
                   {/* </ProvideJS_GoogleMaps> */}
             </GlobalInfoProvider>
 

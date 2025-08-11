@@ -37,6 +37,12 @@ export const projectFields = [
     }),
 
     defineField({
+      name: "gps",
+      title: "Coordonate",
+      type: "string",
+    }),
+
+    defineField({
       name: "visitTime",
       title: "Program",
       type: "array",
@@ -54,12 +60,6 @@ export const projectFields = [
       title: "Despre",
       type: "array",
       of: [{type: "block"}],
-    }),
-
-    defineField({
-      name: "gps",
-      title: "Coordonate",
-      type: "string",
     }),
 
     defineField({

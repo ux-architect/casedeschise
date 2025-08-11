@@ -96,9 +96,6 @@ useEffect(() => {
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
   var cssClass_noHighlight = noHighlight ? "no-highlight-on-nav": "";
 
-  let url_cover = generalInfo?.cityPageCover?.[cssClass_city]?.url || null;
-  let url_logo = `/images/case-${cssClass_city}-color.png`;
-
   const linkPrefix = "/" + generalInfo?.currentYear + "/" + cssClass_city ;
   
   return (
@@ -127,7 +124,7 @@ useEffect(() => {
               <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#sustinatori`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Sustinatori<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#devino-gazda`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Devino gazda<span className="line">]</span></Link>
-              <Link href={`/harta`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Harta <span className="line">]</span></Link>
+              <Link href={`${linkPrefix}/map`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Harta <span className="line">]</span></Link>
             </Dropdown>
 
             <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhiva</Link>
