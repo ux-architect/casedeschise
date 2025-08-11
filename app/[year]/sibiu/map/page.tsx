@@ -4,10 +4,7 @@ import styles from './page.module.scss';
 import { getProjects } from "@/sanity/sanity.query";
 import { ProjectType } from "@/types";
 
-type CityKey = 'sibiu' | 'valcea';
-
 const projects = await getProjects("projects-sibiu", '2024');
-const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
 
 const markers = projects
   .map((project: ProjectType) => {
@@ -43,7 +40,7 @@ const markers = projects
   .filter((marker: any) => marker !== null); // filter out null results
 
 
-export default function Map({ page = 'sibiu' }: { page?: CityKey }) {
+export default function Map() {
   return (
     <div className={`${styles['namespace-container']}`} >
       <ProvideJS_GoogleMaps>
