@@ -10,12 +10,16 @@ import { getGeneralInfo } from '@/sanity/sanity.query';
 export default async function PartnerSection({ page = 'sibiu' }: { page: string; }) {
   const generalInfo: SiteInfoType = await getGeneralInfo();
 
+  const partners = generalInfo?.partners?.filter((p: { type: string; }) => p.type === "partner");
+  const partnersMobility = generalInfo?.partners?.filter((p: { type: string; }) => p.type === "mobility-partner");
+  const partnersMedia = generalInfo?.partners?.filter((p: { type: string; }) => p.type === "media-partner");
+  const sponsors = generalInfo?.partners?.filter((p: { type: string; }) => p.type === "sponsor");
   return (
     <div className={`${styles['namespace-container']} diff-sibiu-valcea diff-background`}>
           
           <section id="initiator" className={'partner-section '}>
             <div className="col col-1">
-                <Link className='partner large-2' href="https://www.oarsbvl.ro/">
+                <Link className='partner large-2' href="https://oar.archi/en/" target="_blank">
                   <div className="logo has-label" data-label="INIȚIATOR">
                     <Image src={'/images/oar-sb-vl-negru.png'} fill alt={`oar sibiu-valcea logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/>
                   </div>
@@ -23,13 +27,13 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
             </div>
 
             <div className="col col-2">
-              <Link className='partner large-1' href="https://oar.archi/en/">
+              <Link className='partner large-1' href="https://www.oarsbvl.ro/" target="_blank">
                 <div className="logo has-label" data-label="COFINANȚATOR">
                   <Image src={'/images/oar-negru.png'} fill alt={`oar logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/>
                 </div>
               </Link>
 
-              <Link className='partner' href="https://oar.archi/timbrul-de-arhitectura/">
+              <Link className='partner' href="https://oar.archi/timbrul-de-arhitectura/" target="_blank">
                 <div className="logo has-label ml-30" data-label="PRIN">
                   <Image src={'/images/timbrul-negru.png'} fill alt={`timbru de arhitectura logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/>
                 </div>
@@ -39,11 +43,11 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
           </section>
 
           <section id="parteneri" className={'partner-section '}><h2>Parteneri</h2>
-            {generalInfo?.partners?.map((partner, idx) => {
+            {partners.map((partner, idx) => {
               return (
 
                 <div key={idx} className='partner'>
-                  <Link href="https://oar.archi/en/">
+                  <Link href={partner.link || "#"} target="_blank">
                     <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
                   </Link>
                 </div>
@@ -55,31 +59,35 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
         <section id="parteneri-media-mobilitate" className={'partner-section '}>
           {/*  col-1  */}
           <div className="col col-1"><h2>Partener de mobilitate</h2>
-              {generalInfo?.partners?.map((partner, idx) => { return (
+              {partnersMobility.map((partner, idx) => { return (
 
                   <div key={idx} className='partner'>
-                    <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                    <Link href={partner.link || "#"} target="_blank">
+                      <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                    </Link>
                   </div>
 
                 );})}
           </div>
            {/*  col-2  */}
           <div className="col col-2"><h2>Parteneri media</h2>
-              {generalInfo?.partners?.map((partner, idx) => {return (
-
-                  <div key={idx} className='partner'>
-                    <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
-                  </div>
-
+              {partnersMedia.map((partner, idx) => {return (
+                  <Link href={partner.link || "#"} target="_blank">
+                    <div key={idx} className='partner'>
+                      <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                    </div>
+                  </Link>
                 );})}
           </div>
         </section>
 
         <section id="sponsori" className={'partner-section '}><h2>Sponsori</h2>
-            {generalInfo?.partners?.map((partner, idx) => {return (
+            {sponsors.map((partner, idx) => {return (
 
                 <div key={idx} className='partner'>
-                  <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                  <Link href={partner.link || "#"} target="_blank">
+                    <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                  </Link>
                 </div>
 
               );})}

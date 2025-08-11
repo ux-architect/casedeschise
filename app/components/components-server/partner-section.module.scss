@@ -71,8 +71,46 @@
          }
 
       @media (max-width: 768px) {
+          padding: 20px 20px;
+          height: auto;
+          // height:100px;
+
+          
+          h2{
+            font-size: 14px;
+            margin: 0;
+          }
+
+          .col{
+            width:100%;
+           
+          }
+
+          .partner{
+            height:60px;
+            width: 160px !important;
+
+            .logo.has-label:after {
+              font-size:14px;
+              top:-20px;
+            }
+
+          }
+
+          &#initiator{
+            padding-top:0px;
+            .col{
+                 margin-top:40px;
+            }
+         }
+         &#parteneri-media-mobilitate{
+          .col-2{
+              margin-top: 40px;
+          }
+         }
+        }
 
       }
-    }
+    
   }
 }

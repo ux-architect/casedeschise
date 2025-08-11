@@ -1,5 +1,3 @@
-
-
 import styles from './tour-section.module.scss';
 import { TourType } from "@/types";
 import Image from "next/image";

@@ -17,8 +17,8 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
   const cssClass_city = city ;
 
   const parts = event?.name.split('///').map(p => p.trim());
-          const title = parts[0];
-          const subtitle = parts[1];
+          const title = parts[0]  || '';
+          const subtitle = parts[1]  || '';
 
   return (
     <>

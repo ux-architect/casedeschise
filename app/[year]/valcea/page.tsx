@@ -10,6 +10,7 @@ import EventSection from "@/app/components/components-server/event-section";
 import SeeMapSection from "@/app/components/components-server/see-map-section";
 import { SiteInfoType } from "@/types";
 import PartnerSection from "@/app/components/components-server/partner-section";
+import FaqSection from "@/app/components/components-server/faq-section";
 
 export default async function Valcea({ params}: {params: Promise<{ year:string}>}) {
 
@@ -62,7 +63,9 @@ export default async function Valcea({ params}: {params: Promise<{ year:string}>
 
      
       <div className="hide-on-mobile"><MissionSection page={"valcea"}/></div>
-      <section className="team-section hide-on-mobile"><TeamSection page={"valcea"}/></section>
+      {/* <section className="team-section hide-on-mobile"><TeamSection page={"valcea"}/></section> */}
+      
+      <FaqSection page={"sibiu"} />
       <PartnerSection page={"sibiu"} />
       <section className="contact-section position-relative"><ContactForm /></section>
 

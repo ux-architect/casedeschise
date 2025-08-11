@@ -1,0 +1,18 @@
+.namespace-container{
+  height:100%;
+  width:100%;
+
+   :global{
+
+    main{
+          height: 100dvh;
+    }
+
+    h1,p{
+      color:#000000;
+    }
+   
+   }
+   
+
+}

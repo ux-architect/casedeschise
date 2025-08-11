@@ -10,6 +10,7 @@ import EventSection from "@/app/components/components-server/event-section";
 import SeeMapSection from "@/app/components/components-server/see-map-section";
 import { SiteInfoType } from "@/types";
 import PartnerSection from "@/app/components/components-server/partner-section";
+import FaqSection from "@/app/components/components-server/faq-section";
 
 export default async function Sibiu({ params}: {params: Promise<{ year:string }>;}) {
 
@@ -42,8 +43,8 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection page={"sibiu"} />
-      
       {/* <div style={{ height: '2800px' }} /> */}
+      
 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/></section>)}
@@ -63,8 +64,9 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <div id="evenimente" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
       <EventSection events={events} page={"sibiu"}/>
 
-      <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>
+      {/* <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section> */}
       
+      <FaqSection page={"sibiu"} />
       <PartnerSection page={"sibiu"} />
       <ContactForm />
 
