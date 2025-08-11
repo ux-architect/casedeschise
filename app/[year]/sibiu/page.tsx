@@ -45,7 +45,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection page={"sibiu"} />
       {/* <div style={{ height: '2800px' }} /> */}
-   
+     
 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/></section>)}
@@ -70,7 +70,8 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <FaqSection page={"sibiu"} />
       <PartnerSection page={"sibiu"} />
       <ContactForm />
-      <FooterSection page={"sibiu"}/>
+       <FooterSection page={"sibiu"}/>
+      
       
 
     </main>
