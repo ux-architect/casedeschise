@@ -19,14 +19,16 @@ type MarkerType = {
 };
 
 
-const OverlayMarker: React.FC<{
-  marker: MarkerType;
-  city: string;
-  onClick?: () => void;
-  fadeIn: boolean;
-  zoom: number;
-}> = ({ marker, city, onClick, fadeIn, zoom }) => {
-
+const OverlayMarker = (
+  { marker, city, onClick, fadeIn, zoom }: {
+    marker: MarkerType;
+    city: string;
+    onClick?: () => void;
+    fadeIn: boolean;
+    zoom: number;
+  }
+) => {
+  const [pressed, setPressed] = useState(false);
 
   const position = useMemo(
     () => ({ lat: marker.position.lat, lng: marker.position.lng }),
@@ -34,34 +36,52 @@ const OverlayMarker: React.FC<{
   );
 
   const generalInfo = useContext(GlobalInfoContext);
-  const linkPrefix = "/" + generalInfo?.currentYear + "/" + city ;
+  const linkPrefix = "/" + generalInfo?.currentYear + "/" + city;
+  const cssClass_isPressed = pressed ? "pressed" : "";
 
   return (
-     <OverlayViewF position={position} mapPaneName="overlayMouseTarget">
-    <div className={`marker-container ${fadeIn ? "fadeIn" : ""}`} onClick={onClick}>
-      {(() => {
-        switch (true) {
-          case zoom >= 16:
-            return (
-              <Link href={`${linkPrefix}/${marker.slug}`} scroll={true} className="title-link fill-container" rel="noreferrer noopener">
-                 {marker.image && (<div className="markerImage"><Image src={marker.image} className="object-cover" loading="lazy" fill sizes="(max-width: 768px) 25vw, 15vw" alt={marker.title}/></div>)}
-                <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>{marker.title}</div><div className={'marker-arrow '} />
-                </Link>
-            );
-          case zoom <= 16:
-            return (
-              <Link href={`${linkPrefix}/${marker.slug}`} scroll={true} className="title-link fill-container" rel="noreferrer noopener">
-               <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>{marker.title}</div><div className={'marker-arrow '} />
-              </Link>
-            );
-          // case zoom >= 14 && zoom <= 16:
-          //   return <div className="pin-1"></div> 
-          default:
-            return null;
-        }
-      })()}
-    </div>
-  </OverlayViewF>
+    <OverlayViewF position={position} mapPaneName="overlayMouseTarget">
+      <div className={`marker-container ${cssClass_isPressed} ${fadeIn ? "fadeIn" : ""}`}>
+        <Link
+          href={`${linkPrefix}/${marker.slug}`}
+          scroll={true}
+          className="title-link fill-container"
+          rel="noreferrer noopener"
+          
+          // Just set visual pressed state
+          onMouseDown={() => setPressed(true)}
+          onMouseUp={() => setPressed(false)}
+          onMouseLeave={() => setPressed(false)}
+          onTouchStart={() => setPressed(true)}
+          
+          // This is the safe place to remove highlight after navigation attempt
+          onClick={() => {
+            setPressed(false)
+            if (onClick) onClick();
+          }}
+        >
+          {marker.image && zoom >= 16 && (
+            <div className="markerImage">
+              <Image
+                src={marker.image}
+                className="object-cover"
+                loading="lazy"
+                fill
+                sizes="(max-width: 768px) 25vw, 15vw"
+                alt={marker.title}
+              />
+            </div>
+          )}
+          <div
+            className="marker-text diff-sibiu-valcea diff-background"
+            data-mobile-highlight
+          >
+            {marker.title}
+          </div>
+          <div className={"marker-arrow"} />
+        </Link>
+      </div>
+    </OverlayViewF>
   );
 };
 

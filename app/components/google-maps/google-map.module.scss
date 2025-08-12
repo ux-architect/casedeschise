@@ -17,8 +17,25 @@
         transition: opacity 0.5s ease-in-out;
         border:3px solid;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
-
-        
+        &:after{
+            content:'';
+            box-sizing: border-box;
+            width:calc(100% + 10px);
+            height:calc(100% + 10px);
+            position:absolute;
+            top:-5px;
+            left:-5px;
+            background: #00000060;
+            z-index:999;
+            opacity:0;
+            transition: opacity 0.15 step-end;
+            pointer-events:none;
+          }
+        &.pressed {
+          &:after{opacity:1;}
+        // background-color: rgba(0, 0, 0, 0.35);
+ 
+      }
         
       }
 
@@ -29,15 +46,14 @@
     a.title-link{
       text-decoration: none;
 
+      
+
     .marker-text {
       padding: 6px 8px;
       color: #000;
       font-size: 13px;
       text-decoration: none;
       white-space: nowrap;
-      &:hover{
-          opacity:0.7;
-        }
     }
 
     .markerImage {
