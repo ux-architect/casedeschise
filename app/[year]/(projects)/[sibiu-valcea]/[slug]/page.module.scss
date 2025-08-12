@@ -75,12 +75,6 @@
                 &.valcea { color: #ff0db9;}
               }
 
-          .map-container{
-            position:relative;
-            width:400px;
-            height:400px;
-          }
-
           &.col-1{
               width:650px;
               margin-left:calc(50% - 550px);
@@ -102,7 +96,27 @@
 
           }
         }
-    
+        &#details-and-map-section{
+          display: flex;
+          align-items: stretch;
+          padding:0;
+
+         .map-container{
+            position:relative;
+            width:400px;
+            height:100%;
+
+            .open-in-google-maps{
+              position:absolute;
+              border-color:#000 !important;
+              color:#000;
+              font-size:14px;
+              width:220px;
+              top: 30px;
+              left: 30px;
+            }
+          }
+        }
 
       @media (max-width: 1200px) {
         .col{
@@ -190,9 +204,14 @@
 
         &#details-and-map-section{
           border-bottom:none;
-
+          flex-direction: column;
+          .col-1{
+            padding:0 30px;
+            padding-top:30px;
+          }
           .col-2{
-                    margin-top: 30px;
+              margin-top: 30px;
+              padding:0;
           }
         }
 

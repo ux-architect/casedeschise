@@ -30,7 +30,7 @@ export default function MobileNonSwiperProjects({ projects }: { projects: Projec
           
           const slug: string = project?.slug?.current ?? '';
 
-          const parts = project?.name.split('///').map(p => p.trim());
+          const parts = project?.name.split('///').map(p => p.trim()) || [];
           const title = parts[0];
           const subtitle = parts[1];
 

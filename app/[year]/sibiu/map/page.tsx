@@ -32,9 +32,9 @@ const markers = projects
       id: project._id,
       position: { lat, lng },
       title: mainTitle,
-      subtitle,             // add subtitle property
-      // icon: "/icons/marker-red.png",
-      image: project.profileImage?.image || "", // safe access and fallback
+      subtitle,             
+      image: project.profileImage?.image || null, 
+      slug: project.slug.current,
     };
   })
   .filter((marker: any) => marker !== null); // filter out null results

@@ -11,14 +11,21 @@ import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
 import FooterSection from '@/app/components/components-server/footer-section';
 import FaqSection from '@/app/components/components-server/faq-section';
+import Link from 'next/link';
 
 export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
   const { year, ["sibiu-valcea"]: city, slug } = await params;
   const project = await getProject(slug) as ProjectType;
 
-    const parts = project?.name.split('///').map(p => p.trim());
+    const parts = project?.name.split('///').map(p => p.trim()) ?? [];
     const title = parts[0]  || '';
     const subtitle = parts[1]  || '';
+
+    const gps = project?.gps?.split(',').map(p => p.trim()) ?? [];
+    const lat = gps[0]  || '';
+    const lng = gps[1]  || '';
+    
+    const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(title)})&z=${18}`;
 
   return (
     <>
@@ -58,8 +65,8 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
         <section id="details-and-map-section" className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.description} /></div>
           <div className="col col-2"><div className="map-container">
-            {/* <GoogleMapComponent /> */}
             <SeeMapSection page={city} />
+            <Link className="btn btn-primary diff-sibiu-valcea open-in-google-maps" href={`${mapsUrl}`} scroll={true} target="_blank" rel="noreferrer noopener">DESCHIDE IN GOOGLE MAPS</Link>
             </div></div>
         </section>
 

@@ -12,8 +12,8 @@ import Nav_Sibiu_Valcea from "../global/nav-sibiu-valcea";
 const Dropdown = ({ label, children, className }: { label: ReactNode, children: ReactNode, className?: string; }) => {
   const [open, setOpen] = useState(false)
   const ref = useRef<HTMLDivElement>(null)
-  useEffect(() => {
-    const h = (e: MouseEvent | TouchEvent) => { ref.current && !ref.current.contains(e.target as Node) && setOpen(false)}
+  useEffect(() => { 
+    const h = (e: MouseEvent | TouchEvent) => { ref.current  && setOpen(false)}
     open && document.addEventListener('click', h)
     return () => document.removeEventListener('click', h)
   }, [open])
@@ -21,7 +21,7 @@ const Dropdown = ({ label, children, className }: { label: ReactNode, children: 
   const cssClass_open: string  = open? "open" : "";
   return (
     <div ref={ref} className={`dropdown-container ${className} ${cssClass_open}`} >
-      <a className="link diff-sibiu-valcea" aria-haspopup="true" aria-expanded={open} type="button" onClick={() => { setOpen(v => { return !v})}}>{label}</a>
+      <a className="link diff-sibiu-valcea" aria-haspopup="true" aria-expanded={open} type="button" onClick={() => {  setOpen(v => { return !v})}}>{label}</a>
       <div className={`dropdown-menu ${cssClass_open}`} role="menu">{children}</div>
     </div>
   )
@@ -113,7 +113,7 @@ useEffect(() => {
             <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>
 
             <Dropdown label="Program" className="smaller">
-              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Cladiri<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => { setNavOpen(false)}}><span className="line">[</span>Cladiri<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Tururi<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Evenimente<span className="line">]</span></Link>
             </Dropdown>

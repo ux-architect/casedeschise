@@ -6,7 +6,7 @@ import { ReactNode } from "react";
 export default function ProvideJS_GoogleMaps({ children }: { children: ReactNode }) {
   return (
     <LoadScriptNext googleMapsApiKey={process.env.NEXT_PUBLIC_GOOGLE_MAPS_API_KEY || ""}>
-      <div>{children}</div>
+      <div className="clearfix">{children}</div>
     </LoadScriptNext>
   );
 }

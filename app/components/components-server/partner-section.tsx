@@ -45,13 +45,9 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
           <section id="parteneri" className={'partner-section '}><h2>Parteneri</h2>
             {partners.map((partner, idx) => {
               return (
-
-                <div key={idx} className='partner'>
-                  <Link href={partner.link || "#"} target="_blank">
+                  <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
                     <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
                   </Link>
-                </div>
-
               );})}
 
         </section>
@@ -60,22 +56,16 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
           {/*  col-1  */}
           <div className="col col-1"><h2>Partener de mobilitate</h2>
               {partnersMobility.map((partner, idx) => { return (
-
-                  <div key={idx} className='partner'>
-                    <Link href={partner.link || "#"} target="_blank">
+                    <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
                       <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
                     </Link>
-                  </div>
-
                 );})}
           </div>
            {/*  col-2  */}
           <div className="col col-2"><h2>Parteneri media</h2>
               {partnersMedia.map((partner, idx) => {return (
-                  <Link href={partner.link || "#"} target="_blank">
-                    <div key={idx} className='partner'>
+                  <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
                       <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
-                    </div>
                   </Link>
                 );})}
           </div>
@@ -83,13 +73,9 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
 
         <section id="sponsori" className={'partner-section '}><h2>Sponsori</h2>
             {sponsors.map((partner, idx) => {return (
-
-                <div key={idx} className='partner'>
-                  <Link href={partner.link || "#"} target="_blank">
+                  <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
                     <div className="logo"><Image src={partner.logo} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
                   </Link>
-                </div>
-
               );})}
         </section>
     </div>
