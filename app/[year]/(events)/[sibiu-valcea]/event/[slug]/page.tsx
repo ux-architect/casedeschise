@@ -46,12 +46,6 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
               <span className="info">{event?.address}</span>
           </div>
 
-          {event?.transport && (
-            <div className="col col-2">
-              <span className="label">Transport in comun</span>
-              <span className="info">{event.transport}</span>
-            </div>
-          )}
         </section>
 
         <section className="info border-bottom">

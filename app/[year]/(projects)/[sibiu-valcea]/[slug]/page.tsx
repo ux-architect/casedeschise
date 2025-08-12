@@ -53,13 +53,6 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
               <span className="label">Adresa</span>
               <span className="info">{project?.address}</span>
           </div>
-
-          {project?.transport && (
-            <div className="col col-2">
-              <span className="label">Transport in comun</span>
-              <span className="info">{project.transport}</span>
-            </div>
-          )}
         </section>
 
         <section id="details-and-map-section" className="info border-bottom">

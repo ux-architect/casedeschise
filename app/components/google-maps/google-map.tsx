@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useMemo, useState, useRef, useContext } from "react";
+import React, { useMemo, useState, useRef, useContext, useEffect } from "react";
 import { GoogleMap, OverlayViewF } from "@react-google-maps/api";
 import Image from "next/image";
 import styles from "./google-map.module.scss";
@@ -27,6 +27,7 @@ const OverlayMarker: React.FC<{
   zoom: number;
 }> = ({ marker, city, onClick, fadeIn, zoom }) => {
 
+
   const position = useMemo(
     () => ({ lat: marker.position.lat, lng: marker.position.lng }),
     [marker.position.lat, marker.position.lng]
@@ -42,15 +43,15 @@ const OverlayMarker: React.FC<{
         switch (true) {
           case zoom >= 16:
             return (
-              <Link href={`${linkPrefix}/${marker.slug}`} scroll={true} className="title-link" rel="noreferrer noopener">
+              <Link href={`${linkPrefix}/${marker.slug}`} scroll={true} className="title-link fill-container" rel="noreferrer noopener">
                  {marker.image && (<div className="markerImage"><Image src={marker.image} className="object-cover" loading="lazy" fill sizes="(max-width: 768px) 25vw, 15vw" alt={marker.title}/></div>)}
-                <div className="marker-text diff-sibiu-valcea diff-background">{marker.title}</div><div className={'marker-arrow '} />
+                <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>{marker.title}</div><div className={'marker-arrow '} />
                 </Link>
             );
           case zoom <= 16:
             return (
-              <Link href={`${linkPrefix}/${marker.slug}`} scroll={true} className="title-link" rel="noreferrer noopener">
-               <div className="marker-text diff-sibiu-valcea diff-background">{marker.title}</div><div className={'marker-arrow '} />
+              <Link href={`${linkPrefix}/${marker.slug}`} scroll={true} className="title-link fill-container" rel="noreferrer noopener">
+               <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>{marker.title}</div><div className={'marker-arrow '} />
               </Link>
             );
           // case zoom >= 14 && zoom <= 16:

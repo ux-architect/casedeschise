@@ -38,13 +38,6 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
               <span className="label">Adresa</span>
               <span className="info">{project?.address}</span>
           </div>
-
-          {project?.transport && (
-            <div className="col col-2">
-              <span className="label">Transport in comun</span>
-              <span className="info">{project.transport}</span>
-            </div>
-          )}
         </section>
 
         <section className="info border-bottom">

@@ -19,7 +19,7 @@ const linkPrefix = "/" + generalInfo?.currentYear + "/" + page ;
     <div  className={`${styles['namespace-container']} clearfix`}>
 
       <section className={`see-map-section clearfix`}>
-        <Link href={`${linkPrefix}/map`}>
+        <Link href={`${linkPrefix}/map`} className="fill-container">
             <Image src={`${url_harta}`} className="object-cover"  loading="lazy" fill sizes="(max-width: 768px) 75vw, 100vw" alt="sibiu-cover"/>
         </Link>      
       </section>
