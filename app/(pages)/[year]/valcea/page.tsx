@@ -66,7 +66,7 @@ export default async function Valcea({ params}: {params: Promise<{ year:string}>
       <div className="hide-on-mobile"><MissionSection page={"valcea"}/></div>
       {/* <section className="team-section hide-on-mobile"><TeamSection page={"valcea"}/></section> */}
       
-      <FaqSection page={"sibiu"} />
+      <FaqSection city={"sibiu"} />
       <PartnerSection page={"sibiu"} />
       <section className="contact-section position-relative"><ContactForm /></section>
       <FooterSection page={"sibiu"}/>

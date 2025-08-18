@@ -25,8 +25,21 @@ export type SiteInfoType = {
     link:string,
   }[];
 
+  socialMedia: {
+    name: string,
+    city:string,
+    link:string,
+  }[];
+
   currentYear: string
 
+};
+
+export type FaqType = {
+      _id: string,
+      question: string,
+      answer: string,
+      city: string
 };
 
 export type SibiuAndValceaImageType = {

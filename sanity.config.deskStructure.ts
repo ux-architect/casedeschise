@@ -1,4 +1,4 @@
-// deskStructure.ts
+// sanity.config.deskStructure.ts
 import { StructureBuilder } from 'sanity/structure'
 import { getSchemaTitle } from './schemaTypes'
 
@@ -56,6 +56,7 @@ function buildUncategorizedListItems(S: StructureBuilder) {
 }
 
 export default function deskStructure(S: StructureBuilder) {
+  
   return S.list()
     .title('Content')
     .items([

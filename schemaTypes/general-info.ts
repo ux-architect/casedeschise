@@ -1,5 +1,4 @@
 import { defineField } from "sanity";
-import  duoImage from "./objects/duo-image";
 
 const generalInfo = {
   name: "general-info",
@@ -85,7 +84,7 @@ const generalInfo = {
             fields: [
               { name: 'name', title: 'Nume', type: 'string' },
                { name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true } },
-              { name: 'type', title: 'Tip', type: 'string',
+              { name: 'type', title: 'Tip', type: 'string', initialValue: 'partner',
                         options: {
                           list: [
                             { title: 'Doar Partener', value: 'partner' },
@@ -98,6 +97,38 @@ const generalInfo = {
               { name: 'link', title: 'Link/Website', type: 'string' },
             ]
           }]
+     }),
+
+    //Social///////////////
+    defineField({
+          name: 'socialMedia',
+          title: 'Social-Media',
+          type: 'array',
+          of: [
+            {
+            type: 'object',
+            fields: [
+              { name: 'name', title: 'Nume', type: 'string', hidden: true },
+              { name: 'city', title: 'Oras', type: 'string', hidden: true, initialValue: 'sibiu', options: {
+                          list: [
+                            { title: 'Sibiu', value: 'sibiu' },
+                            { title: 'Valcea', value: 'valcea' },
+                          ] }, validation: (Rule) => Rule.required(), },
+              { name: 'link', title: 'Link/Website', type: 'string' },
+            ],
+            preview: {
+              select: {
+                name: 'name',
+                city: 'city',
+              },
+              prepare({ name, city }) {
+                return {
+                  title: `${name} - ${city}`,
+                }
+              },
+            }
+          }],
+          
      }),
 
     defineField({

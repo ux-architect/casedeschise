@@ -1,6 +1,8 @@
 import { groq } from "next-sanity";
 import client from "./sanity.client";
-import { SiteInfoType } from "@/types";
+import { FaqType, SiteInfoType } from "@/types";
+
+const revalidateInterval = 3; // ms
 
 export async function getGeneralInfo(): Promise<SiteInfoType> {
   return client.fetch(
@@ -25,10 +27,23 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
 
     team[]{name, role, "image": image.asset->url },
     partners[]{name, "logo": logo.asset->url, type, link },
+    socialMedia[]{name, link, city },
 
     currentYear,
-  }
-`,{},{next: { revalidate: 3 }, }); // 1-hour ISR cache
+  }`,{},
+  {next: { revalidate: revalidateInterval }, }); // 1-hour ISR cache
+}
+
+export async function getFaqList(): Promise<FaqType[]> {
+  const result = await client.fetch(
+    groq`*[_type == "faq"][0]{
+      faqList[]{_id, question, answer, city}
+    }`,
+    {},
+    { next: { revalidate: revalidateInterval } }
+  );
+
+  return result?.faqList || [];
 }
 
 export async function getProject(slug: string) {
@@ -49,7 +64,7 @@ export async function getProject(slug: string) {
       description,
       otherInfo,
     }`,
-    { slug }
+    { slug },{next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -69,7 +84,8 @@ export async function getProjects(projectType: string, year?: string) {
         description,
       }
     `,
-    { projectType, year: year ?? null }
+    { projectType, year: year ?? null },
+    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -88,7 +104,8 @@ export async function getTour(slug: string) {
       gps,
       description,
     }`,
-    { slug }
+    { slug },
+    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -103,7 +120,8 @@ export async function getTours(tourType: string) {
       address,
       description,
     }`,
-    { tourType }
+    { tourType },
+    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -123,7 +141,8 @@ export async function getEvent(slug: string) {
       gps,
       description,
     }`,
-    { slug }
+    { slug },
+    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -139,6 +158,7 @@ export async function getEvents(eventType: string) {
       address,
       description,
     }`,
-    { eventType }
+    { eventType },
+    {next: { revalidate: revalidateInterval }, }
   );
 }

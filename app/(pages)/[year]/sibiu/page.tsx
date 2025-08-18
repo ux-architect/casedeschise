@@ -1,5 +1,5 @@
 import { getEvents, getGeneralInfo, getProjects, getTours } from "@/sanity/sanity.query";
-import CoverSection from "../../components/components-server/cover-section";
+import CoverSection from "@/app/components/components-server/cover-section";
 import TeamSection from "@/app/components/global/team-section";
 import styles from './page.module.scss';
 import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
@@ -66,9 +66,9 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
 
       {/* <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section> */}
       
-      <FaqSection page={"sibiu"} />
+      <FaqSection city={"sibiu"} />
       <PartnerSection page={"sibiu"} />
-      <ContactForm />
+      <div className="clearfix hide-on-mobile"><ContactForm/></div>
        <FooterSection page={"sibiu"}/>
       
       

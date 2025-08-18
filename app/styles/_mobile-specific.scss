@@ -5,7 +5,11 @@
 }
 
 @media (hover: none) and (pointer: coarse) {
-  a, a:hover, a:active, [data-mobile-highlight]:hover, [data-mobile-highlight]:active  {
+  a, a:hover, a:active, 
+  [data-mobile-highlight]:hover, 
+  [data-mobile-highlight]:active  {
+
+
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0.7) !important;
     // background-color: rgba(0, 0, 0, 0.55);
     // z-index:9999999;

@@ -1,11 +1,11 @@
 
-@import '_modern-normalize';
-@import '_nav';
+@use '_modern-normalize' as *;
+@use '_nav' as *;
 
-@import '_utils';
-@import '_inputs';
-@import '_buttons';
-@import '_mobile-specific';
+@use '_utils' as *;
+@use '_inputs' as *;
+@use '_buttons' as *;
+@use '_mobile-specific' as *;
 
 
 html{
