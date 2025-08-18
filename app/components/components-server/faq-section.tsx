@@ -1,12 +1,7 @@
-
-
 import { SiteInfoType } from '@/types';
 import styles from './faq-section.module.scss';
 import Link from 'next/link';
 import { getGeneralInfo } from '@/sanity/sanity.query';
-
-
-
 
 export default async function FaqSection({ city = 'sibiu' }: { city: string; }) {
 

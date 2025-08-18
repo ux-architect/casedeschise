@@ -10,7 +10,7 @@ const linkPrefix = "/" + "2024" + "/" + page ;
 
   return (
     <div  className={`${styles['namespace-container']} clearfix`}>
-          <section id="faq" className = {`${'footer-section'} clearfix`}>
+          <section id="contact" className = {`${'footer-section'} clearfix`}>
             
             <div className="col col-1">
                 <div>Sibiu, str. Mitropoliei, nr. 17</div>

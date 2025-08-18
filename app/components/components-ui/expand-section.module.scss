@@ -1,0 +1,48 @@
+.namespace-container{
+  position:relative;
+  float:left;
+  width:100%;
+  
+  
+  :global{
+
+    .faq-item{
+      cursor:pointer;
+      padding:30px;
+      border-bottom:1px solid #000;
+      &:hover{
+          background:#000;
+          color:#fff;
+        }
+
+      .question{
+        width:100%;
+        
+        line-height: 50px;
+        padding:0 10px;
+        max-width:800px;
+        margin: 0 auto;
+
+        
+      }
+
+      .answer{
+        width:100%;
+        display:none;
+        padding:0 10px;
+        max-width:800px;
+        margin: 0 auto;
+
+      }
+
+      &.open .answer{
+        display:block;
+      }
+
+  }
+
+
+
+  }
+
+}
