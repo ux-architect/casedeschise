@@ -5,6 +5,7 @@ import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
 import deskStructure from './sanity.config.deskStructure'
+import { media } from 'sanity-plugin-media'
 
 export default defineConfig({
   name: 'default',
@@ -15,7 +16,7 @@ export default defineConfig({
   dataset: 'production',
   basePath: "/studio",
 
-  plugins: [structureTool({ structure: deskStructure }), visionTool()],
+  plugins: [structureTool({ structure: deskStructure }), visionTool(), media()],
 
   schema: {
     types: schemaTypes,

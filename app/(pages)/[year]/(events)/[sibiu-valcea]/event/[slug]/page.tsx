@@ -55,7 +55,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
       </main>
 
-      <FaqSection page={city} />
+      <FaqSection city={city} />
       <PartnerSection page={city} />
       {/* <ContactForm /> */}
       <FooterSection page={city}/>
