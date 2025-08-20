@@ -9,10 +9,17 @@
       width:100%;
       height:70vh;
       position:relative;
+
+      width:  calc(50% + 450px);
+      margin-left: calc(50% - 450px);
+
+      // max-width:800px;
+      // margin: 0 auto;
     }
 
     .layout-container{
       width:100%;
+      margin-top: 40px;
 
     }
 

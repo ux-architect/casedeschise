@@ -25,6 +25,9 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     misionStatement2,
     contactFormImage{"image": asset->url},
 
+    "pdfSibiu": pdfSibiu.asset->{url, originalFilename},
+    "pdfValcea": pdfValcea.asset->{url, originalFilename},
+
     team[]{name, role, "image": image.asset->url },
     partners[]{name, "logo": logo.asset->url, type, link },
     socialMedia[]{name, link, city },

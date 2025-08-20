@@ -8,9 +8,12 @@ import Image from "next/image";
 export default async function TeamSection({ page = 'sibiu' }: { page: string; }) {
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const titleUrl: string = page == "sibiu" ? "/images/EC-HI-PA-verde.png" : "/images/EC-HI-PA-roz.png";
+  const countTeam = generalInfo?.team?.length;
+  const cssClass_teamSize = countTeam > 9 ? "size-9-12" : "size-5-8";
+  
   return (
 
-      <div className={styles['team-container']}>
+      <div className={`${styles['namespace-container']} ${styles[cssClass_teamSize]}` }>
 
         <div className='col col-title'><Image src={titleUrl} className="object-fit" fill style={{ objectFit: "contain" }} sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw" alt="echipa"/></div>
         <div className='col col-members'>

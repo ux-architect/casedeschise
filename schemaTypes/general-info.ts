@@ -57,6 +57,22 @@ const generalInfo = {
       options: { hotspot: true },
     },
    
+    //Program PDF///////////////
+    {
+      name: "pdfSibiu",
+      type: "file",
+      title: "Program Sibiu .PDF ",
+      options: { accept: '.pdf' }
+    },
+
+    {
+      name: "pdfValcea",
+      type: "file",
+      title: "Program Valcea .PDF",
+      options: { accept: '.pdf' }
+    },
+
+
     //Echipa///////////////
     {
           name: 'team',

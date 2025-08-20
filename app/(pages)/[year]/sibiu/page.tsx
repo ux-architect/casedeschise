@@ -1,6 +1,6 @@
 import { getEvents, getGeneralInfo, getProjects, getTours } from "@/sanity/sanity.query";
 import CoverSection from "@/app/components/components-server/cover-section";
-import TeamSection from "@/app/components/global/team-section";
+import TeamSection from "@/app/components/components-server/team-section";
 import styles from './page.module.scss';
 import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
 import MissionSection from "@/app/components/components-server/mission-section";
@@ -46,14 +46,15 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <CoverSection page={"sibiu"} />
       {/* <div style={{ height: '2800px' }} /> */}
      
+      <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>
 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
-      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/></section>)}
-      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/></section>)}
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Urban</div></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title">Birouri de Arhitectura</div></section>)}
       
       <div className="w-100 clearfix float-left mt-10"><SeeMapSection page={"sibiu"} /></div>
 
-      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/></section>)}
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Rural</div></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
       <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Tururi :</div>
@@ -64,7 +65,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <div id="evenimente" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
       <EventSection events={events} page={"sibiu"}/>
 
-      {/* <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section> */}
+      
       
       <FaqSection city={"sibiu"} />
       <PartnerSection page={"sibiu"} />

@@ -10,7 +10,11 @@ export type SiteInfoType = {
   misionStatement1: PortableTextBlock[],
   misionStatement2: PortableTextBlock[],
 
-  contactFormImage: {image: string };
+  contactFormImage: {image: string },
+
+  pdfSibiu: { url: string; originalFilename: string },
+
+  pdfValcea: { url: string; originalFilename: string },
 
   team: {
     image: string,

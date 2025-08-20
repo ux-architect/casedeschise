@@ -17,9 +17,11 @@ export default async function CoverSection({ page = 'sibiu' }: { page: CityKey; 
   return (
 
     <div className={`${styles['cover-section']} overlay`} >
-
+      
+        {/* background image */}
         <Image src={`${url_cover}`} className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
-        <div className={`logo hide-while-still-loading` }><Image src={`${url_logo}`} className="object-contain" fill priority unoptimized sizes="(max-width: 768px) 100vw, 33vw" alt="cover"/></div>
+
+        <Link href="/" className={`logo hide-while-still-loading` }><Image src={`${url_logo}`} className="object-contain" fill priority unoptimized sizes="(max-width: 768px) 100vw, 33vw" alt="cover"/></Link>
 
         <h1 className={'event-title hide-while-still-loading diff-sibiu-valcea text-uppercase font-safiro'}>Case Deschise</h1>
         <h2 className={'event-date hide-while-still-loading diff-sibiu-valcea font-safiro'}>{generalInfo?.eventDate}</h2>

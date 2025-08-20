@@ -1,6 +1,6 @@
 import { getEvents, getGeneralInfo, getProjects, getTours} from "@/sanity/sanity.query";
 import CoverSection from "@/app/components/components-server/cover-section";
-import TeamSection from "@/app/components/global/team-section";
+import TeamSection from "@/app/components/components-server/team-section";
 import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
 import MissionSection from "@/app/components/components-server/mission-section";
 import { ContactForm } from "@/app/components/contact-form/contact-form";
