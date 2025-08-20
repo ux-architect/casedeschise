@@ -22,7 +22,7 @@ export default async function Home() {
         
           {generalInfo?.pdfSibiu?.url &&
             (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfSibiu?.url ?? ""}  filename = { generalInfo?.pdfSibiu?.originalFilename ?? ""}>
-              <span className="icon-pdf-file"></span>
+              <span className="svg-icon svg-icon-pdf-file"></span>
               <span>PROGRAM SIBIU</span>
             </DownloadLink>)}
         </div>
@@ -38,7 +38,7 @@ export default async function Home() {
           
           {generalInfo?.pdfValcea?.url &&
           (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfValcea?.url ?? ""}  filename = { generalInfo?.pdfValcea?.originalFilename ?? ""}>
-            <span className="icon-pdf-file"></span>
+            <span className="svg-icon svg-icon-pdf-file"></span>
             <span>PROGRAM VÂLCEA</span>
           </DownloadLink>)}
           

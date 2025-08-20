@@ -110,7 +110,8 @@ useEffect(() => {
           {/* <Nav_Sibiu_Valcea generalInfo = {generalInfo} className="position-absolute"/> */}
           <div className="flex-container">
   
-            <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Despre</Link>
+            <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea hide-on-mobile" onClick={() => setNavOpen(false)}>Despre</Link>
+            <Link href={`/about/${city}`} className="link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Despre</Link>
 
             <Dropdown label="Program" className="smaller">
               <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => { setNavOpen(false)}}><span className="line">[</span>Cladiri<span className="line">]</span></Link>
@@ -119,7 +120,9 @@ useEffect(() => {
             </Dropdown>
 
             <Dropdown label="Comunitate" className="smaller">
-              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Echipa<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea smaller hide-on-mobile" onClick={() => setNavOpen(false)}><span className="line">[</span>Echipa<span className="line">]</span></Link>
+              <Link href={`/team/${city}`} className="dropdown-link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Echipa</Link>
+              
               <Link href={`${linkPrefix}#voluntari`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Voluntari<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#devino-gazda`} className="dropdown-link diff-sibiu-valcea smaller hide-on-mobile" onClick={() => setNavOpen(false)}><span className="line">[</span>Devino gazdă<span className="line">]</span></Link>
