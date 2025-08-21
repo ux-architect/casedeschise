@@ -52,6 +52,13 @@
 
     @media (max-width: 768px) {
         height: auto;
+
+      .category-title{
+        font-size: 18px;
+        left:20px;
+        bottom:unset;
+        top:20px;
+      }
     }
 
   }
