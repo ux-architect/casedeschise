@@ -86,6 +86,7 @@
             color:inherit;
             height:50px;
             width:50px;
+            display:none;
           }
         }
 
@@ -104,20 +105,45 @@
             top:15%;
         }
 
+        .logos{
+          position:relative;
+          width: 330px;
+          top:10%;
+          margin: 0 auto;
+          .oar{
+              width:120px;
+              height:60px;
+
+          }
+          .timbru{
+              width:80px;
+              height:60px;
+          }
+
+          .has-label:after{
+                top:-10px;
+                font-size:10px;
+              }
+
+        }
+
         .title{
             width: 150px;
             height: 110px;
             margin: 0 auto;
-            top:28%;
+            top:24%;
 
         }
 
         .download-pdf{
-          bottom:20px;
-          font-size:20px;
+          position:absolute;
+          bottom:0px;
+          right:0;
+          font-size:14px;
           line-height:30px;
-           width: 200px;
-           margin-left: calc(50% - 100px);
+           width: auto;
+           margin-right: 10px;
+           text-decoration: underline;
 
           span.svg-icon-pdf-file{
            

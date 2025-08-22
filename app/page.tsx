@@ -17,7 +17,7 @@ export default async function Home() {
 
         <div className="section  "  aria-label={'Sibiu'}>
 
-          <div className="w-100 h-100 position-absolute inner-shadow-top inner-shadow-top-size-30 inner-shadow-top-value-30" style={{ top:0 }}>
+          <div className="w-100 h-100 position-absolute inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
               <Image src={`${url_cover_sibiu}`} className="object-cover " fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
 
@@ -27,7 +27,7 @@ export default async function Home() {
           {generalInfo?.pdfSibiu?.url &&
             (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfSibiu?.url ?? ""}  filename = { generalInfo?.pdfSibiu?.originalFilename ?? ""}>
               <span className="svg-icon svg-icon-pdf-file"></span>
-              <span>PROGRAM SIBIU</span>
+              <span>PROGRAM-SIBIU.PDF</span>
             </DownloadLink>)}
         </div>
 
@@ -43,7 +43,7 @@ export default async function Home() {
           {generalInfo?.pdfValcea?.url &&
           (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfValcea?.url ?? ""}  filename = { generalInfo?.pdfValcea?.originalFilename ?? ""}>
             <span className="svg-icon svg-icon-pdf-file"></span>
-            <span>PROGRAM VÂLCEA</span>
+            <span>PROGRAM-VÂLCEA.PDF</span>
           </DownloadLink>)}
           
         </div>
