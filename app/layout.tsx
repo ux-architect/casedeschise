@@ -1,3 +1,4 @@
+import AddCityClassToBody from "./components/components-client/add-city-class-to-body";
 import AddMobileClassToBody from "./components/components-client/add-mobile-class-to-body";
 import "./styles/globals.scss";
 import localFont from 'next/font/local';
@@ -21,6 +22,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
     <head><link rel="icon" href="/favicon.ico" /></head>
 
       <body className={`${poppins.variable} ${safiro.variable} clearfix city-is-sibiu still-loading`}>
+          <AddCityClassToBody/>
           <AddMobileClassToBody/>
           {children}
       </body>

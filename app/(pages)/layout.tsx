@@ -18,7 +18,7 @@ export default async function MainLayout({children}: {children: React.ReactNode}
 
   return (
             <GlobalInfoProvider value={generalInfo}> {/*  adds acces to generalInfo data on all child csr components */}
-              <AddCityClassToBody/>
+              
               <AddScrolledClassToBody/>
               <Nav_Sibiu_Valcea generalInfo = {generalInfo}/>
               <Navbar generalInfo = {generalInfo} /> 

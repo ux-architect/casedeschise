@@ -29,17 +29,19 @@ export default function AddCityClassToBody() {
     
     // Determine the class based on pathname
     const city = pathname.split('/').find((segment) => ['sibiu', 'valcea'].includes(segment)) || null;
-    const cssClass = city ? `city-is-${city}` : '';
+    const cssClass = city ? `city-is-${city}` : null;
 
     // Remove old classes before adding new one
     document.body.classList.remove('city-is-sibiu', 'city-is-valcea');
 
     waitForImageLoad(img).then(() => {
+      
       document.body.classList.remove('still-loading');
-      document.body.classList.add(cssClass);
+      if(cssClass) {document.body.classList.add(cssClass);}
     }).catch(() => {
+
       document.body.classList.remove('still-loading');
-      document.body.classList.add(cssClass);
+      if(cssClass) {document.body.classList.add(cssClass);}
       console.warn('City image failed to load');
     });
 

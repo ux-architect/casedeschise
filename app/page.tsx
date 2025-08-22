@@ -1,3 +1,5 @@
+
+
 import { urlFor } from "@/sanity/sanity.client";
 import { getGeneralInfo} from "@/sanity/sanity.query";
 import type { SiteInfoType } from "@/types";
@@ -5,6 +7,7 @@ import styles from './page.module.scss';
 import Link from "next/link";
 import Image from "next/image";
 import DownloadLink from "./components/components-ui/download-link";
+import PixelateImage from "./components/components-client/pixelate-image-on-hover";
 
 export default async function Home() {
 
@@ -13,7 +16,7 @@ export default async function Home() {
   let url_cover_valcea = generalInfo?.siteEntryCover?.valcea?.url ? urlFor(generalInfo?.siteEntryCover?.valcea?.url ).width(960).height(1080).auto('format').quality(99) : null;
 
   return (
-    <div className = {`${styles['namespace-container']} clearfix`}>
+    <div className = {`${styles['namespace-container']} clearfix hide-while-still-loading`}>
 
         <div className="section section-logos hide-on-desktop"  aria-label={'Sibiu'}>
             <div className="logos clearfix ">
@@ -23,17 +26,19 @@ export default async function Home() {
             </div>
         </div>
 
+        {/* SIBIU */}
         <div className="section  section-sibiu"  aria-label={'Sibiu'}>
 
           <div className="w-100 h-100 position-absolute inner-shadow-top-disabled inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
-              <Image src={`${url_cover_sibiu}`} className="object-cover " fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
+              <Image src={`${url_cover_sibiu}`} className="object-cover " data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
+            
+            {/* <PixelateImage src={`${url_cover_sibiu}`} width={960} height={1080} /> */}
+            
             </div>
-            <a className="go-button clearfix" href="/"><span className="svg-icon svg-icon-arrow fl"></span></a>
+            <a className="go-button clearfix hidden" href={`/${generalInfo.currentYear}/sibiu`} ><span className="svg-icon svg-icon-arrow fl"></span></a>
 
             <div className="logos clearfix hide-on-mobile">
               <Link href="https://www.oarsbvl.ro/" className="float-left"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
-              {/* <Link href="https://oar.archi/en/" className="float-left"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
-              <Link href="https://oar.archi/timbrul-de-arhitectura/" className="float-left"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link> */}
             </div>
             
           <Link href={`/${generalInfo.currentYear}/sibiu`} className="title" style={{ backgroundImage: `url(/images/case-sibiu.png)` }}></Link>
@@ -46,16 +51,18 @@ export default async function Home() {
             </DownloadLink>)}
         </div>
 
-
+        {/* VALCEA */}
         <div className="section section-valcea" aria-label={'Valcea'}>
           <div className="logos clearfix hide-on-mobile">
             <Link href="https://oar.archi/en/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
             <Link href="https://oar.archi/timbrul-de-arhitectura/"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
           </div>
           <Link href={`/${generalInfo.currentYear}/valcea`} className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></Link>
-          <Image src={`${url_cover_valcea}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
-          <a className="go-button clearfix" href="/"><span className="svg-icon svg-icon-arrow fl"></span></a>
           
+          {/* <PixelateImage src={`${url_cover_valcea}`} width={960} height={1080} /> */}
+          <Image src={`${url_cover_valcea}`} className="object-cover" data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
+          <a className="go-button clearfix" href={`/${generalInfo.currentYear}/valcea`}><span className="svg-icon svg-icon-arrow fl"></span></a>
+
           {generalInfo?.pdfValcea?.url &&
           (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfValcea?.url ?? ""}  filename = { generalInfo?.pdfValcea?.originalFilename ?? ""}>
             <span className="svg-icon svg-icon-pdf-file"></span>
