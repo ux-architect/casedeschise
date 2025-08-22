@@ -144,10 +144,12 @@
 
         &.section-sibiu{
           border-bottom: 1px solid #fff;
+          border-right: 0;
           height: calc(50dvh - 30px);
         }
         &.section-valcea{
           border-top: 1px solid #fff;
+          border-left: 0;
           height: calc(50dvh - 30px);
           bottom:0;
         }
