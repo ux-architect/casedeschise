@@ -15,9 +15,9 @@ export default async function Home() {
   return (
      <div className = {styles['namespace-container']}>
 
-        <div className="section  "  aria-label={'Sibiu'}>
+        <div className="section  section-sibiu"  aria-label={'Sibiu'}>
 
-          <div className="w-100 h-100 position-absolute inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
+          <div className="w-100 h-100 position-absolute inner-shadow-top-disabled inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
               <Image src={`${url_cover_sibiu}`} className="object-cover " fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
 
@@ -32,7 +32,7 @@ export default async function Home() {
         </div>
 
 
-        <div className="section" aria-label={'Valcea'}>
+        <div className="section section-valcea" aria-label={'Valcea'}>
           <div className="logos clearfix">
             <Link href="https://oar.archi/en/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
             <Link href="https://oar.archi/timbrul-de-arhitectura/"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>

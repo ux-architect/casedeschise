@@ -98,6 +98,21 @@
         height: 50%;
         height: 50dvh;
 
+        &.section-sibiu{
+          border-bottom: 1px solid #fff;
+
+          .download-pdf{
+            border: 2px solid #fff;
+            border-radius: 20px;
+            padding: 0 10px;
+            background: #00000069;
+            bottom:10px;
+          }
+        }
+        &.section-valcea{
+          border-top: 1px solid #fff;
+        }
+
         .oar{
             width:120px;
             height:45px;
@@ -107,9 +122,14 @@
 
         .logos{
           position:relative;
-          width: 330px;
-          top:10%;
+          width: 100%;
+          top:0;
           margin: 0 auto;
+          padding: 15px 30px;
+          padding-bottom:5px;
+          border-bottom: 2px solid #fff;
+          background: rgb(0 0 0 / 60%);
+
           .oar{
               width:120px;
               height:60px;
@@ -121,7 +141,7 @@
           }
 
           .has-label:after{
-                top:-10px;
+                top:5px;
                 font-size:10px;
               }
 
