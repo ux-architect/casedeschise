@@ -15,11 +15,15 @@ export default async function Home() {
   return (
      <div className = {styles['namespace-container']}>
 
-        <div className="section"  aria-label={'Sibiu'}>
+        <div className="section  "  aria-label={'Sibiu'}>
+
+          <div className="w-100 h-100 position-absolute inner-shadow-top inner-shadow-top-size-30 inner-shadow-top-value-30" style={{ top:0 }}>
+              <Image src={`${url_cover_sibiu}`} className="object-cover " fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
+            </div>
+
           <div className="logos clearfix"><Link href="https://www.oarsbvl.ro/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link></div>
           <Link href={`/${generalInfo.currentYear}/sibiu`} className="title" style={{ backgroundImage: `url(/images/case-sibiu.png)` }}></Link>
-          <Image src={`${url_cover_sibiu}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
-        
+            
           {generalInfo?.pdfSibiu?.url &&
             (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfSibiu?.url ?? ""}  filename = { generalInfo?.pdfSibiu?.originalFilename ?? ""}>
               <span className="svg-icon svg-icon-pdf-file"></span>
