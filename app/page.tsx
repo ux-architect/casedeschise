@@ -13,7 +13,13 @@ export default async function Home() {
   let url_cover_valcea = generalInfo?.siteEntryCover?.valcea?.url ? urlFor(generalInfo?.siteEntryCover?.valcea?.url ).width(960).height(1080).auto('format').quality(99) : null;
 
   return (
-     <div className = {styles['namespace-container']}>
+    <div className = {`${styles['namespace-container']} clearfix`}>
+
+        <div className="logos clearfix hide-on-desktop float-left" style={{ height:'60px', zIndex:1000}}>
+          <Link href="https://www.oarsbvl.ro/" className="float-left; position:relative;"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
+          <Link href="https://oar.archi/en/" className="float-left; position:relative;"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
+          <Link href="https://oar.archi/timbrul-de-arhitectura/" className="float-left; position:relative;"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
+        </div>
 
         <div className="section  section-sibiu"  aria-label={'Sibiu'}>
 
@@ -21,8 +27,14 @@ export default async function Home() {
               <Image src={`${url_cover_sibiu}`} className="object-cover " fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
 
-          <div className="logos clearfix"><Link href="https://www.oarsbvl.ro/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link></div>
+            <div className="logos clearfix hide-on-mobile">
+              <Link href="https://www.oarsbvl.ro/" className="float-left"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
+              {/* <Link href="https://oar.archi/en/" className="float-left"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
+              <Link href="https://oar.archi/timbrul-de-arhitectura/" className="float-left"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link> */}
+            </div>
+            
           <Link href={`/${generalInfo.currentYear}/sibiu`} className="title" style={{ backgroundImage: `url(/images/case-sibiu.png)` }}></Link>
+          
             
           {generalInfo?.pdfSibiu?.url &&
             (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfSibiu?.url ?? ""}  filename = { generalInfo?.pdfSibiu?.originalFilename ?? ""}>
@@ -33,7 +45,7 @@ export default async function Home() {
 
 
         <div className="section section-valcea" aria-label={'Valcea'}>
-          <div className="logos clearfix">
+          <div className="logos clearfix hide-on-mobile">
             <Link href="https://oar.archi/en/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
             <Link href="https://oar.archi/timbrul-de-arhitectura/"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
           </div>

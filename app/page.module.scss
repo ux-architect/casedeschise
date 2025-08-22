@@ -15,40 +15,6 @@
 
         img{ z-index:-1;}
 
-        .logos{
-          position:relative;
-          width: 330px;
-          top:15%;
-          margin: 0 auto;
-          .oar{
-            float:left;
-              width:160px;
-              height:60px;
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size:contain;
-
-          }
-          .timbru{
-            margin-left:50px;
-             float:left;
-              width:100px;
-              height:60px;
-              background-repeat: no-repeat;
-              background-position: center;
-              background-size:contain;
-          }
-
-          .has-label:after{
-                content:attr(data-label);
-                position:absolute;
-                top:-30px;
-                color: #fff;
-                font-size:15px;
-              }
-
-        }
-
         .title{
             display:block;
             width:330px;
@@ -92,25 +58,65 @@
 
     }
 
+    .logos{
+      position:relative;
+      width: 330px;
+      top:15%;
+      margin: 0 auto;
+      .oar{
+        float:left;
+          width:160px;
+          height:60px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size:contain;
+
+      }
+      .timbru{
+        margin-left:50px;
+         float:left;
+          width:100px;
+          height:60px;
+          background-repeat: no-repeat;
+          background-position: center;
+          background-size:contain;
+      }
+
+      .has-label:after{
+            content:attr(data-label);
+            position:absolute;
+            top:-30px;
+            color: #fff;
+            font-size:15px;
+          }
+
+    }
+
     @media (max-width: 768px) {
       div.section{
         width:100%;
-        height: 50%;
-        height: 50dvh;
+        // height: 50%;
+        // height: 50dvh;
+        float:left;
+        // border: 12px solid #fff !important;
 
         &.section-sibiu{
           border-bottom: 1px solid #fff;
-
-          .download-pdf{
-            border: 2px solid #fff;
-            border-radius: 20px;
-            padding: 0 10px;
-            background: #00000069;
-            bottom:10px;
-          }
+          height: calc(50dvh - 30px);
+;
+          // .download-pdf{
+          //   border: 2px solid #fff;
+          //   border-radius: 20px;
+          //   padding: 0 10px;
+          //   background: #00000069;
+          //   bottom:10px;
+          // }
         }
         &.section-valcea{
           border-top: 1px solid #fff;
+          height: calc(50dvh - 30px);
+          // top: calc(50vh + 60px);
+          bottom:0;
         }
 
         .oar{
@@ -120,38 +126,12 @@
             top:15%;
         }
 
-        .logos{
-          position:relative;
-          width: 100%;
-          top:0;
-          margin: 0 auto;
-          padding: 15px 30px;
-          padding-bottom:5px;
-          border-bottom: 2px solid #fff;
-          background: rgb(0 0 0 / 60%);
-
-          .oar{
-              width:120px;
-              height:60px;
-
-          }
-          .timbru{
-              width:80px;
-              height:60px;
-          }
-
-          .has-label:after{
-                top:5px;
-                font-size:10px;
-              }
-
-        }
-
         .title{
             width: 150px;
             height: 110px;
             margin: 0 auto;
             top:24%;
+            top: calc(50% - 55px);
 
         }
 
@@ -174,7 +154,35 @@
 
       }
 
+      .logos{
+        position:relative;
+        width: 100%;
+        top:0;
+        margin: 0 auto;
+        padding: 15px 10px;
+        padding-bottom:5px;
+        border-bottom: 2px solid #fff;
+        background: rgb(0, 0, 0);
 
+        .oar{
+            width:100px;
+            height: 35px;
+            margin-right:30px
+
+        }
+        .timbru{
+            width:80px;
+            height: 35px;
+            margin-left:10px;
+        }
+
+        .has-label:after{
+          
+              top:5px;
+              font-size:7px;
+            }
+
+      }
     }
 
 
