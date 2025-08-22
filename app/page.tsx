@@ -15,10 +15,12 @@ export default async function Home() {
   return (
     <div className = {`${styles['namespace-container']} clearfix`}>
 
-        <div className="logos clearfix hide-on-desktop float-left" style={{ height:'60px', zIndex:1000}}>
-          <Link href="https://www.oarsbvl.ro/" className="float-left; position:relative;"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
-          <Link href="https://oar.archi/en/" className="float-left; position:relative;"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
-          <Link href="https://oar.archi/timbrul-de-arhitectura/" className="float-left; position:relative;"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
+        <div className="section section-logos hide-on-desktop"  aria-label={'Sibiu'}>
+            <div className="logos clearfix ">
+              <Link href="https://www.oarsbvl.ro/" className="float-left position-relative"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
+              <Link href="https://oar.archi/en/" className="float-left position-relative"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
+              <Link href="https://oar.archi/timbrul-de-arhitectura/" className="float-left position-relative"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
+            </div>
         </div>
 
         <div className="section  section-sibiu"  aria-label={'Sibiu'}>
@@ -26,6 +28,7 @@ export default async function Home() {
           <div className="w-100 h-100 position-absolute inner-shadow-top-disabled inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
               <Image src={`${url_cover_sibiu}`} className="object-cover " fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
+            <a className="go-button clearfix" href="/"><span className="svg-icon svg-icon-arrow fl"></span></a>
 
             <div className="logos clearfix hide-on-mobile">
               <Link href="https://www.oarsbvl.ro/" className="float-left"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
@@ -51,6 +54,7 @@ export default async function Home() {
           </div>
           <Link href={`/${generalInfo.currentYear}/valcea`} className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></Link>
           <Image src={`${url_cover_valcea}`} className="object-cover" fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
+          <a className="go-button clearfix" href="/"><span className="svg-icon svg-icon-arrow fl"></span></a>
           
           {generalInfo?.pdfValcea?.url &&
           (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfValcea?.url ?? ""}  filename = { generalInfo?.pdfValcea?.originalFilename ?? ""}>
