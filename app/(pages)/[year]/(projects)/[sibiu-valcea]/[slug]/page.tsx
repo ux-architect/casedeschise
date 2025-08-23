@@ -13,6 +13,7 @@ import FooterSection from '@/app/components/components-server/footer-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import Link from 'next/link';
 import SwiperResponsive from '@/app/components/swiper/swiper-responsive/swiper-responsive';
+import Tags from '@/app/components/components-server/tags';
 
 export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
   const { year, ["sibiu-valcea"]: city, slug } = await params;
@@ -29,7 +30,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
   const gps = project?.gps?.split(',').map(p => p.trim()) ?? [];
   const lat = gps[0]  || '';
   const lng = gps[1]  || '';
-  
+
   const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(title)})&z=${18}`;
 
   return (
@@ -70,7 +71,11 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
 
         <section id="other-info-section" className="info border-bottom ">
           <div className="col col-1 has-portable-text"><PortableText value={project?.otherInfo} /></div>
-          <div className="col col-2"></div>
+          <div className="col col-2">
+
+           <Tags tags={project?.tags}></Tags>
+
+          </div>
         </section>
 
         {projects_in_same_section.length > 0 && (<section className="swiper-section-similar-projects"><SwiperResponsive projects={projects_in_same_section}/></section>)}

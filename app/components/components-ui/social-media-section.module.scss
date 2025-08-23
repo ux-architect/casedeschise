@@ -1,48 +1,62 @@
 .namespace-container{
-  position:relative;
-  float:left;
-  width:100%;
+
+  position:absolute;
+  right:10px;
+  top:30px;
+  z-index: 8;
   
   
   :global{
 
-    .faq-item{
-      cursor:pointer;
-      padding:30px;
-      border-bottom:1px solid #000;
-      &:hover{
-          background:#000;
-          color:#fff;
+   .social-media-section{
+      
+
+      .social-icon{
+        float: left;
+        display: block;
+        width:40px;
+        height:40px;
+        padding: 5px;
+        position:relative;
+        margin-right:10px;
+
+        &:hover{
+            background: rgba(0, 0, 0, 0.664);
         }
-
-      .question{
-        width:100%;
-        
-        line-height: 50px;
-        padding:0 10px;
-        max-width:800px;
-        margin: 0 auto;
-
-        
+        svg{
+          width:100%;
+          height:100%;
+        }
       }
-
-      .answer{
-        width:100%;
-        display:none;
-        padding:0 10px;
-        max-width:800px;
-        margin: 0 auto;
-
-      }
-
-      &.open .answer{
-        display:block;
-      }
+    }
 
   }
 
 
+  @media (max-width: 768px) {
+    top:20px;
 
+    :global{
+        .social-icon{
+          width:50px;
+          height:50px;
+        }
+
+
+    }
+
+
+  }
+
+}
+
+
+.namespace-container:global(.in-footer){
+  position:relative;
+  z-index:0;
+  top:10px;
+  svg{ 
+    color: #fff;
   }
 
 }

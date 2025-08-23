@@ -17,9 +17,10 @@ const generalInfo: SiteInfoType = await getGeneralInfo();
           <section id="contact" className = {`${'footer-section'} clearfix`}>
             
             <div className="col col-1">
-                <div>Sibiu, str. Mitropoliei, nr. 17</div>
-                <div>contact@casedeschise.ro</div>
-                <div>0744 444 444</div>
+                <div>{generalInfo?.contactFields?.address}</div>
+                <div>{generalInfo?.contactFields?.contactEmail}</div>
+                <div>{generalInfo?.contactFields?.contactPhone}</div>
+                <SocialMediaSection city={page} generalInfo={generalInfo} className='in-footer dang'></SocialMediaSection>
             </div>
 
             <div className="col col-2">
@@ -36,7 +37,7 @@ const generalInfo: SiteInfoType = await getGeneralInfo();
               <Link href={`${linkPrefix}#evenimente`} className="link diff-sibiu-valcea diff-hover">Evenimente</Link>
             </div>
 
-            <SocialMediaSection city={page} generalInfo={generalInfo}></SocialMediaSection>
+            
 
           </section>
     </div>

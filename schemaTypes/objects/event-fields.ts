@@ -1,6 +1,6 @@
 import { defineType, defineField } from "sanity";
 
-export const tourFields = [
+export const eventFields = [
 
     defineField({
       name: "name",
@@ -62,6 +62,23 @@ export const tourFields = [
       type: "array",
       of: [{type: "block"}],
     }),
+
+    {
+      name: 'tags',
+      title: 'Tags',
+      description: "Tagurile afisează iconite specifice",
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Parcare bicilete', value: 'bikeParking' },
+          { title: 'Fotografiatul interzis', value: 'noPhotos' },
+          { title: 'Accesibil', value: 'accesible' },
+          { title: 'Pentru copii', value: 'forChildren' },
+        ],
+        layout: 'checkbox'
+      }
+    },
 
     defineField({
       name: "gps",

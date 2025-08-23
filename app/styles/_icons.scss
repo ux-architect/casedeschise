@@ -22,3 +22,65 @@
   -webkit-mask: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><path d='M26.025 14.496h-14.286l6.366-6.366L15.979 6 5.975 16.003 15.971 26l2.129-2.129-6.367-6.366h14.29z'/></svg>") no-repeat center / contain;
 }
 
+
+.png-icon{
+  width:50px;
+  height:50px;
+  float:left;
+  background-size:contain;
+}
+
+.png-icon.png-icon-bike-parking{
+    background-image: url("/icons/bike-parking-1.png");
+}
+
+.png-icon.png-icon-bike-parking-2{
+    background-image: url("/icons/bike-parking-2.png");
+}
+
+.png-icon.png-icon-no-photos{
+    background-image: url("/icons/no-photo-1.png");
+}
+
+.png-icon.png-icon-no-photos-2{
+    background-image: url("/icons/no-photo-2.png");
+}
+
+.png-icon.png-icon-for-children {
+    background-image: url("/icons/for-kids-1.png");
+}
+
+.png-icon.png-icon-accesible {
+    background-image: url("/icons/accesible.png");
+}
+
+[data-icon-label]{
+  &:after{
+    content:attr(data-icon-label);
+    font-size: 18px;
+    line-height: 60px;
+    color:#000000;
+    background:#CEFB08;
+    width: auto;
+    display: block;
+    position:absolute;
+    padding: 0 20px;
+    padding-left: 50px;
+    padding-right: 20px;
+    z-index:-1;
+    
+  }
+}
+
+
+.common-label{
+  position:relative;
+  float:left;
+  font-size: 18px;
+  color:#000 !important;
+  padding:5px 10px;
+  padding-right: 20px;
+  line-height:50px;
+  min-width:300px;
+}
+

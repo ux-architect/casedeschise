@@ -35,6 +35,8 @@ export type SiteInfoType = {
     link:string,
   }[];
 
+  contactFields?:{address?:string, contactEmail?:string, contactPhone?:string, contactEmailForms?:string}
+
   currentYear: string
 
 };
@@ -63,6 +65,8 @@ export type ProjectType = {
   transport: string,
   gps: string,
 
+  tags?: ('bikeParking' | 'noPhotos' | 'accesible' | 'forChildren')[];
+
   description: PortableTextBlock[],
   otherInfo: PortableTextBlock[],
 
@@ -81,6 +85,7 @@ export type TourType = {
   transport: string,
   gps: string,
 
+  tags?: ('bikeParking' | 'noPhotos' | 'accesible' | 'forChildren')[];
   description: PortableTextBlock[],
 
   slug: { current: string }
@@ -99,6 +104,7 @@ export type EventType = {
   transport: string,
   gps: string,
 
+  tags?: ('bikeParking' | 'noPhotos' | 'accesible' | 'forChildren')[];
   description: PortableTextBlock[],
 
   slug: { current: string }

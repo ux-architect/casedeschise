@@ -32,6 +32,8 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     partners[]{name, "logo": logo.asset->url, type, link },
     socialMedia[]{name, link, city },
 
+    contactFields{address, contactEmail, contactPhone, contactEmailForms},
+
     currentYear,
   }`,{},
   {next: { revalidate: revalidateInterval }, }); // 1-hour ISR cache
@@ -64,6 +66,7 @@ export async function getProject(slug: string) {
       visitTime,
       transport,
       gps,
+      tags,
       description,
       otherInfo,
     }`,
@@ -105,6 +108,7 @@ export async function getTour(slug: string) {
       visitTime,
       transport,
       gps,
+      tags,
       description,
     }`,
     { slug },
@@ -142,6 +146,7 @@ export async function getEvent(slug: string) {
       visitTime,
       transport,
       gps,
+      tags,
       description,
     }`,
     { slug },

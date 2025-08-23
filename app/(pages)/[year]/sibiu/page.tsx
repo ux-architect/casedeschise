@@ -17,10 +17,11 @@ import SocialMediaSection from "@/app/components/components-ui/social-media-sect
 export default async function Sibiu({ params}: {params: Promise<{ year:string }>;}) {
 
   const { year } = await params;
+   const city = "sibiu";
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
 
-  const projects = await getProjects("projects-sibiu", year);
+  const projects = await getProjects("projects-" + city, year);
   const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
   const projects_section2 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "2");
   const projects_section3 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "3");
@@ -35,44 +36,44 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
 
   projects_other.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
+ 
 
-
-  var tours = await getTours("tours-sibiu");
-  var events = await getEvents("events-sibiu");
+  var tours = await getTours("tours-" + city);
+  var events = await getEvents("events-" + city);
   tours.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
   events.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
-      <CoverSection page={"sibiu"} />
-      <SocialMediaSection city={"sibiu"} generalInfo={generalInfo}></SocialMediaSection>
+      <CoverSection page={city} />
+      <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
       {/* <div style={{ height: '2800px' }} /> */}
      
-      <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>
+      <section className="team-section hide-on-mobile"><TeamSection page={city}/></section>
 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Context Urban</div></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title">Birouri de Arhitectura</div></section>)}
       
-      <div className="w-100 clearfix float-left mt-10"><SeeMapSection page={"sibiu"} /></div>
+      <div className="w-100 clearfix float-left mt-10"><SeeMapSection page={city} /></div>
 
       {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Context Rural</div></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
       <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Tururi :</div>
-      <ToursSection tours={tours} page={"sibiu"}/>
+      <ToursSection tours={tours} page={city}/>
       
-      <div className="hide-on-mobile"><MissionSection page={"sibiu"}/></div>
+      <div className="hide-on-mobile"><MissionSection page={city}/></div>
       
       <div id="evenimente" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
-      <EventSection events={events} page={"sibiu"}/>
+      <EventSection events={events} page={city}/>
 
       
       
-      <FaqSection city={"sibiu"} />
-      <PartnerSection page={"sibiu"} />
+      <FaqSection city={city} />
+      <PartnerSection page={city} />
       <div className="clearfix hide-on-mobile"><ContactForm/></div>
-       <FooterSection page={"sibiu"}/>
+       <FooterSection page={city}/>
       
       
 

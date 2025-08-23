@@ -2,6 +2,7 @@
 
 import generalInfo from "./general-info";
 import duoImage from './objects/duo-image';
+import contactFields from './custom-input/contact-oar-fields';
 import faq from "./faq";
 
 import metadata from './custom-input/project-fields-metadata';
@@ -18,7 +19,7 @@ import eventSibiu from "./event-sibiu";
 import eventValcea from "./event-valcea";
 
 
-export const schemaTypes = [generalInfo, duoImage, faq,
+export const schemaTypes = [generalInfo, duoImage, contactFields, faq,
                                 metadata, tourMetadata, eventMetadata,
                                 projectsSibiu, projectsValcea, 
                                 toursSibiu, toursValcea,

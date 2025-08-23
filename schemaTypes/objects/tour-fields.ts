@@ -42,6 +42,23 @@ export const tourFields = [
       type: "string"
     }),
 
+    {
+      name: 'tags',
+      title: 'Tags',
+      description: "Tagurile afisează iconite specifice",
+      type: 'array',
+      of: [{ type: 'string' }],
+      options: {
+        list: [
+          { title: 'Parcare bicilete', value: 'bikeParking' },
+          { title: 'Fotografiatul interzis', value: 'noPhotos' },
+          { title: 'Accesibil', value: 'accesible' },
+          { title: 'Pentru copii', value: 'forChildren' },
+        ],
+        layout: 'checkbox'
+      }
+    },
+
     defineField({
       name: "description",
       title: "Despre",

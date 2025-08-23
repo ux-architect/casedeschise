@@ -1,4 +1,4 @@
-import { tourFields } from "./objects/event-fields";
+import { eventFields } from "./objects/event-fields";
 import { splitNamePreview } from "./objects/split-name-preview";
 
 const eventSibiu = {
@@ -7,7 +7,7 @@ const eventSibiu = {
   type: "document",
 
  fields: [
-    ...tourFields,
+    ...eventFields,
   ],
 
   preview: splitNamePreview,

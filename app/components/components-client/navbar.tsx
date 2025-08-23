@@ -1,12 +1,8 @@
 'use client'
 import Link from "next/link"
 import { useRef, useEffect, useState, ReactNode } from "react"
-import Image from "next/image";
 import { usePathname } from "next/navigation"
 import { SiteInfoType } from "@/types"
-import Nav_Sibiu_Valcea from "../global/nav-sibiu-valcea";
-import SocialMediaSection from "../components-ui/social-media-section";
-
 
 
 // Minimal, reusable Dropdown component
@@ -130,7 +126,7 @@ useEffect(() => {
             </Dropdown>
 
             <Link href={`${linkPrefix}/map`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Hartă</Link>
-            <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhivă</Link>
+            {/* <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhivă</Link> */}
             <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Contact</Link>
             <Link href={`/faq/${city}`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
 

@@ -19,7 +19,7 @@ const generalInfo = {
       name: 'siteEntryCover',
       title: 'Coperta Website',
       type: "duoImage",
-      
+      hidden: true,
       }),
 
       defineField({
@@ -55,6 +55,7 @@ const generalInfo = {
       title: 'Imagine Devino Gazda',
       type: 'image',
       options: { hotspot: true },
+      hidden: true,
     },
    
     //Program PDF///////////////
@@ -99,7 +100,7 @@ const generalInfo = {
             type: 'object',
             fields: [
               { name: 'name', title: 'Nume', type: 'string' },
-               { name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true } },
+               { name: 'logo', title: 'Logo', type: 'image', options: { hotspot: true }, description:"abordare recomandata: logoul inscris intrun .png 200x100 px" },
               { name: 'type', title: 'Tip', type: 'string', initialValue: 'partner',
                         options: {
                           list: [
@@ -130,7 +131,7 @@ const generalInfo = {
                             { title: 'Sibiu', value: 'sibiu' },
                             { title: 'Valcea', value: 'valcea' },
                           ] }, validation: (Rule) => Rule.required(), },
-              { name: 'link', title: 'Link/Website', type: 'string' },
+              { name: 'link', title: 'Link social media', type: 'string' },
             ],
             preview: {
               select: {
@@ -146,6 +147,13 @@ const generalInfo = {
           }],
           
      }),
+
+     //Contact///////////////
+     defineField({
+      name: 'contactFields',
+      title: 'Detalii Contact',
+      type: "contactFields",
+    }),
 
     defineField({
       name: 'currentYear',

@@ -1,14 +1,16 @@
 .namespace-container {
   float:left;
   width:100%;
+  background: #000;
 
   :global {
 
     .footer-section {
       width: 100%;
+      max-width:1200px;
+      margin: 0 auto;
       position:relative;
       background: #000;
-      float: left;
       padding-top: 30px;
       padding-bottom: 30px;
       overflow:hidden;
@@ -16,7 +18,7 @@
       a.link{
         color:#fff;
         float:left;
-        width:100%;
+        clear: both;
         text-transform: uppercase;
         text-decoration: none;
         line-height: 30px;
@@ -32,9 +34,9 @@
           width: 44%;
           color:#fff;
           float:left;
-          line-height: 40px;
-          font-size: 20px;
-          font-weight: bold;
+          line-height: 20px;
+          font-size: 14px;
+          
         }
 
         &.col-2{ width:28%;}
