@@ -49,8 +49,6 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
       {/* <div style={{ height: '2800px' }} /> */}
      
-      <section className="team-section hide-on-mobile"><TeamSection page={city}/></section>
-
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Context Urban</div></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title">Birouri de Arhitectura</div></section>)}
@@ -69,7 +67,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <EventSection events={events} page={city}/>
 
       
-      
+      <TeamSection page={city} className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
       <PartnerSection page={city} />
       <div className="clearfix hide-on-mobile"><ContactForm/></div>

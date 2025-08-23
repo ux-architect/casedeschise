@@ -9,7 +9,7 @@ export default async function Team({ params}: {params: Promise<{ "sibiu-valcea":
 
   return(
     <>
-      <TeamSection page={city}></TeamSection>
+      <TeamSection page={city} className="mobile-version"/>
       <PartnerSection page={city} />
       <FooterSection page={city}/>
     </>
