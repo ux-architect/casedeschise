@@ -2,7 +2,7 @@ import { groq } from "next-sanity";
 import client from "./sanity.client";
 import { FaqType, SiteInfoType } from "@/types";
 
-const revalidateInterval = 3; // ms
+const revalidateInterval = 120; // ms
 
 export async function getGeneralInfo(): Promise<SiteInfoType> {
   return client.fetch(

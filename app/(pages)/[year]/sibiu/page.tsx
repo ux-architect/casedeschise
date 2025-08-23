@@ -12,12 +12,13 @@ import { SiteInfoType } from "@/types";
 import PartnerSection from "@/app/components/components-server/partner-section";
 import FaqSection from "@/app/components/components-server/faq-section";
 import FooterSection from "@/app/components/components-server/footer-section";
+import SocialMediaSection from "@/app/components/components-ui/social-media-section";
 
 export default async function Sibiu({ params}: {params: Promise<{ year:string }>;}) {
 
   const { year } = await params;
 
-  // const generalInfo: SiteInfoType = await getGeneralInfo();
+  const generalInfo: SiteInfoType = await getGeneralInfo();
 
   const projects = await getProjects("projects-sibiu", year);
   const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
@@ -44,17 +45,18 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection page={"sibiu"} />
+      <SocialMediaSection city={"sibiu"} generalInfo={generalInfo}></SocialMediaSection>
       {/* <div style={{ height: '2800px' }} /> */}
      
       <section className="team-section hide-on-mobile"><TeamSection page={"sibiu"}/></section>
 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
-      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Urban</div></section>)}
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Context Urban</div></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title">Birouri de Arhitectura</div></section>)}
       
       <div className="w-100 clearfix float-left mt-10"><SeeMapSection page={"sibiu"} /></div>
 
-      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Rural</div></section>)}
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Context Rural</div></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}
 
       <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Tururi :</div>

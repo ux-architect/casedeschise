@@ -1,12 +1,16 @@
 
 
+import { SiteInfoType } from '@/types';
+import SocialMediaSection from '../components-ui/social-media-section';
 import styles from './footer-section.module.scss';
 import Link from 'next/link';
+import { getGeneralInfo } from '@/sanity/sanity.query';
 
 
 export default async function FooterSection({ page = 'sibiu' }: { page: string; }) {
 
 const linkPrefix = "/" + "2024" + "/" + page ;
+const generalInfo: SiteInfoType = await getGeneralInfo();
 
   return (
     <div  className={`${styles['namespace-container']} clearfix`}>
@@ -31,6 +35,8 @@ const linkPrefix = "/" + "2024" + "/" + page ;
               <Link href={`${linkPrefix}#tururi`} className="link diff-sibiu-valcea diff-hover">Tururi</Link>
               <Link href={`${linkPrefix}#evenimente`} className="link diff-sibiu-valcea diff-hover">Evenimente</Link>
             </div>
+
+            <SocialMediaSection city={page} generalInfo={generalInfo}></SocialMediaSection>
 
           </section>
     </div>

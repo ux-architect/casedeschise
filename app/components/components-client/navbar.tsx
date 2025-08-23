@@ -138,7 +138,6 @@ useEffect(() => {
           
         </nav>
 
-        <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
       </>
         
   );

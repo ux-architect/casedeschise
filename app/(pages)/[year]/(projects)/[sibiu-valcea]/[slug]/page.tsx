@@ -1,7 +1,7 @@
 
 
 import styles from './page.module.scss';
-import { getProject } from "@/sanity/sanity.query";
+import { getProject, getProjects } from "@/sanity/sanity.query";
 import { ProjectType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-component";
 import { PortableText } from "next-sanity";
@@ -12,20 +12,25 @@ import PartnerSection from '@/app/components/components-server/partner-section';
 import FooterSection from '@/app/components/components-server/footer-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import Link from 'next/link';
+import SwiperResponsive from '@/app/components/swiper/swiper-responsive/swiper-responsive';
 
 export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
   const { year, ["sibiu-valcea"]: city, slug } = await params;
   const project = await getProject(slug) as ProjectType;
+  
+  // get projects in the same section
+  const projects = await getProjects("projects-" + city, year);
+  const projects_in_same_section = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section);
 
-    const parts = project?.name.split('///').map(p => p.trim()) ?? [];
-    const title = parts[0]  || '';
-    const subtitle = parts[1]  || '';
+  const parts = project?.name.split('///').map(p => p.trim()) ?? [];
+  const title = parts[0]  || '';
+  const subtitle = parts[1]  || '';
 
-    const gps = project?.gps?.split(',').map(p => p.trim()) ?? [];
-    const lat = gps[0]  || '';
-    const lng = gps[1]  || '';
-    
-    const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(title)})&z=${18}`;
+  const gps = project?.gps?.split(',').map(p => p.trim()) ?? [];
+  const lat = gps[0]  || '';
+  const lng = gps[1]  || '';
+  
+  const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(title)})&z=${18}`;
 
   return (
     <>
@@ -68,12 +73,12 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
           <div className="col col-2"></div>
         </section>
 
+        {projects_in_same_section.length > 0 && (<section className="swiper-section-similar-projects"><SwiperResponsive projects={projects_in_same_section}/></section>)}
+        <FaqSection city={city} />
+        <PartnerSection page={city} />
+        <ContactForm />
+        <FooterSection page={city}/>
       </main>
-
-      <FaqSection city={city} />
-      <PartnerSection page={city} />
-      <ContactForm />
-      <FooterSection page={city}/>
     </>
   );
 }
