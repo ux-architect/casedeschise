@@ -147,6 +147,28 @@
               }
             }
 
+            &.just-one-tour{
+              padding:0;
+               .tour{
+
+                .col-description{
+                  width:100%;
+                  height:30px;
+                  background:transparent;
+                  bottom:10px;
+                  border:none;
+                  
+                  h6{ display:none; }
+                  a.btn{bottom:0; font-size:16px; width:140px;}
+
+                  a.btn.btn-signup{
+                    bottom:0; right:10px; left:unset;
+                  }
+                }
+
+              }
+            }
+
           }
 
       }

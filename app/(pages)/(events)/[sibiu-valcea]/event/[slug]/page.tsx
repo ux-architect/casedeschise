@@ -1,8 +1,8 @@
 
 
 import styles from './page.module.scss';
-import { getEvent } from "@/sanity/sanity.query";
-import { EventType } from "@/types";
+import { getEvent, getEvents, getGeneralInfo, getProjects } from "@/sanity/sanity.query";
+import { EventType, ProjectType, SiteInfoType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-component";
 import { PortableText } from "next-sanity";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
@@ -10,14 +10,22 @@ import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import FooterSection from '@/app/components/components-server/footer-section';
+import EventSection from '@/app/components/components-server/event-section';
 
 export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
-  const event = await getEvent(slug) as EventType;
 
-  const cssClass_city = city ;
+  const generalInfo: SiteInfoType = await getGeneralInfo();
+  const year = generalInfo?.currentYear;
+  
+  const allEvents = await getEvents("events-" + city, year);
+  const event = allEvents.find((event: EventType) => event.slug.current === slug) as EventType;
+  // get events in the same section
+  const events_in_same_section = allEvents.filter((event: { slug:{ current:string }, metadata: { section: string; }; }) => event.slug.current !== slug);
 
-  const parts = event?.name.split('///').map(p => p.trim());
+
+
+  const parts = event?.name.split('///').map((p: string) => p.trim()) ?? [];
           const title = parts[0]  || '';
           const subtitle = parts[1]  || '';
 
@@ -33,7 +41,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
             <h2>{subtitle}</h2>
           </div>
           <div className="col col-2">
-            {event?.visitTime?.map((time, idx) => (
+            {event?.visitTime?.map((time:string, idx:number) => (
               <span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>
             ))}
           </div>
@@ -52,12 +60,23 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
           <div className="col col-2"><div className="map-container"><SeeMapSection page={city} /></div></div>
         </section>
 
-      </main>
+      
 
-      <FaqSection city={city} />
-      <PartnerSection page={city} />
-      {/* <ContactForm /> */}
-      <FooterSection page={city}/>
+        {events_in_same_section.length > 0 && (
+        <>
+          <h6 className='section-title-similar-projects font-safiro'>Vezi și</h6>
+          <section className="swiper-section-similar-projects clearfix">
+            <EventSection page={city} events={events_in_same_section} />
+          </section>
+        </>)}
+
+      
+
+        <FaqSection city={city} />
+        <PartnerSection page={city} />
+        {/* <ContactForm /> */}
+        <FooterSection page={city}/>
+      </main>
     </>
   );
 }

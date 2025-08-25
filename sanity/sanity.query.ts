@@ -121,18 +121,23 @@ export async function getTour(slug: string) {
   );
 }
 
-export async function getTours(tourType: string) {
+export async function getTours(tourType: string, year?: string) {
   return client.fetch(
-    groq`*[_type in [$tourType]]{
-      _id,
+    groq`*[_type == $tourType && (!defined($year) || metadata.year == $year)]{
+     _id,
       slug,
       name,
       metadata{"year":year, "index":index},
       profileImage {"image": asset->url},
+      images[]{"image": asset->url},
       address,
+      visitTime,
+      transport,
+      gps,
+      tags,
       description,
     }`,
-    { tourType },
+    { tourType, year: year ?? null },
     {next: { revalidate: revalidateInterval }, }
   );
 }
@@ -159,19 +164,24 @@ export async function getEvent(slug: string) {
   );
 }
 
-export async function getEvents(eventType: string) {
+export async function getEvents(eventType: string, year?: string) {
   return client.fetch(
-    groq`*[_type in [$eventType]]{
+    groq`*[_type == $eventType && (!defined($year) || metadata.year == $year)]{
       _id,
       slug,
       name,
       metadata{"year":year, "index":index},
       profileImage1 {"image": asset->url},
       profileImage2 {"image": asset->url},
+      images[]{"image": asset->url},
       address,
+      visitTime,
+      transport,
+      gps,
+      tags,
       description,
     }`,
-    { eventType },
+    { eventType, year: year ?? null },
     {next: { revalidate: revalidateInterval }, }
   );
 }

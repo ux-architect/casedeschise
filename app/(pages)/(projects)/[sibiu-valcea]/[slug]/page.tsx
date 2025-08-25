@@ -21,12 +21,10 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const year = generalInfo?.currentYear;
 
-  // const project = await getProject(slug) as ProjectType;
-  
-  // get projects in the same section
   const allProjects = await getProjects("projects-" + city, year);
   const project = allProjects.find((p: ProjectType) => p.slug.current === slug);
-  const projects_in_same_section = allProjects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section);
+    // get projects in the same section
+  const projects_in_same_section = allProjects.filter((p: { slug:{ current:string }, metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section && p.slug.current !== project.slug.current);
 
   const parts = project?.name.split('///').map((p: string) => p.trim()) ?? [];
   const title = parts[0]  || '';
@@ -82,7 +80,13 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           </div>
         </section>
 
-        {projects_in_same_section.length > 0 && (<section className="swiper-section-similar-projects"><SwiperResponsive projects={projects_in_same_section}/></section>)}
+        {projects_in_same_section.length > 0 && (
+          <>
+            <h6 className='section-title-similar-projects font-safiro'>Vezi și</h6>
+            <section className="swiper-section-similar-projects clearfix">
+              <SwiperResponsive projects={projects_in_same_section} />
+            </section>
+          </>)}
         
         <FaqSection city={city} />
         <PartnerSection page={city} />

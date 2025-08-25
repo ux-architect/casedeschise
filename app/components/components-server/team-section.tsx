@@ -5,7 +5,7 @@ import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import Image from "next/image";
 
-export default async function TeamSection({ page = 'sibiu', className = '' }: { page: string, className?: string }) {
+export default async function TeamSection({ page = 'sibiu', className = '', id = '' }: { page: string, className?: string, id?:string }) {
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const titleUrl: string = page == "sibiu" ? "/images/EC-HI-PA-verde.png" : "/images/EC-HI-PA-roz.png";
@@ -14,8 +14,8 @@ export default async function TeamSection({ page = 'sibiu', className = '' }: { 
   
   return (
 
-      <div className={`${styles['namespace-container']} clearfix` }>
-          <div className={`team-section-container clearfix ${cssClass_teamSize} ${className}`}>
+      <div id={id} className={`${styles['namespace-container']} clearfix` }>
+          <div  className={`team-section-container clearfix ${cssClass_teamSize} ${className}`}>
 
             <div className='col col-title'>
               <div className='hide-on-desktop font-safiro diff-sibiu-valcea'>

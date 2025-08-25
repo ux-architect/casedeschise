@@ -12,6 +12,7 @@ export default async function EventSection({ events, page }: { events: EventType
 
 
   const city :string = page == "sibiu" ? "sibiu": "valcea";
+  const linkPrefix = "/" + city ;
 
   return (
 
@@ -34,10 +35,10 @@ export default async function EventSection({ events, page }: { events: EventType
             <div className={`event ${cssClass_odd} clearfix`} key={idx}>
                 
                  <div className="col col-1 col-image inner-shadow-left inner-shadow-right" >
-                    <Link href={`${city}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage1.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
+                    <Link href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage1.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
                   </div>
 
-                  <Link href={`${city}/event/${slug}`} scroll={true} className="title-link" rel="noreferrer noopener">
+                  <Link href={`${linkPrefix}/event/${slug}`} scroll={true} className="title-link" rel="noreferrer noopener">
                     <div className="col col-2 col-title  diff-sibiu-valcea diff-background" >
                         <h6 className='font-bold title font-safiro'>{title}</h6>
                         <h6 className='font-regular subtitle'>{subtitle}</h6>
@@ -45,14 +46,12 @@ export default async function EventSection({ events, page }: { events: EventType
                   </Link>
 
                   <div className="col col-3 inner-shadow-left inner-shadow-right">
-                    <Link href={`${city}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage2.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
+                    <Link href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage2.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${event.name} cover photo`} fill /></Link>
                   </div>
-
-
 
                   <div className="col col-4 col-description ">
                     <span className='hide-long-text-12 hide-on-mobile'><PortableText value={event?.description} /></span>
-                    <Link className="btn btn-primary diff-sibiu-valcea " href={`${city}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                    <Link className="btn btn-primary diff-sibiu-valcea " href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                   </div>
                   
                   

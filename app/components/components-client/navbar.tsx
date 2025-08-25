@@ -107,7 +107,7 @@ useEffect(() => {
           <div className="flex-container">
   
             <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea hide-on-mobile" onClick={() => setNavOpen(false)}>Despre</Link>
-            <Link href={`/about/${city}`} className="link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Despre</Link>
+            <Link href={`${linkPrefix}/about`} className="link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Despre</Link>
 
             <Dropdown label="Program" className="smaller">
               <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => { setNavOpen(false)}}><span className="line">[</span>Cladiri<span className="line">]</span></Link>
@@ -117,7 +117,7 @@ useEffect(() => {
 
             <Dropdown label="Comunitate" className="smaller">
               <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea smaller hide-on-mobile" onClick={() => setNavOpen(false)}><span className="line">[</span>Echipa<span className="line">]</span></Link>
-              <Link href={`/team/${city}`} className="dropdown-link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Echipa</Link>
+              <Link href={`${linkPrefix}/team`} className="dropdown-link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Echipa</Link>
               
               <Link href={`${linkPrefix}#voluntari`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Voluntari<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
@@ -128,7 +128,7 @@ useEffect(() => {
             <Link href={`${linkPrefix}/map`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Hartă</Link>
             {/* <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhivă</Link> */}
             <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Contact</Link>
-            <Link href={`/faq/${city}`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
+            <Link href={`${linkPrefix}/faq`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
 
           </div>
           
