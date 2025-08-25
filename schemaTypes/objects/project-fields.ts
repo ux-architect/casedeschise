@@ -83,7 +83,7 @@ export const projectFields = [
       name: "slug",
       type: "slug",
       title: "Slug",
-      description: "Fără  diacritice sau caractere speciale aici!",
+      description: "Fără  diacritice sau caractere speciale aici! Fiecare slug trebuie să fie unic – nu poate fi repetat la proiecte, evenimente sau tururi, indiferent de oraș sau an!",
       options: {
         source: doc => {
           const name = (doc as any).name || ''

@@ -20,7 +20,7 @@ export default async function MainLayout({children}: {children: React.ReactNode}
             <GlobalInfoProvider value={generalInfo}> {/*  adds acces to generalInfo data on all child csr components */}
               
               <AddScrolledClassToBody/>
-              <Nav_Sibiu_Valcea generalInfo = {generalInfo}/>
+              <Nav_Sibiu_Valcea/>
               <Navbar generalInfo = {generalInfo} /> 
 
               <div className="float-left w-100 h-100x"  > {children} </div>

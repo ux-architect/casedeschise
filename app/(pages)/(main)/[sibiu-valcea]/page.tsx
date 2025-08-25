@@ -8,18 +8,17 @@ import { ContactForm } from "@/app/components/contact-form/contact-form";
 import ToursSection from "@/app/components/components-server/tour-section";
 import EventSection from "@/app/components/components-server/event-section";
 import SeeMapSection from "@/app/components/components-server/see-map-section";
-import { SiteInfoType } from "@/types";
+import { SiteInfoType, CityKey } from "@/types";
 import PartnerSection from "@/app/components/components-server/partner-section";
 import FaqSection from "@/app/components/components-server/faq-section";
 import FooterSection from "@/app/components/components-server/footer-section";
 import SocialMediaSection from "@/app/components/components-ui/social-media-section";
 
-export default async function Sibiu({ params}: {params: Promise<{ year:string }>;}) {
-
-  const { year } = await params;
-   const city = "sibiu";
+export default async function Main({ params}: {params: Promise<{"sibiu-valcea": string}>;}) {
+  const { ["sibiu-valcea"]: city } = await params;
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
+  const year = generalInfo?.currentYear;
 
   const projects = await getProjects("projects-" + city, year);
   const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
@@ -45,7 +44,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
 
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
-      <CoverSection page={city} />
+      <CoverSection page={city as CityKey} />
       <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
       {/* <div style={{ height: '2800px' }} /> */}
      
@@ -71,7 +70,7 @@ export default async function Sibiu({ params}: {params: Promise<{ year:string }>
       <FaqSection city={city} />
       <PartnerSection page={city} />
       <div className="clearfix hide-on-mobile"><ContactForm/></div>
-       <FooterSection page={city}/>
+      <FooterSection page={city}/>
       
       
 

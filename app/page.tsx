@@ -7,7 +7,6 @@ import styles from './page.module.scss';
 import Link from "next/link";
 import Image from "next/image";
 import DownloadLink from "./components/components-ui/download-link";
-import PixelateImage from "./components/components-client/pixelate-image-on-hover";
 
 export default async function Home() {
 
@@ -29,19 +28,17 @@ export default async function Home() {
         {/* SIBIU */}
         <div className="section  section-sibiu"  aria-label={'Sibiu'}>
 
-          <div className="w-100 h-100 position-absolute inner-shadow-top-disabled inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
-              <Image src={`${url_cover_sibiu}`} className="object-cover " data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
-            
-            {/* <PixelateImage src={`${url_cover_sibiu}`} width={960} height={1080} /> */}
-            
+            <div className="w-100 h-100 position-absolute inner-shadow-top-disabled inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
+                <Image src={`${url_cover_sibiu}`} className="object-cover " data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
-            <a className="go-button clearfix hidden" href={`/${generalInfo.currentYear}/sibiu`} ><span className="svg-icon svg-icon-arrow fl"></span></a>
+
+            <a className="go-button clearfix hidden" href={`/sibiu`} ><span className="svg-icon svg-icon-arrow fl"></span></a>
 
             <div className="logos clearfix hide-on-mobile">
               <Link href="https://www.oarsbvl.ro/" className="float-left"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
             </div>
             
-          <Link href={`/${generalInfo.currentYear}/sibiu`} className="title" style={{ backgroundImage: `url(/images/case-sibiu.png)` }}></Link>
+            <Link href={`/sibiu`} className="title" style={{ backgroundImage: `url(/images/case-sibiu.png)` }}></Link>
           
             
           {generalInfo?.pdfSibiu?.url &&
@@ -57,11 +54,10 @@ export default async function Home() {
             <Link href="https://oar.archi/en/"><div className="oar has-label" style={{ backgroundImage: `url(/images/oarr.png)` }} data-label="COFINANȚATOR:"></div></Link>
             <Link href="https://oar.archi/timbrul-de-arhitectura/"><div className="timbru has-label" style={{ backgroundImage: `url(/images/timbru.png)` }} data-label="PRIN:"></div></Link>
           </div>
-          <Link href={`/${generalInfo.currentYear}/valcea`} className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></Link>
+          <Link href={`/valcea`} className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></Link>
           
-          {/* <PixelateImage src={`${url_cover_valcea}`} width={960} height={1080} /> */}
           <Image src={`${url_cover_valcea}`} className="object-cover" data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
-          <a className="go-button clearfix" href={`/${generalInfo.currentYear}/valcea`}><span className="svg-icon svg-icon-arrow fl"></span></a>
+          <a className="go-button clearfix" href={`/valcea`}><span className="svg-icon svg-icon-arrow fl"></span></a>
 
           {generalInfo?.pdfValcea?.url &&
           (<DownloadLink className="clearfix download-pdf" url={ generalInfo?.pdfValcea?.url ?? ""}  filename = { generalInfo?.pdfValcea?.originalFilename ?? ""}>

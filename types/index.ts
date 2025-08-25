@@ -110,3 +110,5 @@ export type EventType = {
   slug: { current: string }
 };
 
+export type CityKey = 'sibiu' | 'valcea';
+

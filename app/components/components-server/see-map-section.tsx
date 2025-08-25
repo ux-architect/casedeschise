@@ -1,18 +1,13 @@
 
-
-import { SiteInfoType } from '@/types';
 import styles from './see-map-section.module.scss';
 import Image from "next/image";
 import Link from 'next/link';
-import { getGeneralInfo } from '@/sanity/sanity.query';
 
 
 export default async function SeeMapSection({ page, className = "" }: { page: string, className? : string }) {
 
 const url_harta = `/images/harta-${page}.jpg`;
-const generalInfo: SiteInfoType = await getGeneralInfo();
-
-const linkPrefix = "/" + generalInfo?.currentYear + "/" + page ;
+const linkPrefix = "/" + page ;
 
   return (
 

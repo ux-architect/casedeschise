@@ -5,7 +5,6 @@ import { getEvent } from "@/sanity/sanity.query";
 import { EventType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-component";
 import { PortableText } from "next-sanity";
-import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';

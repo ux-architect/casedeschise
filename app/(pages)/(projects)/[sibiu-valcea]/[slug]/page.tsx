@@ -1,8 +1,8 @@
 
 
 import styles from './page.module.scss';
-import { getProject, getProjects } from "@/sanity/sanity.query";
-import { ProjectType } from "@/types";
+import { getGeneralInfo, getProject, getProjects } from "@/sanity/sanity.query";
+import { ProjectType, SiteInfoType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-component";
 import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
@@ -15,19 +15,24 @@ import Link from 'next/link';
 import SwiperResponsive from '@/app/components/swiper/swiper-responsive/swiper-responsive';
 import Tags from '@/app/components/components-server/tags';
 
-export default async function ProjectPage({ params}: {params: Promise<{ year:string, "sibiu-valcea": string, slug: string }>;}) {
-  const { year, ["sibiu-valcea"]: city, slug } = await params;
-  const project = await getProject(slug) as ProjectType;
+export default async function ProjectPage({ params}: {params: Promise<{"sibiu-valcea": string, slug: string }>;}) {
+  const { ["sibiu-valcea"]: city, slug } = await params;
+
+  const generalInfo: SiteInfoType = await getGeneralInfo();
+  const year = generalInfo?.currentYear;
+
+  // const project = await getProject(slug) as ProjectType;
   
   // get projects in the same section
-  const projects = await getProjects("projects-" + city, year);
-  const projects_in_same_section = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section);
+  const allProjects = await getProjects("projects-" + city, year);
+  const project = allProjects.find((p: ProjectType) => p.slug.current === slug);
+  const projects_in_same_section = allProjects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section);
 
-  const parts = project?.name.split('///').map(p => p.trim()) ?? [];
+  const parts = project?.name.split('///').map((p: string) => p.trim()) ?? [];
   const title = parts[0]  || '';
   const subtitle = parts[1]  || '';
 
-  const gps = project?.gps?.split(',').map(p => p.trim()) ?? [];
+  const gps = project?.gps?.split(',').map((p: string) => p.trim()) ?? [];
   const lat = gps[0]  || '';
   const lng = gps[1]  || '';
 
@@ -47,10 +52,9 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
           </div>
 
           <div className="col col-2">
-            {project?.visitTime?.map((time, idx) => (
+            {project?.visitTime?.map((time: string, idx: number) => (
               <span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>
-            ))}
-          </div>
+            ))}    </div>
 
         </section>
 
@@ -79,6 +83,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ year:str
         </section>
 
         {projects_in_same_section.length > 0 && (<section className="swiper-section-similar-projects"><SwiperResponsive projects={projects_in_same_section}/></section>)}
+        
         <FaqSection city={city} />
         <PartnerSection page={city} />
         <ContactForm />

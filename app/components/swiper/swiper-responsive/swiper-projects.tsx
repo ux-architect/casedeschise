@@ -38,7 +38,7 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
 
         return(
           <SwiperSlide key={idx} className={cssClass_odd}>
-              <Link className="col col-image" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
+              <Link className="col col-image" href={`/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
                   <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${project.name} cover image`} fill />
               </Link>
 
@@ -49,7 +49,7 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
 
                 <span className="description hide-long-text-9"><PortableText value={project?.description} /></span>
 
-                <Link className="btn btn-primary diff-sibiu-valcea" href={`/${year}/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                <Link className="btn btn-primary diff-sibiu-valcea" href={`/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
               </div>
 
               <div className="pin diff-sibiu-valcea diff-background"></div>

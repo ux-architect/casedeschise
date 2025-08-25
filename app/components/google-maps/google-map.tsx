@@ -5,8 +5,6 @@ import { GoogleMap, OverlayViewF } from "@react-google-maps/api";
 import Image from "next/image";
 import styles from "./google-map.module.scss";
 import Link from "next/link";
-import { GlobalInfoContext } from "@/app/context/global-info-context";
-import { SiteInfoType } from "@/types";
 import { usePathname } from "next/navigation";
 
 type MarkerType = {
@@ -35,8 +33,7 @@ const OverlayMarker = (
     [marker.position.lat, marker.position.lng]
   );
 
-  const generalInfo = useContext(GlobalInfoContext);
-  const linkPrefix = "/" + generalInfo?.currentYear + "/" + city;
+  const linkPrefix = "/" + city;
   const cssClass_isPressed = pressed ? "pressed" : "";
 
   return (

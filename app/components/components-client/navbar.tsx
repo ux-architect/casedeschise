@@ -93,7 +93,7 @@ useEffect(() => {
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
   var cssClass_noHighlight = noHighlight ? "no-highlight-on-nav": "";
 
-  const linkPrefix = "/" + generalInfo?.currentYear + "/" + city ;
+  const linkPrefix =  "/" + city ;
 
   return (
 
@@ -103,7 +103,7 @@ useEffect(() => {
         </div>
 
         <nav id="custom-responsive-nav" className={`${cssClass_navIsActive} ${cssClass_noHighlight} hide-while-still-loading clearfix float-left`}>
-          {/* <Nav_Sibiu_Valcea generalInfo = {generalInfo} className="position-absolute"/> */}
+
           <div className="flex-container">
   
             <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea hide-on-mobile" onClick={() => setNavOpen(false)}>Despre</Link>

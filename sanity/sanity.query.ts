@@ -85,9 +85,14 @@ export async function getProjects(projectType: string, year?: string) {
         metadata{"year":year, "section":section, "index":index},
 
         profileImage {"image": asset->url},
+        images[]{"image": asset->url},
         address,
+        visitTime,
+        transport,
         gps,
+        tags,
         description,
+        otherInfo,
       }
     `,
     { projectType, year: year ?? null },

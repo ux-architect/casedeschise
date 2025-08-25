@@ -9,7 +9,7 @@ import { getGeneralInfo } from '@/sanity/sanity.query';
 
 export default async function FooterSection({ page = 'sibiu' }: { page: string; }) {
 
-const linkPrefix = "/" + "2024" + "/" + page ;
+const linkPrefix = "/" + page ;
 const generalInfo: SiteInfoType = await getGeneralInfo();
 
   return (

@@ -5,10 +5,10 @@ import Image from "next/image";
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import Link from 'next/link';
+import type { CityKey } from "@/types";
 
-type CityKey = 'sibiu' | 'valcea';
 
-export default async function CoverSection({ page = 'sibiu' }: { page: CityKey; }) {
+export default async function CoverSection({ page = 'sibiu' }: { page?: CityKey; }) {
   const generalInfo: SiteInfoType = await getGeneralInfo();
   let url_cover = generalInfo?.cityPageCover?.[page]?.url || null;
   let url_logo = `/images/case-${page}-color.png`;
