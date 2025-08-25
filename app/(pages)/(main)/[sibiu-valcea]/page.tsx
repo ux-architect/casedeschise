@@ -53,7 +53,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Context Urban</div></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title">Birouri de Arhitectura</div></section>)}
       
-      <div className="w-100 clearfix float-left mt-10"><SeeMapSection page={city} /></div>
+      <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
 
       {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Context Rural</div></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/></section>)}

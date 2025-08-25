@@ -9,11 +9,11 @@
         position:relative;
         margin-top:0px;
         margin-bottom:0px;
-        height:500px;
+        height:400px;
 
         h6{
-          font-size: 150px;
-          line-height: 165px;
+          font-size: 130px;
+          line-height: 130px;
           position:absolute;
           margin:0;
           width:100%;
@@ -22,7 +22,7 @@
           color:#fff;
           z-index:1;
           margin:0;
-          margin-top: 20px;
+          margin-top: 30px;
         }
 
         .go-button{
@@ -42,17 +42,26 @@
             background-color:#fff;
           }
         }
+        // button for mobile
+        .btn-default.hide-on-desktop{
+          position: absolute;
+          left: calc(50% - 100px);
+          top: calc(50% - 25px);
+          text-transform: uppercase;
+        }
 
-        @media (max-width: 1200px) {
-            height: 30vw;
-          }
+        // button for desktop
+        .btn-default.hide-on-mobile{
+          position: absolute;
+          left: calc(50% - 100px);
+          bottom:40px;
+          text-transform: uppercase;
 
-        @media (max-width: 768px) {
+          .svg-icon{ background-color:#fff;}
+        }
 
-          }
-
-          @media (max-width: 400px) {
-            height: 160px;
+          @media (max-width: 768px) {
+            height: 220px;
           }
 
 

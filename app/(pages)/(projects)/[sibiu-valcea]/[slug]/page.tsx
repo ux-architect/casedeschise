@@ -67,7 +67,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           <div className="col col-1"><PortableText value={project?.description} /></div>
           <div className="col col-2"><div className="map-container">
             <SeeMapSection page={city} />
-            <Link className="btn btn-primary diff-sibiu-valcea open-in-google-maps" href={`${mapsUrl}`} scroll={true} target="_blank" rel="noreferrer noopener">DESCHIDE IN GOOGLE MAPS</Link>
+            <Link className="btn btn-default btn-large open-in-google-maps" href={`${mapsUrl}`} scroll={true} target="_blank" rel="noreferrer noopener">DESCHIDE IN GOOGLE MAPS</Link>
             </div></div>
         </section>
 

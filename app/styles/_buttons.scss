@@ -1,6 +1,7 @@
 
 .btn{
   display: block;
+  position:relative;
   width:140px;
   height:30px;
   border: 2px solid #CEFB08;
@@ -15,7 +16,7 @@
   &.btn-large{
     width: 200px;
     height: 50px;
-    line-height:44px;
+    line-height:46px;
     border-radius: 25px;
     border-width: 3px;
     font-size: 20px;
@@ -55,6 +56,15 @@
     }
   }
 
+  &.btn-default{
+    border: 3px solid #ffffff;
+    color: #ffffff;
+    background: #00000033;
+    
+    &:hover{
+      background: #00000067;
+    }
+  }
 
 }
 

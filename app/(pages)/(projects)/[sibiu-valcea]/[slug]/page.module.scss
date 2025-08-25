@@ -88,13 +88,13 @@
                 }
               }
 
-          span.date{
-                font-size:30px;
-                float:left;
-                width:100%;
-                &.sibiu { color: #CEFB08;}
-                &.valcea { color: #ff0db9;}
-              }
+          // span.date{
+          //       font-size:30px;
+          //       float:left;
+          //       width:100%;
+          //       &.sibiu { color: #CEFB08;}
+          //       &.valcea { color: #ff0db9;}
+          //     }
 
           &.col-1{
               width:650px;
@@ -127,12 +127,18 @@
             width:400px;
             height:100%;
 
+          .see-map-section{
+            h6{display:none;}
+          }
+
+
+
             .open-in-google-maps{
               position:absolute;
-              border-color:#000 !important;
-              color:#000;
+              // border-color:#000 !important;
+              // color:#000;
               font-size:14px;
-              width:220px;
+              // width:220px;
               top: 30px;
               left: 30px;
             }

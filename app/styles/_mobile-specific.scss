@@ -5,7 +5,7 @@
 }
 
 @media (hover: none) and (pointer: coarse) {
-  a, a:hover, a:active, 
+  a:not(.prevent-default-highlight), a:not(.prevent-default-highlight):hover, a:not(.prevent-default-highlight):active, 
   [data-mobile-highlight]:hover, 
   [data-mobile-highlight]:active  {
 

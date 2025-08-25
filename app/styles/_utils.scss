@@ -50,6 +50,13 @@
     height: 100%;
 }
 
+.rotate-180{
+  transform: rotate(180deg)
+}
+.rotate-90{
+  transform: rotate(90deg)
+}
+
 /////// flex utils
 
 .flex-container {
@@ -128,7 +135,7 @@
 
 .is-mobile{
   .hide-on-desktop{
-    display:initial !important;
+    display:inline-block !important;
   }
 }
 
