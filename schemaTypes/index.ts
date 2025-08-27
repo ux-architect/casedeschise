@@ -3,6 +3,7 @@
 import generalInfo from "./general-info";
 import duoImage from './objects/duo-image';
 import contactFields from './custom-input/contact-oar-fields';
+import externalFormLinks from './custom-input/external-form-links-fields';
 import faq from "./faq";
 
 import metadata from './custom-input/project-fields-metadata';
@@ -19,7 +20,7 @@ import eventSibiu from "./event-sibiu";
 import eventValcea from "./event-valcea";
 
 
-export const schemaTypes = [generalInfo, duoImage, contactFields, faq,
+export const schemaTypes = [generalInfo, duoImage, contactFields, externalFormLinks, faq,
                                 metadata, tourMetadata, eventMetadata,
                                 projectsSibiu, projectsValcea, 
                                 toursSibiu, toursValcea,

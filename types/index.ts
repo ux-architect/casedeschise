@@ -37,6 +37,7 @@ export type SiteInfoType = {
   }[];
 
   contactFields?:{address?:string, contactEmail?:string, contactPhone?:string, contactEmailForms?:string}
+  externalFormLinks?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string}
 
   currentYear: string
 

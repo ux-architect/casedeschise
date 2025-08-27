@@ -1,7 +1,6 @@
 
 import Link from "next/link";
 import styles from './nav-sibiu-valcea.module.scss';
-import { SiteInfoType } from "@/types";
 
 export default function Nav_Sibiu_Valcea({ className}: { className?:string }) {
 

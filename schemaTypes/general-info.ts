@@ -164,6 +164,14 @@ const generalInfo = {
       type: "contactFields",
     }),
 
+    //Linkuri Formulare///////////////
+     defineField({
+      name: 'externalFormLinks',
+      title: 'Linkuri Forumlare Externe',
+      type: "externalFormLinks",
+    }),
+
+
     defineField({
       name: 'currentYear',
       title: 'Editia activa:',

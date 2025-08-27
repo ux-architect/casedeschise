@@ -1,7 +1,7 @@
 
 
 import Navbar from "../components/components-client/navbar";
-import Nav_Sibiu_Valcea from "../components/global/nav-sibiu-valcea";
+import Nav_Sibiu_Valcea from "../components/components-server/nav-sibiu-valcea";
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import ProvideJS_GoogleMaps from "../components/google-maps/google-map-provider";

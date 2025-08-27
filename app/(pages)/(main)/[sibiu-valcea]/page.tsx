@@ -45,7 +45,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
 
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
-      <CoverSection page={city as CityKey} />
+      <CoverSection city={city as CityKey} />
       <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
       {/* <div style={{ height: '2800px' }} /> */}
      

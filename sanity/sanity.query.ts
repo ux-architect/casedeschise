@@ -35,6 +35,7 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     socialMedia[]{name, link, city },
 
     contactFields{address, contactEmail, contactPhone, contactEmailForms},
+    externalFormLinks{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl},
 
     currentYear,
   }`,{},

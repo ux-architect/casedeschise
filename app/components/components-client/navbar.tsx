@@ -120,9 +120,8 @@ useEffect(() => {
               <Link href={`${linkPrefix}/team`} className="dropdown-link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Echipa</Link>
               
               <Link href={`${linkPrefix}#voluntari`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Voluntari<span className="line">]</span></Link>
-              <Link href={`${linkPrefix}#parteneri`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#sponsori`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#devino-gazda`} className="dropdown-link diff-sibiu-valcea smaller hide-on-mobile" onClick={() => setNavOpen(false)}><span className="line">[</span>Devino gazdă<span className="line">]</span></Link>
-              {/* <Link href={`${linkPrefix}/map`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Harta <span className="line">]</span></Link> */}
             </Dropdown>
 
             <Link href={`${linkPrefix}/map`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Hartă</Link>

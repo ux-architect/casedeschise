@@ -10,7 +10,9 @@ import { urlFor } from '@/sanity/sanity.client';
 
 export default async function MissionSection({className = '', page = 'sibiu'}: {className?: string, page: string; }) {
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  const maskUrl = urlFor(generalInfo?.currentYearImage.image ).width(500).url() ;
+
+
+  const maskUrl = generalInfo?.currentYearImage?.image ? urlFor(generalInfo?.currentYearImage?.image ).width(500).url() : "";
   return (
     <div  className={`${styles['namespace-container']} ${className} clearfix`}>
 
