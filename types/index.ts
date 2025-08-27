@@ -11,6 +11,7 @@ export type SiteInfoType = {
   misionStatement2: PortableTextBlock[],
 
   contactFormImage: {image: string },
+  currentYearImage: {image: string },
 
   pdfSibiu: { url: string; originalFilename: string },
 

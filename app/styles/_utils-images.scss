@@ -57,3 +57,16 @@
 }
 
 
+.masked-container {
+  -webkit-mask-image: var(--mask-url);
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  mask-image: var(--mask-url);
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+}
+
+

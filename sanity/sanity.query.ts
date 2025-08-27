@@ -23,7 +23,9 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
 
     misionStatement1,
     misionStatement2,
+    currentYearImage{"image": asset->url},
     contactFormImage{"image": asset->url},
+    
 
     "pdfSibiu": pdfSibiu.asset->{url, originalFilename},
     "pdfValcea": pdfValcea.asset->{url, originalFilename},
@@ -42,6 +44,7 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
 export async function getFaqList(): Promise<FaqType[]> {
   const result = await client.fetch(
     groq`*[_type == "faq"][0]{
+      _id,
       faqList[]{_id, question, answer, city}
     }`,
     {},

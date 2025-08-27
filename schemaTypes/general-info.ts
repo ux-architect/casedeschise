@@ -4,6 +4,7 @@ const generalInfo = {
   name: "general-info",
   title: "Setari website",
   type: "document",
+  __experimental_actions: ['update', 'publish'], // disables create + delete
 
  fields: [
   defineField({
@@ -11,7 +12,7 @@ const generalInfo = {
      title: "",
      type: "string",
      readOnly: true,
-     initialValue: 'Pagina de start',
+     initialValue: '',
      hidden: true,
    }),
 
@@ -28,6 +29,14 @@ const generalInfo = {
       type: "duoImage",
       
       }),
+
+      {
+        name: 'currentYearImage',
+        title: 'Imagine editie curenta',
+        type: 'image',
+        options: { hotspot: true },
+        description:"dimensiuniune recomandata: max 800x800 ~30kb"
+      },
 
       defineField({
         name: "eventDate",
