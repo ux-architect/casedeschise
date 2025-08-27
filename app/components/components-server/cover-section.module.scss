@@ -72,6 +72,20 @@
         position:relative;
         margin: 0 10px;
         letter-spacing:2px;
+        text-transform: uppercase;
+        .svg-icon-map{
+          top:8%;
+          height:85%;
+          width:30px;
+          position: relative;
+          left: 20px;
+        }
+
+        &:hover{
+          .svg-icon-map{
+            background-color: #000;
+          }
+        }
       }
     }
 

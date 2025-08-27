@@ -29,8 +29,11 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
         <h2 className={'event-date hide-while-still-loading diff-sibiu-valcea font-safiro'}>{generalInfo?.eventDate}</h2>
         
         <div id="main-actions" className="w-100 clearfix hide-while-still-loading">
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea" href={`${linkPrefix}/map`} scroll={true} rel="noreferrer noopener">HARTA</Link>
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/map`} scroll={true} rel="noreferrer noopener">
+            <span className="svg-icon svg-icon-map float-left diff-sibiu-valcea diff-background "></span>
+            <span>Hartă</span>
+          </Link>
+          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </div>
         
     </div>
