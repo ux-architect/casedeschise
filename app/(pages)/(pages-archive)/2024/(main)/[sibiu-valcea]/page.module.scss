@@ -37,25 +37,29 @@
     width: 100%;
     margin-top:10px;
 
-  .category-title{
-    position:relative;
-    display: inline-block;
-    bottom:60px;
-
-    border: 4px solid #000;
-    padding:0 10px;
-    background-color: #fff;
-    z-index:2;
-    font-size:30px;
-    font-weight: 600;
-    text-transform: uppercase;
-    
-  }
-
     @media (max-width: 768px) {
         height: auto;
 
-      .category-title{
+      
+    }
+
+  }
+
+    .category-title{
+        position:relative;
+        display: inline-block;
+        bottom:60px;
+
+        border: 4px solid #000;
+        padding:0 10px;
+        background-color: #fff;
+        z-index:2;
+        font-size:30px;
+        font-weight: 600;
+        text-transform: uppercase;
+        
+     @media (max-width: 768px) {
+      
         font-size: 14px;
         right: 10px;
         bottom: unset;
@@ -63,10 +67,11 @@
         position: absolute;
         border: 4px solid #cefb08;
         background: #cefb08;
-      }
-    }
-
+      
+     }
+    
   }
+
 
   section.mission-section{
       float:left;
@@ -82,26 +87,27 @@
     .page-container {
       position: relative;
 
-      :global(.category-title) {
-        position: absolute;
-        height: 40px;
-        line-height: 32px;
-        bottom: -40px;
-        left: 0;
-        font-size: 28px;
-        transform-origin: top left;
-        transform: rotate(-90deg);
-        width: 400px;
-        border: 4px solid #cefb08;
-        background-color: #cefb08;
+      :global{
+        .category-title {
+          position: absolute;
+          height: 40px;
+          line-height: 32px;
+          bottom: -40px;
+          left: 0;
+          font-size: 28px;
+          transform-origin: top left;
+          transform: rotate(-90deg);
+          width: 400px;
+          border: 4px solid #cefb08;
+          background-color: #cefb08;
 
-        &.odd {
-          left: unset;
-          right: 0;
-          transform-origin: top right;
-          transform: rotate(90deg);
-        }
-      }
+          &.title-right {
+            left: unset;
+            right: 0;
+            transform-origin: top right;
+            transform: rotate(90deg);
+          }
+      }}
     }
   }
 }

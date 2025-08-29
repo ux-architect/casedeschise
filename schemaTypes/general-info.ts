@@ -167,7 +167,13 @@ const generalInfo = {
     //Linkuri Formulare///////////////
      defineField({
       name: 'externalFormLinks',
-      title: 'Linkuri Forumlare Externe',
+      title: 'Linkuri Forumlare Externe - Sibiu',
+      type: "externalFormLinks",
+    }),
+
+     defineField({
+      name: 'externalFormLinksValcea',
+      title: 'Linkuri Forumlare Externe - Valcea',
       type: "externalFormLinks",
     }),
 

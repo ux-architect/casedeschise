@@ -35,7 +35,8 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     socialMedia[]{name, link, city },
 
     contactFields{address, contactEmail, contactPhone, contactEmailForms},
-    externalFormLinks{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl},
+    externalFormLinks{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
+    externalFormLinksValcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
 
     currentYear,
   }`,{},

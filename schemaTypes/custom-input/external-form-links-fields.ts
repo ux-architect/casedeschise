@@ -16,10 +16,17 @@ export default defineType({
       name: "hostFormExternalUrl",
       title: "Formular inscriere: devin-o gazda",
       type: "string",
+      hidden:true,
     }),
     defineField({
       name: "volunteerFormExternalUrl",
       title: "Formular inscriere: voluntari",
+      type: "string",
+      hidden:true,
+    }),
+    defineField({
+      name: "kidsWorkshopFormExternalUrl",
+      title: "Formular inscriere: workshop copii",
       type: "string",
     }),
   ],

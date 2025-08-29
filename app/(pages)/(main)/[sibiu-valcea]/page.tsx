@@ -43,6 +43,11 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
   tours.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
   events.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
+  const events_section1 = events.filter((p: TourType) => !p.tags?.includes("forChildren"));
+  const events_section2_kids = events.filter((p: TourType) => p.tags?.includes("forChildren"));
+
+
+
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
       <CoverSection city={city as CityKey} />
@@ -51,12 +56,12 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
      
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Context Urban</div></section>)}
-      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title odd">Birouri de Arhitectura</div></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title title-right">Birouri de Arhitectura</div></section>)}
       
       <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
 
       {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Context Rural</div></section>)}
-      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title odd">Categoria 4</div></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title title-right">Categoria 4</div></section>)}
 
       
       
@@ -66,13 +71,15 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <ToursSection  tours={tours} page={city} className="mb-30"/>
   
       <div id="evenimente" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
-      <EventSection events={events} page={city}/>
+      <EventSection events={events_section1} page={city} sectionName="Evenimente"/>
+      <div className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-30">Activitati copii :</div>
+      <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/>
 
-      
+
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
       <PartnerSection page={city} />
-      <div className="clearfix hide-on-mobile"><ContactForm/></div>
+      {/* <div className="clearfix hide-on-mobile"><ContactForm/></div> */}
       <FooterSection page={city}/>
       
       
