@@ -21,7 +21,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
 
     <head><link rel="icon" href="/favicon.ico" /></head>
 
-      <body className={`${poppins.variable} ${safiro.variable} clearfix city-is-sibiu still-loading`}>
+      <body className={`${poppins.variable} ${safiro.variable} clearfix city-is-sibiu still-loading v1`}>
           <AddCityClassToBody/>
           <AddMobileClassToBody/>
           {children}

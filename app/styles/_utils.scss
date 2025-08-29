@@ -98,7 +98,7 @@
   text-overflow: ellipsis;
 }
 
-@for $i from 4 through 12 {
+@for $i from 2 through 12 {
   .hide-long-text-#{$i} {
     @include hide-long-text($i);
   }

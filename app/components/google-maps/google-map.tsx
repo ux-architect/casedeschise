@@ -38,27 +38,30 @@ const OverlayMarker = (
 
   return (
     <OverlayViewF position={position} mapPaneName="overlayMouseTarget">
-      <div className={`marker-container ${cssClass_isPressed} ${fadeIn ? "fadeIn" : ""}`}>
+      <div className={`marker-container diff-sibiu-valcea diff-background ${cssClass_isPressed} ${fadeIn ? "fadeIn" : ""}`}>
         <Link
           href={`${linkPrefix}/${marker.slug}`}
           scroll={true}
-          className="title-link fill-container"
+          className="title-link fill-container "
           rel="noreferrer noopener"
           
+
+
+
           // Just set visual pressed state
-          onMouseDown={() => setPressed(true)}
-          onMouseUp={() => setPressed(false)}
-          onMouseLeave={() => setPressed(false)}
-          onTouchStart={() => setPressed(true)}
+          onMouseDown={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}}
+          // onMouseUp={() => setPressed(false)}
+          // onMouseLeave={() => setPressed(false)}
+          onTouchStart={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}}
           
           // This is the safe place to remove highlight after navigation attempt
-          onClick={() => {
-            setPressed(false)
-            if (onClick) onClick();
-          }}
+          // onClick={() => {
+          //   setPressed(false)
+          //   if (onClick) onClick();
+          // }}
         >
           {marker.image && zoom >= 16 && (
-            <div className="markerImage">
+            <div className="markerImage ">
               <Image
                 src={marker.image}
                 className="object-cover"
@@ -69,11 +72,9 @@ const OverlayMarker = (
               />
             </div>
           )}
-          <div
-            className="marker-text diff-sibiu-valcea diff-background"
-            data-mobile-highlight
-          >
-            {marker.title}
+          <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>
+            <div className="text-inner clearfix hide-long-text-2">{marker.title}</div>
+            
           </div>
           <div className={"marker-arrow"} />
         </Link>
@@ -104,23 +105,6 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
 
   const mapRef = useRef<google.maps.Map | null>(null);
 
-  const onLoad = (mapInstance: google.maps.Map) => {
-    mapRef.current = mapInstance;
-    setZoom(mapInstance.getZoom() || 14);
-  };
-
-  const handleZoomChanged = () => {
-    if (mapRef.current) {
-      setZoom(mapRef.current.getZoom() || 14);
-    }
-  };
-
-  const handleIdle = () => {
-    setTimeout(() => {
-      setFadeIn(true);
-    }, 300);
-  };
-
   return (
     <div className={styles["namespace-container"]}>
       <GoogleMap
@@ -136,9 +120,9 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
           minZoom: 11,
           maxZoom: 18,
         }}
-        onLoad={onLoad}
-        onZoomChanged={handleZoomChanged}
-        onIdle={handleIdle}
+        onLoad={(mapInstance: google.maps.Map) => { mapRef.current = mapInstance; setZoom(mapInstance.getZoom() || 14);}}
+        onZoomChanged={() => { if (mapRef.current) { setZoom(mapRef.current.getZoom() || 14);}}}
+        onTilesLoaded={() => setFadeIn(true)} 
       >
         {markers.map((marker) => (
           <OverlayMarker

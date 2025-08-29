@@ -26,8 +26,8 @@ const generalInfo: SiteInfoType = await getGeneralInfo();
             <div className="col col-2">
               <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea diff-hover">Despre</Link>
               <Link href={`${linkPrefix}#sponsori`} className="link diff-sibiu-valcea diff-hover">Comunitate</Link>
-              <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea diff-hover">Arhiva</Link>
-              <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea diff-hover">FAQ</Link>
+              <Link href={`${linkPrefix}/arhiva`} className="link diff-sibiu-valcea diff-hover">Arhiva</Link>
+              <Link href={`${linkPrefix}/faq`} className="link diff-sibiu-valcea diff-hover">FAQ</Link>
             </div>
 
             <div className="col col-2">

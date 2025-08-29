@@ -3,6 +3,7 @@
 import styles from './team-section.module.scss';
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
+import Image from "next/image";
 import { urlFor } from '@/sanity/sanity.client';
 
 export default async function TeamSection({ page = 'sibiu', className = '', id = '' }: { page: string, className?: string, id?:string }) {
@@ -31,7 +32,8 @@ export default async function TeamSection({ page = 'sibiu', className = '', id =
                   const cssClass = hasImage ? "" : "placeholder";
                   return (
                     <div key={idx} className='member'>
-                      <img src={imgSource} className={`portrait ${cssClass}`} alt={`${member.name} portrait`}/>
+                      {/* <img src={imgSource} className={`portrait ${cssClass}`} alt={`${member.name} portrait`}/> */}
+                      <div className="member-image"><Image src={`${imgSource}`} className={`portrait object-cover ${cssClass}`}  loading="lazy" fill sizes="(max-width: 400px) 100vw, (max-width: 768px) 50vw, 20vw" alt=""/></div>
                       <div className='name'>{member.name}</div>
                       <div className='role'>{member.role}</div>
                     </div>

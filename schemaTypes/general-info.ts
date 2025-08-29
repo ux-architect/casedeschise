@@ -171,6 +171,30 @@ const generalInfo = {
       type: "externalFormLinks",
     }),
 
+   //Denumire Sectiuni///////////////
+    {
+        name: 'sectionNames',
+        title: 'Denumire Sectiuni (separate pe editie)',
+        type: 'array',
+        of: [
+          {
+          type: 'object',
+          fields: [
+            
+            { name: 'name', title: 'Editie', type: 'string' },
+            { name: 's1_sibiu', title: 'Sectiune 1 (Sibiu)', type: 'string' },
+            { name: 's2_sibiu', title: 'Sectiune 2 (Sibiu)', type: 'string' },
+            { name: 's3_sibiu', title: 'Sectiune 3 (Sibiu)', type: 'string' },
+            { name: 's4_sibiu', title: 'Sectiune 4 (Sibiu)', type: 'string' },
+
+            { name: 's1_valcea', title: 'Sectiune 1 (Valcea)', type: 'string' },
+            { name: 's2_valcea', title: 'Sectiune 2 (Valcea)', type: 'string' },
+            { name: 's3_valcea', title: 'Sectiune 3 (Valcea)', type: 'string' },
+            { name: 's4_valcea', title: 'Sectiune 4 (Valcea)', type: 'string' },
+
+          ]
+        }]
+     },
 
     defineField({
       name: 'currentYear',

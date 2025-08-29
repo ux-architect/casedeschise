@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { getGeneralInfo } from '@/sanity/sanity.query';
 
 
-export default async function ToursSection({ className = '', tours, page }: { className?: string, tours: TourType[], page: string }) {
+export default async function ToursSection({ className = '', id = '', tours, page }: { className?: string, id?: string, tours: TourType[], page: string }) {
 
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
@@ -22,7 +22,7 @@ export default async function ToursSection({ className = '', tours, page }: { cl
 
   return (
 
-    <div className={`${styles['namespace-container']} ${className} clearfix`}>
+    <div id={id} className={`${styles['namespace-container']} ${className} clearfix`}>
 
       <section className={`tour-section clearfix ${cssClass_justOneTour}`}>
         {tours?.map((tour, idx) => {

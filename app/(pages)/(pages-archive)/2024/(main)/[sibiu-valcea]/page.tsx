@@ -18,7 +18,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
   const { ["sibiu-valcea"]: city } = await params;
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  const year = generalInfo?.currentYear;
+  const year = "2024";
 
   const projects = await getProjects("projects-" + city, year);
   const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
@@ -58,12 +58,10 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Context Rural</div></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title odd">Categoria 4</div></section>)}
 
-      
+      <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">{sectionTitle_onMobile}</div>
       
       <MissionSection page={city} className="hide-on-mobile"/>
-
-      <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">{sectionTitle_onMobile}</div>
-      <ToursSection  tours={tours} page={city} className="mb-30"/>
+      <ToursSection id="tururi" tours={tours} page={city} className="mb-30"/>
   
       <div id="evenimente" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background font-size-45">Evenimente :</div>
       <EventSection events={events} page={city}/>
