@@ -77,34 +77,32 @@
 }
 
 
-:global(body.v1){
+@media (min-width: 768px) {
+  :global(body.v1) {
+    .page-container {
+      position: relative;
 
-  .page-container{
-
-    :global{
-        .category-title{
-          position:absolute;
-          height:40px;
-          line-height:32px;
+      :global{
+        .category-title {
+          position: absolute;
+          height: 40px;
+          line-height: 32px;
           bottom: -40px;
-          left:0;
-          font-size:28px;
+          left: 0;
+          font-size: 28px;
           transform-origin: top left;
           transform: rotate(-90deg);
-          width:400px;
+          width: 400px;
           border: 4px solid #cefb08;
           background-color: #cefb08;
 
-          &.odd{
-            left:unset;
-            right:0;
+          &.odd {
+            left: unset;
+            right: 0;
             transform-origin: top right;
             transform: rotate(90deg);
-
           }
-      }
+      }}
     }
-    }
-
-
+  }
 }
