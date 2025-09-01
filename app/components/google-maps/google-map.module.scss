@@ -43,8 +43,23 @@
         &.pressed {
           &:after{opacity:1;}
         // background-color: rgba(0, 0, 0, 0.35);
- 
-      }
+       }
+
+        &.project-selected{
+          background-color: #000 !important;
+          border-color: #000000 !important;
+          color: #fff !important;
+
+          .marker-text{
+            background-color: #000 !important;
+            border-color: #000000 !important;
+            color: #fff !important;
+          }
+
+          .marker-arrow {
+            border-top-color: #000000;
+          }
+        }
         
       }
 

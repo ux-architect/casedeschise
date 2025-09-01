@@ -37,6 +37,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
   const lng = gps[1]  || '';
 
   const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(title)})&z=${18}`;
+  const seeMapSecrionUrl = "/" + city + "/map?select=" + project?.slug.current;
 
   return (
     <>
@@ -70,7 +71,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
         <section id="details-and-map-section" className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.description} /></div>
           <div className="col col-2"><div className="map-container">
-            <SeeMapSection page={city} />
+            <SeeMapSection page={city} customUrl={seeMapSecrionUrl}/>
             <Link className="btn btn-default btn-large open-in-google-maps" href={`${mapsUrl}`} scroll={true} target="_blank" rel="noreferrer noopener">DESCHIDE IN GOOGLE MAPS</Link>
             </div></div>
         </section>

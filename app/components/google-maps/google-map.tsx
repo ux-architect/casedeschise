@@ -14,6 +14,8 @@ type MarkerType = {
   icon: string;
   image: string;
   slug:string;
+  selected: boolean;
+  subtitle: string;
 };
 
 
@@ -36,29 +38,20 @@ const OverlayMarker = (
   const linkPrefix = "/" + city;
   const cssClass_isPressed = pressed ? "pressed" : "";
 
+  const cssClass_projectSelected = marker.selected ? "project-selected" : "";
+
   return (
     <OverlayViewF position={position} mapPaneName="overlayMouseTarget">
-      <div className={`marker-container diff-sibiu-valcea diff-background ${cssClass_isPressed} ${fadeIn ? "fadeIn" : ""}`}>
+      <div className={`marker-container diff-sibiu-valcea diff-background ${cssClass_isPressed} ${cssClass_projectSelected} ${fadeIn ? "fadeIn" : ""}`}>
         <Link
           href={`${linkPrefix}/${marker.slug}`}
           scroll={true}
           className="title-link fill-container "
           rel="noreferrer noopener"
-          
-
-
 
           // Just set visual pressed state
           onMouseDown={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}}
-          // onMouseUp={() => setPressed(false)}
-          // onMouseLeave={() => setPressed(false)}
-          onTouchStart={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}}
-          
-          // This is the safe place to remove highlight after navigation attempt
-          // onClick={() => {
-          //   setPressed(false)
-          //   if (onClick) onClick();
-          // }}
+          onTouchStart={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}} 
         >
           {marker.image && zoom >= 16 && (
             <div className="markerImage ">
@@ -72,7 +65,7 @@ const OverlayMarker = (
               />
             </div>
           )}
-          <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>
+            <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>
             <div className="text-inner clearfix hide-long-text-2">{marker.title}</div>
             
           </div>
