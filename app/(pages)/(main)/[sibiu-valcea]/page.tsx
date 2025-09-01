@@ -76,7 +76,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
   
       <div id="evenimente" className="event-title-on-mobile event-title font-safiro hide-on-desktop diff-sibiu-valcea font-size-45">Evenimente :</div>
       <EventSection events={events_section1} page={city} sectionName="Evenimente"/>
-      <div className="event-title-on-mobile event-title-kids-workshop font-safiro hide-on-desktop diff-sibiu-valcea">Activități copii :</div>
+      <div className="event-title-on-mobile event-title-kids-workshop hide-long-text font-safiro hide-on-desktop diff-sibiu-valcea">Activități copii :</div>
       <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/>
 
 

@@ -8,10 +8,11 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
 import { SiteInfoType } from '@/types';
-import { getGeneralInfo } from '@/sanity/sanity.query';
+import { useGlobalInfo } from '@/app/context/global-info-context';
 
-export default async function SwiperComponent({ images, projectName }: { images: { image: string }[]; projectName: string }) {
-  const generalInfo: SiteInfoType = await getGeneralInfo();
+export default function SwiperComponent({ images, projectName }: { images: { image: string }[]; projectName: string }) {
+  
+  const generalInfo: SiteInfoType = useGlobalInfo();
   const sliderDelay = generalInfo?.sliderInterval || 10000;
 
   return (

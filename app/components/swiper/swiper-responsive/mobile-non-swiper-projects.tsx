@@ -29,7 +29,8 @@ export default function MobileNonSwiperProjects({ odd = false, projects }: { odd
 
       <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}
         // custom start of autoplay to have an offset on multiple swipers
-        onSwiper={(swiper) => { swiper.autoplay.stop(); setTimeout(() => {swiper.autoplay.start();}, sliderStartDelay)}}>
+        onInit={(swiper) => { if (swiper.autoplay) { swiper?.autoplay?.stop(); setTimeout(() => {swiper?.autoplay?.start();}, sliderStartDelay)}}}
+        >
       
         
         {projects?.map((project, idx) => {

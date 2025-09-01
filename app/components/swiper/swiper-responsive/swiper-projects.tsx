@@ -29,7 +29,7 @@ export default function SwiperProjects({ projects, odd = false }: { projects: Pr
   return (
     <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} loop={true} slidesPerView={2}
       // custom start of autoplay to have an offset on multiple swipers
-      onSwiper={(swiper) => { swiper.autoplay.stop(); setTimeout(() => {swiper.autoplay.start();}, sliderStartDelay)}}
+      onInit={(swiper) => { if (swiper.autoplay) { swiper?.autoplay?.stop(); setTimeout(() => {swiper?.autoplay?.start();}, sliderStartDelay)}}}
       >
       
       {projects?.map((project, idx) => {
