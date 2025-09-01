@@ -38,6 +38,8 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     externalFormLinks_sibiu{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
     externalFormLinksValcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
 
+    sectionNames[]{year, s1_sibiu, s2_sibiu, s3_sibiu, s4_sibiu, s1_valcea, s2_valcea, s3_valcea, s4_valcea},
+
     currentYear,
     sliderInterval,
     revalidateInterval,

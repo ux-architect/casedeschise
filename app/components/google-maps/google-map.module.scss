@@ -9,12 +9,12 @@
   :global{
 
     
-  .gm-style{
-    div[style*='touch-action'][style*="pan-x"][style*="pan-y"] {
-          background: linear-gradient(180deg, rgba(0, 0, 0, 0.56) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
-    }
+      .gm-style{
+        div[style*='touch-action'][style*="pan-x"][style*="pan-y"] {
+              background: linear-gradient(180deg, rgba(0, 0, 0, 0.56) 0%, rgba(255, 255, 255, 0) 50%, rgba(255, 255, 255, 0) 100%);
+        }
 
-  }
+      }
 
       .marker-container {
         cursor: pointer;

@@ -46,7 +46,11 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
   const events_section1 = events.filter((p: TourType) => !p.tags?.includes("forChildren"));
   const events_section2_kids = events.filter((p: TourType) => p.tags?.includes("forChildren"));
 
-
+  const sectionNames = generalInfo?.sectionNames?.find((ct) => ct.year === year);
+  const title_s1 = city === "sibiu" ? sectionNames?.s1_sibiu : sectionNames?.s1_valcea;
+  const title_s2 = city === "sibiu" ? sectionNames?.s2_sibiu : sectionNames?.s2_valcea;
+  const title_s3 = city === "sibiu" ? sectionNames?.s3_sibiu : sectionNames?.s3_valcea;
+  const title_s4 = city === "sibiu" ? sectionNames?.s4_sibiu : sectionNames?.s4_valcea;
 
   return (
     <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
@@ -55,13 +59,13 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       {/* <div style={{ height: '2800px' }} /> */}
      
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
-      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">Context Urban</div></section>)}
-      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title title-right">Birouri de Arhitectura</div></section>)}
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">{title_s1}</div></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title title-right">{title_s2}</div></section>)}
       
       <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
 
-      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">Context Rural</div></section>)}
-      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title title-right">Categoria 4</div></section>)}
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">{title_s3}</div></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title title-right">{title_s4}</div></section>)}
 
       
       

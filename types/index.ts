@@ -43,8 +43,13 @@ export type SiteInfoType = {
   sliderInterval?: number,
   revalidateInterval?: number,
 
-  currentYear: string
+  sectionNames: {
+    year: string,
+    s1_sibiu:string,s2_sibiu:string,s3_sibiu:string,s4_sibiu:string,
+    s1_valcea:string,s2_valcea:string,s3_valcea:string,s4_valcea:string,
+  }[];
 
+    currentYear: string,
 };
 
 export type FaqType = {

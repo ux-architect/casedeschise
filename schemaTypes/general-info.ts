@@ -1,3 +1,4 @@
+import SectionNamesInput from "@/sanity/components/section-names-input";
 import { defineField } from "sanity";
 
 const generalInfo = {
@@ -187,7 +188,7 @@ const generalInfo = {
           type: 'object',
           fields: [
             
-            { name: 'name', title: 'Editie', type: 'string' },
+            { name: 'year', title: 'Editie', type: 'string' },
             { name: 's1_sibiu', title: 'Sectiune 1 (Sibiu)', type: 'string' },
             { name: 's2_sibiu', title: 'Sectiune 2 (Sibiu)', type: 'string' },
             { name: 's3_sibiu', title: 'Sectiune 3 (Sibiu)', type: 'string' },
@@ -199,6 +200,9 @@ const generalInfo = {
             { name: 's4_valcea', title: 'Sectiune 4 (Valcea)', type: 'string' },
 
           ],
+          components: {
+              input: SectionNamesInput,
+            },
         }]
      },
 
