@@ -76,7 +76,7 @@ export type ProjectType = {
   transport: string,
   gps: string,
 
-  tags?: ('bikeParking' | 'noPhotos' | 'accesible' | 'forChildren')[];
+  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
 
   description: PortableTextBlock[],
   otherInfo: PortableTextBlock[],
@@ -96,7 +96,7 @@ export type TourType = {
   transport: string,
   gps: string,
 
-  tags?: ('bikeParking' | 'noPhotos' | 'accesible' | 'forChildren')[];
+  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
   description: PortableTextBlock[],
 
   slug: { current: string }
@@ -115,7 +115,7 @@ export type EventType = {
   transport: string,
   gps: string,
 
-  tags?: ('bikeParking' | 'noPhotos' | 'accesible' | 'forChildren')[];
+  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
   description: PortableTextBlock[],
 
   slug: { current: string }

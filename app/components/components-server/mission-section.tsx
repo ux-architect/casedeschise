@@ -18,7 +18,7 @@ export default async function MissionSection({className = '', page = 'sibiu'}: {
 
           <section id="despre" className={'mission-section'}>
             <div className="col col-2 hide-on-desktop"><div className='masked-container h-100 w-100 diff-sibiu-valcea diff-background' style={{ "--mask-url": `url(${maskUrl})` } as React.CSSProperties}></div></div>
-            <div className="col col-1"><PortableText value={generalInfo?.misionStatement1} /></div>
+            <div className="col col-1 has-portable-text"><PortableText value={generalInfo?.misionStatement1} /></div>
             <div className="col col-2 hide-on-mobile"><div className='masked-container  h-100 w-100 diff-sibiu-valcea diff-background' style={{ "--mask-url": `url(${maskUrl})` } as React.CSSProperties}></div></div>
             <div className="col col-3 has-portable-text"><PortableText value={generalInfo?.misionStatement2} /></div>
         </section>

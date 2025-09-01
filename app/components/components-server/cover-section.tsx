@@ -6,6 +6,7 @@ import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import Link from 'next/link';
 import type { CityKey } from "@/types";
+import DownloadLink from '../components-ui/download-link';
 
 
 export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey; }) {
@@ -14,8 +15,10 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
   let url_logo = `/images/case-${city}-color.png`;
   const linkPrefix =  "/" + city ;
 
-  const visitFormExternalUrl = generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#";
-
+  const visitFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.visitFormExternalUrl || "#" ;
+  const pdfUrl = city == "sibiu" ? generalInfo?.pdfSibiu?.url || "" : generalInfo?.pdfValcea?.url || "";
+  const pdfFileName = city == "sibiu" ? generalInfo?.pdfSibiu?.originalFilename || "" : generalInfo?.pdfValcea?.originalFilename || "";
+  
   return (
 
     <div className={`${styles['cover-section']} overlay`} >
@@ -29,11 +32,19 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
         <h2 className={'event-date hide-while-still-loading diff-sibiu-valcea font-safiro'}>{generalInfo?.eventDate}</h2>
         
         <div id="main-actions" className="w-100 clearfix hide-while-still-loading">
+
+          {generalInfo?.pdfSibiu?.url &&
+            (<DownloadLink className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" url={ pdfUrl}  filename = { pdfFileName}>
+              <span className="svg-icon svg-icon-pdf-file float-left diff-sibiu-valcea diff-background" style={{ width: "36px" }}></span>
+              <span>PROGRAM</span>
+            </DownloadLink>)}
+
           <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/map`} scroll={true} rel="noreferrer noopener">
             <span className="svg-icon svg-icon-map float-left diff-sibiu-valcea diff-background "></span>
             <span>Hartă</span>
           </Link>
           <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+        
         </div>
         
     </div>

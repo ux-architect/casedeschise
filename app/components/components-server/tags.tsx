@@ -17,6 +17,13 @@ export default function Tags({ tags }: { tags?: string[] | null }) {
         </span>
       )}
 
+      {tags?.includes('yesPhotos') && (
+        <span className="common-label diff-sibiu-valcea diff-background mb-10 clear-both">
+          <span className="png-icon png-icon-photos"></span>
+          <span className="ml-10">Fotografiatul permis</span>
+        </span>
+      )}
+
       {tags?.includes('accesible') && (
         <span className="common-label diff-sibiu-valcea diff-background mb-10 clear-both">
           <span className="png-icon png-icon-accesible"></span>

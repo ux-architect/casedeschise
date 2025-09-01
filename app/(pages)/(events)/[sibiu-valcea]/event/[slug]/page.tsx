@@ -37,7 +37,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         <section className="info border-bottom">
           <div className="col col-1">
-            <h1 className='font-safiro'>{title}</h1>
+            <h1 className='font-safiro  mb-0 mt-0'>{title}</h1>
             <h2>{subtitle}</h2>
           </div>
           <div className="col col-2">
@@ -56,7 +56,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
         </section>
 
         <section className="info border-bottom">
-          <div className="col col-1"><PortableText value={event?.description} /></div>
+          <div className="col col-1 has-portable-text"><PortableText value={event?.description} /></div>
           <div className="col col-2"><div className="map-container"><SeeMapSection page={city} /></div></div>
         </section>
 

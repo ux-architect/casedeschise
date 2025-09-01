@@ -55,7 +55,7 @@ export default function MobileNonSwiperProjects({ odd = false, projects }: { odd
                       <h6 className='font-bold title font-safiro diff-sibiu-valcea'>{title}</h6>
                       <h6 className='font-regular subtitle diff-sibiu-valcea'>{subtitle}</h6>
 
-                      <span className={cssClass_descriptionLines}><PortableText value={project?.description} /></span>
+                      <span className={`${cssClass_descriptionLines} has-portable-text`}><PortableText value={project?.description} /></span>
                       <Link className="btn btn-primary diff-sibiu-valcea" href={`/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     

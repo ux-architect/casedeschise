@@ -59,14 +59,13 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       {/* <div style={{ height: '2800px' }} /> */}
      
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
-      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title">{title_s1}</div></section>)}
-      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title title-right">{title_s2}</div></section>)}
-      
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title diff-sibiu-valcea diff-background">{title_s1}</div></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title diff-sibiu-valcea diff-background title-right">{title_s2}</div></section>)}
+
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title diff-sibiu-valcea diff-background">{title_s3}</div></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title diff-sibiu-valcea diff-background title-right">{title_s4}</div></section>)}
+
       <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
-
-      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">{title_s3}</div></section>)}
-      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title title-right">{title_s4}</div></section>)}
-
       
       
       <MissionSection page={city} className="hide-on-mobile"/>

@@ -73,7 +73,8 @@
         margin: 0 10px;
         letter-spacing:2px;
         text-transform: uppercase;
-        .svg-icon-map{
+        .svg-icon-map,
+        .svg-icon-pdf-file{
           top:8%;
           height:85%;
           width:30px;
@@ -81,8 +82,9 @@
           left: 20px;
         }
 
+
         &:hover{
-          .svg-icon-map{
+          .svg-icon-map, .svg-icon-pdf-file{
             background-color: #000;
           }
         }

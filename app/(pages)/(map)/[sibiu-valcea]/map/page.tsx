@@ -8,10 +8,10 @@ export default async function Map(
   { params, searchParams}: 
   {
     params: Promise<{"sibiu-valcea": string}>, 
-    searchParams?: { select?: string }
+    searchParams?: Promise<{ select?: string }>
   }) {
 
-    const selectedMarkerSlug = await searchParams?.select
+    const selectedMarkerSlug = (await searchParams)?.select;
 
     const { ["sibiu-valcea"]: city } = await params;
     const generalInfo: SiteInfoType = await getGeneralInfo();

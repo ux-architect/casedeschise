@@ -72,6 +72,7 @@ export const projectFields = [
         list: [
           { title: 'Parcare bicilete', value: 'bikeParking' },
           { title: 'Fotografiatul interzis', value: 'noPhotos' },
+          { title: 'Fotografiatul permis', value: 'yesPhotos' },
           { title: 'Accesibil', value: 'accesible' },
           { title: 'Pentru copii', value: 'forChildren' },
         ],

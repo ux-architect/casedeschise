@@ -1,103 +1,92 @@
-
-
+import { getEvents, getGeneralInfo, getProjects, getTours } from "@/sanity/sanity.query";
+import CoverSection from "@/app/components/components-server/cover-section";
+import TeamSection from "@/app/components/components-server/team-section";
 import styles from './page.module.scss';
-import { getGeneralInfo, getProject, getProjects } from "@/sanity/sanity.query";
-import { ProjectType, SiteInfoType } from "@/types";
-import SwiperComponent from "@/app/components/swiper/swiper-component";
-import { PortableText } from "next-sanity";
-import GoogleMapComponent from "@/app/components/google-maps/google-map";
-import { ContactForm } from '@/app/components/contact-form/contact-form';
-import SeeMapSection from '@/app/components/components-server/see-map-section';
-import PartnerSection from '@/app/components/components-server/partner-section';
-import FooterSection from '@/app/components/components-server/footer-section';
-import FaqSection from '@/app/components/components-server/faq-section';
-import Link from 'next/link';
-import SwiperResponsive from '@/app/components/swiper/swiper-responsive/swiper-responsive';
-import Tags from '@/app/components/components-server/tags';
+import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
+import MissionSection from "@/app/components/components-server/mission-section";
+import { ContactForm } from "@/app/components/contact-form/contact-form";
+import ToursSection from "@/app/components/components-server/tour-section";
+import EventSection from "@/app/components/components-server/event-section";
+import SeeMapSection from "@/app/components/components-server/see-map-section";
+import { SiteInfoType, CityKey, TourType } from "@/types";
+import PartnerSection from "@/app/components/components-server/partner-section";
+import FaqSection from "@/app/components/components-server/faq-section";
+import FooterSection from "@/app/components/components-server/footer-section";
+import SocialMediaSection from "@/app/components/components-ui/social-media-section";
 
-export default async function ProjectPage({ params}: {params: Promise<{"sibiu-valcea": string, slug: string }>;}) {
-  const { ["sibiu-valcea"]: city, slug } = await params;
+export default async function Main({ params}: {params: Promise<{"sibiu-valcea": string}>;}) {
+  const { ["sibiu-valcea"]: city } = await params;
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  const year = generalInfo?.currentYear;
-  const visitFormExternalUrl = generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#";
+  const year = "2024";
 
+  const projects = await getProjects("projects-" + city, year);
+  const projects_section1 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "1");
+  const projects_section2 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "2");
+  const projects_section3 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "3");
+  const projects_section4 = projects.filter((p: { metadata: { section: string; }; }) => p.metadata?.section === "4");
+  // Optionally, for those with missing or unexpected section values:
+  const projects_other = projects.filter((p: { metadata: { section: any; }; }) => !["1", "2", "3", "4"].includes(p.metadata?.section ?? ""));
 
-  const allProjects = await getProjects("projects-" + city, year);
-  const project = allProjects.find((p: ProjectType) => p.slug.current === slug);
-    // get projects in the same section
-  const projects_in_same_section = allProjects.filter((p: { slug:{ current:string }, metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section && p.slug.current !== project.slug.current);
+  projects_section1.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  projects_section2.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  projects_section3.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  projects_section4.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
-  const parts = project?.name.split('///').map((p: string) => p.trim()) ?? [];
-  const title = parts[0]  || '';
-  const subtitle = parts[1]  || '';
+  projects_other.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
 
-  const gps = project?.gps?.split(',').map((p: string) => p.trim()) ?? [];
-  const lat = gps[0]  || '';
-  const lng = gps[1]  || '';
+  const tours: TourType[] = await getTours("tours-" + city, year);
+  const justOneTour = tours.length == 1;
+  const sectionTitle_onMobile = justOneTour ? tours[0].name : "Tururi :";
 
-  const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(title)})&z=${18}`;
-  const seeMapSecrionUrl = "/" + city + "/map?select=" + project?.slug.current;
+  var events = await getEvents("events-" + city, year);
+  tours.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+  events.sort((a: any, b: any) => parseInt(a.metadata?.index ?? '0') - parseInt(b.metadata?.index ?? '0'));
+
+  const events_section1 = events.filter((p: TourType) => !p.tags?.includes("forChildren"));
+  const events_section2_kids = events.filter((p: TourType) => p.tags?.includes("forChildren"));
+
+  const sectionNames = generalInfo?.sectionNames?.find((ct) => ct.year === year);
+  const title_s1 = city === "sibiu" ? sectionNames?.s1_sibiu : sectionNames?.s1_valcea;
+  const title_s2 = city === "sibiu" ? sectionNames?.s2_sibiu : sectionNames?.s2_valcea;
+  const title_s3 = city === "sibiu" ? sectionNames?.s3_sibiu : sectionNames?.s3_valcea;
+  const title_s4 = city === "sibiu" ? sectionNames?.s4_sibiu : sectionNames?.s4_valcea;
 
   return (
-    <>
-      <main className={`${styles['namespace-container']} `}>
+    <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
+      <CoverSection city={city as CityKey} />
+      <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
+      {/* <div style={{ height: '2800px' }} /> */}
+     
+      <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective :</div>
+      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title diff-sibiu-valcea diff-background">{title_s1}</div></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title diff-sibiu-valcea diff-background title-right">{title_s2}</div></section>)}
 
-        <section className="swiper-section">
-          <SwiperComponent images={project?.images} projectName={project?.name} />
-          <Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
-        </section>
+      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title diff-sibiu-valcea diff-background">{title_s3}</div></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title diff-sibiu-valcea diff-background title-right">{title_s4}</div></section>)}
 
-        <section className="info border-bottom">
+      <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
+      
+      
+      <MissionSection page={city} className="hide-on-mobile"/>
 
-          <div className="col col-1">
-            <h1 className='font-bold title font-safiro'>{title}</h1>
-            <h1 className='font-regular subtitle'>{subtitle}</h1>
-          </div>
+      <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">{sectionTitle_onMobile}</div>
+      <ToursSection  tours={tours} page={city} className="mb-30"/>
+  
+      <div id="evenimente" className="event-title-on-mobile event-title font-safiro hide-on-desktop diff-sibiu-valcea font-size-45">Evenimente :</div>
+      <EventSection events={events_section1} page={city} sectionName="Evenimente"/>
+      <div className="event-title-on-mobile event-title-kids-workshop hide-long-text font-safiro hide-on-desktop diff-sibiu-valcea">Activități copii :</div>
+      <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/>
 
-          <div className="col col-2">
-            {project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    
-          </div>
-            <Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
-        </section>
 
-        <section className="info border-bottom">
-          <div className="col col-1">
-              <span className="label">Adresa</span>
-              <span className="info">{project?.address}</span>
-          </div>
-        </section>
+      <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
+      <FaqSection city={city} />
+      <PartnerSection page={city} />
+      {/* <div className="clearfix hide-on-mobile"><ContactForm/></div> */}
+      <FooterSection page={city}/>
+      
+      
 
-        <section id="details-and-map-section" className="info border-bottom">
-          <div className="col col-1"><PortableText value={project?.description} /></div>
-          <div className="col col-2"><div className="map-container">
-            <SeeMapSection page={city} customUrl={seeMapSecrionUrl}/>
-            <Link className="btn btn-default btn-large open-in-google-maps" href={`${mapsUrl}`} scroll={true} target="_blank" rel="noreferrer noopener">DESCHIDE IN GOOGLE MAPS</Link>
-            </div></div>
-        </section>
-
-        <section id="other-info-section" className="info border-bottom ">
-          <div className="col col-1 has-portable-text"><PortableText value={project?.otherInfo} /></div>
-          <div className="col col-2">
-
-           <Tags tags={project?.tags}></Tags>
-
-          </div>
-        </section>
-
-        {projects_in_same_section.length > 0 && (
-          <>
-            <h6 className='section-title-similar-projects font-safiro'>Vezi și</h6>
-            <section className="swiper-section-similar-projects clearfix">
-              <SwiperResponsive projects={projects_in_same_section} />
-            </section>
-          </>)}
-        
-        <FaqSection city={city} />
-        <PartnerSection page={city} />
-        <ContactForm />
-        <FooterSection page={city}/>
-      </main>
-    </>
+    </main>
   );
 }

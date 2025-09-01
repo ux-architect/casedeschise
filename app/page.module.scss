@@ -23,21 +23,23 @@
           border-left: 2px solid #fff;
         }
 
-        .go-button{
-          border: 3px solid #fff;
-          background: #00000082;
-          transform: rotate(180deg);
-          right: 20%;
-          height:60px;
-          width:60px;
+        a.btn.btn-primary{
+          border: 2px solid #fff;
+          color: #fff;
+          background: #00000047;
+          height: 50px;
+          border-radius:25px;
+          line-height:46px;
+          width: 180px;
           position: absolute;
-          top: calc(50% - 30px);
-          padding: 8px;
-          &:hover{background:#000;}
+          top: calc(50% + 200px);
+          left: calc(50% - 90px);
+          text-transform: uppercase;
+          text-align: center;
+          overflow:hidden;
+          // padding: 8px;
+          &:hover{background:#00000081;}
 
-          .svg-icon{
-            background-color:#fff;
-          }
         }
 
         img{ z-index:-1;}
@@ -49,41 +51,13 @@
             margin: 0 auto;
             top:40%;
             top: calc(50% - 80px);
-            left: calc(50% - 220px);
+            left: calc(50% - 160px);
             position:absolute;
             background-repeat: no-repeat;
             background-position: center;
             background-size:contain;
 
-        }
-
-        .download-pdf{
-          color:#fff;
-          font-size:20px;
-          line-height:50px;
-          text-decoration: underline;
-          text-transform: lowercase;
-          position:relative;
-          position:absolute;
-          bottom:30px;
-          width:3auto00px;
-          margin:0 auto;
-          right:30px;
-          
-
-          &:hover{
-            text-decoration: underline;
-          }
-
-          span.svg-icon-pdf-file{
-            background-color: rgb(255 255 255);
-            float:left;
-            color:inherit;
-            height:50px;
-            width:50px;
-            display:none;
-          }
-        }
+        } 
 
     }
 
@@ -126,19 +100,14 @@
         width:100%;
         float:left;
 
-        .go-button{
-          border: 3px solid #fff;
-          background: #00000082;
-          transform: rotate(180deg);
-          right: 30px;
-          height:60px;
-          width:60px;
-          position: absolute;
-          top: calc(50% - 30px);
-          padding: 8px;
-          .svg-icon{
-            background-color:#fff;
-          }
+        a.btn.btn-primary{
+          height: 35px;
+          line-height: 35px;
+          width: 130px;
+          font-size: 12px;
+          top: calc(50% + 80px);
+          left: calc(50% - 65px);
+
         }
 
 
@@ -158,29 +127,14 @@
             width: 150px;
             height: 110px;
             width: 130px;
+            left: calc(50% - 65px);
             height: 70px;
             margin: 0 auto;
             top: calc(50% - 35px);
-            margin-left: calc(50% - 80px);
+            // margin-left: calc(50% - 80px);
 
         }
-
-        .download-pdf{
-          position:absolute;
-          bottom:0px;
-          right:0;
-          font-size:14px;
-          line-height:30px;
-           width: auto;
-           margin-right: 10px;
-           text-decoration: underline;
-
-          span.svg-icon-pdf-file{
-           
-            height:30px;
-            width:30px;
-          }
-        }
+        
 
       }
       div.section.section-logos{

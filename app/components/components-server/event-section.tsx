@@ -48,7 +48,7 @@ export default async function EventSection({ className="",sectionName = "", even
                       <div className="col-inner">
                         <h6 className='font-bold title font-safiro'>{title}</h6>
                         <h6 className='font-regular subtitle'>{subtitle}</h6>
-                       {signupForm && (<Link className="btn btn-primary diff-sibiu-valcea " href={formKidsActivitiesUrl}>ÎNSCRIE-TE</Link>)}
+                       {signupForm && (<Link className="btn btn-primary diff-sibiu-valcea " href={formKidsActivitiesUrl} target="_blank">ÎNSCRIE-TE</Link>)}
                       </div>
                     </div>
                   {/* </Link> */}
@@ -61,7 +61,7 @@ export default async function EventSection({ className="",sectionName = "", even
 
                   <div className="col col-4 col-description ">
                     <div className="col-inner">
-                      <span className='hide-long-text-12 hide-on-mobile'><PortableText value={event?.description} /></span>
+                      <span className='hide-long-text-12 hide-on-mobile has-portable-text'><PortableText value={event?.description} /></span>
                       <Link className="btn btn-primary diff-sibiu-valcea " href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                   </div>

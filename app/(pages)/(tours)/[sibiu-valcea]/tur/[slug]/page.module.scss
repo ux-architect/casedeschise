@@ -74,11 +74,8 @@
               }
 
           span.date{
-                font-size:30px;
                 float:left;
                 width:100%;
-                &.sibiu { color: #CEFB08;}
-                &.valcea { color: #ff0db9;}
               }
 
           .map-container{
@@ -91,7 +88,7 @@
               margin-left:calc(50% - 550px);
               padding-left: 30px;
               &.has-portable-text p {
-                line-height:40px;
+                // line-height:40px;
               }
           }
 

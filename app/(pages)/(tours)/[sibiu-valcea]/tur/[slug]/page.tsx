@@ -31,7 +31,9 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
         <section className="swiper-section"><SwiperComponent images={tour?.images} projectName={tour?.name} /></section>
 
         <section className="info border-bottom">
-          <div className="col col-1 h1"><h1>{tour?.name}</h1></div>
+          <div className="col col-1">
+            <h1 className='font-safiro  mb-0 mt-0'>{tour?.name}</h1>
+          </div>
           <div className="col col-2">
             {tour?.visitTime?.map((time, idx) => (
               <span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>
@@ -47,7 +49,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
         </section> */}
 
         <section className="info border-bottom">
-          <div className="col col-1"><PortableText value={tour?.description} /></div>
+          <div className="col col-1 has-portable-text"><PortableText value={tour?.description} /></div>
           <div className="col col-2"><div className="map-container"><SeeMapSection page={"sibiu"} /></div></div>
         </section>
 

@@ -51,7 +51,7 @@ export default function SwiperProjects({ projects, odd = false }: { projects: Pr
                 <h6 className='font-bold title font-safiro diff-sibiu-valcea'>{title}</h6>
                 <h6 className='font-regular subtitle diff-sibiu-valcea'>{subtitle}</h6>
 
-                <span className="description hide-long-text-9"><PortableText value={project?.description} /></span>
+                <span className="description has-portable-text hide-long-text-9"><PortableText value={project?.description} /></span>
 
                 <Link className="btn btn-primary diff-sibiu-valcea" href={`/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
               </div>
