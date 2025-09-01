@@ -166,13 +166,13 @@ const generalInfo = {
 
     //Linkuri Formulare///////////////
      defineField({
-      name: 'externalFormLinks',
+      name: 'externalFormLinks_sibiu',
       title: 'Linkuri Forumlare Externe - Sibiu',
       type: "externalFormLinks",
     }),
 
      defineField({
-      name: 'externalFormLinksValcea',
+      name: 'externalFormLinks_valcea',
       title: 'Linkuri Forumlare Externe - Valcea',
       type: "externalFormLinks",
     }),
@@ -198,7 +198,7 @@ const generalInfo = {
             { name: 's3_valcea', title: 'Sectiune 3 (Valcea)', type: 'string' },
             { name: 's4_valcea', title: 'Sectiune 4 (Valcea)', type: 'string' },
 
-          ]
+          ],
         }]
      },
 
@@ -212,6 +212,21 @@ const generalInfo = {
       options: {
         list: ['2024', '2025', '2026']
       }}),
+
+      defineField({
+        name: "sliderInterval",
+        title: "Interval slider (ms)",
+        type: "string",
+      }),
+
+      defineField({
+        name: "revalidateInterval",
+        title: "Interval actualizare date (secunde)",
+        type: "string",
+        description: "recomandat: 3 (3s) - pentru editare || 21600s (6h) - pentru eveniment",
+      }),
+
+
   ]
 };
 

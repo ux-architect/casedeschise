@@ -37,8 +37,11 @@ export type SiteInfoType = {
   }[];
 
   contactFields?:{address?:string, contactEmail?:string, contactPhone?:string, contactEmailForms?:string}
-  externalFormLinks?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
-  externalFormLinksValcea?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
+  externalFormLinks_sibiu?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
+  externalFormLinks_valcea?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
+
+  sliderInterval?: number,
+  revalidateInterval?: number,
 
   currentYear: string
 

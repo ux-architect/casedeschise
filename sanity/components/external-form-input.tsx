@@ -1,6 +1,6 @@
 import React from "react";
 import { ObjectInputProps, set, PatchEvent } from "sanity";
-import { Flex, Box, Label, Stack, Text } from "@sanity/ui";
+import { Flex, Box, Label, Stack, Text, Card } from "@sanity/ui";
 import styles from "./external-form-input.module.scss";
 
 interface ExternalFormLinksValue {
@@ -34,26 +34,29 @@ const fields: (keyof ExternalFormLinksValue)[] = [
 ];
 
 return (
-  <Flex className={styles["namespace-container"]}>
-    {fields.map(fieldName => {
-      const meta = getFieldMeta(fieldName);
-      if (meta.hidden) return null; // skip hidden fields
+<Card  border padding={4} radius={2} className={styles["namespace-container"]}>
 
-      return (
-        <Box className="box" key={fieldName}>
-          <Stack>
-            <Label className="label">{meta.title}</Label>
-            {meta.description && <Text muted className="label">{meta.description}</Text>}
-            <input
-              type="url"
-              placeholder={meta.placeholder}
-              value={value[fieldName] || ""}
-              onChange={(e) => handleChange(fieldName, e.target.value)}
-            />
-          </Stack>
-        </Box>
-      );
-    })}
-  </Flex>
+    <Flex direction="column">
+      {fields.map(fieldName => {
+        const meta = getFieldMeta(fieldName);
+        if (meta.hidden) return null; // skip hidden fields
+
+        return (
+          <Box className="box" key={fieldName}>
+            <Stack>
+              <Label className="label">{meta.title}</Label>
+              {meta.description && <Text muted className="label">{meta.description}</Text>}
+              <input
+                type="url"
+                placeholder={meta.placeholder}
+                value={value[fieldName] || ""}
+                onChange={(e) => handleChange(fieldName, e.target.value)}
+              />
+            </Stack>
+          </Box>
+        );
+      })}
+    </Flex>
+  </Card >
 );
 }

@@ -11,7 +11,7 @@ export default async function ToursSection({ className = '', id = '', tours, pag
 
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  const visitFormExternalUrl = generalInfo?.externalFormLinks?.visitFormExternalUrl || "#";
+  const visitFormExternalUrl = generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#";
 
   const city :string = page == "sibiu" ? "sibiu": "valcea";
   const linkPrefix = "/" + city ;

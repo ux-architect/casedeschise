@@ -13,7 +13,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useGlobalInfo } from '@/app/context/global-info-context';
 
-export default function SwiperProjects({ projects, odd }: { projects: ProjectType[], odd?: boolean; }) {
+export default function SwiperProjects({ projects, odd = false }: { projects: ProjectType[], odd?: boolean; }) {
 
   const cssClass_odd = odd ? "odd-offset" : "";
 
@@ -23,11 +23,15 @@ export default function SwiperProjects({ projects, odd }: { projects: ProjectTyp
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
-  
-
+  const sliderDelay = generalInfo?.sliderInterval || 10000;
+  const sliderStartDelay = odd ? sliderDelay/2 : 0;
 
   return (
-    <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay]} autoplay={{ delay: 26500, disableOnInteraction: false }} loop={true} slidesPerView={2}>
+    <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} loop={true} slidesPerView={2}
+      // custom start of autoplay to have an offset on multiple swipers
+      onSwiper={(swiper) => { swiper.autoplay.stop(); setTimeout(() => {swiper.autoplay.start();}, sliderStartDelay)}}
+      >
+      
       {projects?.map((project, idx) => {
 
         const slug: string = project?.slug?.current ?? '';

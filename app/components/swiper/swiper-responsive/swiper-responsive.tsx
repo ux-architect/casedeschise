@@ -21,7 +21,7 @@ export default function SwiperResponsive({ projects, odd }: { projects: ProjectT
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  if (isMobile) { return (<MobileNonSwiperProjects projects={projects}></MobileNonSwiperProjects>);}
+  if (isMobile) { return (<MobileNonSwiperProjects projects={projects} odd={odd}></MobileNonSwiperProjects>);}
   else{ return (<SwiperProjects projects={projects} odd={odd}/>);}
 
 }

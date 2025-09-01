@@ -1,16 +1,15 @@
 
 .namespace-container{
     width:100%;
-    display: block !important;
+    
     overflow: hidden;
     float:left;
     margin-top:30px;
     margin-bottom:30px;
-    background-color: #f6f6f8 !important;
 
     :global{
 
-      .box{
+        .box{
           margin-top:20px;
 
           .label{
@@ -37,5 +36,8 @@
 
           }
         }
+       
+        
+
     }
 }

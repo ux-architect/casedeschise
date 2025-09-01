@@ -20,7 +20,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const year = generalInfo?.currentYear;
-  const visitFormExternalUrl = generalInfo?.externalFormLinks?.visitFormExternalUrl || "#";
+  const visitFormExternalUrl = generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#";
 
 
   const allProjects = await getProjects("projects-" + city, year);

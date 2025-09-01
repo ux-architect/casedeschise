@@ -14,7 +14,7 @@ export default async function EventSection({ className="",sectionName = "", even
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const city :string = page == "sibiu" ? "sibiu": "valcea";
 
-  const formKidsActivitiesUrl = city == "sibiu" ? generalInfo?.externalFormLinks?.kidsWorkshopFormExternalUrl || "" : generalInfo?.externalFormLinksValcea?.kidsWorkshopFormExternalUrl || "" ;
+  const formKidsActivitiesUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.kidsWorkshopFormExternalUrl || "" : generalInfo?.externalFormLinks_valcea?.kidsWorkshopFormExternalUrl || "" ;
   const linkPrefix = "/" + city ;
 
   return (

@@ -106,7 +106,7 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
   const mapRef = useRef<google.maps.Map | null>(null);
 
   return (
-    <div className={styles["namespace-container"]}>
+    <div className={styles["namespace-container"]} data-no-highlight-on-nav>
       <GoogleMap
         mapContainerStyle={{width: "100%",height: "100%",}}
         center={center}

@@ -7,13 +7,18 @@ import styles from './swiper-component.module.scss';
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import Image from "next/image";
+import { SiteInfoType } from '@/types';
+import { getGeneralInfo } from '@/sanity/sanity.query';
 
-export default function SwiperComponent({ images, projectName }: { images: { image: string }[]; projectName: string }) {
+export default async function SwiperComponent({ images, projectName }: { images: { image: string }[]; projectName: string }) {
+  const generalInfo: SiteInfoType = await getGeneralInfo();
+  const sliderDelay = generalInfo?.sliderInterval || 10000;
+
   return (
     <Swiper
       className={`${styles['swiper-component']}`}
       modules={[Autoplay, Pagination]}
-      autoplay={{ delay: 26500, disableOnInteraction: false }}
+      autoplay={{ delay: sliderDelay, disableOnInteraction: false }}
       loop={true}
       slidesPerView={1}
       pagination={{ clickable: true }}

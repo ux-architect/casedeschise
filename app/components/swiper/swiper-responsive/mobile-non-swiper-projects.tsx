@@ -12,20 +12,26 @@ import { usePathname } from 'next/navigation';
 import { useGlobalInfo } from '@/app/context/global-info-context';
 import { Autoplay, Pagination } from 'swiper/modules';
 
-export default function MobileNonSwiperProjects({ projects }: { projects: ProjectType[] }) {
+export default function MobileNonSwiperProjects({ odd = false, projects }: { odd?: boolean, projects: ProjectType[] }) {
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
-  
+  const sliderDelay = generalInfo?.sliderInterval || 10000;
+  const sliderStartDelay = odd ? sliderDelay/2 : 0;
 
   const pathname = usePathname()
   const isSibiu = pathname.split('/').includes('sibiu');
   const city :string = isSibiu ? "sibiu": "valcea";
 
+  
   return (
     <section className={`${styles['mobile-non-swiper-projects']} clearfix`}>
 
-      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: 26500, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}>
+      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}
+        // custom start of autoplay to have an offset on multiple swipers
+        onSwiper={(swiper) => { swiper.autoplay.stop(); setTimeout(() => {swiper.autoplay.start();}, sliderStartDelay)}}>
+      
+        
         {projects?.map((project, idx) => {
           
           const slug: string = project?.slug?.current ?? '';

@@ -35,10 +35,12 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     socialMedia[]{name, link, city },
 
     contactFields{address, contactEmail, contactPhone, contactEmailForms},
-    externalFormLinks{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
+    externalFormLinks_sibiu{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
     externalFormLinksValcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
 
     currentYear,
+    sliderInterval,
+    revalidateInterval,
   }`,{},
   {next: { revalidate: revalidateInterval }, }); // 1-hour ISR cache
 }

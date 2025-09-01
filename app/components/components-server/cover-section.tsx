@@ -14,7 +14,7 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
   let url_logo = `/images/case-${city}-color.png`;
   const linkPrefix =  "/" + city ;
 
-  const visitFormExternalUrl = generalInfo?.externalFormLinks?.visitFormExternalUrl || "#";
+  const visitFormExternalUrl = generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#";
 
   return (
 
