@@ -3,7 +3,7 @@
 import styles from './page.module.scss';
 import { getGeneralInfo, getProject, getProjects } from "@/sanity/sanity.query";
 import { ProjectType, SiteInfoType } from "@/types";
-import SwiperComponent from "@/app/components/swiper/swiper-component";
+import SwiperComponent from "@/app/components/swiper/swiper-images";
 import { PortableText } from "next-sanity";
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
@@ -12,7 +12,7 @@ import PartnerSection from '@/app/components/components-server/partner-section';
 import FooterSection from '@/app/components/components-server/footer-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import Link from 'next/link';
-import SwiperResponsive from '@/app/components/swiper/swiper-responsive/swiper-responsive';
+import Swiper_Projects from '@/app/components/swiper/swiper-projects/swiper-projects';
 import Tags from '@/app/components/components-server/tags';
 
 export default async function ProjectPage({ params}: {params: Promise<{"sibiu-valcea": string, slug: string }>;}) {
@@ -89,7 +89,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           <>
             <h6 className='section-title-similar-projects font-safiro'>Vezi și</h6>
             <section className="swiper-section-similar-projects clearfix">
-              <SwiperResponsive projects={projects_in_same_section} />
+              <Swiper_Projects projects={projects_in_same_section} />
             </section>
           </>)}
         
