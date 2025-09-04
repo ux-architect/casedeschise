@@ -14,13 +14,16 @@ export type SiteInfoType = {
   currentYearImage: {image: string },
 
   pdfSibiu: { url: string; originalFilename: string },
-
   pdfValcea: { url: string; originalFilename: string },
+
+  mediaKitSibiu: { url: string; originalFilename: string },
+  mediaKitValcea: { url: string; originalFilename: string },
 
   team: {
     image: string,
     name: string,
-    role: string
+    role: string,
+    city:string,
   }[];
 
   partners: {

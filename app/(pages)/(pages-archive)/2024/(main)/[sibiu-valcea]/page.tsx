@@ -66,8 +66,6 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
 
       {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title">{title_s3}</div></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title title-right">{title_s4}</div></section>)}
-
-      
       
       <MissionSection page={city} className="hide-on-mobile"/>
 

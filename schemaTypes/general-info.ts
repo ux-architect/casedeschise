@@ -76,11 +76,25 @@ const generalInfo = {
       options: { accept: '.pdf' }
     },
 
+     {
+      name: "mediaKitSibiu",
+      type: "file",
+      title: "Media Kit Sibiu",
+      description: "Un singur fisier .zip"
+    },
+
     {
       name: "pdfValcea",
       type: "file",
       title: "Program Valcea .PDF",
       options: { accept: '.pdf' }
+    },
+
+     {
+      name: "mediaKitValcea",
+      type: "file",
+      title: "Media Kit Valcea",
+      description: "Un singur fisier .zip"
     },
 
 
@@ -95,11 +109,15 @@ const generalInfo = {
             fields: [
               { name: 'image', title: 'Image', type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'role', title: 'Rol', type: 'string' }
-            ]
+              { name: 'role', title: 'Rol', type: 'string' },
+              { name: 'city', title: 'Oras', type: 'string', initialValue: 'sibiu', options: {
+                          list: [
+                            { title: 'Sibiu', value: 'sibiu' },
+                            { title: 'Valcea', value: 'valcea' },
+                            { title: 'Ambele', value: 'sibiu-valcea' },]}
           }]
-     },
-
+     }],
+    },
     //Sponsori///////////////
     defineField({
           name: 'partners',

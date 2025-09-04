@@ -136,13 +136,15 @@
       }
 
       .event-date{
-        top:unset;
-        bottom:100px;
+        // top:unset;
+
+        top: calc(35% + 100px)
+        // bottom:320px;
       }
 
       #main-actions{
         bottom: 40px;
-        padding: 0 30px;
+        padding: 0 200px;
 
         a.btn{
           margin-top:10px;
@@ -158,9 +160,9 @@
       }
   }
 
-  @media (max-width: 600px) { .event-date{ font-size:30px;} }
+  @media (max-width: 600px) { .event-date{ font-size:30px;} #main-actions{padding: 0 110px;}}
 
-  @media (max-width: 460px) { .event-date{ bottom:150px;} }
+  @media (max-width: 460px) { .event-date{ bottom:210px;} #main-actions{padding: 0 30px;}}
 
 
   @media (max-width: 370px) { .event-date{ font-size:22px; text-shadow: 0px 0px 40px rgb(0 0 0); } }
