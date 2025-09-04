@@ -3,7 +3,7 @@
 import styles from './page.module.scss';
 import { getEvent, getEvents, getGeneralInfo, getProjects } from "@/sanity/sanity.query";
 import { EventType, ProjectType, SiteInfoType } from "@/types";
-import SwiperComponent from "@/app/components/swiper/swiper-component";
+import SwiperComponent from "@/app/components/swiper/swiper-images";
 import { PortableText } from "next-sanity";
 import { ContactForm } from '@/app/components/contact-form/contact-form';
 import SeeMapSection from '@/app/components/components-server/see-map-section';

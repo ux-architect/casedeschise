@@ -2,7 +2,7 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import styles from './swiper-component.module.scss';
+import styles from './swiper-images.module.scss';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
@@ -17,7 +17,7 @@ export default function SwiperComponent({ images, projectName }: { images: { ima
 
   return (
     <Swiper
-      className={`${styles['swiper-component']}`}
+      className={`${styles['swiper-images']}`}
       modules={[Autoplay, Pagination]}
       autoplay={{ delay: sliderDelay, disableOnInteraction: false }}
       loop={true}

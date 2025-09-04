@@ -2,7 +2,7 @@ import { getEvents, getGeneralInfo, getProjects, getTours } from "@/sanity/sanit
 import CoverSection from "@/app/components/components-server/cover-section";
 import TeamSection from "@/app/components/components-server/team-section";
 import styles from './page.module.scss';
-import SwiperResponsive from "@/app/components/swiper/swiper-responsive/swiper-responsive";
+import Swiper_Projects from "@/app/components/swiper/swiper-projects/swiper-projects";
 import MissionSection from "@/app/components/components-server/mission-section";
 import { ContactForm } from "@/app/components/contact-form/contact-form";
 import ToursSection from "@/app/components/components-server/tour-section";
@@ -59,11 +59,11 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       {/* <div style={{ height: '2800px' }} /> */}
      
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective</div>
-      {projects_section1.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section1}/><div className="category-title diff-sibiu-valcea diff-background">{title_s1}</div></section>)}
-      {projects_section2.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section2} odd={true}/><div className="category-title diff-sibiu-valcea diff-background title-right">{title_s2}</div></section>)}
+      {projects_section1.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section1} title={title_s1}/></section>)}
+      {projects_section2.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section2} title={title_s2} odd={true} className="title-to-right"/></section>)}
 
-      {projects_section3.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section3}/><div className="category-title diff-sibiu-valcea diff-background">{title_s3}</div></section>)}
-      {projects_section4.length > 0 && (<section className="swiper-section"><SwiperResponsive projects={projects_section4} odd={true}/><div className="category-title diff-sibiu-valcea diff-background title-right">{title_s4}</div></section>)}
+      {projects_section3.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section3} title={title_s3}/></section>)}
+      {projects_section4.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section4} title={title_s4} odd={true} className="title-to-right"/></section>)}
 
       <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
       

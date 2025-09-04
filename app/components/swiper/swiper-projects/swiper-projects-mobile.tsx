@@ -2,7 +2,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import styles from './mobile-non-swiper-projects.module.scss';
+import styles from './swiper-projects-mobile.module.scss';
 import Image from "next/image";
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -12,7 +12,7 @@ import { usePathname } from 'next/navigation';
 import { useGlobalInfo } from '@/app/context/global-info-context';
 import { Autoplay, Pagination } from 'swiper/modules';
 
-export default function MobileNonSwiperProjects({ odd = false, projects }: { odd?: boolean, projects: ProjectType[] }) {
+export default function Swiper_Projects_Mobile({ title = "", odd = false, projects, className = "" }: { odd?: boolean, projects: ProjectType[], title?:string, className?:string }) {
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
@@ -25,14 +25,14 @@ export default function MobileNonSwiperProjects({ odd = false, projects }: { odd
 
   
   return (
-    <section className={`${styles['mobile-non-swiper-projects']} clearfix`}>
 
-      <Swiper className={`${styles['swiper-projects']}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}
+      <Swiper className={`${styles['namespace-container']} swiper-responsive swiper-responsive-mobile ${className}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}
         // custom start of autoplay to have an offset on multiple swipers
         onInit={(swiper) => { if (swiper.autoplay) { swiper?.autoplay?.stop(); setTimeout(() => {swiper?.autoplay?.start();}, sliderStartDelay)}}}
         >
       
-        
+        {title && (<div className="swiper-title diff-sibiu-valcea diff-background">{title}</div>)}
+
         {projects?.map((project, idx) => {
           
           const slug: string = project?.slug?.current ?? '';
@@ -68,6 +68,6 @@ export default function MobileNonSwiperProjects({ odd = false, projects }: { odd
           
         })}
       </Swiper>
-  </section>
+
   );
 }

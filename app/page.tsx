@@ -32,9 +32,7 @@ export default async function Home() {
                 <Image src={`${url_cover_sibiu}`} className="object-cover " data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
 
-            <a className="btn btn-primary clearfix" href={`/sibiu`} > Vezi mai multe
-            {/* <span className="svg-icon svg-icon-arrow fl"></span> */}
-            </a>
+            <a className="btn btn-primary clearfix" href={`/sibiu`}>Vezi mai mult</a>
 
             <div className="logos clearfix hide-on-mobile">
               <Link href="https://www.oarsbvl.ro/" className="float-left" target="_blank"><div className="oar has-label" style={{ backgroundImage: `url(/images/oar.png)` }} data-label="INIȚIATOR:"></div></Link>
@@ -55,9 +53,7 @@ export default async function Home() {
           <Link href={`/valcea`} className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></Link>
           
           <Image src={`${url_cover_valcea}`} className="object-cover" data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
-          <a className="btn btn-primary clearfix" href={`/valcea`}> Vezi mai multe
-          {/* <span className="svg-icon svg-icon-arrow fl"></span> */}
-          </a>
+          <a className="btn btn-primary clearfix" href={`/valcea`}>Vezi mai multe</a>
 
           
           

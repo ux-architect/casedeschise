@@ -71,42 +71,6 @@
 
   }
 
-  .category-title{
-        position: absolute;
-        height: 40px;
-        padding:0 10px;
-        line-height: 40px;
-        bottom: -40px;
-        left: 0;
-        font-size: 28px;
-        transform-origin: top left;
-        transform: rotate(-90deg);
-        width: 400px;
-        z-index:2;
-        font-weight: 600;
-        text-transform: uppercase;
-        color: #000000 !important;
-
-        &.title-right {
-          left: unset;
-          right: 0;
-          transform-origin: top right;
-          transform: rotate(90deg);
-        }
-      
-        @media (max-width: 768px) {
-          position: absolute;
-          font-size: 14px;
-          transform: none !important;
-          width: auto;
-          height: 24px;
-          line-height: 24px;
-          top: 10px;
-          left: 10px !important;
-          right: unset !important;
-        }
-  }
-
   section.mission-section{
       float:left;
     }
