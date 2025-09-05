@@ -64,7 +64,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         <section id="details-and-map-section" className="info border-bottom ">
           <div className="col col-1 has-portable-text"><PortableText value={event?.description} /></div>
-          <div className="col col-2"><div className="map-container"><SeeMapSection page={city} /></div></div>
+          {/* <div className="col col-2"><div className="map-container"><SeeMapSection page={city} /></div></div> */}
         </section>
 
       

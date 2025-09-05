@@ -78,10 +78,10 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/> */}
 
       <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
-      {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1}/></section>)}
+      {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>)}
       
       <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop font-safiro hide-on-desktop diff-sibiu-valcea mt-10">Activități copii</div>
-      {events_section2_kids.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} className="title-to-right"/></section>)}
+      {events_section2_kids.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} title="Activități copii" className="title-to-right"/></section>)}
 
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
