@@ -2,15 +2,15 @@
 
 import styles from './page.module.scss';
 import { getEvent, getEvents, getGeneralInfo, getProjects } from "@/sanity/sanity.query";
-import { EventType, ProjectType, SiteInfoType } from "@/types";
-import SwiperComponent from "@/app/components/swiper/swiper-component";
+import { EventType, SiteInfoType } from "@/types";
+import SwiperComponent from "@/app/components/swiper/swiper-images";
 import { PortableText } from "next-sanity";
-import { ContactForm } from '@/app/components/contact-form/contact-form';
+
 import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import FooterSection from '@/app/components/components-server/footer-section';
-import EventSection from '@/app/components/components-server/event-section';
+import Swiper_Events from '@/app/components/swiper/swiper-events/swiper-events';
 
 export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
@@ -64,9 +64,8 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         {events_in_same_section.length > 0 && (
         <>
-          <h6 className='section-title-similar-projects font-safiro'>Vezi și</h6>
           <section className="swiper-section-similar-projects clearfix">
-            <EventSection page={city} events={events_in_same_section} />
+            <Swiper_Events events={events_in_same_section} title="Vezi și"/>
           </section>
         </>)}
 

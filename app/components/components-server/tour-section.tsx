@@ -42,7 +42,7 @@ export default async function ToursSection({ className = '', id = '', tours, pag
                     <h6 className='font-bold'>{tour?.name}</h6>
                     <span className='hide-long-text-12 hide-on-mobile has-portable-text'><PortableText value={tour?.description} /></span>
                     <Link className="btn btn-secondary diff-sibiu-valcea diff-background" href={`${linkPrefix}/tur/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
-                    <Link className="btn btn-secondary diff-sibiu-valcea diff-background btn-signup" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link>
+                    {/* <Link className="btn btn-secondary diff-sibiu-valcea diff-background btn-signup" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener" >ÎNSCRIE-TE</Link> */}
                   </div>
                   
                   <div className="pin diff-sibiu-valcea diff-background hide-on-mobile"></div>
