@@ -56,7 +56,7 @@
     }
   }
 
-  &.btn-default{
+  &.btn-white{
     border: 3px solid #ffffff;
     color: #ffffff;
     background: #00000033;
@@ -64,6 +64,16 @@
     &:hover{
       background: #00000067;
     }
+  }
+
+  &.btn-black{
+        border: 3px solid #000000;
+        color: #000000;
+      
+      &:hover{
+        background: #00000033;
+      }
+
   }
 
 }

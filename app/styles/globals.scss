@@ -42,6 +42,9 @@ body.city-is-sibiu{
     &.diff-background{
       background-color:#CEFB08;
     }
+    &.diff-background[diff-background]{
+      background-color:#CEFB08;
+    }
 
     &.diff-hover:hover{
       color:#CEFB08;
@@ -68,6 +71,9 @@ body.city-is-valcea{
       border-color: #ff0db9 !important;
     
     &.diff-background{
+      background-color:#ff0db9;
+    }
+    &.diff-background[diff-background]{
       background-color:#ff0db9;
     }
 

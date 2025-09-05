@@ -13,6 +13,7 @@ import PartnerSection from "@/app/components/components-server/partner-section";
 import FaqSection from "@/app/components/components-server/faq-section";
 import FooterSection from "@/app/components/components-server/footer-section";
 import SocialMediaSection from "@/app/components/components-ui/social-media-section";
+import Swiper_Events from "@/app/components/swiper/swiper-events/swiper-events";
 
 export default async function Main({ params}: {params: Promise<{"sibiu-valcea": string}>;}) {
   const { ["sibiu-valcea"]: city } = await params;
@@ -73,11 +74,13 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">{sectionTitle_onMobile}</div>
       <ToursSection  tours={tours} page={city} className="mb-30"/>
   
-      <div id="evenimente" className="event-title-on-mobile event-title font-safiro hide-on-desktop diff-sibiu-valcea font-size-45">Evenimente</div>
+      {/* <div id="evenimente" className="event-title-on-mobile event-title font-safiro hide-on-desktop diff-sibiu-valcea font-size-45">Evenimente</div>
       <EventSection events={events_section1} page={city} sectionName="Evenimente"/>
       <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop hide-long-text font-safiro hide-on-desktop diff-sibiu-valcea">Activități copii</div>
-      <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/>
+      <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/> */}
 
+      {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>)}
+      {events_section2_kids.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} className="title-to-right" title="Activități  pentru  copii"/></section>)}
 
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />

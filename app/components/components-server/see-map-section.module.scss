@@ -43,7 +43,7 @@
           }
         }
         // button for mobile
-        .btn-default.hide-on-desktop{
+        .btn-white.hide-on-desktop{
           position: absolute;
           left: calc(50% - 100px);
           top: calc(50% - 25px);
@@ -51,7 +51,7 @@
         }
 
         // button for desktop
-        .btn-default.hide-on-mobile{
+        .btn-white.hide-on-mobile{
           position: absolute;
           left: calc(50% - 100px);
           bottom:40px;

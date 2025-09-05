@@ -39,7 +39,7 @@ export default async function EventSection({ className="",sectionName = "", even
                 
                  <div className="col col-1 col-image inner-shadow-left inner-shadow-right" >
                     <div className="col-inner">
-                      <Link href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage1.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 25vw" alt={`${event.name} cover photo`} fill /></Link>
+                      <Link href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage1.image || "/public/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 25vw" alt={`${event.name} cover photo`} fill /></Link>
                     </div>
                   </div>
 
@@ -55,7 +55,7 @@ export default async function EventSection({ className="",sectionName = "", even
 
                   <div className="col col-3 inner-shadow-left inner-shadow-right">
                     <div className="col-inner">
-                      <Link href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage2.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 25vw" alt={`${event.name} cover photo`} fill /></Link>
+                      <Link href={`${linkPrefix}/event/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={event?.profileImage2.image || "/public/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 25vw" alt={`${event.name} cover photo`} fill /></Link>
                     </div>
                   </div>
 

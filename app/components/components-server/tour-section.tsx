@@ -35,7 +35,7 @@ export default async function ToursSection({ className = '', id = '', tours, pag
             <div className={`tour ${cssClass_odd} clearfix`} key={idx}>
                 
                   <div className="col col-image" >
-                    <Link href={`${linkPrefix}/tur/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={tour?.profileImage?.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${tour.name} cover photo`} fill /></Link>
+                    <Link href={`${linkPrefix}/tur/${slug}`} scroll={true} rel="noreferrer noopener"> <Image src={tour?.profileImage?.image || "/public/should-not-happen.jpg"} className="object-cover"  loading="lazy" sizes="(max-width: 768px) 100vw, 50vw" alt={`${tour.name} cover photo`} fill /></Link>
                   </div>
 
                   <div className="col col-description ">

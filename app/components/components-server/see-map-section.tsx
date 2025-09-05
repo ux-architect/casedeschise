@@ -17,14 +17,14 @@ let linkToMap = customUrl && customUrl.trim() !== "" ?  customUrl : linkPrefix+ 
 
       <section className={`see-map-section clearfix fill-container hide-on-desktop`}>
             <Image src={`${url_harta}`} className="object-cover"  loading="lazy" fill sizes="100vw" alt="sibiu-cover"/>
-            <Link href={linkToMap} className="btn btn-default btn-large hide-on-desktop prevent-default-highlight">Vezi harta</Link>
+            <Link href={linkToMap} className="btn btn-white btn-large hide-on-desktop prevent-default-highlight">Vezi harta</Link>
       </section>
 
        <section className={`see-map-section clearfix fill-container hide-on-mobile`}>
         <Link href={linkToMap}>
             <Image src={`${url_harta}`} className="object-cover"  loading="lazy" fill sizes="100vw" alt="sibiu-cover"/>
             <h6 className='font-safiro hide-on-mobile'>Vezi<br/>harta</h6>
-            <span className="btn btn-default btn-large hide-on-mobile clearfix"><span className="svg-icon svg-icon-arrow fl rotate-180"></span></span>
+            <span className="btn btn-white btn-large hide-on-mobile clearfix"><span className="svg-icon svg-icon-arrow fl rotate-180"></span></span>
         </Link>
       </section>
 

@@ -48,7 +48,7 @@ export default function MobileNonSwiperProjects({ odd = false, projects }: { odd
                 
                   <>
                     <Link className="col col-image" href={`/${city}/${slug}`} scroll={true} rel="noreferrer noopener">
-                      <Image src={project?.profileImage.image || "/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${project.name} logo`} fill />
+                      <Image src={project?.profileImage.image || "/public/should-not-happen.jpg"} className="object-cover"  loading="lazy" alt={`${project.name} logo`} fill />
                     </Link>
 
                     <div className="col col-description">
