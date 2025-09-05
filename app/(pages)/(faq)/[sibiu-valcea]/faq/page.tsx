@@ -31,7 +31,7 @@ export default async function Faq({ params}: {params: Promise<{ year:string, "si
       </div>
 
       <PartnerSection page={city} />
-      <FooterSection page={city}/>
+      <FooterSection city={city}/>
           
     </main>
     )

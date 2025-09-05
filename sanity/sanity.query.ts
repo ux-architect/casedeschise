@@ -30,14 +30,14 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     "pdfSibiu": pdfSibiu.asset->{url, originalFilename},
     "pdfValcea": pdfValcea.asset->{url, originalFilename},
 
-    "mediaKitSibiu": pdfSibiu.asset->{url, originalFilename},
-    "mediaKitValcea": pdfValcea.asset->{url, originalFilename},
+    "mediaKitSibiu": mediaKitSibiu.asset->{url, originalFilename},
+    "mediaKitValcea": mediaKitValcea.asset->{url, originalFilename},
 
     team[]{name, role, city, "image": image.asset->url },
     partners[]{name, "logo": logo.asset->url, type, link },
     socialMedia[]{name, link, city },
 
-    contactFields{address, contactEmail, contactPhone, contactEmailForms},
+    contactFields[]{city, address, contactEmail, contactPhone, contactEmailForms},
     externalFormLinks_sibiu{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
     externalFormLinks_valcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
 

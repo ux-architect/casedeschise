@@ -104,15 +104,18 @@
 
           .open-in-google-maps{
             position:absolute;
-            font-size:14px;
-            text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+            font-size:16px;
+            text-shadow: 0px 0px 50px rgba(0, 0, 0, 0.6);
             color: #fff;
-            width:200px;
-            left: calc(50% - 100px);
+            width:240px;
+            left: calc(50% - 120px);
             text-align: center;
-            // text-transform: lowercase;
             bottom:30px;
             word-spacing: 3px;
+
+            &:hover{
+              text-decoration: none;
+            }
           }
         }
       }

@@ -4,12 +4,13 @@ import styles from './team-section.module.scss';
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import Image from "next/image";
-import { urlFor } from '@/sanity/sanity.client';
 
 export default async function TeamSection({ page = 'sibiu', className = '', id = '' }: { page: string, className?: string, id?:string }) {
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  const countTeam = generalInfo?.team?.length;
+
+  const members = generalInfo?.team?.filter((m) => m?.city === page || m?.city === "sibiu-valcea");
+  const countTeam = members.length;
   const cssClass_teamSize = countTeam > 8 ? "size-9-12" : "size-5-8";
   
   return (
@@ -26,7 +27,7 @@ export default async function TeamSection({ page = 'sibiu', className = '', id =
             </div>
 
             <div className='col col-members clearfix'>
-                {generalInfo?.team?.map((member, idx) => {
+                {members.map((member, idx) => {
                   const hasImage : boolean = member.image ? true : false;
                   const imgSource : string = hasImage ? member.image : "/images/member-placeholder.jpg";
                   const cssClass = hasImage ? "" : "placeholder";

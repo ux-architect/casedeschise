@@ -72,11 +72,6 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <div id="tururi" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">{sectionTitle_onMobile}</div>
       <ToursSection  tours={tours} page={city} className="mb-30"/>
   
-      {/* <div id="evenimente" className="event-title-on-mobile event-title font-safiro hide-on-desktop diff-sibiu-valcea font-size-45">Evenimente</div>
-      <EventSection events={events_section1} page={city} sectionName="Evenimente"/>
-      <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop hide-long-text font-safiro hide-on-desktop diff-sibiu-valcea">Activități copii</div>
-      <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/> */}
-
       <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
       {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>)}
       
@@ -87,10 +82,8 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <FaqSection city={city} />
       <PartnerSection page={city} />
       {/* <div className="clearfix hide-on-mobile"><ContactForm/></div> */}
-      <FooterSection page={city}/>
+      <FooterSection city={city}/>
       
-      
-
     </main>
   );
 }

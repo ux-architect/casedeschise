@@ -6,6 +6,13 @@ export default defineType({
   title: "Detalii Contact",
   type: "object",
   fields: [
+
+    defineField({
+      name: "city",
+      title: "Oras",
+      type: "string",
+      hidden: false,
+    }),
     defineField({
       name: "address",
       title: "Adresa",

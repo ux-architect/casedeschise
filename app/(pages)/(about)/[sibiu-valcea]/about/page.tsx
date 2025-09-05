@@ -13,7 +13,7 @@ export default async function About({ params}: {params: Promise<{ "sibiu-valcea"
        <>
           <MissionSection page={city}></MissionSection>
           <PartnerSection page={city} />
-          <FooterSection page={city}/>
+          <FooterSection city={city}/>
         </>
   )
 

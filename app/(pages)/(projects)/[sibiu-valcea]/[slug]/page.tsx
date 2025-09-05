@@ -1,7 +1,7 @@
 
 
 import styles from './page.module.scss';
-import { getGeneralInfo, getProjects } from "@/sanity/sanity.query";
+import { getGeneralInfo, getProject, getProjects } from "@/sanity/sanity.query";
 import { ProjectType, SiteInfoType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-images";
 import { PortableText } from "next-sanity";
@@ -23,7 +23,10 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
 
   const allProjects = await getProjects("projects-" + city, year);
-  const project = allProjects.find((p: ProjectType) => p.slug.current === slug);
+  let project = allProjects.find((p: ProjectType) => p.slug.current === slug);
+
+  if(!project){project= await getProject(slug);}
+
     // get projects in the same section
   const projects_in_same_section = allProjects.filter((p: { slug:{ current:string }, metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section && p.slug.current !== project.slug.current);
 
@@ -85,15 +88,15 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         {projects_in_same_section.length > 0 && (
           <>
-            <section className="swiper-section-similar-projects clearfix">
-              <Swiper_Projects projects={projects_in_same_section} title="Vezi și"/>
+            <section className="swiper-section-similar-projects float-left clearfix">
+              <Swiper_Projects projects={projects_in_same_section} title="Vezi și..."/>
             </section>
           </>)}
         
         <FaqSection city={city} />
         <PartnerSection page={city} />
         {/* <ContactForm /> */}
-        <FooterSection page={city}/>
+        <FooterSection city={city}/>
       </main>
     </>
   );

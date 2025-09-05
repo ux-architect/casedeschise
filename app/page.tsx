@@ -53,7 +53,7 @@ export default async function Home() {
           <Link href={`/valcea`} className="title" style={{ backgroundImage: `url(/images/case-valcea.png)` }}></Link>
           
           <Image src={`${url_cover_valcea}`} className="object-cover" data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, 50vw" alt="valcea-cover" />
-          <a className="btn btn-primary clearfix" href={`/valcea`}>Vezi mai multe</a>
+          <a className="btn btn-primary clearfix" href={`/valcea`}>Vezi mai mult</a>
 
           
           

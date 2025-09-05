@@ -114,7 +114,7 @@ const generalInfo = {
                           list: [
                             { title: 'Sibiu', value: 'sibiu' },
                             { title: 'Valcea', value: 'valcea' },
-                            { title: 'Ambele', value: 'sibiu-valcea' },]}
+                            { title: 'Sibiu și Valcea', value: 'sibiu-valcea' },]}
           }]
      }],
     },
@@ -177,10 +177,12 @@ const generalInfo = {
      }),
 
      //Contact///////////////
-     defineField({
+
+    defineField({
       name: 'contactFields',
       title: 'Detalii Contact',
-      type: "contactFields",
+      type: "array",
+      of: [{type: "contactFields"}],
     }),
 
     //Linkuri Formulare///////////////

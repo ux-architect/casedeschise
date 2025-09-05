@@ -54,8 +54,8 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
             {tour_in_same_section.length > 0 && (
             <>
-              <h6 className='section-title-similar-projects font-safiro'>Vezi și</h6>
-              <section className="swiper-section-similar-projects clearfix">
+              <h6 className='section-title-similar-projects font-safiro'>Vezi și...</h6>
+              <section className="swiper-section-similar-projects float-left clearfix">
                 <ToursSection page={city} tours={tour_in_same_section} />
               </section>
             </>)}
@@ -65,7 +65,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
         <FaqSection city={city} />
         <PartnerSection page={city} />
         {/* <ContactForm /> */}
-        <FooterSection page={city}/>
+        <FooterSection city={city}/>
       </main>
     </>
   );

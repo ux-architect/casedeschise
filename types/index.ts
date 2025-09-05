@@ -39,7 +39,7 @@ export type SiteInfoType = {
     link:string,
   }[];
 
-  contactFields?:{address?:string, contactEmail?:string, contactPhone?:string, contactEmailForms?:string}
+  contactFields?:{city?:string, address?:string, contactEmail?:string, contactPhone?:string, contactEmailForms?:string}[];
   externalFormLinks_sibiu?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
   externalFormLinks_valcea?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
 
