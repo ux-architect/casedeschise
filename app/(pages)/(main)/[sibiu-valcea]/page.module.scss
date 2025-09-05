@@ -36,9 +36,7 @@
     overflow:hidden;
     font-size:50px;
 
-    @media (max-width: 320x) {
-        font-size:40px;
-    }
+    @media (max-width: 320x) { font-size:40px;}
 
     &.event-title-kids-workshop{
       font-size:60px;
@@ -50,6 +48,11 @@
       @media (max-width: 360px) {font-size:30px;}
       @media (max-width: 320px) {font-size:27px;}
     }
+  }
+
+  .see-map-container{
+    height: 400px;
+    @media (max-width: 768px) {height: 220px;}
   }
 
 

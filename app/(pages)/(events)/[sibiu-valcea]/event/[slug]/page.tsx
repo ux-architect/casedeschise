@@ -11,6 +11,7 @@ import PartnerSection from '@/app/components/components-server/partner-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import FooterSection from '@/app/components/components-server/footer-section';
 import Swiper_Events from '@/app/components/swiper/swiper-events/swiper-events';
+import Link from 'next/link';
 
 export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
@@ -23,17 +24,21 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
   // get events in the same section
   const events_in_same_section = allEvents.filter((event: { slug:{ current:string }, metadata: { section: string; }; }) => event.slug.current !== slug);
 
-
-
   const parts = event?.name.split('///').map((p: string) => p.trim()) ?? [];
           const title = parts[0]  || '';
           const subtitle = parts[1]  || '';
 
+  const kidsEvent = event?.tags?.includes('forChildren') || false;
+  const url_kidsWorkshopFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.kidsWorkshopFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.kidsWorkshopFormExternalUrl || "#";
+
   return (
     <>
-      <main className={`${styles['namespace-container']} `}>
+      <main className={`${styles['namespace-container']} common-page-structure`}>
 
-        <section className="swiper-section"><SwiperComponent images={event?.images} projectName={event?.name} /></section>
+        <section className="swiper-section">
+          <SwiperComponent images={event?.images} projectName={event?.name} />
+          {kidsEvent && (<Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={url_kidsWorkshopFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>)}
+        </section>
 
         <section className="info border-bottom">
           <div className="col col-1">
@@ -55,7 +60,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         </section>
 
-        <section className="info border-bottom">
+        <section id="details-and-map-section" className="info border-bottom ">
           <div className="col col-1 has-portable-text"><PortableText value={event?.description} /></div>
           <div className="col col-2"><div className="map-container"><SeeMapSection page={city} /></div></div>
         </section>
@@ -64,7 +69,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         {events_in_same_section.length > 0 && (
         <>
-          <section className="swiper-section-similar-projects clearfix">
+          <section className="swiper-section-similar-projects clearfix float-left mt-30">
             <Swiper_Events events={events_in_same_section} title="Vezi și"/>
           </section>
         </>)}

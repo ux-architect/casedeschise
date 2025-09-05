@@ -1,0 +1,207 @@
+.common-page-structure{
+  position:relative;
+  float:left;
+  width:100%;
+  
+  
+
+  section.swiper-section{
+    position:relative;
+    height: calc(100vh - 40px);
+    width: 100%;
+  }
+
+  #signup{
+        display: block;
+        position:absolute;
+        bottom:50px;
+        right:100px;
+        z-index: 9;
+        color:#000000;
+        border-color: #000000 !important;
+        overflow:hidden;
+      }
+
+  section.info{
+      
+      width:100%;
+      float:left;
+      overflow:hidden;
+      margin-top:30px;
+      padding:30px;
+
+      &.border-bottom{
+        border-bottom: 1px solid #333;
+      }
+      .col{
+        position:relative;
+        float:left;
+
+        span.label{
+          float:left;
+          width:100%;
+          font-weight: 800;
+          font-size:18px;
+          line-height:30px;
+          text-transform: uppercase;
+        }
+
+        span.info{
+          float:left;
+          width:100%;
+          font-weight: normal;
+          font-size:18px;
+          line-height:30px;
+        }
+
+        h1{
+              font-weight: bold;
+              font-size:40px;
+              line-height: 50px;
+              text-align: left;
+              word-spacing: 6px;
+              margin:0;
+              &.subtitle{
+                font-size:20px;
+              }
+            }
+
+        span.date{
+              float:left;
+              width:100%;
+            }
+
+        &.col-1{
+            width:650px;
+            margin-left:calc(50% - 550px);
+            padding-left: 30px;
+            text-align: justify;
+
+            &.has-portable-text p {
+              // line-height:40px;
+            }
+        }
+
+        &.col-2{
+            width:550px;
+            padding-left: 30px;
+            margin-right:calc(50% - 650px);
+            font-weight: bold;
+            font-size:30px;
+            line-height: 40px;
+
+        }
+      }
+      &#details-and-map-section{
+        display: flex;
+        align-items: stretch;
+        padding:0;
+
+        .map-container{
+          position:relative;
+          height: 100%;
+          padding: 20px;
+
+          .open-in-google-maps{
+            position:absolute;
+            font-size:14px;
+            text-shadow: 0px 0px 30px rgba(0, 0, 0, 0.6);
+            color: #fff;
+            width:200px;
+            left: calc(50% - 100px);
+            text-align: center;
+            // text-transform: lowercase;
+            bottom:30px;
+            word-spacing: 3px;
+          }
+        }
+      }
+  }
+  
+
+   @media (max-width: 1200px) {
+      section.info{ .col{
+
+        h1{font-size:30px;line-height:40px;}
+        span.date{font-size:24px;}
+
+        &.col-1{
+            width:calc(55% - 30px);
+            margin-left:30px;
+            padding-left:0;
+        }
+        &.col-2{
+            width:calc(45% - 30px);
+            margin-right:30px;
+            font-weight: bold;
+            font-size:30px;
+            line-height: 30px;
+        }
+      }
+    }
+    
+     section#details-and-map-section{ .col-1{width:calc(55% - 50px); margin-left:50px;}}
+  }
+
+
+
+
+  @media (max-width: 768px) {
+
+    section.swiper-section{
+      height: 300px;
+      .swiper-pagination {
+        bottom:20px !important;
+        .swiper-pagination-bullet{width: 12px;height: 12px;}
+      }
+    }
+
+    #signup{position: relative;top:unset;left:unset;bottom:unset;right:unset;margin-top:30px;}
+
+    section.info{
+      margin-top:0px;
+      padding: 30px 50px;
+
+      .col{
+        width:100% !important;
+        margin-left:0 !important;
+        margin-right:0 !important;
+
+        h1{
+          line-height:40px;
+          margin-top:0;
+          margin-bottom:0px;
+
+          &.title{ font-size:30px; }
+          &.subtitle{font-size:20px; line-height:30px;}
+        }
+
+        span.date{ font-size:24px; margin-top:20px; }
+
+        .map-container{ width:100%; height:140px; }
+
+        &.col-1{font-size: 14px;}
+
+        .has-portable-text p{ margin: 0; }
+
+      }
+
+      &#details-and-map-section{
+        border-bottom:none;
+        flex-direction: column;
+        .col-1{ padding:0 50px; padding-top:30px; }
+        .col-2{ padding:0; margin-top: 30px; height: 200px; .map-container{ padding:0;}}
+      }
+
+      &#other-info-section{ border-top:none;}
+
+    }
+  }
+
+
+  @media (max-width: 460px) {
+    section.info{ padding: 30px 30px; }
+  }
+
+
+}

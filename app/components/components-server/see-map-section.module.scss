@@ -1,15 +1,19 @@
 
 .namespace-container{
+    height:100%;
     width:100%;
     float:left;
     overflow: hidden;
+    container-type: inline-size;
+    container-name: component;
 
     :global{
       .see-map-section{
         position:relative;
         margin-top:0px;
         margin-bottom:0px;
-        height:400px;
+        height:100%;
+        width:100%;
 
         h6{
           font-size: 130px;
@@ -25,47 +29,42 @@
           margin-top: 30px;
         }
 
-        .go-button{
-          border: 6px solid #fff;
-          background: #00000082;
-          transform: rotate(180deg);
-          bottom: 35px;
-          height:90px;
-          width:90px;
-          position: absolute;
-          left: calc(50% - 45px);
-          padding: 8px;
-          z-index:1;
-          &:hover{background:#000;}
+      }
 
-          .svg-icon{
-            background-color:#fff;
-          }
-        }
-        // button for mobile
-        .btn-white.hide-on-desktop{
+      .see-map-section.small-version{
+        display:none;
+        .btn-white{
           position: absolute;
           left: calc(50% - 100px);
           top: calc(50% - 25px);
           text-transform: uppercase;
         }
-
-        // button for desktop
-        .btn-white.hide-on-mobile{
-          position: absolute;
-          left: calc(50% - 100px);
-          bottom:40px;
-          text-transform: uppercase;
+      
+      
+      }
+      .see-map-section.large-version{
+          .btn-white{
+            position: absolute;
+            left: calc(50% - 100px);
+            bottom:40px;
+            text-transform: uppercase;
 
           .svg-icon{ background-color:#fff;}
         }
 
-          @media (max-width: 768px) {
-            height: 220px;
-          }
-
 
       }
 
+      @container component (max-width: 768px) {
+        
+          .see-map-section.small-version{display:inline-block;}
+          .see-map-section.large-version{display:none;}
+        
+    }
+
+
     }
 }
+
+
+

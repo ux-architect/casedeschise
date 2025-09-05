@@ -19,7 +19,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const year = generalInfo?.currentYear;
-  const visitFormExternalUrl = generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#";
+  const visitFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.visitFormExternalUrl || "#";
 
 
   const allProjects = await getProjects("projects-" + city, year);
@@ -40,11 +40,11 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
   return (
     <>
-      <main className={`${styles['namespace-container']} `}>
+      <main className={`${styles['namespace-container']} common-page-structure`}>
 
         <section className="swiper-section">
           <SwiperComponent images={project?.images} projectName={project?.name} />
-          <Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link id="signup" className="btn btn-secondary btn-hover-overlay diff-sibiu-valcea diff-background btn-large btn-hover-overlay hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </section>
 
         <section className="info border-bottom">
@@ -69,10 +69,11 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         <section id="details-and-map-section" className="info border-bottom">
           <div className="col col-1"><PortableText value={project?.description} /></div>
-          <div className="col col-2"><div className="map-container">
-            <SeeMapSection page={city} customUrl={seeMapSecrionUrl}/>
-            <Link className="btn btn-white btn-large open-in-google-maps" href={`${mapsUrl}`} scroll={true} target="_blank" rel="noreferrer noopener">DESCHIDE ÎN GOOGLE MAPS</Link>
-            </div></div>
+          <div className="col col-2">
+              <div className="map-container">
+                <SeeMapSection page={city} customUrl={seeMapSecrionUrl} externalMapsUrl={mapsUrl}/>
+              </div>
+          </div>
         </section>
 
         <section id="other-info-section" className="info border-bottom ">
@@ -93,7 +94,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
         
         <FaqSection city={city} />
         <PartnerSection page={city} />
-        <ContactForm />
+        {/* <ContactForm /> */}
         <FooterSection page={city}/>
       </main>
     </>

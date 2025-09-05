@@ -10,6 +10,7 @@
 @use '_buttons' as *;
 @use '_mobile-specific' as *;
 @use 'components/_swiper-responsive' as *;
+@use 'components/_common-page-structure' as *;
 
 html{
   height:100%;

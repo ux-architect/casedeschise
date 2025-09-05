@@ -62,13 +62,10 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section1} title={title_s1}/></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section2} title={title_s2} odd={true} className="title-to-right"/></section>)}
-      {projects_section1.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section1} title={title_s1}/></section>)}
-      {projects_section2.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section2} title={title_s2} odd={true} className="title-to-right"/></section>)}
-
       {projects_section3.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section3} title={title_s3}/></section>)}
       {projects_section4.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section4} title={title_s4} odd={true} className="title-to-right"/></section>)}
-      <SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/>
       
+      <div className="see-map-container"><SeeMapSection page={city} className="w-100 clearfix float-left mt-10"/></div>
       
       <MissionSection page={city} className="hide-on-mobile"/>
 
@@ -80,8 +77,11 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop hide-long-text font-safiro hide-on-desktop diff-sibiu-valcea">Activități copii</div>
       <EventSection events={events_section2_kids} page={city} sectionName="ACTIVITĂȚI PENTRU COPII" signupForm={true} className="title-right"/> */}
 
-      {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>)}
-      {events_section2_kids.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} className="title-to-right" title="Activități  pentru  copii"/></section>)}
+      <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
+      {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1}/></section>)}
+      
+      <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop font-safiro hide-on-desktop diff-sibiu-valcea mt-10">Activități copii</div>
+      {events_section2_kids.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} className="title-to-right"/></section>)}
 
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
