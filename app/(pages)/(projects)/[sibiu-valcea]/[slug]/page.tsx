@@ -44,7 +44,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         <section className="swiper-section">
           <SwiperComponent images={project?.images} projectName={project?.name} />
-          <Link id="signup" className="btn btn-secondary btn-hover-overlay diff-sibiu-valcea diff-background btn-large btn-hover-overlay hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </section>
 
         <section className="info border-bottom">
@@ -54,10 +54,8 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
             <h1 className='font-regular subtitle'>{subtitle}</h1>
           </div>
 
-          <div className="col col-2">
-            {project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    
-          </div>
-            <Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <div className="col col-2">{project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    </div>
+            <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </section>
 
         <section className="info border-bottom">
