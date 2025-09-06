@@ -11,7 +11,7 @@ export default async function Team({ params}: {params: Promise<{ "sibiu-valcea":
     <>
       <TeamSection page={city} className="mobile-version"/>
       <PartnerSection page={city} />
-      <FooterSection page={city}/>
+      <FooterSection city={city}/>
     </>
   )
 
