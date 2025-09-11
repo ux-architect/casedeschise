@@ -21,7 +21,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
     <html lang="ro">
 
     <head><link rel="icon" href="/favicon.ico" />
-    {process.env.NODE_ENV === 'production' && ( <Script async src="/scripts/umami-tracking.js" data-host-url="https://umami-app-ux-studio-sibiu.fly.dev/api/collect" data-website-id="4d2bd780-148b-40ef-9f49-e6c83c1f480f" strategy="afterInteractive"/>)}
+    {process.env.NODE_ENV === 'production' && ( <Script async src="/scripts/umami-tracking.js" data-host-url="https://umami-app-ux-studio-sibiu.fly.dev/" data-website-id="4d2bd780-148b-40ef-9f49-e6c83c1f480f" strategy="afterInteractive"/>)}
     </head>
 
       <body className={`${poppins.variable} ${safiro.variable} clearfix city-is-sibiu still-loading`}>
