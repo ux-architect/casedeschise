@@ -39,22 +39,21 @@ const OverlayMarker = (
   const cssClass_isPressed = pressed ? "pressed" : "";
 
   const cssClass_projectSelected = marker.selected ? "project-selected" : "";
+  const cssClass_zoom = zoom < 15 ? "zoom-out" 
+                      : zoom <= 16  ? "zoom-mid" 
+                      : "zoom-in";
 
   return (
     <OverlayViewF position={position} mapPaneName="overlayMouseTarget">
-      <div className={`marker-container diff-sibiu-valcea diff-background ${cssClass_isPressed} ${cssClass_projectSelected} ${fadeIn ? "fadeIn" : ""}`}>
-        <Link
-          href={`${linkPrefix}/${marker.slug}`}
-          scroll={true}
-          className="title-link fill-container "
-          rel="noreferrer noopener"
+      <div className={`marker-container diff-sibiu-valcea diff-background ${cssClass_isPressed} ${cssClass_projectSelected} ${cssClass_zoom} ${fadeIn ? "fadeIn" : ""}`}>
+        <Link  href={`${linkPrefix}/${marker.slug}`}  scroll={true} className="title-link fill-container " rel="noreferrer noopener"
 
           // Just set visual pressed state
           onMouseDown={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}}
           onTouchStart={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}} 
         >
-          {marker.image && zoom >= 16 && (
-            <div className="markerImage ">
+          {marker.image && (
+            <div className="marker-image ">
               <Image src={marker.image}  className="object-cover" loading="lazy" fill sizes="(max-width: 768px) 25vw, 15vw" alt={marker.title} />
             </div>
           )}
@@ -89,9 +88,6 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
   const center = useMemo(() => {
 
     if (selectedMarker){return selectedMarker.position;}
-
-    // if (markers.length > 0) { return markers[0].position; }
-
     return defaultCenter;
 
   }, [markers]);
@@ -117,16 +113,8 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
         onZoomChanged={() => { if (mapRef.current) { setZoom(mapRef.current.getZoom() || 14);}}}
         onTilesLoaded={() => setFadeIn(true)} 
       >
-        {markers.map((marker) => (
-          <OverlayMarker
-            key={marker.id}
-            marker={marker}
-            city={city}
-            fadeIn={fadeIn}
-            zoom={zoom}
-            onClick={() => console.log(`Clicked: ${marker.title}`)}
-          />
-        ))}
+        {markers.map((marker) => (<OverlayMarker key={marker.id} marker={marker} city={city} fadeIn={fadeIn} zoom={zoom}/>))}
+
       </GoogleMap>
     </div>
   );

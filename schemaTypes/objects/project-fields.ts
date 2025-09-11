@@ -21,6 +21,7 @@ export const projectFields = [
       title: "Profile Image",
       type: "image",
       options: { hotspot: true },
+      description:"recomandat landscape: 2400x1200px ~ 2000x1000px ~ 1800x900px (nu e super strictă proporția, dar de evitat portrait!) orientativ: 300-500KB"
     }),
 
     defineField({
@@ -28,6 +29,7 @@ export const projectFields = [
       title: "Imagini",
       type: "array",
       of: [{ type: "image", options: { hotspot: true },}],
+      description:"recomandat landscape: 2400x1200px ~ 2000x1000px ~ 1800x900px (nu e super strictă proporția, dar de evitat portrait!) orientativ: 300-500KB"
     }),
 
     defineField({

@@ -25,6 +25,8 @@
         border:3px solid;
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
         max-width: 140px;
+        min-width: 24px;
+        min-height: 24px;
 
         &:after{
             content:'';
@@ -45,6 +47,7 @@
         // background-color: rgba(0, 0, 0, 0.35);
        }
 
+       
         &.project-selected{
           background-color: #000 !important;
           border-color: #000000 !important;
@@ -63,6 +66,20 @@
         
       }
 
+      .marker-container.zoom-out{
+          .marker-image{display:none;}
+          .marker-text{ .text-inner{display:none;}}
+       }
+
+       .marker-container.zoom-mid{
+          .marker-image{display:none;}
+          
+       }
+
+       .marker-container.zoom-in{
+
+       }
+
     .fadeIn{
         opacity:1;
       }
@@ -77,10 +94,12 @@
       color: #000;
       font-size: 13px;
       text-decoration: none;
+      min-height: 22px;
+      min-width: 27px;
  
     }
 
-    .markerImage {
+    .marker-image {
       width: 100%;
       min-width: 130px;
       height: 130px;

@@ -3,8 +3,6 @@ import Link from "next/link"
 import { useRef, useEffect, useState, ReactNode } from "react"
 import { usePathname } from "next/navigation"
 import { SiteInfoType } from "@/types"
-import DownloadLink from "../components-ui/download-link"
-
 
 // Minimal, reusable Dropdown component
 const Dropdown = ({ label, children, className }: { label: ReactNode, children: ReactNode, className?: string; }) => {
@@ -94,9 +92,6 @@ useEffect(() => {
   var cssClass_menuIsActive = navOpen ? "active-menu" : '';
   var cssClass_noHighlight = noHighlight ? "no-highlight-on-nav": "";
 
-  const pdfUrl = city == "sibiu" ? generalInfo?.pdfSibiu?.url || "" : generalInfo?.pdfValcea?.url || "";
-  const pdfFileName = city == "sibiu" ? generalInfo?.pdfSibiu?.originalFilename || "" : generalInfo?.pdfValcea?.originalFilename || "";
-
   const linkPrefix =  "/" + city ;
 
   return (
@@ -118,9 +113,6 @@ useEffect(() => {
               <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Tururi Ghidate<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Evenimente<span className="line">]</span></Link>
               <Link href={`${linkPrefix}#activitati-copii`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)} style={{ minWidth: "210px" }}><span className="line">[</span>Activități copii<span className="line">]</span></Link>
-
-              {generalInfo?.pdfSibiu?.url && (<DownloadLink className="dropdown-link diff-sibiu-valcea" url={ pdfUrl}  filename = { pdfFileName}>PROGRAM .PDF</DownloadLink>)}
-            
             </Dropdown>
 
             <Dropdown label="Comunitate" className="smaller">
