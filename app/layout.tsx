@@ -1,3 +1,4 @@
+import Script from "next/script";
 import AddCityClassToBody from "./components/components-client/add-city-class-to-body";
 import AddMobileClassToBody from "./components/components-client/add-mobile-class-to-body";
 import "./styles/globals.scss";
@@ -19,7 +20,9 @@ export default async function RootLayout({children}: {children: React.ReactNode}
   return (
     <html lang="ro">
 
-    <head><link rel="icon" href="/favicon.ico" /></head>
+    <head><link rel="icon" href="/favicon.ico" />
+    {process.env.NODE_ENV === 'production' && ( <Script async src="/scripts/umami-tracking.js" data-website-id="4d2bd780-148b-40ef-9f49-e6c83c1f480f" strategy="afterInteractive"/>)}
+    </head>
 
       <body className={`${poppins.variable} ${safiro.variable} clearfix city-is-sibiu still-loading`}>
           <AddCityClassToBody/>

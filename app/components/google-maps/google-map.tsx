@@ -55,14 +55,7 @@ const OverlayMarker = (
         >
           {marker.image && zoom >= 16 && (
             <div className="markerImage ">
-              <Image
-                src={marker.image}
-                className="object-cover"
-                loading="lazy"
-                fill
-                sizes="(max-width: 768px) 25vw, 15vw"
-                alt={marker.title}
-              />
+              <Image src={marker.image}  className="object-cover" loading="lazy" fill sizes="(max-width: 768px) 25vw, 15vw" alt={marker.title} />
             </div>
           )}
             <div className="marker-text diff-sibiu-valcea diff-background" data-mobile-highlight>
@@ -77,8 +70,13 @@ const OverlayMarker = (
 };
 
 const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [], }) => {
-  
+
+  const [fadeIn, setFadeIn] = useState(false);
+  const [zoom, setZoom] = useState(14);
+
+  const mapRef = useRef<google.maps.Map | null>(null);
   const pathname = usePathname()
+
   const isSibiu = pathname.split('/').includes('sibiu');
   const city = isSibiu ? "sibiu" : "valcea";
 
@@ -86,17 +84,19 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
   const sibiuCenter = { lat: 45.7966, lng: 24.1513 };
   const defaultCenter = isSibiu ? sibiuCenter : valceaCenter;
 
+  const selectedMarker = useMemo(() => markers.find(marker => marker.selected), [markers]);
+
   const center = useMemo(() => {
-    if (markers.length > 0) {
-      return markers[0].position;
-    }
+
+    if (selectedMarker){return selectedMarker.position;}
+
+    // if (markers.length > 0) { return markers[0].position; }
+
     return defaultCenter;
+
   }, [markers]);
 
-  const [fadeIn, setFadeIn] = useState(false);
-  const [zoom, setZoom] = useState(14);
-
-  const mapRef = useRef<google.maps.Map | null>(null);
+  useEffect(() => { if (selectedMarker) {setZoom(18); } }, [selectedMarker]);
 
   return (
     <div className={styles["namespace-container"]} data-no-highlight-on-nav>

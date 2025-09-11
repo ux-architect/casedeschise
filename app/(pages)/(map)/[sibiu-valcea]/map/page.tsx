@@ -56,9 +56,9 @@ export default async function Map(
 
   return (
     <div className={`${styles['namespace-container']}`} >
-      <ProvideJS_GoogleMaps>
-        <GoogleMapComponent markers={markers} />
-      </ProvideJS_GoogleMaps>
+        <ProvideJS_GoogleMaps>
+          <GoogleMapComponent markers={markers} />
+        </ProvideJS_GoogleMaps>
     </div>
   );
 }
