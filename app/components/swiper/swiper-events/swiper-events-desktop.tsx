@@ -54,7 +54,7 @@ export default function Swiper_Events_Desktop({ events, title = "", odd = false,
 
                 <span className="description has-portable-text hide-long-text-9"><PortableText value={event?.description} /></span>
 
-                <Link className="btn btn-black " href={`/${city}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                <Link className="btn btn-black prevent-default-highlight" href={`/${city}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
               </div>
 
               <div className="pin diff-sibiu-valcea "></div>

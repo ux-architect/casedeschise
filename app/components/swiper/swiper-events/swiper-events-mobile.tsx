@@ -56,7 +56,7 @@ export default function Swiper_Events_Mobile({ title = "", odd = false, events, 
                       <h6 className='font-regular subtitle '>{subtitle}</h6>
 
                       <span className={`${cssClass_descriptionLines} has-portable-text`}><PortableText value={event?.description} /></span>
-                      <Link className="btn btn-black" href={`/${city}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
+                      <Link className="btn btn-black prevent-default-highlight" href={`/${city}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     
                     <div className="pin"></div>

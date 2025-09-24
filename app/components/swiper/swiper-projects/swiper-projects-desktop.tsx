@@ -23,8 +23,10 @@ export default function Swiper_Projects_Desktop({ projects, title = "", odd = fa
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
+
   const sliderDelay = generalInfo?.sliderInterval || 10000;
-  const sliderStartDelay = odd ? sliderDelay/2 : 0;
+  let sliderStartDelay = odd ? sliderDelay/2 : 0;
+  sliderStartDelay = sliderStartDelay + 1000 * Math.floor(Math.random() * 3);
 
   return (
     <Swiper className={`${styles['namespace-container']} swiper-responsive swiper-responsive-desktop ${className}`} modules={[Autoplay]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} loop={true} slidesPerView={2}

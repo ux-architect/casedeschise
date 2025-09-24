@@ -5,23 +5,42 @@
   
   
   :global{
-    .cover-image{
+
+
+    .cover{
       width:100%;
       height:70vh;
       position:relative;
 
-      width:  calc(50% + 450px);
-      margin-left: calc(50% - 450px);
+      .cover-image{
+        width:100%;
+        height:100%;
+        position:relative;
 
-      // max-width:800px;
-      // margin: 0 auto;
+        width:  calc(50% + 450px);
+        margin-left: calc(50% - 450px);
+
+      }
+
+      .page-title{
+        font-weight: bold;
+        font-size: 400px;
+        position: absolute;
+        bottom:-84px;
+        left: 0;
+        letter-spacing: 20px;
+        padding-left:50px;
+      }
     }
 
     .layout-container{
       width:100%;
       margin-top: 40px;
-
     }
+
+    @media (max-width: 1800px) {  .cover .page-title{ font-size: 300px; bottom: -62px;} }
+    @media (max-width: 900px) {  .cover .page-title{ font-size: 200px; bottom: -42px; width:100%; padding-left:30px; } }
+
 
   }
 

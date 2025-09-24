@@ -14,10 +14,15 @@ export default async function Faq({ params}: {params: Promise<{ year:string, "si
   const faqList : FaqType[] = await getFaqList();
 
   return(
-    <main className={`${styles['namespace-container']} `} >
-      <div className="cover-image">
-        <Image src="/images/faq-image.jpg" className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
+    <main className={`${styles['namespace-container']} `} data-no-highlight-on-nav>
+
+      <div className="cover">
+        <div className="cover-image">
+          <Image src="/images/faq-image.jpg" className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
+        </div>
+        <div className="page-title font-safiro diff-sibiu-valcea">FAQ</div>
       </div>
+      
 
       <div className="layout-container clearfix">
           {faqList?.map((item, idx) => (

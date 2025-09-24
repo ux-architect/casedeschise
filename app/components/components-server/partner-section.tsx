@@ -52,24 +52,28 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
 
         </section>
 
-        <section id="parteneri-media-mobilitate" className={'partner-section '}>
-          {/*  col-1  */}
-          <div className="col col-1"><h2>Partener de mobilitate</h2>
-              {partnersMobility.map((partner, idx) => { return (
+        {partnersMobility.length != 0 || partnersMedia.length != 0 && (
+
+          <section id="parteneri-media-mobilitate" className={'partner-section '}>
+            {/*  col-1  */}
+            <div className="col col-1"><h2>Partener de mobilitate</h2>
+                {partnersMobility.map((partner, idx) => { return (
+                      <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
+                        <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                      </Link>
+                  );})}
+            </div>
+
+            {/*  col-2  */}
+            <div className="col col-2"><h2>Parteneri media</h2>
+                {partnersMedia.map((partner, idx) => {return (
                     <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
-                      <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                        <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
                     </Link>
-                );})}
-          </div>
-           {/*  col-2  */}
-          <div className="col col-2"><h2>Parteneri media</h2>
-              {partnersMedia.map((partner, idx) => {return (
-                  <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
-                      <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
-                  </Link>
-                );})}
-          </div>
-        </section>
+                  );})}
+            </div>
+          </section>
+      )}
 
 
         {sponsors && sponsors.length > 0 && (
