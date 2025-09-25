@@ -127,6 +127,7 @@ export async function getTour(slug: string) {
       gps,
       tags,
       description,
+      otherInfo,
     }`,
     { slug },
     {next: { revalidate: revalidateInterval }, }
@@ -148,6 +149,7 @@ export async function getTours(tourType: string, year?: string) {
       gps,
       tags,
       description,
+      otherInfo,
     }`,
     { tourType, year: year ?? null },
     {next: { revalidate: revalidateInterval }, }
@@ -170,6 +172,7 @@ export async function getEvent(slug: string) {
       gps,
       tags,
       description,
+      otherInfo,
     }`,
     { slug },
     {next: { revalidate: revalidateInterval }, }
@@ -192,6 +195,7 @@ export async function getEvents(eventType: string, year?: string) {
       gps,
       tags,
       description,
+      otherInfo,
     }`,
     { eventType, year: year ?? null },
     {next: { revalidate: revalidateInterval }, }

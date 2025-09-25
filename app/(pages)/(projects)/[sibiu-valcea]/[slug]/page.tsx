@@ -79,11 +79,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         <section id="other-info-section" className="info border-bottom ">
           <div className="col col-1 has-portable-text"><PortableText value={project?.otherInfo} /></div>
-          <div className="col col-2">
-
-           <Tags tags={project?.tags}></Tags>
-
-          </div>
+          <div className="col col-2"><Tags tags={project?.tags}></Tags></div>
         </section>
 
         {projects_in_same_section.length > 0 && (
@@ -95,7 +91,6 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
         
         <FaqSection city={city} />
         <PartnerSection page={city} />
-        {/* <ContactForm /> */}
         <FooterSection city={city}/>
       </main>
     </>

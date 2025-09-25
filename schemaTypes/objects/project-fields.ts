@@ -64,6 +64,13 @@ export const projectFields = [
       of: [{type: "block"}],
     }),
 
+    defineField({
+      name: "otherInfo",
+      title: "Alte Info",
+      type: "array",
+      of: [{type: "block"}],
+    }),
+
     {
       name: 'tags',
       title: 'Tags',
@@ -106,10 +113,4 @@ export const projectFields = [
         validation: Rule => Rule.required(),
     }),
     
-    defineField({
-      name: "otherInfo",
-      title: "Alte Info",
-      type: "array",
-      of: [{type: "block"}],
-    }),
   ];

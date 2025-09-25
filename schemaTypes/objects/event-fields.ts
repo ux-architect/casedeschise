@@ -64,6 +64,12 @@ export const eventFields = [
       type: "array",
       of: [{type: "block"}],
     }),
+    defineField({
+      name: "otherInfo",
+      title: "Alte Info",
+      type: "array",
+      of: [{type: "block"}],
+    }),
 
     {
       name: 'tags',

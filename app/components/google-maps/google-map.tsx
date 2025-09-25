@@ -68,7 +68,7 @@ const OverlayMarker = (
   );
 };
 
-const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [], }) => {
+const GoogleMapComponent: React.FC<{ markers?: MarkerType[], center?:{ lat: number; lng: number } }> = ({markers = [], center = undefined }) => {
 
   const [fadeIn, setFadeIn] = useState(false);
   const [zoom, setZoom] = useState(14);
@@ -85,20 +85,24 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[] }> = ({markers = [],
 
   const selectedMarker = useMemo(() => markers.find(marker => marker.selected), [markers]);
 
-  const center = useMemo(() => {
+  const mapCenter = useMemo(() => {
 
     if (selectedMarker){return selectedMarker.position;}
+    if (center){return center}
     return defaultCenter;
 
   }, [markers]);
 
-  useEffect(() => { if (selectedMarker) {setZoom(18); } }, [selectedMarker]);
+  useEffect(() => { 
+    if (selectedMarker) {setZoom(18); } 
+    if (center) {setZoom(16);}
+  }, [selectedMarker]);
 
   return (
     <div className={styles["namespace-container"]} data-no-highlight-on-nav>
       <GoogleMap
         mapContainerStyle={{width: "100%",height: "100%",}}
-        center={center}
+        center={mapCenter}
         zoom={zoom}
         options={{
           // gray-scale style

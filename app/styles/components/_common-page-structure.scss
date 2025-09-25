@@ -69,6 +69,8 @@
         span.date{
               float:left;
               width:100%;
+
+              &:first-of-type{margin-top:10px;}
             }
 
         &.col-1{
@@ -101,7 +103,7 @@
           position:relative;
           height: 100%;
           min-height:240px;
-          padding: 20px;
+          padding: 20px 0;
 
           .open-in-google-maps{
             position:absolute;
@@ -181,11 +183,15 @@
           &.subtitle{font-size:20px; line-height:30px;}
         }
 
-        span.date{ font-size:24px; margin-top:20px; }
+        span.date{ 
+          font-size:24px; 
+          &:first-of-type{margin-top:20px;}
+        }
 
         .map-container{ width:100%; height:140px; min-height:unset !important;}
 
         &.col-1{font-size: 14px;}
+        &.col-2{padding-left:0;}
 
         .has-portable-text p{ margin: 0; }
 
@@ -194,7 +200,7 @@
       &#details-and-map-section{
         border-bottom:none;
         flex-direction: column;
-        .col-1{ padding:0 50px; padding-top:30px; }
+        .col-1{ padding:0 30px; padding-top:30px; }
         .col-2{ padding:0; margin-top: 30px; height: 200px; .map-container{ padding:0;}}
       }
 

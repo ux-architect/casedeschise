@@ -101,6 +101,7 @@ export type TourType = {
 
   tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
   description: PortableTextBlock[],
+  otherInfo: PortableTextBlock[],
 
   slug: { current: string }
 };
@@ -120,6 +121,7 @@ export type EventType = {
 
   tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
   description: PortableTextBlock[],
+  otherInfo: PortableTextBlock[],
 
   slug: { current: string }
 };

@@ -70,6 +70,14 @@ export const tourFields = [
     }),
 
     defineField({
+      name: "otherInfo",
+      title: "Alte Info",
+      type: "array",
+      of: [{type: "block"}],
+      hidden: true,
+    }),
+
+    defineField({
       name: "gps",
       title: "Coordonate",
       type: "string",

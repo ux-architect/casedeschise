@@ -8,10 +8,11 @@ export default async function Map(
   { params, searchParams}: 
   {
     params: Promise<{"sibiu-valcea": string}>, 
-    searchParams?: Promise<{ select?: string }>
+    searchParams?: Promise<{ select?: string, centerLat?: string, centerLng?: string, z?: string }>
   }) {
-
-    const selectedMarkerSlug = (await searchParams)?.select;
+    const queryString = await searchParams;
+    const selectedMarkerSlug = queryString?.select;
+    const mapCenter =  queryString?.centerLat && queryString?.centerLng ? {lat: parseFloat(queryString.centerLat),lng: parseFloat(queryString.centerLng),} : undefined;
 
     const { ["sibiu-valcea"]: city } = await params;
     const generalInfo: SiteInfoType = await getGeneralInfo();
@@ -36,7 +37,7 @@ export default async function Map(
 
         if (mainTitle.includes("///")) {
           const parts = mainTitle.split("///").map((p) => p.trim());
-          mainTitle = parts[0];
+          mainTitle = parts[0] || parts[1];
           subtitle = parts[1] || ""; // fallback to empty string if no second part
         }
 
@@ -57,7 +58,8 @@ export default async function Map(
   return (
     <div className={`${styles['namespace-container']}`} >
         <ProvideJS_GoogleMaps>
-          <GoogleMapComponent markers={markers} />
+          {/*optionaly pass in center only if mapCenter is constrocted from the query string*/}
+          <GoogleMapComponent markers={markers} {...(mapCenter ? { center: mapCenter } : {})} />
         </ProvideJS_GoogleMaps>
     </div>
   );

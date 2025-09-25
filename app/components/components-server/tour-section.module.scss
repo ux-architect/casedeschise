@@ -90,6 +90,7 @@
               padding-top: 10px;
               border:none;
               margin-top:0;
+              margin-bottom:10px;
 
             .tour{ 
               margin-bottom:10px;
@@ -101,8 +102,6 @@
 
                   &.col-image{
                     height:300px;
-                    // border-top: 1px solid #000000;
-                    // border-bottom: 1px solid #000000;
                   }
 
                   &.col-description{
@@ -110,7 +109,7 @@
                     background-color:#cefb08;
                     height:100%;
                     width:auto;
-                    padding:10px;
+                    padding:10px 0;
                     background-color: #ffffffbd;
                     border-right: 1px solid #000000;
                     border-right: 10px solid #ffffff;
@@ -126,15 +125,12 @@
 
                      a.btn{
                       position:absolute;
-                      left:10px;
                       bottom:90px;
                       width: 120px;
                       font-size: 13px;
                       border-color: #000 !important;
+                      margin-left: calc(50% - 70px);
 
-                      &.btn-signup{
-                        bottom:50px;
-                      }
                     }
                   }
               }
@@ -161,9 +157,6 @@
                   h6{ display:none; }
                   a.btn{bottom:0; font-size:16px; width:140px;}
 
-                  a.btn.btn-signup{
-                    bottom:0; right:10px; left:unset;
-                  }
                 }
 
               }
