@@ -3,6 +3,7 @@ import AddCityClassToBody from "./components/components-client/add-city-class-to
 import AddMobileClassToBody from "./components/components-client/add-mobile-class-to-body";
 import "./styles/globals.scss";
 import localFont from 'next/font/local';
+import { UmamiClickEvents } from "./components/components-client/umami-click-events";
 
 const poppins = localFont({
   src: [
@@ -25,6 +26,7 @@ export default async function RootLayout({children}: {children: React.ReactNode}
     </head>
 
       <body className={`${poppins.variable} ${safiro.variable} clearfix city-is-sibiu still-loading`}>
+          <UmamiClickEvents/>
           <AddCityClassToBody/>
           <AddMobileClassToBody/>
           {children}

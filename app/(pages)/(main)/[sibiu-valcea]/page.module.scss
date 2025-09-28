@@ -2,6 +2,7 @@
   position:relative;
   float:left;
   width:100%;
+  overflow-y:hidden;
   
   
 :global{
@@ -38,6 +39,13 @@
 
     @media (max-width: 320x) { font-size:40px;}
 
+    &.event-title-guided-tours{
+      @media (max-width: 480px) {font-size:40px;}
+      @media (max-width: 360px) {font-size:34px;}
+      @media (max-width: 320px) {font-size:30px;}
+    }
+
+
     &.event-title-kids-workshop{
       font-size:60px;
       @media (max-width: 640px) {font-size:55px;}
@@ -68,8 +76,13 @@
     width: 100%;
     margin-top:10px;
 
+    @media (max-width: 1200px) {
+        width: 200%;
+    }
+
     @media (max-width: 768px) {
         height: auto;
+        width: 100%;
     }
 
   }

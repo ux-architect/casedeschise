@@ -36,7 +36,7 @@ export default async function TeamSection({ page = 'sibiu', className = '', id =
                   
                   if(webStudio){
                       return (
-                      <Link href="https://index-five-bice.vercel.app/" target="_blank" key={idx} className='member'>
+                      <Link href="https://index-five-bice.vercel.app/" target="_blank" key={idx} className='member' data-umami-click={`web-studio ${page} (team section)`}>
                           <div className="member-image"><Image src={`${imgSource}`} className={`portrait object-cover ${cssClass}`}  loading="lazy" fill sizes="(max-width: 400px) 100vw, (max-width: 768px) 50vw, 20vw" alt=""/></div>
                           <div className='name'>{member.name}</div>
                           <div className='role web-studio text-underline'>web studio</div>

@@ -9,7 +9,7 @@ type DownloadLinkProps = {
   className?: string;
 };
 
-export default function DownloadLink({ url, filename, children, className }: DownloadLinkProps) {
+export default function DownloadLink({ url, filename, children, className, ...rest }: DownloadLinkProps) {
   const handleClick = async (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.preventDefault();
     const res = await fetch(url);
@@ -24,5 +24,5 @@ export default function DownloadLink({ url, filename, children, className }: Dow
     URL.revokeObjectURL(blobUrl);
   };
 
-  return <a className={className} href={url} onClick={handleClick}>{children}</a>;
+  return <a className={className} href={url} onClick={handleClick} {...rest}>{children}</a>;
 }

@@ -33,17 +33,17 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
         
         <div id="main-actions" className="w-100 clearfix hide-while-still-loading">
 
-          {generalInfo?.pdfSibiu?.url &&
-            (<DownloadLink className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" url={ pdfUrl}  filename = { pdfFileName}>
+          {pdfUrl &&
+            (<DownloadLink className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" url={ pdfUrl}  filename = { pdfFileName}  data-umami-click={`program ${city} (cover page)`}  >
               <span className="svg-icon svg-icon-pdf-file float-left diff-sibiu-valcea diff-background" style={{ width: "36px" }}></span>
               <span>PROGRAM</span>
             </DownloadLink>)}
 
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/map`} scroll={true} rel="noreferrer noopener">
+          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/map`} scroll={true} rel="noreferrer noopener"  data-umami-click={`harta ${city} (cover page)`}>
             <span className="svg-icon svg-icon-map float-left diff-sibiu-valcea diff-background "></span>
             <span>Hartă</span>
           </Link>
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener" data-umami-click={`inscriete ${city} (cover page)`}>ÎNSCRIE-TE</Link>
         
         </div>
         

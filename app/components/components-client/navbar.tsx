@@ -105,28 +105,28 @@ useEffect(() => {
 
           <div className="flex-container">
   
-            <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea hide-on-mobile" onClick={() => setNavOpen(false)}>Despre</Link>
-            <Link href={`${linkPrefix}/about`} className="link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Despre</Link>
+            <Link href={`${linkPrefix}#despre`} className="link diff-sibiu-valcea hide-on-mobile" data-umami-click={`despre (nav)(${city})`} onClick={() => setNavOpen(false)}>Despre</Link>
+            <Link href={`${linkPrefix}/about`} className="link diff-sibiu-valcea hide-on-desktop" data-umami-click={`despre (nav-mobile)(${city})`} onClick={() => setNavOpen(false)}>Despre</Link>
 
             <Dropdown label="Program" className="smaller">
-              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" onClick={() => { setNavOpen(false)}}><span className="line">[</span>Obiective<span className="line">]</span></Link>
-              <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Tururi Ghidate<span className="line">]</span></Link>
-              <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)}><span className="line">[</span>Evenimente<span className="line">]</span></Link>
-              <Link href={`${linkPrefix}#activitati-copii`} className="dropdown-link diff-sibiu-valcea" onClick={() => setNavOpen(false)} style={{ minWidth: "210px" }}><span className="line">[</span>Activități copii<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#obiective`} className="dropdown-link diff-sibiu-valcea" data-umami-click={`obiective (nav)(${city})`} onClick={() => { setNavOpen(false)}}><span className="line">[</span>Obiective<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#tururi`} className="dropdown-link diff-sibiu-valcea" data-umami-click={`tururi (nav)(${city})`} onClick={() => setNavOpen(false)}><span className="line">[</span>Tururi Ghidate<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#evenimente`} className="dropdown-link diff-sibiu-valcea" data-umami-click={`evenimente (nav)(${city})`} onClick={() => setNavOpen(false)}><span className="line">[</span>Evenimente<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#activitati-copii`} className="dropdown-link diff-sibiu-valcea" data-umami-click={`activitati-copii (nav)(${city})`} onClick={() => setNavOpen(false)} style={{ minWidth: "210px" }}><span className="line">[</span>Activități copii<span className="line">]</span></Link>
             </Dropdown>
 
             <Dropdown label="Comunitate" className="smaller">
               {/* Echipa */}
-              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea smaller hide-on-mobile" onClick={() => setNavOpen(false)}><span className="line">[</span>Echipa<span className="line">]</span></Link>
-              <Link href={`${linkPrefix}/team`} className="dropdown-link diff-sibiu-valcea hide-on-desktop" onClick={() => setNavOpen(false)}>Echipa</Link>
+              <Link href={`${linkPrefix}#echipa`} className="dropdown-link diff-sibiu-valcea smaller hide-on-mobile" data-umami-click={`echipa (nav)(${city})`} onClick={() => setNavOpen(false)}><span className="line">[</span>Echipa<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}/team`} className="dropdown-link diff-sibiu-valcea hide-on-desktop" data-umami-click={`echipa (nav-mobile)(${city})`} onClick={() => setNavOpen(false)}>Echipa</Link>
               {/* Parteneri */}
-              <Link href={`${linkPrefix}#initiator`} className="dropdown-link diff-sibiu-valcea smaller" onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
+              <Link href={`${linkPrefix}#initiator`} className="dropdown-link diff-sibiu-valcea smaller" data-umami-click={`parteneri (nav)(${city})`} onClick={() => setNavOpen(false)}><span className="line">[</span>Parteneri<span className="line">]</span></Link>
             </Dropdown>
 
             {/* <Link href={`${linkPrefix}/map`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Hartă</Link> */}
             {/* <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhivă</Link> */}
-            <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Contact</Link>
-            <Link href={`${linkPrefix}/faq`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>FAQ</Link>
+            <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" data-umami-click={`contact (nav)(${city})`}  onClick={() => setNavOpen(false)}>Contact</Link>
+            <Link href={`${linkPrefix}/faq`} className="link diff-sibiu-valcea" data-umami-click={`faq (nav)(${city})`}  onClick={() => setNavOpen(false)}>FAQ</Link>
 
           </div>
           

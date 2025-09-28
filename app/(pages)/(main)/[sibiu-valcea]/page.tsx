@@ -69,7 +69,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       
       <MissionSection page={city} className="hide-on-mobile"/>
 
-      <div id="tururi" className="event-title-on-mobile mt-10 font-safiro hide-on-desktop diff-sibiu-valcea ">{sectionTitle_onMobile}</div>
+      <div id="tururi" className="event-title-on-mobile event-title-guided-tours mt-10 font-safiro hide-on-desktop diff-sibiu-valcea ">{sectionTitle_onMobile}</div>
       <ToursSection  tours={tours} page={city} className=""/>
   
       <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
