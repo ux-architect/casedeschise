@@ -79,6 +79,7 @@ nav#custom-responsive-nav {
         padding: 0px 20px;
         letter-spacing: 2px;
 
+
         &:hover {
           background: rgba(0, 0, 0, 0.664);
         }
@@ -167,6 +168,8 @@ nav#custom-responsive-nav.open {
                 font-size: 20px;
                 text-align: center;
                 text-transform: lowercase;
+                margin: 0 auto;
+                max-width: 50%;
                 .line{
                   display:inline; 
                 }

@@ -37,7 +37,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         <section className="swiper-section">
           <SwiperComponent images={event?.images} projectName={event?.name} />
-          {kidsEvent && (<Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large btn-hover-overlay prevent-default-highlight hide-on-mobile hide-while-still-loading" href={url_kidsWorkshopFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>)}
+          {kidsEvent && (<Link id="signup" className="btn btn-secondary z-index-0 diff-sibiu-valcea diff-background btn-large btn-hover-overlay prevent-default-highlight hide-on-mobile hide-while-still-loading" href={url_kidsWorkshopFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>)}
         </section>
 
         <section className="info border-bottom">
@@ -50,7 +50,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
               <span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>
             ))}
           </div>
-            {kidsEvent && (<Link id="signup" className="btn btn-secondary diff-sibiu-valcea diff-background btn-large btn-hover-overlay prevent-default-highlight hide-on-desktop hide-while-still-loading" href={url_kidsWorkshopFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>)}
+            {kidsEvent && (<Link id="signup" className="btn btn-secondary z-index-0 diff-sibiu-valcea diff-background btn-large btn-hover-overlay prevent-default-highlight hide-on-desktop hide-while-still-loading" href={url_kidsWorkshopFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>)}
 
         </section>
 

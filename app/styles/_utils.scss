@@ -98,6 +98,10 @@
   overflow: hidden;
 }
 
+.z-index-0{
+  z-index:0 !important;
+}
+
 @mixin hide-long-text($lines) {
   display: -webkit-box;
   -webkit-line-clamp: $lines;

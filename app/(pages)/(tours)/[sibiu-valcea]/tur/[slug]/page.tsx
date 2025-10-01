@@ -54,7 +54,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
           <div className="col col-2">
             {tour?.visitTime?.map((time, idx) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}
-            <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+            <Link id="signup" className="btn btn-secondary z-index-0 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
           </div>
 
         </section>
