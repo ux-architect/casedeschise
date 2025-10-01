@@ -9,10 +9,10 @@ import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import FooterSection from '@/app/components/components-server/footer-section';
-import ToursSection from '@/app/components/components-server/tour-section';
 import Link from 'next/link';
 import Tags from '@/app/components/components-server/tags';
 import Swiper_Events from '@/app/components/swiper/swiper-events/swiper-events';
+import Swiper_Tours from '@/app/components/swiper/swiper-tours/swiper-tours';
 
 export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
@@ -75,9 +75,8 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         {tour_in_same_section.length > 0 && (
         <>
-          <h6 className='section-title-similar-projects font-safiro'>Vezi și...</h6>
           <section className="swiper-section-similar-projects float-left clearfix">
-            <ToursSection page={city} tours={tour_in_same_section} />
+            <Swiper_Tours tours={tour_in_same_section} title="Vezi și..." />
           </section>
         </>)}
         

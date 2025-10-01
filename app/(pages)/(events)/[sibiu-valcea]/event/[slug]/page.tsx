@@ -71,7 +71,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         {events_in_same_section.length > 0 && (
         <>
-          <section className="swiper-section-similar-projects clearfix float-left mt-30">
+          <section className="swiper-section-similar-projects clearfix float-left">
             <Swiper_Events events={events_in_same_section} title="Vezi și..."/>
           </section>
         </>)}

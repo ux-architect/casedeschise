@@ -14,6 +14,7 @@ import FooterSection from "@/app/components/components-server/footer-section";
 import SocialMediaSection from "@/app/components/components-ui/social-media-section";
 import Swiper_Events from "@/app/components/swiper/swiper-events/swiper-events";
 import Swiper_Projects from "@/app/components/swiper/swiper-projects/swiper-projects";
+import Swiper_Tours from "@/app/components/swiper/swiper-tours/swiper-tours";
 
 export default async function Main({ params}: {params: Promise<{"sibiu-valcea": string}>;}) {
   const { ["sibiu-valcea"]: city } = await params;
@@ -69,9 +70,13 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       
       <MissionSection page={city} className="hide-on-mobile"/>
 
-      <div id="tururi" className="event-title-on-mobile event-title-guided-tours mt-10 font-safiro hide-on-desktop diff-sibiu-valcea ">{sectionTitle_onMobile}</div>
-      <ToursSection  tours={tours} page={city} className=""/>
-  
+      {tours.length > 0 && (
+        <>
+          <div id="tururi" className="event-title-on-mobile event-title-guided-tours mt-10 font-safiro hide-on-desktop diff-sibiu-valcea ">{sectionTitle_onMobile}</div>
+          <section id="tours-section" className="swiper-section mb-10"><Swiper_Tours tours={tours} /></section>
+        </>
+      )}
+
       <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
       {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>)}
       
@@ -81,7 +86,6 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
       <PartnerSection page={city} />
-      {/* <div className="clearfix hide-on-mobile"><ContactForm/></div> */}
       <FooterSection city={city}/>
       
     </main>
