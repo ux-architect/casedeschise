@@ -74,7 +74,6 @@ export const tourFields = [
       title: "Alte Info",
       type: "array",
       of: [{type: "block"}],
-      hidden: true,
     }),
 
     defineField({
