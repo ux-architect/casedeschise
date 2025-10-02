@@ -73,7 +73,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       {tours.length > 0 && (
         <>
           <div id="tururi" className="event-title-on-mobile event-title-guided-tours mt-10 font-safiro hide-on-desktop diff-sibiu-valcea ">{sectionTitle_onMobile}</div>
-          <section id="tours-section" className="swiper-section mb-10"><Swiper_Tours tours={tours} /></section>
+          <section id="tours-section" className="swiper-section"><Swiper_Tours tours={tours} /></section>
         </>
       )}
 
