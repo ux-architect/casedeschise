@@ -98,8 +98,8 @@
   overflow: hidden;
 }
 
-.z-index-0{
-  z-index:0 !important;
+.z-index-1{
+  z-index:1 !important;
 }
 
 @mixin hide-long-text($lines) {
@@ -118,14 +118,20 @@
 
 //////// sanity specific
 
-.has-portable-text p{
-  min-height: 12px;
-  width: 100%;
-}
-.has-portable-text a{
-  color:#000;
-}
+.has-portable-text{ 
+  p{
+    min-height: 12px;
+    width: 100%;
+    line-height: 22px;
+  }
+  &.p-line-height-15 p{ line-height: 15px; }
+  &.p-line-height-20 p{ line-height: 20px; }
+  &.p-line-height-22 p{ line-height: 22px; }
 
+  a{
+    color:#000;
+  }
+}
 
 
 .object-cover

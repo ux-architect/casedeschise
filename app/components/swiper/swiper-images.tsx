@@ -13,7 +13,8 @@ import { useGlobalInfo } from '@/app/context/global-info-context';
 export default function SwiperComponent({ images, projectName }: { images: { image: string }[]; projectName: string }) {
   
   const generalInfo: SiteInfoType = useGlobalInfo();
-  const sliderDelay = generalInfo?.sliderInterval || 10000;
+  let sliderDelay = generalInfo?.sliderInterval || 10000;
+  if(process.env.NODE_ENV === 'development'){sliderDelay = 30000;}
 
   return (
     <Swiper

@@ -98,6 +98,17 @@
           &.subtitle { font-size: 16px; }
         }
 
+         .sold-out-label{
+          position: absolute;
+          background: #000000c7;
+          border: 2px solid;
+          padding: 4px;
+          top: -210px;
+          right: 10px;
+          left:unset;
+          font-size: 16px;
+        }
+
         a.btn {
           position: absolute;
           bottom: 20px;
@@ -142,6 +153,19 @@
           &.subtitle { font-size: 20px; }
         }
 
+        .sold-out-label{
+          height: 30px;
+          padding: 6px 10px;
+          font-size: 16px;
+          line-height: 18px;
+          bottom: 55px;
+          left:unset;
+          right: 20px;
+          position: absolute;
+          background: #000;
+          font-weight: bold;
+        }
+
         .description {
           margin-top: 20px;
         }
@@ -150,10 +174,8 @@
 
     &.odd-offset .col {
       float: right;
-      a.btn {
-        left: unset;
-        right: 20px;
-      }
+      a.btn {left: unset; right: 20px;}
+      .sold-out-label{left: 20px; right:unset;}
     }
 
     .pin {

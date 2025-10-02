@@ -20,6 +20,11 @@
         color:#000000;
         border-color: #000000 !important;
         overflow:hidden;
+
+        &.disabled{
+          font-size:17px;
+          background-color: #999999bd  !important;
+        }
       }
 
   section.info{
@@ -165,7 +170,7 @@
       }
     }
 
-    #signup{position: relative;top:unset;left:unset;bottom:unset;right:unset;margin-top:30px;}
+    #signup{position: relative;top:unset;left:unset;bottom:unset;right:unset;margin-top:30px; }
 
     section.info{
       margin-top:0px;
@@ -193,7 +198,7 @@
         .map-container{ width:100%; height:140px; min-height:unset !important;}
 
         &.col-1{font-size: 14px;}
-        &.col-2{padding-left:0;}
+        &.col-2{padding-left:0; margin-top: 30px;}
 
         .has-portable-text p{ margin: 0; }
 

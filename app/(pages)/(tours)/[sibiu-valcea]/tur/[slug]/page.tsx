@@ -36,6 +36,8 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
   const mapsUrl = `https://www.google.com/maps?q=${lat},${lng} (${encodeURIComponent(tour?.name)})&z=${18}`;
   const seeMapSecrionUrl = "/" + city + "/map?select=" + tour?.slug.current + "&centerLat=" + lat  + "&centerLng=" + lng + "&z=12";
 
+  const cssClass_soldOut = tour?.tags?.includes('soldOut') ? "disabled" : "";
+  const text_soldOut = tour?.tags?.includes('soldOut') ? "LOCURI OCUPATE" : "ÎNSCRIE-TE";
 
   return (
     <>
@@ -43,7 +45,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         <section className="swiper-section">
           <SwiperComponent images={tour?.images} projectName={tour?.name} />
-          <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link id="signup" className={`${cssClass_soldOut} btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading`} href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">{text_soldOut}</Link>
         </section>
 
         <section  className="info border-bottom">
@@ -54,7 +56,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
           <div className="col col-2">
             {tour?.visitTime?.map((time, idx) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}
-            <Link id="signup" className="btn btn-secondary z-index-0 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+            <Link id="signup" className={`${cssClass_soldOut} btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading`} href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">{text_soldOut}</Link>
           </div>
 
         </section>

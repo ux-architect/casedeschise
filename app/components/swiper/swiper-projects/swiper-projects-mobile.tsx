@@ -16,7 +16,10 @@ export default function Swiper_Projects_Mobile({ title = "", odd = false, projec
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
-  const sliderDelay = generalInfo?.sliderInterval || 10000;
+
+  let sliderDelay = generalInfo?.sliderInterval || 10000;
+  if(process.env.NODE_ENV === 'development'){sliderDelay = 30000;}
+
   let sliderStartDelay = odd ? sliderDelay/2 : 0;
   sliderStartDelay += 1000 * Math.floor(Math.random() * 3);
 
@@ -56,7 +59,7 @@ export default function Swiper_Projects_Mobile({ title = "", odd = false, projec
                       <h6 className='font-bold title font-safiro diff-sibiu-valcea'>{title}</h6>
                       <h6 className='font-regular subtitle diff-sibiu-valcea'>{subtitle}</h6>
 
-                      <span className={`${cssClass_descriptionLines} has-portable-text`}><PortableText value={project?.description} /></span>
+                      <span className={`${cssClass_descriptionLines} has-portable-text p-line-height-15`}><PortableText value={project?.description} /></span>
                       <Link className="btn btn-primary diff-sibiu-valcea" href={`/${city}/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     

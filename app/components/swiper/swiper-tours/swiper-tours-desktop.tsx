@@ -37,6 +37,7 @@ export default function Swiper_Tours_Desktop({ tours, title = "", odd = false, c
         const subtitle = parts[1];
 
         const cssClass_oddTour = (idx % 2 === 0) ? "": "odd-offset";
+        const soldOut = tour?.tags?.includes('soldOut') ? true : false;
 
         return(
           <div key={idx} className={`swiper-slide ${cssClass_oddTour}`}>
@@ -48,8 +49,9 @@ export default function Swiper_Tours_Desktop({ tours, title = "", odd = false, c
 
                 <h6 className='font-bold title font-safiro '>{title}</h6>
                 <h6 className='font-regular subtitle '>{subtitle}</h6>
+                {soldOut && ( <span className="sold-out-label diff-sibiu-valcea">LOCURI OCUPATE</span>)}
 
-                <span className="description has-portable-text hide-long-text-9"><PortableText value={tour?.description} /></span>
+                <span className="description has-portable-text p-line-height-15 hide-long-text-9"><PortableText value={tour?.description} /></span>
 
                 <Link className="btn btn-black prevent-default-highlight" href={`/${city}/tur/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
               </div>

@@ -99,7 +99,7 @@ export type TourType = {
   transport: string,
   gps: string,
 
-  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
+  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren' | 'soldOut')[];
   description: PortableTextBlock[],
   otherInfo: PortableTextBlock[],
 
@@ -119,7 +119,7 @@ export type EventType = {
   transport: string,
   gps: string,
 
-  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
+  tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren'| 'soldOut')[];
   description: PortableTextBlock[],
   otherInfo: PortableTextBlock[],
 

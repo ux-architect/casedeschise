@@ -169,21 +169,12 @@
 
         @media (max-width: 1400px) {
           height: 500px;
-          .col-title{
-            width:20%;
-            margin-left:8%;
-            margin-right:7%;
-          }
-
+          .col-title{ width:20%; margin-left:8%; margin-right:7%;}
             .col-members{
               width:65%;
-
-              .member{
-                width: 165px;
-                height: 247px;
-                margin: 10px;
+              .member{ width: 165px;height: 247px;margin: 10px; 
+                .member-image{height: 165px;}
               }
-              
             }
         }
 
@@ -225,13 +216,9 @@
 
            @media (max-width: 1400px){
             height: 760px;
-
-            .member{
-              width: 165px;
-              height: 247px;
-              margin: 10px;
+            .member{width: 165px; height: 247px; margin: 10px;
+              .member-image{height: 165px;}
             }
-            
           }
 
           @media (max-width: 1200px){

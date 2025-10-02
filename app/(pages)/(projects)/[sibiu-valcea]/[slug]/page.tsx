@@ -58,7 +58,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           </div>
 
           <div className="col col-2">{project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    </div>
-            <Link id="signup" className="btn btn-secondary z-index-0 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+            <Link id="signup" className="btn btn-secondary z-index-1 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </section>
 
         <section className="info border-bottom">
@@ -69,7 +69,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
         </section>
 
         <section id="details-and-map-section" className="info border-bottom">
-          <div className="col col-1"><PortableText value={project?.description} /></div>
+          <div className="col col-1 has-portable-text"><PortableText value={project?.description} /></div>
           <div className="col col-2">
               <div className="map-container">
                 <SeeMapSection page={city} customUrl={seeMapSecrionUrl} externalMapsUrl={mapsUrl}/>

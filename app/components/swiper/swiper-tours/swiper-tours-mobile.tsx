@@ -16,7 +16,10 @@ export default function Swiper_Tours_Mobile({ title = "", odd = false, tours, cl
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
-  const sliderDelay = generalInfo?.sliderInterval || 10000;
+
+  let sliderDelay = generalInfo?.sliderInterval || 10000;
+  if(process.env.NODE_ENV === 'development'){sliderDelay = 30000;}
+
   const sliderStartDelay = odd ? sliderDelay/2 : 0;
 
   const pathname = usePathname()
@@ -41,7 +44,8 @@ export default function Swiper_Tours_Mobile({ title = "", odd = false, tours, cl
           const title = parts[0];
           const subtitle = parts[1];
 
-          const cssClass_descriptionLines = subtitle ? "hide-long-text-5": "hide-long-text-6";
+          const cssClass_descriptionLines = "hide-long-text-5";
+          const soldOut = tour?.tags?.includes('soldOut') ? true : false;
 
           return(
             <SwiperSlide key={idx} className='clearfix'>
@@ -54,8 +58,9 @@ export default function Swiper_Tours_Mobile({ title = "", odd = false, tours, cl
                     <div className="col col-description diff-sibiu-valcea diff-background" diff-background="">
                       <h6 className='font-bold title font-safiro '>{title}</h6>
                       <h6 className='font-regular subtitle '>{subtitle}</h6>
+                      {soldOut && ( <span className="sold-out-label diff-sibiu-valcea">LOCURI OCUPATE</span>)}
 
-                      <span className={`${cssClass_descriptionLines} has-portable-text`}><PortableText value={tour?.description} /></span>
+                      <span className={`${cssClass_descriptionLines} has-portable-text p-line-height-15`}><PortableText value={tour?.description} /></span>
                       <Link className="btn btn-black prevent-default-highlight" href={`/${city}/tur/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     

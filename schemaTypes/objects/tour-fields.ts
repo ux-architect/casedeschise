@@ -57,6 +57,7 @@ export const tourFields = [
           { title: 'Fotografiatul permis', value: 'yesPhotos' },
           { title: 'Accesibil', value: 'accesible' },
           { title: 'Pentru copii', value: 'forChildren' },
+          { title: 'Locuri ocupate (nu se mai fac inscrieri)', value: 'soldOut' },
         ],
         layout: 'checkbox'
       }
@@ -72,6 +73,7 @@ export const tourFields = [
     defineField({
       name: "otherInfo",
       title: "Alte Info",
+      description: "Linkurile (ex: www.sicdesign.ro) trebuie explicit setate ca 'Link' (iconita link din dreapta - vor avea culoarea albastru/mov aici, altfel va fi doar 'text subliniat') Textul poate fi 'www.sicdesign.ro' dar linkul trebuie sa fie in forma http://www.sicdesign.ro",
       type: "array",
       of: [{type: "block"}],
     }),

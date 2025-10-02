@@ -16,7 +16,10 @@ export default function Swiper_Events_Mobile({ title = "", odd = false, events, 
 
   const generalInfo: SiteInfoType = useGlobalInfo();
   const year = generalInfo?.currentYear;
-  const sliderDelay = generalInfo?.sliderInterval || 10000;
+  
+  let sliderDelay = generalInfo?.sliderInterval || 10000;
+  if(process.env.NODE_ENV === 'development'){sliderDelay = 30000;}
+
   let sliderStartDelay = odd ? sliderDelay/2 : 0;
   sliderStartDelay += 1000 * Math.floor(Math.random() * 3);
 
@@ -43,6 +46,7 @@ export default function Swiper_Events_Mobile({ title = "", odd = false, events, 
           const subtitle = parts[1];
 
           const cssClass_descriptionLines = subtitle ? "hide-long-text-5": "hide-long-text-6";
+          const soldOut = event?.tags?.includes('soldOut') ? true : false;
 
           return(
             <SwiperSlide key={idx} className='clearfix'>
@@ -55,8 +59,9 @@ export default function Swiper_Events_Mobile({ title = "", odd = false, events, 
                     <div className="col col-description diff-sibiu-valcea diff-background" diff-background="">
                       <h6 className='font-bold title font-safiro '>{title}</h6>
                       <h6 className='font-regular subtitle '>{subtitle}</h6>
+                      {soldOut && ( <span className="sold-out-label diff-sibiu-valcea">LOCURI OCUPATE</span>)}
 
-                      <span className={`${cssClass_descriptionLines} has-portable-text`}><PortableText value={event?.description} /></span>
+                      <span className={`${cssClass_descriptionLines} has-portable-text p-line-height-15`}><PortableText value={event?.description} /></span>
                       <Link className="btn btn-black prevent-default-highlight" href={`/${city}/event/${slug}`} scroll={true} rel="noreferrer noopener">VEZI MAI MULT</Link>
                     </div>
                     

@@ -9,6 +9,7 @@ position:relative;
     color: #000 !important;
     padding:40px !important;
   }
+  .sold-out-label{right:40px !important;}
 
   .swiper-slide{ 
     height:400px;
@@ -29,6 +30,7 @@ position:relative;
     &.odd-offset{
       .col-description{float:left;}
       .col-image{float:right;}
+      .sold-out-label{ left: 40px !important; right: unset !important;}
 
       .pin{
         border-right: transparent;
