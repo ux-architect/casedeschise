@@ -30,7 +30,7 @@ export default function Swiper_Projects_Mobile({ title = "", odd = false, projec
   
   return (
 
-      <Swiper className={`${styles['namespace-container']} swiper-responsive swiper-responsive-mobile ${className}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={true} slidesPerView={1}
+      <Swiper className={`${styles['namespace-container']} swiper-responsive swiper-responsive-mobile ${className}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={projects.length > 1} slidesPerView={1}
         // custom start of autoplay to have an offset on multiple swipers
         onInit={(swiper) => { if (swiper.autoplay) { swiper?.autoplay?.stop(); setTimeout(() => {swiper?.autoplay?.start();}, sliderStartDelay)}}}
         >

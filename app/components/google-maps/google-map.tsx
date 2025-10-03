@@ -46,7 +46,7 @@ const OverlayMarker = (
   return (
     <OverlayViewF position={position} mapPaneName="overlayMouseTarget">
       <div className={`marker-container diff-sibiu-valcea diff-background ${cssClass_isPressed} ${cssClass_projectSelected} ${cssClass_zoom} ${fadeIn ? "fadeIn" : ""}`}>
-        <Link  href={`${linkPrefix}/${marker.slug}`}  scroll={true} className="title-link fill-container " rel="noreferrer noopener"
+        <Link  href={`${linkPrefix}/${marker.slug}`}  scroll={true} className="title-link fill-container " data-umami-click={`obiectiv (pe harta)(${city})`} rel="noreferrer noopener"
 
           // Just set visual pressed state
           onMouseDown={() => {setPressed(true); setTimeout(() => {setPressed(false); }, 300);}}

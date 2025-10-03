@@ -98,7 +98,7 @@ useEffect(() => {
 
       <>
         <div id="nav-mobile" className={`nav-mobile`} >
-          <div className={`main-nav-toggle ${cssClass_menuIsActive} diff-sibiu-valcea`} onClick={e => { e.preventDefault(); setNavOpen(navOpen => !navOpen); } }><i className="diff-sibiu-valcea diff-background">Menu</i></div>
+          <div className={`main-nav-toggle ${cssClass_menuIsActive} diff-sibiu-valcea`} onClick={e => { e.preventDefault(); setNavOpen(navOpen => !navOpen); } } data-umami-click={`mobile menu`}><i className="diff-sibiu-valcea diff-background">Menu</i></div>
         </div>
 
         <nav id="custom-responsive-nav" className={`${cssClass_navIsActive} ${cssClass_noHighlight} hide-while-still-loading clearfix float-left`}>

@@ -40,8 +40,8 @@
 
     @media (max-width: 1800px) {  .cover .page-title{ font-size: 300px; bottom: -62px;} }
     @media (max-width: 900px) {  .cover .page-title{ font-size: 200px; bottom: -42px; width:100%; padding-left:30px; } }
-
-
+    @media (max-width: 500px) {  .cover .page-title{ font-size: 130px; bottom: -27px; width:100%; padding-left:30px; } }
+    @media (max-width: 400px) {  .cover .page-title{ font-size: 100px; bottom: -21px; width:100%; padding-left:30px;} }
   }
 
 }
