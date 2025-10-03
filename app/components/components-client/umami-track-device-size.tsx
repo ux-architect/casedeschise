@@ -32,13 +32,13 @@ export const UmamiTrackDeviceSize: React.FC = () => {
     return 'Screen XXL'; // Larger than 2560px (ultra-wide / 5K / 8K screens)
   };
 
-  useEffect(() => {
+  useEffect(() => {debugger;
     if (typeof window !== 'undefined' && !sessionStorage.getItem('deviceWidthTracked')) {
       const screenWidth = window.innerWidth;
       const deviceInterval = getDeviceInterval(screenWidth);
 
-      if (typeof umami === 'function') {
-        umami(`Device width: ${deviceInterval}`);
+      if (typeof window !== "undefined" && (window as any).umami) {
+          (window as any).umami.track(`Device: ${deviceInterval}`);
       }
 
       console.log('Device width tracked:', screenWidth, 'Interval:', deviceInterval);
