@@ -32,19 +32,24 @@ export const UmamiTrackDeviceSize: React.FC = () => {
     return 'Screen XXL'; // Larger than 2560px (ultra-wide / 5K / 8K screens)
   };
 
-  useEffect(() => {debugger;
-    if (typeof window !== 'undefined' && !sessionStorage.getItem('deviceWidthTracked')) {
+ useEffect(() => {
+  if (typeof window !== 'undefined' && !sessionStorage.getItem('deviceWidthTracked')) {
+    // Wait 20 seconds before tracking
+    const timer = setTimeout(() => {
       const screenWidth = window.innerWidth;
       const deviceInterval = getDeviceInterval(screenWidth);
 
-      if (typeof window !== "undefined" && (window as any).umami) {
-          (window as any).umami.track(`Device: ${deviceInterval}`);
+      if ((window as any).umami) {
+        (window as any).umami.track(`Device: ${deviceInterval}`);
       }
 
-      console.log('Device width tracked:', screenWidth, 'Interval:', deviceInterval);
       sessionStorage.setItem('deviceWidthTracked', 'true');
-    }
-  }, []);
+    }, 20000); // 20000ms = 20 seconds
+
+    // Cleanup in case component unmounts before 20s
+    return () => clearTimeout(timer);
+  }
+}, []);
 
   return null;
 };
