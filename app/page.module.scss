@@ -63,7 +63,7 @@
 
     .logos{
       position:relative;
-      width: 330px;
+      width: 350px;
       top:15%;
       margin: 0 auto;
       .oar{
@@ -76,9 +76,9 @@
 
       }
       .timbru{
-        margin-left:50px;
+        margin-left:28px;
          float:left;
-          width:100px;
+          width:160px;
           height:60px;
           background-repeat: no-repeat;
           background-position: center;
@@ -154,8 +154,8 @@
           
           
 
-          a{margin-right:30px}
-          a:last-of-type{margin-right:0px}
+          a:nth-of-type(2){margin-left:45px} // oar-ro
+          a:nth-of-type(3){margin-left:15px} // timbru margin-left = h/2.2
 
           .oar{
               width:100px;
@@ -185,8 +185,8 @@
         padding-top:20px;
         .logos{
           width:260px;
-          a{margin-right:20px}
-          a:last-of-type{margin-right:0px}
+          a:nth-of-type(2){margin-left:28px}
+          a:nth-of-type(3){margin-left:12px}
 
           .oar{
               width:80px;

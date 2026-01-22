@@ -31,6 +31,8 @@ export type SiteInfoType = {
     logo: string,
     type: string,
     link:string,
+    logoWidth: string,
+    logoHeight: string,
   }[];
 
   socialMedia: {

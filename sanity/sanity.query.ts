@@ -34,7 +34,7 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     "mediaKitValcea": mediaKitValcea.asset->{url, originalFilename},
 
     team[]{name, role, city, "image": image.asset->url },
-    partners[]{name, "logo": logo.asset->url, type, link },
+    partners[]{name, "logo": logo.asset->url, type, link, "logoWidth": logo.asset->metadata.dimensions.width, "logoHeight": logo.asset->metadata.dimensions.height,},
     socialMedia[]{name, link, city },
 
     contactFields[]{city, address, contactEmail, contactPhone, contactEmailForms},

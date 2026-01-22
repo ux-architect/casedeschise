@@ -59,7 +59,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <CoverSection city={city as CityKey} />
       <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
       {/* <div style={{ height: '2800px' }} /> */}
-     
+     <PartnerSection page={city} />
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section1} title={title_s1}/></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section2} title={title_s2} odd={true} className="title-to-right"/></section>)}
