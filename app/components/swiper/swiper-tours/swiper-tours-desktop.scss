@@ -1,0 +1,46 @@
+.nsc--swiper-tours-desktop{
+position:relative;
+
+  .swiper-title{color: #000 !important;}
+  .col-description{
+    background-color:#fff !important; 
+    color: #000 !important;
+    padding:40px !important;
+  }
+  .sold-out-label{right:40px !important;}
+
+  .swiper-slide{ 
+    height:400px;
+
+    .pin{
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent !important;
+      border-bottom: 20px solid transparent !important;
+      border-right: 20px solid #ffffff;
+      right: calc(50% - 1px) !important;
+      left:unset !important;
+      background-color: transparent;
+      bottom: 50px !important;
+      border-radius: 0 !important;
+    }
+
+    &.odd-offset{
+      .col-description{float:left;}
+      .col-image{float:right;}
+      .sold-out-label{ left: 40px !important; right: unset !important;}
+
+      .pin{
+        border-right: transparent;
+        border-left: 20px solid #ffffff;
+        left: calc(50% - 1px) !important;
+        right:unset !important;
+      }
+
+    }
+
+    &:first-of-type .col-description{ border-top: 1px solid #999 !important;}
+    &:last-of-type .col-description{ border-bottom: 1px solid #999 !important;}
+  }
+    
+}

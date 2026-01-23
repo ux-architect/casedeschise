@@ -2,16 +2,13 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import styles from './swiper-tours-desktop.module.scss';
+import './swiper-tours-desktop.scss';
 
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay } from "swiper/modules";
 import Image from "next/image";
 import { TourType, SiteInfoType } from '@/types';
 import { PortableText } from 'next-sanity';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useGlobalInfo } from '@/app/context/global-info-context';
 
 
 // !!! not actually swiper - on desktop
@@ -24,7 +21,7 @@ export default function Swiper_Tours_Desktop({ tours, title = "", odd = false, c
   const city :string = isSibiu ? "sibiu": "valcea";
 
   return (
-    <div className={`${styles['namespace-container']} swiper-responsive swiper-responsive-desktop ${className}`}
+    <div className={`nsc--swiper-tours-desktop swiper-responsive swiper-responsive-desktop ${className}`}
       >
       {title && (<div className="swiper-title diff-sibiu-valcea diff-background">{title}</div>)}
 

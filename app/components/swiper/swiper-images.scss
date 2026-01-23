@@ -1,0 +1,23 @@
+.nsc--swiper-images{
+  height: 100%;
+  width: 100%;
+  // padding-bottom: 100px;
+
+    .swiper-pagination {
+      bottom:60px !important;
+          .swiper-pagination-bullet{
+              
+              width:16px;
+              height:16px;
+              background:  #fff;
+              opacity:1;
+
+              &.swiper-pagination-bullet-active{
+                background:  #ff0db9;
+                background:  #cefb08;;
+              }
+          }
+
+    }
+        
+}

@@ -5,7 +5,7 @@ import { sendContactEmail } from '@/app/actions/sendContactEmail'
 import Image from "next/image";
 import { SiteInfoType } from '@/types';
 import { useGlobalInfo } from '@/app/context/global-info-context';
-import styles from './contact-form.module.scss';
+import './contact-form.scss';
 
 export function ContactForm() {
   
@@ -28,7 +28,7 @@ export function ContactForm() {
   }
 
   return (
-    <div id="devino-gazda" className={`${styles['namespace-container']} clearfix float-left w-100`}>
+    <div id="devino-gazda" className={`nsc--contact-form clearfix float-left w-100`}>
       <section className={` contact-section position-relative float-left`}>
 
         <Image src={generalInfo?.contactFormImage?.image || "/public/should-not-happen.jpg"} className="object-cover overlay"  loading="lazy" alt={`contact form background`} fill />

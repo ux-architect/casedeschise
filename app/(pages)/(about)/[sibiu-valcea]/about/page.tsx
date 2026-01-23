@@ -1,5 +1,5 @@
 import PartnerSection from '@/app/components/components-server/partner-section';
-import styles from './page.module.scss';
+import './page.scss';
 
 import MissionSection from "@/app/components/components-server/mission-section";
 import FooterSection from '@/app/components/components-server/footer-section';

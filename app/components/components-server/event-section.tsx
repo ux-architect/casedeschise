@@ -1,6 +1,6 @@
 
 
-import styles from './event-section.module.scss';
+import './event-section.scss';
 import { EventType, SiteInfoType } from "@/types";
 import Image from "next/image";
 import { PortableText } from 'next-sanity';
@@ -19,7 +19,7 @@ export default async function EventSection({ className="",sectionName = "", even
 
   return (
 
-    <div className={`${styles['namespace-container']} `}>
+    <div id="nsc--event-section">
       <div className={`category-title diff-sibiu-valcea ${className}`}>{sectionName}</div>
       <section className={`event-section clearfix ${className}`}>
         {events?.map((event, idx) => {

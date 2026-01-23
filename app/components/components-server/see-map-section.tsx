@@ -1,5 +1,5 @@
 
-import styles from './see-map-section.module.scss';
+import './see-map-section.scss';
 import Image from "next/image";
 import Link from 'next/link';
 
@@ -13,7 +13,7 @@ let linkToMap = customUrl && customUrl.trim() !== "" ?  customUrl : linkPrefix+ 
 
   return (
 
-    <div  className={`${styles['namespace-container']} clearfix ${className}`}>
+    <div  className={`nsc--see-map-section clearfix ${className}`}>
 
       <section className={`see-map-section clearfix fill-container small-version `}>
             <Image src={`${url_harta}`} className="object-cover"  loading="lazy" fill sizes="100vw" alt="sibiu-cover"/>

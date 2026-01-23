@@ -1,11 +1,11 @@
 import { getFaqList } from "@/sanity/sanity.query";
 import { FaqType } from "@/types";
-import styles from './page.module.scss';
+import './page.scss';
 import Image from "next/image";
 import ExpandSection from "@/app/components/components-ui/expand-section";
 import PartnerSection from "@/app/components/components-server/partner-section";
 import FooterSection from "@/app/components/components-server/footer-section";
-import { ContactForm } from "@/app/components/contact-form/contact-form";
+
 
 
 export default async function Faq({ params}: {params: Promise<{ year:string, "sibiu-valcea": string }>;}) {
@@ -14,7 +14,7 @@ export default async function Faq({ params}: {params: Promise<{ year:string, "si
   const faqList : FaqType[] = await getFaqList();
 
   return(
-    <main className={`${styles['namespace-container']} `} data-no-highlight-on-nav>
+    <main className={`nsc--page-faq`} data-no-highlight-on-nav>
 
       <div className="cover">
         <div className="cover-image">

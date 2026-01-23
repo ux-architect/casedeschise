@@ -46,7 +46,7 @@ const markers = projects
 
 
   return (
-    <div className={`${styles['namespace-container']}`} >
+    <div className={`${styles['pages-archive-2004-map']}`} >
       <ProvideJS_GoogleMaps>
         <GoogleMapComponent markers={markers} />
       </ProvideJS_GoogleMaps>

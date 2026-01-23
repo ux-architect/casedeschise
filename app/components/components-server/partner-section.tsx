@@ -1,6 +1,6 @@
 
 
-import styles from './partner-section.module.scss';
+import './partner-section.scss';
 import { SiteInfoType } from "@/types";
 import Image from "next/image";
 import Link from 'next/link';
@@ -15,7 +15,7 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
   const partnersMedia = generalInfo?.partners?.filter((p: { type: string; }) => p.type === "media-partner");
   const sponsors = generalInfo?.partners?.filter((p: { type: string; }) => p.type === "sponsor");
   return (
-    <div className={`${styles['namespace-container']} diff-sibiu-valcea diff-background`}>
+    <div className={`nsc--partner-section diff-sibiu-valcea diff-background`}>
           
           <section id="initiator" className={'partner-section '}>
             <div className="size-container clearfix">

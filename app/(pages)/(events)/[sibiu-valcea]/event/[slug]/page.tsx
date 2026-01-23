@@ -1,12 +1,11 @@
 
 
-import styles from './page.module.scss';
+import './page.scss';
 import { getEvent, getEvents, getGeneralInfo, getProjects } from "@/sanity/sanity.query";
 import { EventType, SiteInfoType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-images";
 import { PortableText } from "next-sanity";
 
-import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
 import FaqSection from '@/app/components/components-server/faq-section';
 import FooterSection from '@/app/components/components-server/footer-section';
@@ -35,7 +34,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
   const text_soldOut = event?.tags?.includes('soldOut') ? "LOCURI OCUPATE" : "ÎNSCRIE-TE";
   return (
     <>
-      <main className={`${styles['namespace-container']} common-page-structure`}>
+      <main id="nsc--sibiu-valcea-event" className={`common-page-structure`}>
 
         <section className="swiper-section">
           <SwiperComponent images={event?.images} projectName={event?.name} />

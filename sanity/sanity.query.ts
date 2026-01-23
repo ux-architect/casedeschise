@@ -46,8 +46,7 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
     currentYear,
     sliderInterval,
     revalidateInterval,
-  }`,{},
-  {next: { revalidate: revalidateInterval }, }); // 1-hour ISR cache
+  }`,{});
 }
 
 export async function getFaqList(): Promise<FaqType[]> {
@@ -56,8 +55,7 @@ export async function getFaqList(): Promise<FaqType[]> {
       _id,
       faqList[]{_id, question, answer, city}
     }`,
-    {},
-    { next: { revalidate: revalidateInterval } }
+    {}
   );
 
   return result?.faqList || [];
@@ -82,7 +80,7 @@ export async function getProject(slug: string) {
       description,
       otherInfo,
     }`,
-    { slug },{next: { revalidate: revalidateInterval }, }
+    { slug }
   );
 }
 
@@ -108,7 +106,6 @@ export async function getProjects(projectType: string, year?: string) {
       }
     `,
     { projectType, year: year ?? null },
-    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -130,7 +127,6 @@ export async function getTour(slug: string) {
       otherInfo,
     }`,
     { slug },
-    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -152,7 +148,6 @@ export async function getTours(tourType: string, year?: string) {
       otherInfo,
     }`,
     { tourType, year: year ?? null },
-    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -175,7 +170,6 @@ export async function getEvent(slug: string) {
       otherInfo,
     }`,
     { slug },
-    {next: { revalidate: revalidateInterval }, }
   );
 }
 
@@ -198,6 +192,5 @@ export async function getEvents(eventType: string, year?: string) {
       otherInfo,
     }`,
     { eventType, year: year ?? null },
-    {next: { revalidate: revalidateInterval }, }
   );
 }

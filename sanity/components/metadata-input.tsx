@@ -1,9 +1,8 @@
 // sanity/components/metadata-input.tsx
 
-import React from "react"
 import { ObjectInputProps, set, PatchEvent } from "sanity"
 import { Flex, Box, Label, Stack } from "@sanity/ui"
-import styles from './metadata-input.module.scss';
+import './metadata-input.scss';
 
 interface MetadataValue {
   year?: string
@@ -27,7 +26,7 @@ export default function HorizontalMetadataInput(
   }
 
   return (
-    <Flex gap={3} className={`${styles['namespace-container']} `}style={{ maxWidth: "100%", marginBottom: 8 }}>
+    <Flex gap={3} className={`nsc--metadata-input`} style={{ maxWidth: "100%", marginBottom: 8 }}>
 
       {/* YEAR */}
       <Box flex={1} className="col col-1">

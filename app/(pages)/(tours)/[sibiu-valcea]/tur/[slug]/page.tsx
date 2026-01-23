@@ -1,6 +1,6 @@
 
 
-import styles from './page.module.scss';
+import './page.scss';
 import { getEvents, getGeneralInfo, getTour, getTours } from "@/sanity/sanity.query";
 import { SiteInfoType, TourType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-images";
@@ -41,7 +41,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
   return (
     <>
-      <main className={`${styles['namespace-container']} common-page-structure`}>
+      <main id="nsc--sibiu-valcea-tour" className={`common-page-structure`}>
 
         <section className="swiper-section">
           <SwiperComponent images={tour?.images} projectName={tour?.name} />

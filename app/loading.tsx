@@ -1,8 +1,8 @@
-import styles from './loading.module.scss';
+import './loading.scss';
 
 export default function Loading() {
   return (
-    <div className={`${styles['namespace-container']} `}>
+    <div className={`nsc--loading-screen`}>
     </div>
   )
 }

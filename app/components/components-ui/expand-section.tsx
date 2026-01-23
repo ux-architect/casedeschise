@@ -1,6 +1,6 @@
 'use client'
 
-import styles from './expand-section.module.scss';
+import './expand-section.scss';
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
 
@@ -18,7 +18,7 @@ export default function ExpandSection ({children, className = "" }: { children: 
   const cssClass_open: string  = open? "open" : "";
   return (
 
-    <div className={`${styles['namespace-container']} `} >
+    <div className={`nsc--expand-section`} >
       <div ref={ref} className={`faq-item ${className} ${cssClass_open}`} onClick={() => {  setOpen(v => { return !v})}}>
         {children}
       </div>

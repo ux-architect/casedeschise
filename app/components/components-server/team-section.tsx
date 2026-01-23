@@ -1,6 +1,6 @@
 
 
-import styles from './team-section.module.scss';
+import './team-section.scss';
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 import Image from "next/image";
@@ -16,7 +16,7 @@ export default async function TeamSection({ page = 'sibiu', className = '', id =
   
   return (
 
-      <div id={id} className={`${styles['namespace-container']} clearfix` }>
+      <div id={id} className={`nsc--team-section clearfix` }>
 
           <div  className={`team-section-container clearfix ${cssClass_teamSize} ${className}`}>
 

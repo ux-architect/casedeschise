@@ -1,8 +1,7 @@
 // sanity/components/contact-input.tsx
-import React from "react"
 import { ObjectInputProps, set, PatchEvent } from "sanity"
 import { Flex, Box, Label, Stack, Text } from "@sanity/ui"
-import styles from "./contact-oar-input.module.scss"
+import "./contact-oar-input.scss"
 
 // The value shape for your object
 interface ContactFieldsValue {
@@ -30,7 +29,7 @@ export default function ContactInput(
   const handleChange = (fieldName: keyof ContactFieldsValue, fieldValue: string) => {onChange(PatchEvent.from(set(fieldValue, [fieldName])))}
 
   return (
-    <Flex className={styles["namespace-container"]} 
+    <Flex className={'nsc--contact-oar-input'} 
     >
       <Text size={2} weight="semibold">{String(value.city)}</Text>
 

@@ -1,11 +1,10 @@
 
 
-import styles from './page.module.scss';
+import './page.scss';
 import { getGeneralInfo, getProject, getProjects } from "@/sanity/sanity.query";
 import { ProjectType, SiteInfoType } from "@/types";
 import SwiperComponent from "@/app/components/swiper/swiper-images";
 import { PortableText } from "next-sanity";
-import { ContactForm } from '@/app/components/contact-form/contact-form';
 import SeeMapSection from '@/app/components/components-server/see-map-section';
 import PartnerSection from '@/app/components/components-server/partner-section';
 import FooterSection from '@/app/components/components-server/footer-section';
@@ -43,7 +42,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
   return (
     <>
-      <main className={`${styles['namespace-container']} common-page-structure`}>
+      <main id="nsc--projects-sibiu-valcea" className={`common-page-structure`}>
 
         <section className="swiper-section">
           <SwiperComponent images={project?.images} projectName={project?.name} />

@@ -1,6 +1,6 @@
 
 
-import styles from './cover-section.module.scss';
+import './cover-section.scss';
 import Image from "next/image";
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
@@ -21,7 +21,7 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
   
   return (
 
-    <div className={`${styles['cover-section']} overlay`} >
+    <div id="nsc--cover-section" className={`overlay`} >
       
         {/* background image */}
         <Image src={`${url_cover}`} className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>

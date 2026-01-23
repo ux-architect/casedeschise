@@ -1,7 +1,7 @@
-import React from "react";
+
 import { ObjectInputProps, set, PatchEvent } from "sanity";
 import { Flex, Box, Label, Stack, Text, Card } from "@sanity/ui";
-import styles from "./external-form-input.module.scss";
+import "./external-form-input.scss";
 
 interface ExternalFormLinksValue {
   visitFormExternalUrl?: string;
@@ -34,7 +34,7 @@ const fields: (keyof ExternalFormLinksValue)[] = [
 ];
 
 return (
-<Card  border padding={4} radius={2} className={styles["namespace-container"]}>
+<Card  border padding={4} radius={2} className={'nsc--external-form-input'}>
 
     <Flex direction="column">
       {fields.map(fieldName => {

@@ -1,0 +1,32 @@
+.nsc--swiper-events-desktop {
+
+  .swiper-title{background-color: #000 !important;}
+  .col-description{color:#000000 !important;}
+
+  .swiper-slide{ 
+    
+    .pin{
+      width: 0;
+      height: 0;
+      border-top: 20px solid transparent !important;
+      border-bottom: 20px solid transparent !important;
+      border-right: 20px solid #000000;
+      right: calc(50% - 1px) !important;
+      left:unset !important;
+      background-color: transparent;
+      bottom: 50px !important;
+      border-radius: 0 !important;
+    }
+
+    &.odd-offset{
+      .pin{
+        border-right: transparent;
+        border-left: 20px solid #000000;
+        left: calc(50% - 1px) !important;
+        right:unset !important;
+      }
+
+    }
+  }
+   
+}

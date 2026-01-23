@@ -1,7 +1,7 @@
-import React from "react"
+
 import { ObjectInputProps, set, PatchEvent } from "sanity"
 import { Flex, Box, Label, Stack, Text } from "@sanity/ui"
-import styles from "./section-names-input.module.scss"
+import "./section-names-input.scss"
 
 
 // The value shape for your object
@@ -43,7 +43,7 @@ onChange(PatchEvent.from(set(fieldValue, [fieldName])))
 
 
 return (
-<Flex className={styles["namespace-container"]} >
+<Flex className={'nsc--section-names-input'} >
   {/* YEAR */}
   <Label className="label-large" style={{ marginTop: 0 }}>{getFieldMeta("year").title}</Label>
   <Box className="box">

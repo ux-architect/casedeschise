@@ -3,7 +3,7 @@
 import React, { useMemo, useState, useRef, useContext, useEffect } from "react";
 import { GoogleMap, OverlayViewF } from "@react-google-maps/api";
 import Image from "next/image";
-import styles from "./google-map.module.scss";
+import "./google-map.scss";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -99,7 +99,7 @@ const GoogleMapComponent: React.FC<{ markers?: MarkerType[], center?:{ lat: numb
   }, [selectedMarker]);
 
   return (
-    <div className={styles["namespace-container"]} data-no-highlight-on-nav>
+    <div className={'nsc--google-map'} data-no-highlight-on-nav>
       <GoogleMap
         mapContainerStyle={{width: "100%",height: "100%",}}
         center={mapCenter}

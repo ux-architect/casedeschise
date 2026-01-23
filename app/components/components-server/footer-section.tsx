@@ -2,7 +2,7 @@
 
 import { SiteInfoType } from '@/types';
 import SocialMediaSection from '../components-ui/social-media-section';
-import styles from './footer-section.module.scss';
+import './footer-section.scss';
 import Link from 'next/link';
 import { getGeneralInfo } from '@/sanity/sanity.query';
 import DownloadLink from '../components-ui/download-link';
@@ -20,7 +20,7 @@ const generalInfo: SiteInfoType = await getGeneralInfo();
 
 
   return (
-    <div  className={`${styles['namespace-container']} clearfix`}>
+    <div  id="nsc--footer-section" className={`clearfix`}>
           <section id="contact" className = {`${'footer-section'} clearfix`}>
             
             <div className="col col-1">

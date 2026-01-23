@@ -1,4 +1,4 @@
-import styles from './tour-section.module.scss';
+import './tour-section.scss';
 import { SiteInfoType, TourType } from "@/types";
 import Image from "next/image";
 import { PortableText } from 'next-sanity';
@@ -22,7 +22,7 @@ export default async function ToursSection({ className = '', id = '', tours, pag
 
   return (
 
-    <div id={id} className={`${styles['namespace-container']} ${className} clearfix`}>
+    <div id={id} className={`nsc--tour-section ${className} clearfix`}>
 
       <section className={`tour-section clearfix ${cssClass_justOneTour}`}>
         {tours?.map((tour, idx) => {

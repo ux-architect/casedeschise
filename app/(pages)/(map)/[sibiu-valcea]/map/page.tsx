@@ -1,6 +1,6 @@
 import GoogleMapComponent from "@/app/components/google-maps/google-map";
 import ProvideJS_GoogleMaps from "@/app/components/google-maps/google-map-provider";
-import styles from './page.module.scss';
+import './page.scss';
 import { getGeneralInfo, getProjects } from "@/sanity/sanity.query";
 import { ProjectType, SiteInfoType } from "@/types";
 
@@ -56,7 +56,7 @@ export default async function Map(
 
 
   return (
-    <div className={`${styles['namespace-container']}`} >
+    <div className={`nsc--sibiu-valcea-map`} >
         <ProvideJS_GoogleMaps>
           {/*optionaly pass in center only if mapCenter is constrocted from the query string*/}
           <GoogleMapComponent markers={markers} {...(mapCenter ? { center: mapCenter } : {})} />

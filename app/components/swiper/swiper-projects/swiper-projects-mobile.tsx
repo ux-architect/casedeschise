@@ -2,7 +2,7 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
-import styles from './swiper-projects-mobile.module.scss';
+import './swiper-projects-mobile.scss';
 import Image from "next/image";
 import Link from 'next/link';
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -30,7 +30,7 @@ export default function Swiper_Projects_Mobile({ title = "", odd = false, projec
   
   return (
 
-      <Swiper className={`${styles['namespace-container']} swiper-responsive swiper-responsive-mobile ${className}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={projects.length > 1} slidesPerView={1}
+      <Swiper className={`nsc--swiper-projects-mobile swiper-responsive swiper-responsive-mobile ${className}`} modules={[Autoplay, Pagination]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} pagination={{ clickable: true }} loop={projects.length > 1} slidesPerView={1}
         // custom start of autoplay to have an offset on multiple swipers
         onInit={(swiper) => { if (swiper.autoplay) { swiper?.autoplay?.stop(); setTimeout(() => {swiper?.autoplay?.start();}, sliderStartDelay)}}}
         >

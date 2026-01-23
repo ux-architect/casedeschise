@@ -1,10 +1,8 @@
 'use client'
 
 import { SiteInfoType } from '@/types';
-import styles from './social-media-section.module.scss';
+import './social-media-section.scss';
 import Link from 'next/link';
-
-
 
 
 export default function SocialMediaSection ({ generalInfo, city, className = ''}: { generalInfo:SiteInfoType, city:string, className?:string }){
@@ -14,7 +12,7 @@ export default function SocialMediaSection ({ generalInfo, city, className = ''}
   var link_Instagram = generalInfo?.socialMedia.find(item => item.city === city && item.name === "instagram")?.link;
   
   return (
-    <div className={`${styles['namespace-container']} ${className} hide-while-still-loading`}>
+    <div id="nsc--social-media-section" className={`${className} hide-while-still-loading`}>
          <div className="social-media-section clearfix">
 
             {link_Facebook ? (<Link className="social-icon" href={`${link_Facebook}`} data-umami-click={`facebook link`} target="_blank">

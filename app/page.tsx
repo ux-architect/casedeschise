@@ -3,7 +3,7 @@
 import { urlFor } from "@/sanity/sanity.client";
 import { getGeneralInfo} from "@/sanity/sanity.query";
 import type { SiteInfoType } from "@/types";
-import styles from './page.module.scss';
+import './page.scss';
 import Link from "next/link";
 import Image from "next/image";
 import DownloadLink from "./components/components-ui/download-link";
@@ -15,7 +15,7 @@ export default async function Home() {
   let url_cover_valcea = generalInfo?.siteEntryCover?.valcea?.url ? urlFor(generalInfo?.siteEntryCover?.valcea?.url ).width(960).height(1080).auto('format').quality(99) : null;
 
   return (
-    <div className = {`${styles['namespace-container']} clearfix hide-while-still-loading`}>
+    <div id="nsc--page-index" className = {`clearfix hide-while-still-loading`}>
 
         <div className="section section-logos hide-on-desktop"  aria-label={'Sibiu'}>
             <div className="logos clearfix ">

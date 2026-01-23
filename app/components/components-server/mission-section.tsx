@@ -1,6 +1,6 @@
 
 
-import styles from './mission-section.module.scss';
+import './mission-section.scss';
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
 
@@ -14,7 +14,7 @@ export default async function MissionSection({className = '', page = 'sibiu'}: {
 
   const maskUrl = generalInfo?.currentYearImage?.image ? urlFor(generalInfo?.currentYearImage?.image ).width(500).url() : "";
   return (
-    <div  className={`${styles['namespace-container']} ${className} clearfix`}>
+    <div  className={`nsc--mission-section ${className} clearfix`}>
 
           <section id="despre" className={'mission-section'}>
             <div className="col col-2 hide-on-desktop"><div className='masked-container h-100 w-100 diff-sibiu-valcea diff-background' style={{ "--mask-url": `url(${maskUrl})` } as React.CSSProperties}></div></div>

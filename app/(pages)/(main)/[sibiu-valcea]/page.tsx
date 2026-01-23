@@ -1,11 +1,8 @@
 import { getEvents, getGeneralInfo, getProjects, getTours } from "@/sanity/sanity.query";
 import CoverSection from "@/app/components/components-server/cover-section";
 import TeamSection from "@/app/components/components-server/team-section";
-import styles from './page.module.scss';
+import './page.scss';
 import MissionSection from "@/app/components/components-server/mission-section";
-import { ContactForm } from "@/app/components/contact-form/contact-form";
-import ToursSection from "@/app/components/components-server/tour-section";
-import EventSection from "@/app/components/components-server/event-section";
 import SeeMapSection from "@/app/components/components-server/see-map-section";
 import { SiteInfoType, CityKey, TourType, ProjectType } from "@/types";
 import PartnerSection from "@/app/components/components-server/partner-section";
@@ -55,11 +52,10 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
   const title_s4 = city === "sibiu" ? sectionNames?.s4_sibiu : sectionNames?.s4_valcea;
 
   return (
-    <main className={`${styles['page-container']} `} data-no-highlight-on-nav>
+    <main id="nsc--main-sibiu-valcea" data-no-highlight-on-nav>
       <CoverSection city={city as CityKey} />
       <SocialMediaSection city={city} generalInfo={generalInfo}></SocialMediaSection>
-      {/* <div style={{ height: '2800px' }} /> */}
-     <PartnerSection page={city} />
+
       <div id="obiective" className="section-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea diff-background">Obiective</div>
       {projects_section1.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section1} title={title_s1}/></section>)}
       {projects_section2.length > 0 && (<section className="swiper-section"><Swiper_Projects projects={projects_section2} title={title_s2} odd={true} className="title-to-right"/></section>)}

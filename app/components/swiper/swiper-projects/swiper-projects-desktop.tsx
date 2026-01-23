@@ -2,7 +2,7 @@
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
-import styles from './swiper-projects-desktop.module.scss';
+import './swiper-projects-desktop.scss';
 
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay } from "swiper/modules";
@@ -31,7 +31,7 @@ export default function Swiper_Projects_Desktop({ projects, title = "", odd = fa
   sliderStartDelay += 1000 * Math.floor(Math.random() * 3);
 
   return (
-    <Swiper className={`${styles['namespace-container']} swiper-responsive swiper-responsive-desktop ${className}`} modules={[Autoplay]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} loop={projects.length > 2} slidesPerView={2}
+    <Swiper className={`nsc--swiper-projects-desktop swiper-responsive swiper-responsive-desktop ${className}`} modules={[Autoplay]} autoplay={{ delay: sliderDelay, disableOnInteraction: false }} loop={projects.length > 2} slidesPerView={2}
       // custom start of autoplay to have an offset on multiple swipers
       onInit={(swiper) => { if (swiper.autoplay) { swiper?.autoplay?.stop(); setTimeout(() => {swiper?.autoplay?.start();}, sliderStartDelay)}}}
       >
