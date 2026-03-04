@@ -7,7 +7,7 @@ export default defineType({
   name: 'tourMetadata',
   title: 'Ordonare',
   type: 'object',
-  description: "Fără 'An' specificat, turul nu va apărea pe website (Neîncadrate).",
+  description: "",
   fields: [
     {
       name: 'year',

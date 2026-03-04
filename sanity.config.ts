@@ -4,7 +4,7 @@ import {defineConfig} from 'sanity'
 import {structureTool} from 'sanity/structure'
 import {visionTool} from '@sanity/vision'
 import {schemaTypes} from './schemaTypes'
-import deskStructure from './sanity.config.deskStructure'
+import deskStructure from './sanity.config.explicit-deskStructure'
 import { media } from 'sanity-plugin-media'
 
 export default defineConfig({

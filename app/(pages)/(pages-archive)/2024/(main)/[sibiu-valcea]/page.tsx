@@ -79,7 +79,7 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
       <PartnerSection page={city} />
-      {/* <div className="clearfix hide-on-mobile"><ContactForm/></div> */}
+      
       <FooterSection city={city}/>
       
     </main>

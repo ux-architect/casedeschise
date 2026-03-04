@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import { sendContactEmail } from '@/app/actions/sendContactEmail'
+import { signupSubmit } from '@/app/actions/signupSubmit'
 import Image from "next/image";
 import { SiteInfoType } from '@/types';
 import { useGlobalInfo } from '@/app/context/global-info-context';
@@ -16,7 +16,7 @@ export function ContactForm() {
 
   const handleSubmit = async (formData: FormData) => {
     setStatus('loading')
-    const result = await sendContactEmail(formData)
+    const result = await signupSubmit(formData)
 
     if (result.success) {
       setStatus('success')

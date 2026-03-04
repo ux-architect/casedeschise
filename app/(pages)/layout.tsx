@@ -1,16 +1,12 @@
 
-
 import Navbar from "../components/components-client/navbar";
 import Nav_Sibiu_Valcea from "../components/components-server/nav-sibiu-valcea";
 import { SiteInfoType } from "@/types";
 import { getGeneralInfo } from "@/sanity/sanity.query";
-import ProvideJS_GoogleMaps from "../components/google-maps/google-map-provider";
-import AddCityClassToBody from "../components/components-client/add-city-class-to-body";
-import AddMobileClassToBody from "../components/components-client/add-mobile-class-to-body";
 import { GlobalInfoProvider } from "../context/global-info-provider";
 import AddScrolledClassToBody from "../components/components-client/add-scrolled-class-to-body";
 
-
+export const revalidate = 60; // seconds
 
 export default async function MainLayout({children}: {children: React.ReactNode}) {
 

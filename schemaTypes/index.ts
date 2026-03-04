@@ -19,12 +19,15 @@ import toursValcea from "./tours-valcea";
 import eventSibiu from "./event-sibiu";
 import eventValcea from "./event-valcea";
 
+import signupsSibiu from "./signup-entries";
+
 
 export const schemaTypes = [generalInfo, duoImage, contactFields, externalFormLinks, faq,
                                 metadata, tourMetadata, eventMetadata,
                                 projectsSibiu, projectsValcea, 
                                 toursSibiu, toursValcea,
                                 eventSibiu, eventValcea, 
+                                signupsSibiu
                             ]
 
 

@@ -11,7 +11,8 @@ const DOCUMENT_SCHEMAS_GROUPED_BY_YEAR = [
   'tours-sibiu',
   'tours-valcea',
   'events-sibiu',
-  'events-valcea'
+  'events-valcea',
+  'signups-sibiu'
 ]
 
 const SCHEMAS_WITH_SECTION = [

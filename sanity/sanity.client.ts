@@ -3,11 +3,11 @@ import {createImageUrlBuilder}  from '@sanity/image-url'
 import type { SanityImageSource } from "@sanity/image-url";
 
 const config: ClientConfig = {
-  // projectId: "x30qpt6x",
   projectId: "4sefwx29", //ux.studio.sibiu
   dataset: "production",
   apiVersion: "2025-07-14",
   useCdn: false,
+  token: process.env.SANITY_EDIT_DATASET_TOKEN, // Added token for authentication
 };
 
 const client = createClient(config);
