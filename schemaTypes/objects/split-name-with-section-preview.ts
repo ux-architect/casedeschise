@@ -2,7 +2,7 @@ export const splitNameWithSectionPreview = {
   select: {
     title: 'name',
     section: 'metadata.section',
-    media: 'profileImage', // optional – remove or change if needed
+    media: 'profileImage',
   },
   prepare(selection: { title?: string; section?: string; media?: any }) {
     let { title = 'Fără titlu', section, media } = selection;

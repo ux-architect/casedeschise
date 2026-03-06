@@ -51,19 +51,27 @@ function year2026(S: StructureBuilder) {
       S.list().title('2026')
         .items([
           yearSchema(S, '2026', 'projects-sibiu'),
-          yearSchema(S, '2026', 'projects-valcea'),
           yearSchema(S, '2026', 'tours-sibiu'),
+          yearSchema(S, '2026', 'events-sibiu'),S.divider(),
+
+          yearSchema(S, '2026', 'projects-valcea'),
           yearSchema(S, '2026', 'tours-valcea'),
-          yearSchema(S, '2026', 'events-sibiu'),
           yearSchema(S, '2026', 'events-valcea'),
-          // yearSchema(S, '2026', 'signups-sibiu'),
-          // S.listItem()
-          //   .title('Sumar înscrieri Sibiu (copy/paste)')
-          //   .child(
-          //     S.component()
-          //       .title('Sumar înscrieri Sibiu')
-          //       .component(SignupsSibiuSummary)
-          //   ),
+          
+          S.divider(),
+          
+          S.listItem().title('Formular înscrieri Sibiu (2026)')
+            .child(S.document().title('înscrieri Sibiu').documentId('formular-sibiu-2026').schemaType('signup-form-sibiu')),
+
+          S.listItem().title('Formular înscrieri Valcea (2026)')
+            .child(S.document().title('înscrieri Valcea').documentId('formular-valcea-2026').schemaType('signup-form-valcea')),
+
+          S.divider(),
+          yearSchema(S, '2026', 'signups-sibiu'),
+          yearSchema(S, '2026', 'signups-valcea'),
+
+          // S.listItem().title('Sumar înscrieri Sibiu (copy/paste)')
+          //   .child(S.component().title('Sumar înscrieri Sibiu').component(SignupsSibiuSummary)),
         ])
     )
 }
@@ -116,23 +124,23 @@ export default function deskStructure(S: StructureBuilder) {
       S.divider(),
 
       // ─── Default document types (filtered) ──────────────────────
-      ...S.documentTypeListItems()
-        .filter(item =>
-          ![
-            'projects-sibiu',
-            'projects-valcea',
-            'tours-sibiu',
-            'tours-valcea',
-            'events-sibiu',
-            'events-valcea',
-            'signups-sibiu',
-          ].includes(item.getId() as string)
-        )
-        .filter(item => item.getId() !== 'media.tag')
-        .filter(item => item.getId() !== 'general-info')
-        .filter(item => item.getId() !== 'faq'),
+      // ...S.documentTypeListItems()
+      //   .filter(item =>
+      //     ![
+      //       'projects-sibiu',
+      //       'projects-valcea',
+      //       'tours-sibiu',
+      //       'tours-valcea',
+      //       'events-sibiu',
+      //       'events-valcea',
+      //       'signups-sibiu',
+      //     ].includes(item.getId() as string)
+      //   )
+      //   .filter(item => item.getId() !== 'media.tag')
+      //   .filter(item => item.getId() !== 'general-info')
+      //   .filter(item => item.getId() !== 'faq'),
 
-      S.divider(),
+      // S.divider(),
 
       // ─── Years ──────────────────────────────────────────────────
       year2024(S),

@@ -1,8 +1,9 @@
 import { groq } from "next-sanity";
 import client from "./sanity.client";
-import { FaqType, SiteInfoType } from "@/types";
+import { FaqType, SignupFormType, SiteInfoType } from "@/types";
+import { unstable_cache } from "next/cache";
 
-const revalidateInterval = 10; // ms
+const revalidateInterval = 3600; // seconds
 
 export async function getGeneralInfo(): Promise<SiteInfoType> {
   return client.fetch(
@@ -49,7 +50,8 @@ export async function getGeneralInfo(): Promise<SiteInfoType> {
   }`,{});
 }
 
-export async function getFaqList(): Promise<FaqType[]> {
+export async function getFaqList2(): Promise<FaqType[]> {
+  
   const result = await client.fetch(
     groq`*[_type == "faq"][0]{
       _id,
@@ -60,6 +62,20 @@ export async function getFaqList(): Promise<FaqType[]> {
 
   return result?.faqList || [];
 }
+
+export const getFaqList  = unstable_cache(
+  async (): Promise<FaqType[]> => {
+    const result = await client.fetch( groq`*[_type == "faq"][0]{
+      _id,
+      faqList[]{_id, question, answer, city}
+    }`)
+
+    return result?.faqList || [];
+  },
+  ["faqList"],
+  { revalidate: revalidateInterval, tags: ["faqList"]  }
+)
+
 
 export async function getProject(slug: string) {
   return client.fetch(
@@ -192,5 +208,22 @@ export async function getEvents(eventType: string, year?: string) {
       otherInfo,
     }`,
     { eventType, year: year ?? null },
+  );
+}
+
+export async function getSignupForm(eventType: string): Promise<SignupFormType> {
+
+  return client.fetch(
+    groq`*[_type == $eventType][0]{
+      _id,
+      title,
+      s1_title,
+      s1_projects[]{ "image": image.asset->url, name, code, info,},
+      s2_title,
+      s2_projects[]{ "image": image.asset->url, name, code, info,},
+      s3_title,
+      s3_projects[]{ "image": image.asset->url, name, code, info,},
+    }`,
+    { eventType },
   );
 }

@@ -1,50 +1,60 @@
-import { NextRequest, NextResponse } from 'next/server'
+import { revalidatePath, revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
+
+type WebhookBody = {
+  _type?: string;
+  slug?: { current?: string };
+  tags?: string[];
+  paths?: string[];
+};
+
+const typeToTag: Record<string, string[]> = {
+  "faq": ["faqList"],
+  "general-info": ["generalInfo"],
+};
 
 export async function POST(req: NextRequest) {
-  // Parse the secret from the query string
-  const { searchParams } = new URL(req.url)
-  const secret = searchParams.get('secret')
+  const { searchParams } = new URL(req.url);
+  const secret = searchParams.get("secret");
 
-  if (secret !== process.env.MY_REVALIDATE_SECRET) {
-    return NextResponse.json({ message: 'Invalid secret' }, { status: 401 })
+  if (!process.env.MY_REVALIDATE_SECRET || secret !== process.env.MY_REVALIDATE_SECRET) {
+    return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 
-  const body = await req.json()
-  const slug = body?.slug?.current
+  let body: WebhookBody;
+  try {
+    body = (await req.json()) as WebhookBody;
+  } catch {
+    body = {};
+  }
+
+  const requestedTags = Array.isArray(body.tags) ? body.tags : [];
+  const requestedPaths = Array.isArray(body.paths) ? body.paths : [];
+  const inferredTags = body._type ? typeToTag[body._type] ?? [] : [];
+  const tags = [...new Set([...requestedTags, ...inferredTags])];
+  const paths = [...new Set(requestedPaths)];
 
   try {
-    // On-demand revalidation in the `app` directory currently requires use of dynamic route segments and unstable_revalidate
-    // This sample assumes you're using `unstable_revalidate` (Next.js v13+ feature, still experimental as of early 2024)
+    for (const tag of tags) {
+      revalidateTag(tag, "max");
+    }
 
-    // Revalidate homepage
-    // Note: Unstable API, may need to adjust as Next.js releases new stable APIs
-    const tags: string[] = [] // add tags if you use them for segment caching
-
-    // You'd typically tag routes during fetches, and revalidate by tag.
-    // But this API is evolving! For *now* you can still use path where supported:
-
-    // Example for revalidating the homepage:
-    // await unstable_revalidatePath('/')
-
-    // Example for dynamic route:
-    // if (slug) await unstable_revalidatePath(`/posts/${slug}`)
-
-    // As of Next.js 13.4+, the recommended way is revalidateTag if you use cache tags.
+    for (const path of paths) {
+      revalidatePath(path);
+    }
 
     return NextResponse.json({
       revalidated: true,
       now: new Date().toISOString(),
-      // Uncomment below as APIs stabilize:
-      // tag: your_tag_or_path,
-    })
-  } catch (err: any) {
-    return NextResponse.json(
-      { message: err.message || 'Revalidation error' },
-      { status: 500 }
-    )
+      tags,
+      paths,
+      slug: body.slug?.current ?? null,
+    });
+  } catch (error: unknown) {
+    const message = error instanceof Error ? error.message : "Revalidation error";
+    return NextResponse.json({ message }, { status: 500 });
   }
 }
 
-// If you want to allow GET (optional, *usually not needed*):
 export const GET = async () =>
-  NextResponse.json({ message: 'Use POST only' }, { status: 405 })
+  NextResponse.json({ message: "Use POST only" }, { status: 405 });

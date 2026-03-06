@@ -1,0 +1,24 @@
+
+
+.nsc--signup-form{
+
+        input, textarea{
+
+         border: 2px solid #CEFB08;
+         background: #ffffffb2;
+         border-radius:8px;
+         height:50px;
+         width:100%;
+         padding:12px;
+      }
+
+      input[type='checkbox']{
+         width:30px;
+         height:30px;
+      }
+
+      .input-validation{
+         color:#fff;
+      }
+
+}

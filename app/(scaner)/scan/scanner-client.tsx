@@ -15,7 +15,7 @@ export default function ScannerClient({ onScanAction }: ScannerClientProps) {
     const scanner = new Html5Qrcode('qr-reader')
     scannerRef.current = scanner
 
-    const stopScanner = async () => {try { await scanner.stop() } catch {} }
+    
 
     const handleScan = async (decodedText: string) => {
       // Prevent duplicate scans and concurrent processing
@@ -26,7 +26,7 @@ export default function ScannerClient({ onScanAction }: ScannerClientProps) {
         
         // Validate the scanned QR code
         const isValid = await onScanAction(decodedText)
-        debugger
+        
         // Show error if QR code is invalid
         if (!isValid) { setErrorMessage(`QR invalid: ${decodedText}`); return;}
 
@@ -34,7 +34,8 @@ export default function ScannerClient({ onScanAction }: ScannerClientProps) {
         setErrorMessage('')
         hasScannedRef.current = true
         // Stop the scanner after successful scan
-        await stopScanner()
+        // await stopScanner()
+        setErrorMessage('Valid!')
       } finally {
         // Reset processing flag
         isProcessingRef.current = false
@@ -50,7 +51,8 @@ export default function ScannerClient({ onScanAction }: ScannerClientProps) {
       )
       .catch(console.error)
 
-    return () => { stopScanner() }
+    // unmount scanner on component unmount
+    return () => { void scanner.stop().catch(() => {}) }
 
   }, [onScanAction])
 

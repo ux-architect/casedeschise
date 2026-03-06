@@ -1,7 +1,7 @@
 {
   "explorer.fileNesting.patterns": {
     "sanity.config.ts": "sanity.config.*.ts",
-    "*.tsx": "$(capture).scss, $(capture).module.scss",
+    "*.tsx": "$(capture).scss, $(capture).module.scss,  ${capture}.*.scss",
 
     
   }

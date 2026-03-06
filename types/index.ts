@@ -128,5 +128,24 @@ export type EventType = {
   slug: { current: string }
 };
 
+export type SignupFormType = {
+  _id: string,
+  title: string,
+
+  s1_title?: string,
+  s1_projects?: SignupFormProjectType[],
+
+  s2_title?: string,
+  s2_projects?: SignupFormProjectType[],
+
+  s3_title?: string,
+  s3_projects?: SignupFormProjectType[],
+}
+
+export type SignupFormProjectType = {
+  image?: string, name?: string, code?: string, info?: string,
+}
+
 export type CityKey = 'sibiu' | 'valcea';
+
 

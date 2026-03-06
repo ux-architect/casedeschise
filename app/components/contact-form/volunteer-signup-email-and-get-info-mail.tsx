@@ -20,10 +20,8 @@ export function ContactForm() {
 
     if (result.success) {
       setStatus('success')
-      setErrors({})
     } else {
       setStatus('error')
-      setErrors(result.errors || {})
     }
   }
 
