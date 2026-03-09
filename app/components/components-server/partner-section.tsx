@@ -53,37 +53,57 @@ export default async function PartnerSection({ page = 'sibiu' }: { page: string;
           </div>  
         </section>
 
-        {partnersMobility.length != 0 || partnersMedia.length != 0 && (
+        {(partnersMobility.length != 0) && (
 
           <section id="parteneri-media-mobilitate" className={'partner-section '}>
 
-            <div className="col col-1"><h2>Partener de mobilitate</h2>
-                {partnersMobility.map((partner, idx) => { return (
-                      <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
-                        <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
-                      </Link>
-                  );})}
-            </div>
+             <div className="size-container clearfix"><h2>Partener de mobilitate</h2>
+              {partnersMobility.map((partner, idx) => {
 
-            <div className="col col-2"><h2>Parteneri media</h2>
-                {partnersMedia.map((partner, idx) => {return (
+                const logoRatio = Number(partner.logoWidth) / Number(partner.logoHeight);
+                return (
                     <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
-                        <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                      <div className="logo" style={{ aspectRatio: `${logoRatio}` }} data-h={partner.logoHeight} data-w={partner.logoWidth} data-ratio={logoRatio}><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
                     </Link>
-                  );})}
-            </div>
+                );})}
+          </div> 
+          </section>
+        )}
+
+        {(partnersMedia.length != 0) && (
+
+          <section id="parteneri-media-mobilitate" className={'partner-section '}>
+
+             <div className="size-container clearfix"><h2>Partener media</h2>
+              {partnersMedia.map((partner, idx) => {
+
+                const logoRatio = Number(partner.logoWidth) / Number(partner.logoHeight);
+                return (
+                    <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
+                      <div className="logo" style={{ aspectRatio: `${logoRatio}` }} data-h={partner.logoHeight} data-w={partner.logoWidth} data-ratio={logoRatio}><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                    </Link>
+                );})}
+          </div> 
           </section>
       )}
 
 
-        {sponsors && sponsors.length > 0 && (
-        <section id="sponsori" className={'partner-section '}><h2>Sponsori</h2>
-            {sponsors.map((partner, idx) => {return (
-                  <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
-                    <div className="logo"><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
-                  </Link>
-              );})}
-        </section>)}
+        {(sponsors.length != 0 || sponsors.length != 0) && (
+
+          <section id="parteneri-media-mobilitate" className={'partner-section '}>
+
+             <div className="size-container clearfix"><h2>Sponsori</h2>
+              {sponsors.map((partner, idx) => {
+
+                const logoRatio = Number(partner.logoWidth) / Number(partner.logoHeight);
+                return (
+                    <Link href={partner.link || "#"} key={idx} className='partner' target="_blank">
+                      <div className="logo" style={{ aspectRatio: `${logoRatio}` }} data-h={partner.logoHeight} data-w={partner.logoWidth} data-ratio={logoRatio}><Image src={partner.logo || "/image-missing.jpg"} fill alt={`${partner.name} logo`} className={"object-contain"} sizes="(max-width: 768px) 50vw, 25vw"/></div>
+                    </Link>
+                );})}
+          </div> 
+          </section>
+      )}
         
     </div>
   );

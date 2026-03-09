@@ -17,7 +17,7 @@ export async function POST(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const secret = searchParams.get("secret");
 
-  if (!process.env.MY_REVALIDATE_SECRET || secret !== process.env.MY_REVALIDATE_SECRET) {
+  if (!process.env.SANITY_REVALIDATE_SECRET || secret !== process.env.SANITY_REVALIDATE_SECRET) {
     return NextResponse.json({ message: "Invalid secret" }, { status: 401 });
   }
 

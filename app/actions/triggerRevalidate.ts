@@ -23,11 +23,8 @@ function getBaseUrl(): string {
 }
 
 export async function triggerRevalidate(payload: RevalidatePayload): Promise<TriggerRevalidateResult> {
-  const secret = process.env.MY_REVALIDATE_SECRET
-
-  if (!secret) {
-    return { success: false, status: 500, error: 'Missing MY_REVALIDATE_SECRET' }
-  }
+  const secret = process.env.SANITY_REVALIDATE_SECRET
+  if (!secret) {return { success: false, status: 500, error: 'Missing SANITY_REVALIDATE_SECRET' }}
 
   const endpoint = `${getBaseUrl()}/api/revalidate?secret=${encodeURIComponent(secret)}`
 
