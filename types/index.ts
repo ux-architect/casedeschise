@@ -46,7 +46,6 @@ export type SiteInfoType = {
   externalFormLinks_valcea?:{visitFormExternalUrl?:string,   volunteerFormExternalUrl?: string, hostFormExternalUrl?:string, kidsWorkshopFormExternalUrl?:string}
 
   sliderInterval?: number,
-  revalidateInterval?: number,
 
   sectionNames: {
     year: string,

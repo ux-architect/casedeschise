@@ -3,65 +3,57 @@ import client from "./sanity.client";
 import { FaqType, SignupFormType, SiteInfoType } from "@/types";
 import { unstable_cache } from "next/cache";
 
-const revalidateInterval = 3600; // seconds
+const revalidateInterval = 1*3600; // seconds
 
-export async function getGeneralInfo(): Promise<SiteInfoType> {
-  return client.fetch(
-    groq`*[_type == "general-info"][0]{
-    _id,
+export const getGeneralInfo = unstable_cache(
+  async (): Promise<SiteInfoType> => {
+    return client.fetch(
+      groq`*[_type == "general-info"][0]{
+      _id,
 
-    siteEntryCover {
+      siteEntryCover {
+          sibiu{ image, "url": asset->url},
+          valcea{ image, "url": asset->url }
+        },
+
+      cityPageCover {
         sibiu{ image, "url": asset->url},
         valcea{ image, "url": asset->url }
       },
 
-    cityPageCover {
-      sibiu{ image, "url": asset->url},
-      valcea{ image, "url": asset->url }
-    },
+      eventDate,
 
-    eventDate,
+      misionStatement1,
+      misionStatement2,
+      currentYearImage{"image": asset->url},
+      contactFormImage{"image": asset->url},
 
-    misionStatement1,
-    misionStatement2,
-    currentYearImage{"image": asset->url},
-    contactFormImage{"image": asset->url},
-    
 
-    "pdfSibiu": pdfSibiu.asset->{url, originalFilename},
-    "pdfValcea": pdfValcea.asset->{url, originalFilename},
+      "pdfSibiu": pdfSibiu.asset->{url, originalFilename},
+      "pdfValcea": pdfValcea.asset->{url, originalFilename},
 
-    "mediaKitSibiu": mediaKitSibiu.asset->{url, originalFilename},
-    "mediaKitValcea": mediaKitValcea.asset->{url, originalFilename},
+      "mediaKitSibiu": mediaKitSibiu.asset->{url, originalFilename},
+      "mediaKitValcea": mediaKitValcea.asset->{url, originalFilename},
 
-    team[]{name, role, city, "image": image.asset->url },
-    partners[]{name, "logo": logo.asset->url, type, link, "logoWidth": logo.asset->metadata.dimensions.width, "logoHeight": logo.asset->metadata.dimensions.height,},
-    socialMedia[]{name, link, city },
+      team[]{name, role, city, "image": image.asset->url },
+      partners[]{name, "logo": logo.asset->url, type, link, "logoWidth": logo.asset->metadata.dimensions.width, "logoHeight": logo.asset->metadata.dimensions.height,},
+      socialMedia[]{name, link, city },
 
-    contactFields[]{city, address, contactEmail, contactPhone, contactEmailForms},
-    externalFormLinks_sibiu{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
-    externalFormLinks_valcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
+      contactFields[]{city, address, contactEmail, contactPhone, contactEmailForms},
+      externalFormLinks_sibiu{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
+      externalFormLinks_valcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
 
-    sectionNames[]{year, s1_sibiu, s2_sibiu, s3_sibiu, s4_sibiu, s1_valcea, s2_valcea, s3_valcea, s4_valcea},
+      sectionNames[]{year, s1_sibiu, s2_sibiu, s3_sibiu, s4_sibiu, s1_valcea, s2_valcea, s3_valcea, s4_valcea},
 
-    currentYear,
-    sliderInterval,
-    revalidateInterval,
-  }`,{});
-}
-
-export async function getFaqList2(): Promise<FaqType[]> {
-  
-  const result = await client.fetch(
-    groq`*[_type == "faq"][0]{
-      _id,
-      faqList[]{_id, question, answer, city}
+      currentYear,
+      sliderInterval,
     }`,
-    {}
-  );
-
-  return result?.faqList || [];
-}
+      {},
+    );
+  },
+  ["generalInfo"],
+  { revalidate: revalidateInterval, tags: ["general-info"] }
+);
 
 export const getFaqList  = unstable_cache(
   async (): Promise<FaqType[]> => {
@@ -73,37 +65,14 @@ export const getFaqList  = unstable_cache(
     return result?.faqList || [];
   },
   ["faqList"],
-  { revalidate: revalidateInterval, tags: ["faqList"]  }
+  { revalidate: revalidateInterval, tags: ["faq"]  }
 )
 
 
-export async function getProject(slug: string) {
-  return client.fetch(
-    groq`*[_type in ['projects-sibiu', 'projects-valcea'] && slug.current == $slug][0]{
-      _id,
-      slug,
-      name,
-
-      metadata{"year":year, "section":section, "index":index},
-
-      profileImage {"image": asset->url},
-      images[]{"image": asset->url},
-      address,
-      visitTime,
-      transport,
-      gps,
-      tags,
-      description,
-      otherInfo,
-    }`,
-    { slug }
-  );
-}
-
-export async function getProjects(projectType: string, year?: string) {
-  return client.fetch(
-    groq`
-      *[_type == $projectType && (!defined($year) || metadata.year == $year)]{
+export const getProject = unstable_cache(
+  async (slug: string) => {
+    return client.fetch(
+      groq`*[_type in ['projects-sibiu', 'projects-valcea'] && slug.current == $slug][0]{
         _id,
         slug,
         name,
@@ -119,111 +88,161 @@ export async function getProjects(projectType: string, year?: string) {
         tags,
         description,
         otherInfo,
-      }
-    `,
-    { projectType, year: year ?? null },
-  );
-}
+      }`,
+      { slug }
+    );
+  },
+  ["project"],
+  { revalidate: revalidateInterval, tags: ["projects-sibiu", "projects-valcea"] }
+);
 
-export async function getTour(slug: string) {
-  return client.fetch(
-     groq`*[_type in ['tours-sibiu', 'tours-valcea'] && slug.current == $slug][0]{
-      _id,
-      slug,
-      name,
-      metadata{"year":year, "index":index},
-      profileImage {"image": asset->url},
-      images[]{"image": asset->url},
-      address,
-      visitTime,
-      transport,
-      gps,
-      tags,
-      description,
-      otherInfo,
-    }`,
-    { slug },
-  );
-}
+export const getProjects = unstable_cache(
+  async (projectType: string, year?: string) => {
+    return client.fetch(
+      groq`
+        *[_type == $projectType && (!defined($year) || metadata.year == $year)]{
+          _id,
+          slug,
+          name,
 
-export async function getTours(tourType: string, year?: string) {
-  return client.fetch(
-    groq`*[_type == $tourType && (!defined($year) || metadata.year == $year)]{
-     _id,
-      slug,
-      name,
-      metadata{"year":year, "index":index},
-      profileImage {"image": asset->url},
-      images[]{"image": asset->url},
-      address,
-      visitTime,
-      transport,
-      gps,
-      tags,
-      description,
-      otherInfo,
-    }`,
-    { tourType, year: year ?? null },
-  );
-}
+          metadata{"year":year, "section":section, "index":index},
 
-export async function getEvent(slug: string) {
-  return client.fetch(
-     groq`*[_type in ['events-sibiu', 'events-valcea'] && slug.current == $slug][0]{
-      _id,
-      slug,
-      name,
-      metadata{"year":year, "index":index},
-      profileImage1 {"image": asset->url},
-      profileImage2 {"image": asset->url},
-      images[]{"image": asset->url},
-      address,
-      visitTime,
-      transport,
-      gps,
-      tags,
-      description,
-      otherInfo,
-    }`,
-    { slug },
-  );
-}
+          profileImage {"image": asset->url},
+          images[]{"image": asset->url},
+          address,
+          visitTime,
+          transport,
+          gps,
+          tags,
+          description,
+          otherInfo,
+        }
+      `,
+      { projectType, year: year ?? null },
+    );
+  },
+  ["projects"],
+  { revalidate: revalidateInterval, tags: ["projects-sibiu", "projects-valcea"] }
+);
 
-export async function getEvents(eventType: string, year?: string) {
-  return client.fetch(
-    groq`*[_type == $eventType && (!defined($year) || metadata.year == $year)]{
-      _id,
-      slug,
-      name,
-      metadata{"year":year, "index":index},
-      profileImage1 {"image": asset->url},
-      profileImage2 {"image": asset->url},
-      images[]{"image": asset->url},
-      address,
-      visitTime,
-      transport,
-      gps,
-      tags,
-      description,
-      otherInfo,
-    }`,
-    { eventType, year: year ?? null },
-  );
-}
+export const getTour = unstable_cache(
+  async (slug: string) => {
+    return client.fetch(
+       groq`*[_type in ['tours-sibiu', 'tours-valcea'] && slug.current == $slug][0]{
+        _id,
+        slug,
+        name,
+        metadata{"year":year, "index":index},
+        profileImage {"image": asset->url},
+        images[]{"image": asset->url},
+        address,
+        visitTime,
+        transport,
+        gps,
+        tags,
+        description,
+        otherInfo,
+      }`,
+      { slug },
+    );
+  },
+  ["tour"],
+  { revalidate: revalidateInterval, tags: ["tours-sibiu", "tours-valcea"] }
+);
 
-export async function getSignupForm(eventType: string): Promise<SignupFormType> {
+export const getTours = unstable_cache(
+  async (tourType: string, year?: string) => {
+    return client.fetch(
+      groq`*[_type == $tourType && (!defined($year) || metadata.year == $year)]{
+       _id,
+        slug,
+        name,
+        metadata{"year":year, "index":index},
+        profileImage {"image": asset->url},
+        images[]{"image": asset->url},
+        address,
+        visitTime,
+        transport,
+        gps,
+        tags,
+        description,
+        otherInfo,
+      }`,
+      { tourType, year: year ?? null },
+    );
+  },
+  ["tours"],
+  { revalidate: revalidateInterval, tags: ["tours-sibiu", "tours-valcea"] }
+);
 
-  return client.fetch(
-    groq`*[_type == $eventType][0]{
-      _id,
-      title,
-      s1_title,
-      s1_projects[]{ "image": image.asset->url, name, code, info,},
-      s2_title,
-      s2_projects[]{ "image": image.asset->url, name, code, info,},
-      s3_title,
-      s3_projects[]{ "image": image.asset->url, name, code, info,},
-    }`,
-    { eventType },
-  );
-}
+export const getEvent = unstable_cache(
+  async (slug: string) => {
+    return client.fetch(
+       groq`*[_type in ['events-sibiu', 'events-valcea'] && slug.current == $slug][0]{
+        _id,
+        slug,
+        name,
+        metadata{"year":year, "index":index},
+        profileImage1 {"image": asset->url},
+        profileImage2 {"image": asset->url},
+        images[]{"image": asset->url},
+        address,
+        visitTime,
+        transport,
+        gps,
+        tags,
+        description,
+        otherInfo,
+      }`,
+      { slug },
+    );
+  },
+  ["event"],
+  { revalidate: revalidateInterval, tags: ["events-sibiu", "events-valcea"] }
+);
+
+export const getEvents = unstable_cache(
+  async (eventType: string, year?: string) => {
+    return client.fetch(
+      groq`*[_type == $eventType && (!defined($year) || metadata.year == $year)]{
+        _id,
+        slug,
+        name,
+        metadata{"year":year, "index":index},
+        profileImage1 {"image": asset->url},
+        profileImage2 {"image": asset->url},
+        images[]{"image": asset->url},
+        address,
+        visitTime,
+        transport,
+        gps,
+        tags,
+        description,
+        otherInfo,
+      }`,
+      { eventType, year: year ?? null },
+    );
+  },
+  ["events"],
+  { revalidate: revalidateInterval, tags: ["events-sibiu", "events-valcea"] }
+);
+
+export const getSignupForm = unstable_cache(
+  async (eventType: string): Promise<SignupFormType> => {
+    return client.fetch(
+      groq`*[_type == $eventType][0]{
+        _id,
+        title,
+        s1_title,
+        s1_projects[]{ "image": image.asset->url, name, code, info,},
+        s2_title,
+        s2_projects[]{ "image": image.asset->url, name, code, info,},
+        s3_title,
+        s3_projects[]{ "image": image.asset->url, name, code, info,},
+      }`,
+      { eventType },
+    );
+  },
+  ["signupForm"],
+  { revalidate: revalidateInterval, tags: ["signup-form-sibiu", "signup-form-valcea"] }
+);
