@@ -16,6 +16,7 @@ import Swiper_Tours from '@/app/components/swiper/swiper-tours/swiper-tours';
 
 export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
+  const linkPrefix =  "/" + city ;
 
    const generalInfo: SiteInfoType = await getGeneralInfo();
    const year = generalInfo?.currentYear;
@@ -45,7 +46,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
         <section className="swiper-section">
           <SwiperComponent images={tour?.images} projectName={tour?.name} />
-          <Link id="signup" className={`${cssClass_soldOut} btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading`} href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">{text_soldOut}</Link>
+          <Link id="signup" className={`${cssClass_soldOut} btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading`} href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">{text_soldOut}</Link>
         </section>
 
         <section  className="info border-bottom">
@@ -56,7 +57,7 @@ export default async function ProjectPage({ params}: {params: Promise<{ "sibiu-v
 
           <div className="col col-2">
             {tour?.visitTime?.map((time, idx) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}
-            <Link id="signup" className={`${cssClass_soldOut} btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading`} href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">{text_soldOut}</Link>
+            <Link id="signup" className={`${cssClass_soldOut} btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading`} href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">{text_soldOut}</Link>
           </div>
 
         </section>

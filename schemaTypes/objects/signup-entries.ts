@@ -1,10 +1,22 @@
 import { defineField } from "sanity";
+import SignupContactInput from "@/sanity/components/signup-contact-input";
 
 export const signupEntriesFields = [
-  defineField({ name: "id", type: "string" }),
+  defineField({
+    name: "contact",
+    title: "Contact",
+    type: "object",
+    components: { input: SignupContactInput },
+    fields: [
+      defineField({ name: "name", title: "Nume și prenume", type: "string" }),
+      defineField({ name: "email", title: "Email", type: "string" }),
+      defineField({ name: "phone", title: "Telefon", type: "string" }),
+    ],
+  }),
+
   defineField({
     name: "objectives",
-    title: "Objectives",
+    title: "Obiective selectate",
     type: "array",
     of: [
       {
@@ -19,9 +31,8 @@ export const signupEntriesFields = [
       },
     ],
   }),
-  defineField({ name: "name", type: "string" }),
-  defineField({ name: "email", title: "Email", type: "string" }),
-  defineField({ name: "phone", type: "string" }),
-  defineField({ name: "details", type: "datetime" }),
-  defineField({ name: "metadata", title: "Ordonare", type: "tourMetadata" }),
+
+  defineField({ name: "details", title: "Data înscriere", type: "datetime", readOnly: true, fieldset: "meta" }),
+  defineField({ name: "id", title: "Id", type: "string", readOnly: true, fieldset: "meta" }),
+   defineField({ name: "metadata", title: "Ordonare", type: "tourMetadata", readOnly: true, hidden: true, fieldset: "meta" }),
 ];

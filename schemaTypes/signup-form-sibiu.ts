@@ -8,9 +8,8 @@ const signupFormSibiu = {
   type: "document",
 
 fieldsets: signupForm_Fieldsets,
- fields: [
-    ...signupFormFields,
-  ],
+ fields: [...signupFormFields,],
+
 };
 
 export default signupFormSibiu;

@@ -26,6 +26,8 @@ type SelectedProject = {
 }
 
 export async function signupSubmit(formData: FormData) {
+  const city = formData.get('city')?.toString().trim() || ''
+
   const name = formData.get('name')?.toString().trim() || ''
   const phone = formData.get('phone')?.toString().trim() || ''
   const email = formData.get('email')?.toString().trim() || ''
@@ -45,7 +47,7 @@ export async function signupSubmit(formData: FormData) {
   }
   
   // email not send
-  if(!name || !email || !phone || selectedProjects.length === 0) {return { success: false, error: 'Email not send!' }}
+  if(!city || !name || !email || !phone || selectedProjects.length === 0) {return { success: false, error: 'Email not send!' }}
 
   try {
 
@@ -60,15 +62,13 @@ export async function signupSubmit(formData: FormData) {
   //Save to Sanity
   const reservation = await sanity.create({
     _id: uniqueId,
-    _type: "signups-sibiu",
+    _type: "signups-" + city,
     id: uniqueId,
     objectives: selectedProjects.map((project) => ({
       _key: project.code,
       status: 1,
     })),
-    name,
-    email: email,
-    phone: formData.get('phone')?.toString().trim() || '',
+    contact: { name, email, phone },
     details: new Date().toISOString(),
     metadata: { year: '2026', index: formData.get('index')?.toString().trim() || '',},
   });

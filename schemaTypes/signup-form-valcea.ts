@@ -8,9 +8,8 @@ const signupFormValcea = {
   type: "document",
 
 fieldsets: signupForm_Fieldsets,
- fields: [
-    ...signupFormFields,
-  ],
+ fields: [ ...signupFormFields, ],
+
 };
 
 export default signupFormValcea;

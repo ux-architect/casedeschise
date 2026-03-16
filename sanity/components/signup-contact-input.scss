@@ -1,0 +1,35 @@
+.nsc--signup-contact-input {
+  width: 100%;
+  float: left;
+  flex-direction: row !important;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-bottom: 8px !important;
+
+  .box {
+    flex: 1;
+
+    .label {
+      text-transform: none;
+      height: 14px;
+      font-size: 12px;
+    }
+
+    input {
+      height: 30px;
+      border: 1px solid #e3e4e8;
+      outline: none;
+      padding: 4px 8px;
+      width: 100%;
+      font-size: 13px;
+
+      &:hover {
+        box-shadow: inset 0 0 0 1px #bbbdc9;
+      }
+
+      &:focus {
+        box-shadow: inset 0 0 0 1px #556bfc;
+      }
+    }
+  }
+}

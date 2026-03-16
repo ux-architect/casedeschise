@@ -12,9 +12,12 @@ import SocialMediaSection from "@/app/components/components-ui/social-media-sect
 import Swiper_Events from "@/app/components/swiper/swiper-events/swiper-events";
 import Swiper_Projects from "@/app/components/swiper/swiper-projects/swiper-projects";
 import Swiper_Tours from "@/app/components/swiper/swiper-tours/swiper-tours";
+import { notFound } from "next/navigation";
 
 export default async function Main({ params}: {params: Promise<{"sibiu-valcea": string}>;}) {
   const { ["sibiu-valcea"]: city } = await params;
+
+  if (city !== "sibiu" && city !== "valcea") { notFound();}
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const year = generalInfo?.currentYear;

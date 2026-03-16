@@ -5,9 +5,7 @@ import { useClient } from 'sanity'
 type SignupEntry = {
   _id: string
   _createdAt?: string
-  name?: string
-  email?: string
-  phone?: string
+  contact?: { name?: string; email?: string; phone?: string }
   details?: string
   objectives?: Array<{ _key?: string, status?: number}>
   metadata?: { year?: string }
@@ -57,7 +55,7 @@ export default function SignupsSibiuSummary() {
         setError(null)
         const data = await client.fetch<SignupEntry[]>(
           `*[_type == "signups-sibiu"] | order(coalesce(metadata.year, "") desc, _createdAt desc){
-            _id, _createdAt, name, email, phone, details, objectives[]{_key, status}, metadata
+            _id, _createdAt, contact{name, email, phone} , details, objectives[]{_key, status}, metadata
           }`
         )
 
@@ -78,9 +76,9 @@ export default function SignupsSibiuSummary() {
     const header = ['An', 'Nume', 'Email', 'Telefon', 'Detalii', 'Obiective', 'Creat la'].join('\t')
     const rows = entries.map((entry) => [
       toTsvCell(entry.metadata?.year),
-      toTsvCell(entry.name),
-      toTsvCell(entry.email),
-      toTsvCell(entry.phone),
+      toTsvCell(entry.contact?.name),
+      toTsvCell(entry.contact?.email),
+      toTsvCell(entry.contact?.phone),
       toTsvCell(formatDate(entry.details)),
       toTsvCell(formatObjectives(entry.objectives)),
       toTsvCell(formatDate(entry._createdAt)),

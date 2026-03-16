@@ -16,6 +16,7 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
   const linkPrefix =  "/" + city ;
 
   const visitFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.visitFormExternalUrl || "#" ;
+  
   const pdfUrl = city == "sibiu" ? generalInfo?.pdfSibiu?.url || "" : generalInfo?.pdfValcea?.url || "";
   const pdfFileName = city == "sibiu" ? generalInfo?.pdfSibiu?.originalFilename || "" : generalInfo?.pdfValcea?.originalFilename || "";
   
@@ -43,7 +44,7 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
             <span className="svg-icon svg-icon-map float-left diff-sibiu-valcea diff-background "></span>
             <span>Hartă</span>
           </Link>
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener" data-umami-click={`inscriete ${city} (cover page)`}>ÎNSCRIE-TE</Link>
+          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener" data-umami-click={`inscriete ${city} (cover page)`}>ÎNSCRIE-TE</Link>
         
         </div>
         

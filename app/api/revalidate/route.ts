@@ -1,4 +1,4 @@
-import { revalidateTag } from "next/cache";
+import { revalidatePath, revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 type WebhookBody = {
@@ -26,7 +26,7 @@ export async function POST(req: NextRequest) {
 
   try {
     for (const tag of tags) { revalidateTag(tag, "max");}
-    // for (const path of paths) { revalidatePath(path);}
+    for (const path of paths) { revalidatePath(path);}
 
     return NextResponse.json({
       revalidated: true,

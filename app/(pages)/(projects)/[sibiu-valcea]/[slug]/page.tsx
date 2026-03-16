@@ -15,6 +15,7 @@ import Swiper_Projects from '@/app/components/swiper/swiper-projects/swiper-proj
 
 export default async function ProjectPage({ params}: {params: Promise<{"sibiu-valcea": string, slug: string }>;}) {
   const { ["sibiu-valcea"]: city, slug } = await params;
+  const linkPrefix =  "/" + city ;
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const year = generalInfo?.currentYear;
@@ -46,7 +47,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         <section className="swiper-section">
           <SwiperComponent images={project?.images} projectName={project?.name} />
-          <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </section>
 
         <section className="info border-bottom">
@@ -57,7 +58,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           </div>
 
           <div className="col col-2">{project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    </div>
-            <Link id="signup" className="btn btn-secondary z-index-1 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={visitFormExternalUrl} target="_blank" scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+            <Link id="signup" className="btn btn-secondary z-index-1 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
         </section>
 
         <section className="info border-bottom">

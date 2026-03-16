@@ -8,7 +8,7 @@ import './signup-form.scss';
 import './signup-form.inputs.scss';
 
 
-export default function SignupForm({ formSetup }: { formSetup: SignupFormType}) {
+export default function SignupForm({ formSetup, city }: { formSetup: SignupFormType, city: string }) {
 
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errors, setErrors] = useState<Record<string, string[]>>({})
@@ -36,8 +36,6 @@ export default function SignupForm({ formSetup }: { formSetup: SignupFormType}) 
 
     const nextErrors: Record<string, string[]> = {}
 
-
-
     if (!name) nextErrors.name = ['Numele este obligatoriu']
     if (!phone) nextErrors.phone = ['Telefonul este obligatoriu']
     if(options.length === 0) nextErrors.options = ['Selectati cel puțin un proiect de interes']
@@ -54,16 +52,14 @@ export default function SignupForm({ formSetup }: { formSetup: SignupFormType}) 
 
   const handleSubmit = async (formData: FormData) => {
 
-    const selectedCodes = formData
-      .getAll('options')
-      .map((value) => value.toString().trim())
-      .filter(Boolean)
+    const selectedCodes = formData.getAll('options').map((value) => value.toString().trim()).filter(Boolean)
 
     const selectedProjects = allProjects
       .filter((project) => project.code && selectedCodes.includes(project.code))
       .map((project) => ({code: project.code || '', name: project.name || '', info: project.info || ''}))
 
     formData.set('selectedProjects', JSON.stringify(selectedProjects))
+    formData.set('city', city)
     
     const clientErrors = validateFormData(formData)
     
@@ -110,23 +106,6 @@ export default function SignupForm({ formSetup }: { formSetup: SignupFormType}) 
               <input className={'diff-sibiu-valcea'} name="email" placeholder='Email' defaultValue="ux.studio.sibiu@gmail.com"/>
               {errors.email && <p className="input-validation">{errors.email.join(', ')}</p>}
             </div>
-
-            {/* <fieldset className='form-group architectural-function'>
-
-              {['locuire', 'Administrativ/birouri', 'servicii/turism', 'atelier/studio', 'mixt'].map((label) => (
-                <label key={label} className="">
-                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={label} />
-                  <span>{label}</span>
-                </label>
-              ))}
-
-            </fieldset> */}
-
-            <div className='form-group details'>
-              <textarea className={'diff-sibiu-valcea'} name="details" rows={4} placeholder='De ce ar merita vizitată aceasă clădire?' ></textarea>
-              {errors.details && <p className="text-red-500">{errors.details.join(', ')}</p>}
-            </div>
-
             
             <div id="submit" className='w-100'>
                 <button type="submit" disabled={status === 'loading'} className={`btn btn-primary btn-invert ${'diff-sibiu-valcea'}`}>Trimite</button>
@@ -138,65 +117,56 @@ export default function SignupForm({ formSetup }: { formSetup: SignupFormType}) 
         </section>
 
 
-        <section className={`s1-section project-section position-relative float-left`}>
-              <h6 className="diff-sibiu-valcea">{formSetup.s1_title}</h6>
 
-              {formSetup.s1_projects?.map((project, idx) => (
-                <div key={idx} className="project float-left">
+        {formSetup.s1_projects && formSetup.s1_projects.length > 0 && (
+          <section className={`s1-section project-section position-relative float-left`}>
+            <h6 className="diff-sibiu-valcea">{formSetup.s1_title}</h6>
 
-                  <div className="project-name">{project.name}</div>
+            {formSetup.s1_projects.map((project, idx) => (
+              <div key={idx} className="project float-left">
+                <div className="project-name">{project.name}</div>
+                <label className="project-image cursor-pointer">
+                  <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
+                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
+                </label>
+                <div className="project-info">{project.info}</div>
+              </div>
+            ))}
 
-                  <label className="project-image cursor-pointer">
-                    <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
-                    <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
-                  </label>
+          </section>
+        )}
 
-                  <div className="project-info">{project.info}</div>
+        {formSetup.s2_projects && formSetup.s2_projects.length > 0 && (
+          <section className={`s2-section project-section position-relative float-left`}>
+            <h6 className="diff-sibiu-valcea">{formSetup.s2_title}</h6>
+            {formSetup.s2_projects.map((project, idx) => (
+              <div key={idx} className="project float-left">
+                <div className="project-name">{project.name}</div>
+                <label className="project-image cursor-pointer">
+                  <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
+                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
+                </label>
+                <div className="project-info">{project.info}</div>
+              </div>
+            ))}
+          </section>
+        )}
 
-                </div>
-              ))}
-
-        </section>
-
-        <section className={`s2-section project-section position-relative float-left`}>
-              <h6>{formSetup.s2_title}</h6>
-
-              {formSetup.s2_projects?.map((project, idx) => (
-                <div key={idx} className="project float-left">
-
-                  <div className="project-name">{project.name}</div>
-
-                  <label className="project-image cursor-pointer">
-                    <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
-                    <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
-                  </label>
-
-                  <div className="project-info">{project.info}</div>
-
-                </div>
-              ))}
-
-        </section>
-
-        <section className={`s3-section project-section position-relative float-left`}>
-              <h6>{formSetup.s3_title}</h6>
-
-              {formSetup.s3_projects?.map((project, idx) => (
-                <div key={idx} className="project float-left">
-
-                  <div className="project-name">{project.name}</div>
-
-                  <label className="project-image cursor-pointer">
-                    <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
-                    <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
-                  </label>
-
-                  <div className="project-info">{project.info}</div>
-
-                </div>
-              ))}
-
-        </section>
+        {formSetup.s3_projects && formSetup.s3_projects.length > 0 && (
+          <section className={`s3-section project-section position-relative float-left`}>
+            <h6 className="diff-sibiu-valcea">{formSetup.s3_title}</h6>
+            {formSetup.s3_projects.map((project, idx) => (
+              <div key={idx} className="project float-left">
+                <div className="project-name">{project.name}</div>
+                <label className="project-image cursor-pointer">
+                  <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
+                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
+                </label>
+                <div className="project-info">{project.info}</div>
+              </div>
+            ))}
+          </section>
+        )}
       </form>
     </div>
   )
