@@ -22,12 +22,20 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
   const visitFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.visitFormExternalUrl || "#";
 
 
-  const allProjects = await getProjects("projects-" + city, year);
+  let allProjects = await getProjects("projects-" + city, year);
   let project = allProjects.find((p: ProjectType) => p.slug.current === slug);
 
-  if(!project){project= await getProject(slug);}
+  // project is not from current year (Archive)
 
-    // get projects in the same section
+
+  if(!project){
+    project= await getProject(slug);
+     const allProjectsFromYear = await getProjects("projects-" + city, project?.metadata?.year);
+     allProjects = allProjectsFromYear;
+    }
+ const projectIsFromArchive = project?.metadata?.year && project.metadata.year !== year;
+
+  // get projects in the same section
   const projects_in_same_section = allProjects.filter((p: { slug:{ current:string }, metadata: { section: string; }; }) => p.metadata?.section === project.metadata?.section && p.slug.current !== project.slug.current);
 
   const parts = project?.name.split('///').map((p: string) => p.trim()) ?? [];
@@ -47,7 +55,10 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         <section className="swiper-section">
           <SwiperComponent images={project?.images} projectName={project?.name} />
-          <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+          {/* only show signup button when project is from current year */}
+            {!projectIsFromArchive && (
+            <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+              )}
         </section>
 
         <section className="info border-bottom">
@@ -58,7 +69,11 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           </div>
 
           <div className="col col-2">{project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    </div>
-            <Link id="signup" className="btn btn-secondary z-index-1 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+            
+            {/* only show signup button when project is from current year */}
+            {!projectIsFromArchive && (
+              <Link id="signup" className="btn btn-secondary z-index-1 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
+            )}
         </section>
 
         <section className="info border-bottom">
