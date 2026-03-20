@@ -27,24 +27,25 @@ type SelectedProject = {
 
 export async function signupSubmit(formData: FormData) {
   const city = formData.get('city')?.toString().trim() || ''
-
   const name = formData.get('name')?.toString().trim() || ''
   const phone = formData.get('phone')?.toString().trim() || ''
   const email = formData.get('email')?.toString().trim() || ''
-  const options = formData.getAll('options').map((v) => v.toString())
+
   const selectedProjectsRaw = formData.get('selectedProjects')?.toString() || '[]'
 
-  let selectedProjects: SelectedProject[] = []
+  const selectedProjects: SelectedProject[] = (() => {
+    try {
+      const parsed = JSON.parse(selectedProjectsRaw)
+      return Array.isArray(parsed)
+        ? parsed.filter(
+            (item): item is SelectedProject =>
+              !!item && typeof item === 'object' && typeof (item as any).name === 'string' && typeof (item as any).code === 'string' && typeof (item as any).info === 'string'
+          )
+        : []
+    } catch {return []}
+  })()
 
-  const parsed = JSON.parse(selectedProjectsRaw)
-  if (Array.isArray(parsed)) {
-    selectedProjects = parsed.filter((item): item is SelectedProject => {
-      if (!item || typeof item !== 'object') return false
-      const candidate = item as Record<string, unknown>
-
-      return ( typeof candidate.name === 'string' && typeof candidate.code === 'string' && typeof candidate.info === 'string')
-    })
-  }
+  const selectedProjectsString= selectedProjects.map((project) => project.code).join(';')
   
   // email not send
   if(!city || !name || !email || !phone || selectedProjects.length === 0) {return { success: false, error: 'Email not send!' }}
@@ -53,7 +54,8 @@ export async function signupSubmit(formData: FormData) {
 
     const uniqueId = crypto.randomUUID()
 
-    const qrPayload = JSON.stringify({ id: uniqueId, obiectiv: 'casa-cu-masina', nume: name})
+    // id, name, selected projects
+    const qrPayload = JSON.stringify([ uniqueId, name, selectedProjectsString])
     const qrCodeDataUrl = await generateQR(qrPayload)
     const qrCodeBase64 = qrCodeDataUrl.split(',')[1]
 

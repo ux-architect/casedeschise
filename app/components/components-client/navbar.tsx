@@ -126,6 +126,7 @@ useEffect(() => {
             {/* <Link href={`${linkPrefix}/map`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Hartă</Link> */}
             {/* <Link href={`/arhiva`} className="link diff-sibiu-valcea" onClick={() => setNavOpen(false)}>Arhivă</Link> */}
             <Link href={`${linkPrefix}#contact`} className="link diff-sibiu-valcea" data-umami-click={`contact (nav)(${city})`}  onClick={() => setNavOpen(false)}>Contact</Link>
+            <Link href={`${linkPrefix}/arhiva`} className="link diff-sibiu-valcea" data-umami-click={`arhiva (nav)(${city})`}  onClick={() => setNavOpen(false)}>Arhivă</Link>
             <Link href={`${linkPrefix}/faq`} className="link diff-sibiu-valcea" data-umami-click={`faq (nav)(${city})`}  onClick={() => setNavOpen(false)}>FAQ</Link>
 
           </div>

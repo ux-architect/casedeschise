@@ -126,6 +126,35 @@ export const getProjects = unstable_cache(
   { revalidate: revalidateInterval, tags: ["projects-sibiu", "projects-valcea"] }
 );
 
+export const getArchiveProjects = unstable_cache(
+  async (projectType: string) => {
+    return client.fetch(
+      groq`
+        *[_type == $projectType]{
+          _id,
+          slug,
+          name,
+
+          metadata{"year":year, "section":section, "index":index},
+
+          profileImage {"image": asset->url},
+          images[]{"image": asset->url},
+          address,
+          visitTime,
+          transport,
+          gps,
+          tags,
+          description,
+          otherInfo,
+        }
+      `,
+      { projectType },
+    );
+  },
+  ["projects"],
+  { revalidate: revalidateInterval, tags: ["projects-sibiu", "projects-valcea"] }
+);
+
 export const getTour = unstable_cache(
   async (slug: string) => {
     return client.fetch(
