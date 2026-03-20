@@ -3,72 +3,74 @@
 .nsc--signup-form{
 
    width:100%;
-   max-width:1200px;
-   margin-left: calc(50% - 600px);
+   max-width:900px;
+   margin-left: calc(50% - 450px);
 
- section.inputs-section{
+ section.top-section{
       position:relative;
-         float:left;
-         width:100%;
-         overflow:hidden;
-
-      &:after{
-         content:'';
-         height:100%;
-         width:100%;
-         position:absolute;
-         top:0;
-         left:0;
-         background-color: #000;
-         opacity:0.6;
-         z-index:0;
-      }
+      float:left;
+      width:100%;
+      overflow:hidden;
     
-      .contact-form{
+      .inputs-section{
          width: 100%;
          position:relative;
          z-index:1;
-         padding:100px 0;
+         padding:100px 0 0 0 ;
 
-         width:60%;
-         margin-left:20%;
+         .form-group.name{ width:33.33%;float:left;}
+         .form-group.phone{ width: calc(33.33% - 30px); margin-left:30px; float:left;}
+         .form-group.email{ width: calc(33.33% - 30px); margin-left:30px; float:left;}
 
-      @media (max-width: 768px) {
-         width:100%;
-         margin-left:0;
-         padding:100px 20px;
+         .form-group.details{
+               width:100%;
+               float:left;
+               clear:both;
+               margin-top:20px;
+
+               textarea{height:200px;}
+            
+         }
+
       }
 
-      .form-group.name{
-         width:33.33%;
-         float:left;
-      }
+       .terms-section{
+            padding:10px 30px;
 
-      .form-group.phone{
-         width: calc(33.33% - 30px);
-         margin-left:30px;
-         float:left;
-      }
-
-      .form-group.email{
-         width: calc(33.33% - 30px);
-         margin-left:30px;
-         float:left;
-      }
-
-      .form-group.details{
-            width:100%;
+            .terms-and-conditions{
             float:left;
-            clear:both;
-            margin-top:20px;
+            width:100%;
+            margin-bottom:20px;
+            font-size:16px;
+            line-height:1.5;
+            color:#000;
 
-            textarea{height:200px;}
-         
-      }
-      div#submit{
+            p:last-child{margin-bottom:0;}
+         }
+
+         .terms-checkbox{
+            float:left;
+            width:100%;
+            color:#000;
+            display:flex;
+            align-items:flex-start;
+            gap:10px;
+            margin-bottom:20px;
+            cursor:pointer;
+
+            span{ line-height:30px; font-weight: bold;}
+
+         }
+         }
+
+   }
+
+         div#submit{
          float:left;
          margin-top:30px;
+         padding:30px;
          position:relative;
+
          button[type='submit']{
             
              margin:0 auto;
@@ -93,32 +95,6 @@
          }
       }
 
-
-      @media (max-width: 1200px) {
-            .form-group{
-               width:100% !important;
-               float:left;
-               margin-bottom:20px;
-
-               input,textarea{
-                  width:100%;
-               }
-            }
-
-            .form-group.architectural-function label{ 
-               width:100%;
-               margin-left: 30px;
-               margin-right: 0px;
-            }
-
-            div#submit div.success{
-               font-size:24px;     
-            }
-
-      }
-      }
-   }
-
    section.project-section{
       position:relative;
       float:left;
@@ -128,12 +104,33 @@
       background-color: #fff;
       margin-top:1px;
 
-      padding:30px;
+      margin:30px 0;
+      padding-left:30px;
+
+
+      .border-highlight{
+         width:6px;
+         height:100%;
+         position:absolute;
+         top:0;
+         left:0;
+      }
 
       h6{
          margin-top:0;
          margin-bottom:30px;
          font-size:30px;
+      }
+
+      .project-section-subtitle{
+         float:left;
+         width:100%;
+         margin-top:-18px;
+         margin-bottom:20px;
+
+         p:last-child{
+            margin-bottom:0;
+         }
       }
 
       .project{
@@ -143,11 +140,13 @@
          .project-image{
             position:relative;
             display: block;
-            width:160px;
-            height:160px;
+            width: 140px;
+            height: 90px;
             border: 2px solid #000;
 
             input[type='checkbox']{
+               // appearance: none;
+               // -webkit-appearance: none;
                position:absolute;
                right:10px;
                top:10px;

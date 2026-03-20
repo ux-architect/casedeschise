@@ -20,7 +20,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
   const generalInfo: SiteInfoType = await getGeneralInfo();
   const year = generalInfo?.currentYear;
   const visitFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.visitFormExternalUrl || "#";
-
+  const signupIsActive = generalInfo?.signupForms_areActive;
 
   let allProjects = await getProjects("projects-" + city, year);
   let project = allProjects.find((p: ProjectType) => p.slug.current === slug);
@@ -55,8 +55,8 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
 
         <section className="swiper-section">
           <SwiperComponent images={project?.images} projectName={project?.name} />
-          {/* only show signup button when project is from current year */}
-            {!projectIsFromArchive && (
+          {/* only show signup button when project is from current year and signup is active */}
+            {!projectIsFromArchive && signupIsActive && (
             <Link id="signup" className="btn btn-secondary btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-mobile hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
               )}
         </section>
@@ -71,7 +71,7 @@ export default async function ProjectPage({ params}: {params: Promise<{"sibiu-va
           <div className="col col-2">{project?.visitTime?.map((time: string, idx: number) => (<span key={idx} className={`date diff-sibiu-valcea`}>{time}</span>))}    </div>
             
             {/* only show signup button when project is from current year */}
-            {!projectIsFromArchive && (
+            {!projectIsFromArchive && signupIsActive && (
               <Link id="signup" className="btn btn-secondary z-index-1 btn-hover-overlay prevent-default-highlight diff-sibiu-valcea diff-background btn-large hide-on-desktop hide-while-still-loading" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener">ÎNSCRIE-TE</Link>
             )}
         </section>

@@ -238,6 +238,13 @@ const generalInfo = {
       }}),
 
       defineField({
+        name: "signupForms_areActive",
+        title: "Formulare de inscriere active",
+        type: "boolean",
+        initialValue: true,
+      }),
+
+      defineField({
         name: "sliderInterval",
         title: "Interval slider (ms)",
         type: "string",

@@ -15,6 +15,7 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
   let url_logo = `/images/case-${city}-color.png`;
   const linkPrefix =  "/" + city ;
 
+  const signupIsActive = generalInfo?.signupForms_areActive;
   const visitFormExternalUrl = city == "sibiu" ? generalInfo?.externalFormLinks_sibiu?.visitFormExternalUrl || "#" : generalInfo?.externalFormLinks_valcea?.visitFormExternalUrl || "#" ;
   
   const pdfUrl = city == "sibiu" ? generalInfo?.pdfSibiu?.url || "" : generalInfo?.pdfValcea?.url || "";
@@ -44,7 +45,9 @@ export default async function CoverSection({ city = 'sibiu' }: { city?: CityKey;
             <span className="svg-icon svg-icon-map float-left diff-sibiu-valcea diff-background "></span>
             <span>Hartă</span>
           </Link>
-          <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener" data-umami-click={`inscriete ${city} (cover page)`}>ÎNSCRIE-TE</Link>
+          {signupIsActive && (
+            <Link  className="btn btn-primary btn-large diff-sibiu-valcea prevent-default-highlight" href={`${linkPrefix}/ma-inscriu`} scroll={true} rel="noreferrer noopener" data-umami-click={`inscriete ${city} (cover page)`}>ÎNSCRIE-TE</Link>
+          )}
         
         </div>
         

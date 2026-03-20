@@ -45,7 +45,7 @@ export const getGeneralInfo = unstable_cache(
       externalFormLinks_valcea{visitFormExternalUrl, hostFormExternalUrl, volunteerFormExternalUrl, kidsWorkshopFormExternalUrl},
 
       sectionNames[]{year, s1_sibiu, s2_sibiu, s3_sibiu, s4_sibiu, s1_valcea, s2_valcea, s3_valcea, s4_valcea},
-
+      signupForms_areActive,
       currentYear,
       sliderInterval,
     }`,
@@ -263,11 +263,16 @@ export const getSignupForm = unstable_cache(
       groq`*[_type == $eventType][0]{
         _id,
         title,
+        terms_conditions,
+        terms_checkbox_label,
         s1_title,
+        s1_subtitle,
         s1_projects[]{ "image": image.asset->url, name, code, info,},
         s2_title,
+        s2_subtitle,
         s2_projects[]{ "image": image.asset->url, name, code, info,},
         s3_title,
+        s3_subtitle,
         s3_projects[]{ "image": image.asset->url, name, code, info,},
       }`,
       { eventType },

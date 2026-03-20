@@ -7,7 +7,7 @@
       width: 100%;
       height: 25%;
       pointer-events: none;
-      // z-index: 99;
+      z-index: 1;
       background: linear-gradient(180deg, rgba(0, 0, 0, 0.1) 0%, rgba(255, 255, 255, 0) 100%);
   }
 
@@ -21,6 +21,10 @@
 
   &.inner-shadow-top-value-30:before{
     background: linear-gradient(180deg, rgba(0, 0, 0, 0.3) 0%, rgba(255, 255, 255, 0) 100%);
+  }
+
+    &.inner-shadow-top-value-40:before{
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(255, 255, 255, 0) 100%);
   }
 
   &.inner-shadow-top-value-50:before{
@@ -67,6 +71,13 @@
   mask-repeat: no-repeat;
   mask-position: center;
   mask-size: contain;
+}
+
+
+@for $i from 1 through 10 {
+  .filter-blur-#{$i}px {
+    filter: blur(#{$i}px);
+  }
 }
 
 

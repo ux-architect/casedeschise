@@ -28,7 +28,7 @@ export default async function Home() {
         {/* SIBIU */}
         <div className="section  section-sibiu"  aria-label={'Sibiu'}>
 
-            <div className="w-100 h-100 position-absolute inner-shadow-top-disabled inner-shadow-top-size-50 inner-shadow-top-value-50" style={{ top:0 }}>
+            <div className="w-100 h-100 position-absolute" style={{ top:0 }}>
                 <Image src={`${url_cover_sibiu}`} className="object-cover " data-wait-for-image fill unoptimized sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw" alt="sibiu-cover"/>
             </div>
 

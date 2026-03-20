@@ -12,13 +12,16 @@
          padding:12px;
       }
 
+      input{ color: #000 !important; border-color: #000 !important;}
+
       input[type='checkbox']{
          width:30px;
          height:30px;
+         cursor:pointer;
       }
 
       .input-validation{
-         color:#fff;
+         color:#000000;
       }
 
 }

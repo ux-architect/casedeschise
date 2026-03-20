@@ -8,6 +8,7 @@ import FooterSection from "@/app/components/components-server/footer-section";
 
 export default async function Archive({ params}: {params: Promise<{ year:string, "sibiu-valcea": string }>;}) {
  const { ["sibiu-valcea"]: city }= await params;
+ const url_logo = `/images/case-${city}-negru.png`;
 
   const [projects, generalInfo] = await Promise.all([
     getArchiveProjects("projects-" + city) as Promise<ProjectType[]>,
@@ -31,10 +32,11 @@ export default async function Archive({ params}: {params: Promise<{ year:string,
     <main className={`nsc--page-archive`} data-no-highlight-on-nav>
 
       <div className="cover">
-        <div className="cover-image">
-          <Image src="/images/faq-image.jpg" className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
+        <div className="cover-image inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-40">
+          <Image src="/images/arhiva-image.jpg" className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
         </div>
         <div className="page-title font-safiro diff-sibiu-valcea">ARHIVĂ</div>
+        <Link href="/" className={`logo-black hide-while-still-loading` }><Image src={`${url_logo}`} className="object-contain" fill priority unoptimized sizes="(max-width: 768px) 100vw, 33vw" alt="cover"/></Link>
       </div>
       
 
@@ -72,7 +74,7 @@ export default async function Archive({ params}: {params: Promise<{ year:string,
                           <div className="projects-list">
                             {sectionProjects.map((project) => {
                               const parts = project.name.split('///').map((part) => part.trim());
-                              const title = parts[0] || project.name;
+                              const title = parts[0] || project.name.replace('///', ' ').trim();
                               const subtitle = parts[1] || "";
                               const imageSrc = project.profileImage?.image || "/should-not-happen.jpg";
 
@@ -82,8 +84,8 @@ export default async function Archive({ params}: {params: Promise<{ year:string,
                                     <Image src={imageSrc} alt={`${title} cover image`} fill sizes="(max-width: 768px) 96px, 140px" className="object-cover" loading="lazy" />
                                   </div>
                                   <div className="project-copy">
-                                    <h3 className="project-title no-underline">{title}</h3>
-                                    {subtitle && <span className="project-subtitle">{subtitle}</span>}
+                                    <h3 className="project-title no-underline hide-long-text w-100">{title}</h3>
+                                    {subtitle && <span className="project-subtitle hide-long-text">{subtitle}</span>}
                                   </div>
                                 </Link>
                               );

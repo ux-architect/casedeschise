@@ -10,9 +10,27 @@ export const signupForm_Fieldsets = [
 export const signupFormFields = [
 
     defineField({ name: "title", title: "Titlu formular", type: "string", validation: (rule) => rule.required() }),
+    defineField({
+      name: "terms_conditions",
+      title: "Termeni și condiții",
+      type: "array",
+      of: [{ type: "block" }],
+    }),
+    defineField({
+      name: "terms_checkbox_label",
+      title: "Text checkbox termeni",
+      type: "string",
+    }),
   
     // Section 1
     defineField({ name: "s1_title", title: "Titlu (s1)", type: "string", fieldset: "section1", }),
+    defineField({
+      name: "s1_subtitle",
+      title: "Subtitlu formatabil (s1)",
+      type: "array",
+      fieldset: "section1",
+      of: [{ type: "block" }],
+    }),
     defineField({
           name: 's1_projects',
           title: 'Obiective (s1)',
@@ -34,6 +52,13 @@ export const signupFormFields = [
     // Section 2 
     defineField({ name: "s2_title", title: "Titlu (s2)", type: "string",fieldset: "section2", }),
     defineField({
+      name: "s2_subtitle",
+      title: "Subtitlu formatabil (s2)",
+      type: "array",
+      fieldset: "section2",
+      of: [{ type: "block" }],
+    }),
+    defineField({
           name: 's2_projects',
           title: 'Obiective (s2)',
           type: 'array',
@@ -52,6 +77,13 @@ export const signupFormFields = [
 
     // Section 3 
     defineField({ name: "s3_title", title: "Titlu (s3)", type: "string",fieldset: "section3", }),
+    defineField({
+      name: "s3_subtitle",
+      title: "Subtitlu formatabil (s3)",
+      type: "array",
+      fieldset: "section3",
+      of: [{ type: "block" }],
+    }),
     defineField({
           name: 's3_projects',
           title: 'Obiective (s3)',
