@@ -251,9 +251,10 @@
       left: 0;
       letter-spacing: 20px;
       word-spacing: 20px;
-      padding-left:50px;
+      padding-left:40px;
       width:100%;
       overflow:hidden;
+      z-index:1;
     }
     
   }
@@ -269,7 +270,7 @@
   }
 
   @media (max-width: 1800px) { .cover .page-title{ font-size: 150px; bottom: -32px;; letter-spacing: 6px;} }
-  @media (max-width: 1400px) { .logo-black{ display:none; }}
+  @media (max-width: 1400px) { .logo-black{ display:none; } .cover{ height: 40vh;}}
   @media (max-width: 1000px) {  .layout-container{padding:0 30px;} .cover .page-title{ padding-left: 30px;}}
 
   @media (max-width: 800px) {  .cover .page-title{ font-size: 100px; bottom: -22px; width:100%; padding-left:30px; } }

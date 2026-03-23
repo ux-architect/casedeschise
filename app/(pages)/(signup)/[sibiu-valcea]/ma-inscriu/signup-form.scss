@@ -4,7 +4,7 @@
 
    width:100%;
    max-width:900px;
-   margin-left: calc(50% - 450px);
+   margin: 0 auto;
 
  section.top-section{
       position:relative;
@@ -156,5 +156,17 @@ section.project-section{
    }
 }
  
+
+@media (max-width: 900px) {
+   section.top-section 
+   {
+      .terms-section{margin-top:0px;}
+      .inputs-section {  
+         padding: 0 30px;
+         
+         .form-group{ width:100% !important; margin:0 !important; margin-top:30px !important;}
+      }
+}
+}
 
 }

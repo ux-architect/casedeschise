@@ -19,7 +19,7 @@ export default async function Signup({ params}: {params: Promise<{ "sibiu-valcea
   return(
     <main className={`nsc--page-signup common-page-structure-style-2`} data-no-highlight-on-nav>
       <div className="cover">
-        <div className="cover-image overflow-hidden inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-50">
+        <div className="cover-image overflow-hidden inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-50 inner-shadow-bottom">
           <Image src="/images/formular-image.jpg" className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
         </div>
         <div className="page-title font-safiro diff-sibiu-valcea">FORMULAR<br/>DE ÎNSCRIERE</div>
