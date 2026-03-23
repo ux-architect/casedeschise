@@ -16,7 +16,7 @@ export default async function Faq({ params}: {params: Promise<{ year:string, "si
   const faqList : FaqType[] = await getFaqList();
 
   return(
-    <main className={`nsc--page-faq`} data-no-highlight-on-nav>
+    <main className={`nsc--page-faq common-page-structure-style-2`} data-no-highlight-on-nav>
 
       <div className="cover">
         <div className="cover-image inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-10">

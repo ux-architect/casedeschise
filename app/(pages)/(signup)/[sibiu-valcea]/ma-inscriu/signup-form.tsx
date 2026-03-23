@@ -86,7 +86,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
   }
 
   return (
-    <div className={`nsc--signup-form clearfix float-left w-100`}>
+    <div className={`nsc--signup-form layout-container clearfix`}>
       
       {/* <h2>{formSetup.title}</h2> */}
 

@@ -29,7 +29,7 @@ export default async function Archive({ params}: {params: Promise<{ year:string,
     parseInt(left.metadata?.section ?? "0", 10) - parseInt(right.metadata?.section ?? "0", 10);
   
   return(
-    <main className={`nsc--page-archive`} data-no-highlight-on-nav>
+    <main className={`nsc--page-archive common-page-structure-style-2`} data-no-highlight-on-nav>
 
       <div className="cover">
         <div className="cover-image inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-40">
@@ -83,7 +83,7 @@ export default async function Archive({ params}: {params: Promise<{ year:string,
                                   <div className="project-image">
                                     <Image src={imageSrc} alt={`${title} cover image`} fill sizes="(max-width: 768px) 96px, 140px" className="object-cover" loading="lazy" />
                                   </div>
-                                  <div className="project-copy">
+                                  <div className="project-copy hide-long-text">
                                     <h3 className="project-title no-underline hide-long-text w-100">{title}</h3>
                                     {subtitle && <span className="project-subtitle hide-long-text">{subtitle}</span>}
                                   </div>

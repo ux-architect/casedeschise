@@ -17,7 +17,7 @@ export default async function Signup({ params}: {params: Promise<{ "sibiu-valcea
  const formSetup = await getSignupForm("signup-form-" + city)
 
   return(
-    <main className={`nsc--page-signup`} data-no-highlight-on-nav>
+    <main className={`nsc--page-signup common-page-structure-style-2`} data-no-highlight-on-nav>
       <div className="cover">
         <div className="cover-image overflow-hidden inner-shadow-top inner-shadow-top-size-50 inner-shadow-top-value-50">
           <Image src="/images/formular-image.jpg" className="object-cover" fill priority data-wait-for-image sizes="(max-width: 768px) 70vw, 100vw" alt="cover"/>
