@@ -137,6 +137,9 @@ section.project-section{
       width:20%;
       max-width:300px;
 
+      @media (max-width: 800px) { width:25%; }
+      @media (max-width: 600px) { width:50%; }
+
       .project-image{
          position:relative;
          display: block;

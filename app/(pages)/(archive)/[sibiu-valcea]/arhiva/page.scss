@@ -15,6 +15,13 @@
         .title{
           font-size:80px;
           border-bottom: 4px solid #eee;
+
+          position: relative;
+          width: 100vw;
+          left: calc(-50vw + 450px);
+          padding-left: calc(50vw - 450px);
+
+          @media (max-width: 1000px) {left:-30px; padding-left:30px;}
         }
 
         .section-title{
@@ -55,7 +62,7 @@
 
     @media (max-width: 768px) {
       .layout-container .year-section .projects-list .project-item {
-        
+
         gap: 12px;
         .project-image { width: 96px; height: 64px;}
         .project-title {font-size: 20px;}
