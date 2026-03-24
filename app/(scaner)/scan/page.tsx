@@ -20,7 +20,9 @@ const objectives = Array.from(
 export default function ScanPage() {
   return(
   <main className={`nsc--page-scan`}>
+    <div className='layout-container'>
       <ScannerClient validateSignup={validateSignup} objectives={objectives} />
-    </main>
+    </div>
+  </main>
   )
 }

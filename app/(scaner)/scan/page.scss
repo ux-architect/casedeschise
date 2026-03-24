@@ -1,8 +1,21 @@
 .nsc--page-scan{
+    height:100%;
+    position: relative;
 
-    #objective-select{
+    .layout-container{
+
         width:300px;
-        height:40px;
+        margin:0 auto;
+        padding-top: calc(40vh - 180px);
+
+            #objective-select{
+            width:300px;
+            height:40px;
+        }
+
+        #qr-reader{
+            
+        }
     }
 
 }

@@ -20,7 +20,7 @@ const safiro = localFont({ src: [{ path: './_fonts/safiro-medium.otf', weight: '
 export default async function RootLayout({children}: {children: React.ReactNode}) {
 
   return (
-    <html lang="ro">
+    <html lang="ro" data-scroll-behavior="smooth">
 
     <head><link rel="icon" href="/favicon.ico" />
     {process.env.NODE_ENV === 'production' && ( <Script async src="/scripts/umami-tracking.js" data-host-url="https://umami-app-ux-studio-sibiu.fly.dev/" data-website-id="31bbc75f-da7f-459e-a7cf-641819be6fb5" strategy="afterInteractive"/>)}
