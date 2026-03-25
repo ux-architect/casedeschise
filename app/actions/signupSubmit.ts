@@ -76,17 +76,17 @@ export async function signupSubmit(formData: FormData) {
   });
 
     const { error } = await resend.emails.send({
-      from: process.env.RESEND_EMAIL_FROM!,
+      from: 'OAR Sibiu-Valcea <contact@oarsbvl.ro>',
       to: email,
-      subject: `Formular inscriere ${name}`,
+      subject: `Înscriere Case Deschise ${new Date().getFullYear()}`,
       html: `
         <img src="cid:qr-code-contact" alt="QR code contact" width="300" height="300" />
-        <p><strong>Name:</strong> ${name}</p>
-        <p><strong>Selected projects:</strong></p>
+        <p>Salut <strong> ${name} </strong> !</p>
+        <p><strong>Te-ai înscris la următoarele obiective:</strong></p>
         <ul>
-          ${selectedProjects.map((project) => `<li><strong>${project.name}</strong> (${project.code}) - ${project.info}</li>`).join('')}
+          ${selectedProjects.map((project) => `<li><strong>${project.name}</strong> - ${project.info}</li>`).join('')}
         </ul>
-        
+        <p>Accesul la vizite în cadrul evenimentului se face prin prezentarea codului QR</p>
       `,
       attachments: [ {filename: 'qr-code-contact.png', content: qrCodeBase64, contentType: 'image/png', contentId: 'qr-code-contact',},],
     })
