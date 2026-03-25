@@ -26,7 +26,7 @@ export const signupFormFields = [
     defineField({ name: "s1_title", title: "Titlu (s1)", type: "string", fieldset: "section1", }),
     defineField({
       name: "s1_subtitle",
-      title: "Subtitlu formatabil (s1)",
+      title: "Subtitlu (s1)",
       type: "array",
       fieldset: "section1",
       of: [{ type: "block" }],
@@ -40,9 +40,9 @@ export const signupFormFields = [
             {
             type: 'object',
             fields: [
-              { name: 'image', title: 'Imagine', type: 'image', options: { hotspot: true } },
+              { name: 'image', title: 'Imagine (dimensiune fixa: 200x130 px)', type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'code', title: 'Cod', type: 'string' },
+              { name: 'code', title: 'Cod', type: 'string', validation: (rule) => rule.required() },
               { name: 'info', title: 'Info', type: 'string' },
             ]
      }],
@@ -53,7 +53,7 @@ export const signupFormFields = [
     defineField({ name: "s2_title", title: "Titlu (s2)", type: "string",fieldset: "section2", }),
     defineField({
       name: "s2_subtitle",
-      title: "Subtitlu formatabil (s2)",
+      title: "Subtitlu (s2)",
       type: "array",
       fieldset: "section2",
       of: [{ type: "block" }],
@@ -67,9 +67,9 @@ export const signupFormFields = [
             {
             type: 'object',
             fields: [
-              { name: 'image', title: 'Imagine', type: 'image', options: { hotspot: true } },
+              { name: 'image', title: 'Imagine (dimensiune fixa: 200x130 px)', type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'code', title: 'Cod', type: 'string' },
+              { name: 'code', title: 'Cod', type: 'string', validation: (rule) => rule.required() },
               { name: 'info', title: 'Info', type: 'string' },
             ]
      }],
@@ -79,7 +79,7 @@ export const signupFormFields = [
     defineField({ name: "s3_title", title: "Titlu (s3)", type: "string",fieldset: "section3", }),
     defineField({
       name: "s3_subtitle",
-      title: "Subtitlu formatabil (s3)",
+      title: "Subtitlu (s3)",
       type: "array",
       fieldset: "section3",
       of: [{ type: "block" }],
@@ -93,9 +93,9 @@ export const signupFormFields = [
             {
             type: 'object',
             fields: [
-              { name: 'image', title: 'Imagine', type: 'image', options: { hotspot: true } },
+              { name: 'image', title: 'Imagine (dimensiune fixa: 200x130 px)', type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'code', title: 'Cod', type: 'string' },
+              { name: 'code', title: 'Cod', type: 'string', validation: (rule) => rule.required() },
               { name: 'info', title: 'Info', type: 'string' },
             ]
      }],

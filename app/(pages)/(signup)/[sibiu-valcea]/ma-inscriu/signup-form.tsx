@@ -144,7 +144,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
               <div key={idx} className="project float-left">
                 <div className="project-name">{project.name}</div>
                 <label className="project-image cursor-pointer">
-                  <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
+                  <Image unoptimized src={project.image || "/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
                   <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
                 </label>
                 <div className="project-info">{project.info}</div>
