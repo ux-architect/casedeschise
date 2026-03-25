@@ -4,8 +4,10 @@ import { validateSignup } from '@/app/actions/validateSignup'
 import type { SignupFormProjectType } from '@/types'
 import './page.scss';
 
-export default async function ScanPage() {
-  const formSetup = await getSignupForm("signup-form-" + "sibiu")
+export default async function ScanPage({ params}: {params: Promise<{ "sibiu-valcea": string }>;}) {
+  
+  const { ["sibiu-valcea"]: city } = await params;
+  const formSetup = await getSignupForm("signup-form-" + city)
   const objectives = Array.from(
     new Map(
       [
