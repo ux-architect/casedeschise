@@ -46,7 +46,45 @@ export const signupFormFields = [
               { name: 'info', title: 'Info', type: 'string' },
             ]
      }],
+     
     }),
+
+    defineField({
+          name: 's1_optionalItems',
+          title: 'Optionale (s1)',
+          type: 'object',
+          fieldset: "section1",
+          fields: [
+            defineField({
+              name: 'texts',
+              title: 'Paragrafe optionale',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'text_item',
+                  title: 'Paragraf',
+                  fields: [ { name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }], },],
+                },
+              ],
+            }),
+            defineField({
+              name: 'checkboxes',
+              title: 'Bife optionale',
+              type: 'array',
+              of: [
+                {
+                  type: 'object',
+                  name: 'checkbox_item',
+                  title: 'Bifa',
+                  fields: [ { name: 'text', title: 'Text', type: 'string' },],
+                },
+              ],
+            }),
+          ],
+    }),
+
+
 
 
     // Section 2 
@@ -75,6 +113,27 @@ export const signupFormFields = [
      }],
     }),
 
+    defineField({
+          name: 's2_optionalItems',
+          title: 'Optionale (s2)',
+          type: 'object',
+          fieldset: "section2",
+          fields: [
+            defineField({
+              name: 'texts',
+              title: 'Paragrafe optionale',
+              type: 'array',
+              of: [{ type: 'object', name: 'text_item', title: 'Paragraf', fields: [{ name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }] }] }],
+            }),
+            defineField({
+              name: 'checkboxes',
+              title: 'Bife optionale',
+              type: 'array',
+              of: [{ type: 'object', name: 'checkbox_item', title: 'Bifa', fields: [{ name: 'text', title: 'Text', type: 'string' }] }],
+            }),
+          ],
+    }),
+
     // Section 3 
     defineField({ name: "s3_title", title: "Titlu (s3)", type: "string",fieldset: "section3", }),
     defineField({
@@ -99,6 +158,27 @@ export const signupFormFields = [
               { name: 'info', title: 'Info', type: 'string' },
             ]
      }],
+    }),
+
+    defineField({
+          name: 's3_optionalItems',
+          title: 'Optionale (s3)',
+          type: 'object',
+          fieldset: "section3",
+          fields: [
+            defineField({
+              name: 'texts',
+              title: 'Paragrafe optionale',
+              type: 'array',
+              of: [{ type: 'object', name: 'text_item', title: 'Paragraf', fields: [{ name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }] }] }],
+            }),
+            defineField({
+              name: 'checkboxes',
+              title: 'Bife optionale',
+              type: 'array',
+              of: [{ type: 'object', name: 'checkbox_item', title: 'Bifa', fields: [{ name: 'text', title: 'Text', type: 'string' }] }],
+            }),
+          ],
     }),
 
   ];

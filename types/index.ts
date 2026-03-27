@@ -128,6 +128,11 @@ export type EventType = {
   slug: { current: string }
 };
 
+export type SignupFormOptionalItems = {
+  texts?: { text?: PortableTextBlock[] }[],
+  checkboxes?: { text?: string }[],
+}
+
 export type SignupFormType = {
   _id: string,
   title: string,
@@ -137,14 +142,17 @@ export type SignupFormType = {
   s1_title?: string,
   s1_subtitle?: PortableTextBlock[],
   s1_projects?: SignupFormProjectType[],
+  s1_optionalItems?: SignupFormOptionalItems,
 
   s2_title?: string,
   s2_subtitle?: PortableTextBlock[],
   s2_projects?: SignupFormProjectType[],
+  s2_optionalItems?: SignupFormOptionalItems,
 
   s3_title?: string,
   s3_subtitle?: PortableTextBlock[],
   s3_projects?: SignupFormProjectType[],
+  s3_optionalItems?: SignupFormOptionalItems,
 }
 
 export type SignupFormProjectType = {

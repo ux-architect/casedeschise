@@ -3,8 +3,8 @@
 import { useState } from 'react'
 import { signupSubmit } from '@/app/actions/signupSubmit'
 import { SignupFormType } from '@/types';
-import Image from "next/image";
 import { PortableText } from '@portabletext/react';
+import FormSection from './form-section';
 import './signup-form.scss';
 import './signup-form.inputs.scss';
 
@@ -129,74 +129,29 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
 
         </section>
 
+        <FormSection
+          sectionClassName="s1-section"
+          title={formSetup.s1_title}
+          subtitle={formSetup.s1_subtitle}
+          projects={formSetup.s1_projects}
+          optionalItems={formSetup.s1_optionalItems}
+        />
 
+        <FormSection
+          sectionClassName="s2-section"
+          title={formSetup.s2_title}
+          subtitle={formSetup.s2_subtitle}
+          projects={formSetup.s2_projects}
+          optionalItems={formSetup.s2_optionalItems}
+        />
 
-        {formSetup.s1_projects && formSetup.s1_projects.length > 0 && (
-          <section className={`s1-section project-section position-relative float-left`}>
-            <h6 className="diff-sibiu-valcea">{formSetup.s1_title}</h6>
-            {formSetup.s1_subtitle && formSetup.s1_subtitle.length > 0 && (
-              <div className="project-section-subtitle">
-                <PortableText value={formSetup.s1_subtitle} />
-              </div>
-            )}
-
-            {formSetup.s1_projects.map((project, idx) => (
-              <div key={idx} className="project float-left">
-                <div className="project-name">{project.name}</div>
-                <label className="project-image cursor-pointer">
-                  <Image unoptimized src={project.image || "/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
-                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
-                </label>
-                <div className="project-info">{project.info}</div>
-              </div>
-            ))}
-            <div className="border-highlight diff-sibiu-valcea diff-background"></div>
-          </section>
-        )}
-
-        {formSetup.s2_projects && formSetup.s2_projects.length > 0 && (
-          <section className={`s2-section project-section position-relative float-left`}>
-            <h6 className="diff-sibiu-valcea">{formSetup.s2_title}</h6>
-            {formSetup.s2_subtitle && formSetup.s2_subtitle.length > 0 && (
-              <div className="project-section-subtitle">
-                <PortableText value={formSetup.s2_subtitle} />
-              </div>
-            )}
-            {formSetup.s2_projects.map((project, idx) => (
-              <div key={idx} className="project float-left">
-                <div className="project-name">{project.name}</div>
-                <label className="project-image cursor-pointer">
-                  <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
-                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
-                </label>
-                <div className="project-info">{project.info}</div>
-              </div>
-            ))}
-            <div className="border-highlight diff-sibiu-valcea diff-background"></div>
-          </section>
-        )}
-
-        {formSetup.s3_projects && formSetup.s3_projects.length > 0 && (
-          <section className={`s3-section project-section position-relative float-left`}>
-            <h6 className="diff-sibiu-valcea">{formSetup.s3_title}</h6>
-            {formSetup.s3_subtitle && formSetup.s3_subtitle.length > 0 && (
-              <div className="project-section-subtitle">
-                <PortableText value={formSetup.s3_subtitle} />
-              </div>
-            )}
-            {formSetup.s3_projects.map((project, idx) => (
-              <div key={idx} className="project float-left">
-                <div className="project-name">{project.name}</div>
-                <label className="project-image cursor-pointer">
-                  <Image src={project.image || "/public/should-not-happen.jpg"} className="object-cover pointer-events-none" fill sizes="(max-width: 768px) 50vw, 25vw" alt={project.name || ''}/>  
-                  <input className={'diff-sibiu-valcea'} type="checkbox" name="options" value={project.code} />
-                </label>
-                <div className="project-info">{project.info}</div>
-              </div>
-            ))}
-            <div className="border-highlight diff-sibiu-valcea diff-background"></div>
-          </section>
-        )}
+        <FormSection
+          sectionClassName="s3-section"
+          title={formSetup.s3_title}
+          subtitle={formSetup.s3_subtitle}
+          projects={formSetup.s3_projects}
+          optionalItems={formSetup.s3_optionalItems}
+        />
 
                   <div id="submit" className='w-100'>
             {errors.termsAccepted && <p className="input-validation">{errors.termsAccepted.join(', ')}</p>}

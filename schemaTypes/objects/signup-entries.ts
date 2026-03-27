@@ -34,5 +34,5 @@ export const signupEntriesFields = [
 
   defineField({ name: "details", title: "Data înscriere", type: "datetime", readOnly: true, fieldset: "meta" }),
   defineField({ name: "id", title: "Id", type: "string", readOnly: true, fieldset: "meta" }),
-   defineField({ name: "metadata", title: "Ordonare", type: "tourMetadata", readOnly: true, hidden: true, fieldset: "meta" }),
+  defineField({ name: "metadata", title: "Ordonare", type: "tourMetadata", readOnly: true, hidden: true, fieldset: "meta" }),
 ];

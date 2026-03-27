@@ -6,7 +6,7 @@
    max-width:900px;
    margin: 0 auto;
 
- section.top-section{
+   section.top-section{
       position:relative;
       float:left;
       width:100%;
@@ -65,111 +65,48 @@
 
    }
 
-div#submit{
-   float:left;
-   margin-top:30px;
-   padding:30px;
-   position:relative;
-
-   button[type='submit']{
-      
-         margin:0 auto;
-         width:160px;
-         height:50px;
-         border-radius:25px;
-         text-transform: uppercase;
-         font-size:20px;
-      
-   }
-
-   div.success{
+   div#submit{
       float:left;
-      color:#fff;
-      font-size:30px;
-      font-weight:600;
-      width:100%;
-      text-align: center;
-      margin-top: 20px;
-      position: absolute;
-      
-   }
-}
+      margin-top:30px;
+      padding:30px;
+      position:relative;
 
-section.project-section{
-   position:relative;
-   float:left;
-   width:100%;
-   overflow:hidden;
+      button[type='submit']{
+         
+            margin:0 auto;
+            width:160px;
+            height:50px;
+            border-radius:25px;
+            text-transform: uppercase;
+            font-size:20px;
+         
+      }
 
-   background-color: #fff;
-   margin-top:1px;
-
-   margin:30px 0;
-   padding-left:30px;
-
-
-   .border-highlight{
-      width:6px;
-      height:100%;
-      position:absolute;
-      top:0;
-      left:0;
-   }
-
-   h6{
-      margin-top:0;
-      margin-bottom:30px;
-      font-size:30px;
-   }
-
-   .project-section-subtitle{
-      float:left;
-      width:100%;
-      margin-top:-18px;
-      margin-bottom:20px;
-
-      p:last-child{
-         margin-bottom:0;
+      div.success{
+         float:left;
+         color:#fff;
+         font-size:30px;
+         font-weight:600;
+         width:100%;
+         text-align: center;
+         margin-top: 20px;
+         position: absolute;
+         
       }
    }
 
-   .project{
-      width:20%;
-      max-width:300px;
-
-      @media (max-width: 800px) { width:25%; }
-      @media (max-width: 600px) { width:50%; }
-
-      .project-image{
-         position:relative;
-         display: block;
-         width: 140px;
-         height: 90px;
-         border: 2px solid #000;
-
-         input[type='checkbox']{
-            // appearance: none;
-            // -webkit-appearance: none;
-            position:absolute;
-            right:10px;
-            top:10px;
+   @media (max-width: 900px) {
+      
+      section.top-section 
+      {
+         .terms-section{margin-top:0px;}
+         .inputs-section {  
+            padding: 0 30px;
+            
+            .form-group{ width:100% !important; margin:0 !important; margin-top:30px !important;}
          }
       }
 
    }
-}
- 
-
-@media (max-width: 900px) {
-   section.top-section 
-   {
-      .terms-section{margin-top:0px;}
-      .inputs-section {  
-         padding: 0 30px;
-         
-         .form-group{ width:100% !important; margin:0 !important; margin-top:30px !important;}
-      }
-}
-}
 
 }
