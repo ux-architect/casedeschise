@@ -3,14 +3,24 @@ import { Box, Button, Card, Flex, Stack, Text, TextInput } from '@sanity/ui'
 import { useClient } from 'sanity'
 import './signups-summary.scss'
 
+type SignupObjective = { _key?: string; status?: number }
+
 type SignupEntry = {
   _id: string
   _createdAt?: string
   contact?: { name?: string; email?: string; phone?: string }
   details?: string
-  objectives?: Array<{ _key?: string; status?: number }>
+  objectives?: SignupObjective[]
   optionalItems?: string
   metadata?: { year?: string }
+}
+
+type SignupFormProject = { code?: string; name?: string }
+
+type SignupFormProjectsResponse = {
+  s1_projects?: SignupFormProject[]
+  s2_projects?: SignupFormProject[]
+  s3_projects?: SignupFormProject[]
 }
 
 function formatDate(value?: string) {
@@ -33,7 +43,7 @@ function toTsvCell(value?: string) {
   return escaped
 }
 
-function formatObjectives(objectives?: SignupEntry['objectives']) {
+function formatObjectives(objectives?: SignupObjective[]) {
   if (!objectives?.length) return ''
   return objectives
     .map((o) => {
@@ -45,111 +55,159 @@ function formatObjectives(objectives?: SignupEntry['objectives']) {
 
 export default function SignupsSummary({ schemaType, title }: { schemaType: string; title: string }) {
   const client = useClient({ apiVersion: '2024-01-01' })
-  const [entries, setEntries] = useState<SignupEntry[]>([])
+  const [signupEntries, setSignupEntries] = useState<SignupEntry[]>([])
   const [isLoading, setIsLoading] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const [search, setSearch] = useState('')
-  const [deletingId, setDeletingId] = useState<string | null>(null)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const [searchQuery, setSearchQuery] = useState('')
+  const [selectedObjectiveCode, setSelectedObjectiveCode] = useState('')
+  const [objectiveLabelByCode, setObjectiveLabelByCode] = useState<Record<string, string>>({})
+  const [deletingEntryId, setDeletingEntryId] = useState<string | null>(null)
   const [isDeletingAll, setIsDeletingAll] = useState(false)
 
   useEffect(() => {
     let mounted = true
+
     async function loadData() {
       try {
         setIsLoading(true)
-        setError(null)
-        const data = await client.fetch<SignupEntry[]>(
+        setErrorMessage(null)
+
+        const entriesData = await client.fetch<SignupEntry[]>(
           `*[_type == $schemaType] | order(coalesce(metadata.year, "") desc, _createdAt desc){
             _id, _createdAt, contact{name, email, phone}, details, objectives[]{_key, status}, optionalItems, metadata
           }`,
           { schemaType }
         )
-        if (mounted) setEntries(data || [])
+
+        const signupFormType = schemaType.includes('sibiu') ? 'signup-form-sibiu' : schemaType.includes('valcea') ? 'signup-form-valcea' : null
+
+        if (signupFormType) {
+          const signupFormData = await client.fetch<SignupFormProjectsResponse>(`*[_type == $signupFormType][0]{s1_projects[]{code, name}, s2_projects[]{code, name}, s3_projects[]{code, name}}`, { signupFormType })
+          const allProjects = [...(signupFormData?.s1_projects || []), ...(signupFormData?.s2_projects || []), ...(signupFormData?.s3_projects || [])]
+          const labelsByCode: Record<string, string> = {}
+          allProjects.forEach((project) => { const code = (project.code || '').trim(); const name = (project.name || '').trim(); if (code && name) labelsByCode[code] = name })
+
+          if (mounted) setObjectiveLabelByCode(labelsByCode)
+        } else if (mounted) {
+          setObjectiveLabelByCode({})
+        }
+
+        if (mounted) setSignupEntries(entriesData || [])
       } catch {
-        if (mounted) setError('Nu am putut încărca înscrierile.')
+        if (mounted) setErrorMessage('Nu am putut încărca înscrierile.')
       } finally {
         if (mounted) setIsLoading(false)
       }
     }
+
     loadData()
+
     return () => { mounted = false }
   }, [client, schemaType])
 
-  const filtered = useMemo(() => {
-    if (!search.trim()) return entries
-    const q = search.toLowerCase()
-    return entries.filter((e) => {
-      const haystack = [e.contact?.name, e.contact?.email, e.contact?.phone, e.optionalItems, formatObjectives(e.objectives), e.metadata?.year]
+  const objectiveOptions = useMemo(() => {
+    const formSetupCodes = Object.keys(objectiveLabelByCode).filter(Boolean)
+
+    if (formSetupCodes.length > 0) {
+      return formSetupCodes
+        .map((code) => ({ code, label: objectiveLabelByCode[code] || code }))
+        .sort((a, b) => a.label.localeCompare(b.label, 'ro'))
+    }
+
+    const allObjectives = signupEntries.flatMap((entry) => entry.objectives || [])
+
+    const uniqueObjectives = new Set(
+      allObjectives
+        .map((objective) => (objective._key || '').trim())
         .filter(Boolean)
-        .join(' ')
-        .toLowerCase()
-      return haystack.includes(q)
+    )
+
+    return Array.from(uniqueObjectives)
+      .map((code) => ({ code, label: objectiveLabelByCode[code] || code }))
+      .sort((a, b) => a.label.localeCompare(b.label, 'ro'))
+  }, [objectiveLabelByCode, signupEntries])
+
+  const filteredEntries = useMemo(() => {
+    const normalizedQuery = searchQuery.trim().toLowerCase()
+
+    return signupEntries.filter((entry) => {
+      const matchesObjective =
+        !selectedObjectiveCode ||
+        (entry.objectives || []).some((objective) => (objective._key || '').trim() === selectedObjectiveCode)
+
+      if (!matchesObjective) return false
+      if (!normalizedQuery) return true
+
+      const haystack = [entry.contact?.name, entry.contact?.email, entry.contact?.phone, entry.optionalItems, formatObjectives(entry.objectives), entry.metadata?.year]
+        .filter(Boolean).join(' ').toLowerCase()
+
+      return haystack.includes(normalizedQuery)
     })
-  }, [entries, search])
+  }, [searchQuery, selectedObjectiveCode, signupEntries])
 
   const tsvText = useMemo(() => {
     const header = ['An', 'Contact', 'Data înscriere', 'Obiective', 'Date opționale', 'Creat la'].join('\t')
-    const rows = filtered.map((e) =>
+    const rows = filteredEntries.map((entry) =>
       [
-        toTsvCell(e.metadata?.year),
-        toTsvCell([e.contact?.name, e.contact?.email, e.contact?.phone].filter(Boolean).join(' | ')),
-        toTsvCell(formatDate(e.details)),
-        toTsvCell(formatObjectives(e.objectives)),
-        toTsvCell(e.optionalItems),
-        toTsvCell(formatDate(e._createdAt)),
+        toTsvCell(entry.metadata?.year),
+        toTsvCell([entry.contact?.name, entry.contact?.email, entry.contact?.phone].filter(Boolean).join(' | ')),
+        toTsvCell(formatDate(entry.details)),
+        toTsvCell(formatObjectives(entry.objectives)),
+        toTsvCell(entry.optionalItems),
+        toTsvCell(formatDate(entry._createdAt)),
       ].join('\t')
     )
     return [header, ...rows].join('\n')
-  }, [filtered])
+  }, [filteredEntries])
 
-  const filteredIds = useMemo(() => filtered.map((entry) => entry._id), [filtered])
+  const filteredEntryIds = useMemo(() => filteredEntries.map((entry) => entry._id), [filteredEntries])
 
   const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(tsvText)
     } catch {
-      setError('Copierea automată a eșuat. Selectează textul și copiază manual.')
+      setErrorMessage('Copierea automată a eșuat. Selectează textul și copiază manual.')
     }
   }, [tsvText])
 
-  const handleDelete = useCallback(async (id: string) => {
+  const deleteEntry = useCallback(async (id: string) => {
     const confirmed = window.confirm('Sigur vrei să ștergi această înscriere?')
     if (!confirmed) return
 
     try {
-      setDeletingId(id)
-      setError(null)
+      setDeletingEntryId(id)
+      setErrorMessage(null)
       await client.delete(id)
-      setEntries((prev) => prev.filter((entry) => entry._id !== id))
+      setSignupEntries((prev) => prev.filter((entry) => entry._id !== id))
     } catch {
-      setError('Ștergerea înscrierii a eșuat.')
+      setErrorMessage('Ștergerea înscrierii a eșuat.')
     } finally {
-      setDeletingId((current) => (current === id ? null : current))
+      setDeletingEntryId((current) => (current === id ? null : current))
     }
   }, [client])
 
-  const handleDeleteAll = useCallback(async () => {
-    if (filteredIds.length === 0) return
+  const deleteAll = useCallback(async () => {
+    if (filteredEntryIds.length === 0) return
 
-    const confirmed = window.confirm(`Sigur vrei să ștergi toate cele ${filteredIds.length} înscrieri afișate?`)
+    const confirmed = window.confirm(`Sigur vrei să ștergi toate cele ${filteredEntryIds.length} înscrieri afișate?`)
     if (!confirmed) return
 
     try {
       setIsDeletingAll(true)
-      setError(null)
+      setErrorMessage(null)
 
       const tx = client.transaction()
-      filteredIds.forEach((id) => tx.delete(id))
+      filteredEntryIds.forEach((id) => tx.delete(id))
       await tx.commit()
 
-      const idsSet = new Set(filteredIds)
-      setEntries((prev) => prev.filter((entry) => !idsSet.has(entry._id)))
+      const idsToDelete = new Set(filteredEntryIds)
+      setSignupEntries((prev) => prev.filter((entry) => !idsToDelete.has(entry._id)))
     } catch {
-      setError('Ștergerea tuturor înscrierilor afișate a eșuat.')
+      setErrorMessage('Ștergerea tuturor înscrierilor afișate a eșuat.')
     } finally {
       setIsDeletingAll(false)
     }
-  }, [client, filteredIds])
+  }, [client, filteredEntryIds])
 
   return (
     <Card padding={4} sizing="border" className="signups-summary">
@@ -158,38 +216,41 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
         <Flex align="center" justify="space-between" wrap="wrap" gap={3}>
           <Text size={2} weight="semibold">{title}</Text>
           <Flex align="center" gap={2}>
-            <Text size={1} muted>{filtered.length} / {entries.length} înscrieri</Text>
-            <Button mode="ghost" text="Copiază TSV" onClick={handleCopy} disabled={isLoading || filtered.length === 0} />
+            <Text size={1} muted>{filteredEntries.length} / {signupEntries.length} înscrieri</Text>
+            <Button mode="ghost" text="Copiază TSV" onClick={handleCopy} disabled={isLoading || filteredEntries.length === 0} />
           </Flex>
         </Flex>
 
-        {/* Search */}
-        <TextInput
-          placeholder="Caută după nume, email, telefon…"
-          value={search}
-          onChange={(e) => setSearch(e.currentTarget.value)}
-        />
+        {/* Filters */}
+        <Flex gap={2} wrap="wrap">
+          <Box flex={1} style={{ minWidth: 260 }}>
+            <TextInput
+              placeholder="Caută după nume, email, telefon…"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.currentTarget.value)}
+            />
+          </Box>
+          <Box style={{ minWidth: 260 }}>
+            <select className="objective-filter" aria-label="Filtrează după obiectiv" value={selectedObjectiveCode} onChange={(e) => setSelectedObjectiveCode(e.currentTarget.value)}>
+              <option value="">Toate obiectivele</option>
+              {objectiveOptions.map((objective) => (
+                <option key={objective.code} value={objective.code}>{objective.label}</option>
+              ))}
+            </select>
+          </Box>
+        </Flex>
 
         {isLoading && <Text size={1}>Se încarcă…</Text>}
-        {error && <Text size={1} style={{ color: 'var(--card-badge-critical-fg-color)' }}>{error}</Text>}
+        {errorMessage && <Text size={1} style={{ color: 'var(--card-badge-critical-fg-color)' }}>{errorMessage}</Text>}
 
         {/* Table */}
-        {!isLoading && !error && (
+        {!isLoading && !errorMessage && (
           <Box className="signups-summary__table-panel">
             <Box className="signups-summary__table-wrap">
               <table className="signups-summary__table">
-                <thead>
-                  <tr>
-                    <th>#</th>
-                    <th>Contact</th>
-                    <th>Data înscriere</th>
-                    <th>Obiective</th>
-                    <th>Date opționale</th>
-                    <th>Acțiuni</th>
-                  </tr>
-                </thead>
+                <thead><tr><th>#</th><th>Contact</th><th>Data înscriere</th><th>Obiective</th><th>Date opționale</th><th>Acțiuni</th></tr></thead>
                 <tbody>
-                  {filtered.map((entry, i) => (
+                  {filteredEntries.map((entry, i) => (
                     <tr key={entry._id}>
                       <td className="signups-summary__cell--num">{i + 1}</td>
                       <td className="signups-summary__cell--contact">
@@ -202,22 +263,15 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
                       <td>{entry.optionalItems}</td>
                       <td className="signups-summary__cell--actions">
                         <Flex gap={1} align="center" wrap="nowrap">
-                          <Button
-                            className="signups-summary__delete-btn"
-                            mode="default"
-                            tone="critical"
-                            text={deletingId === entry._id ? 'Se șterge…' : 'Șterge'}
-                            onClick={() => handleDelete(entry._id)}
-                            disabled={deletingId === entry._id || isDeletingAll}
-                          />
+                          <Button className="signups-summary__delete-btn" mode="default" tone="critical" text={deletingEntryId === entry._id ? 'Se șterge…' : 'Șterge'} onClick={() => deleteEntry(entry._id)} disabled={deletingEntryId === entry._id || isDeletingAll} />
                         </Flex>
                       </td>
                     </tr>
                   ))}
-                  {filtered.length === 0 && (
+                  {filteredEntries.length === 0 && (
                     <tr>
                       <td colSpan={6} style={{ textAlign: 'center', padding: '1rem' }}>
-                        {search ? 'Niciun rezultat pentru căutare.' : 'Nicio înscriere.'}
+                        {searchQuery || selectedObjectiveCode ? 'Niciun rezultat pentru filtrele curente.' : 'Nicio înscriere.'}
                       </td>
                     </tr>
                   )}
@@ -225,14 +279,14 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
               </table>
             </Box>
             <Flex className="signups-summary__footer-cell" align="center" justify="space-between" gap={2}>
-              <Text size={1}>Afișate: {filtered.length} din {entries.length} înscrieri</Text>
+              <Text size={1}>Afișate: {filteredEntries.length} din {signupEntries.length} înscrieri</Text>
               <Button
                 className="signups-summary__delete-btn"
                 mode="default"
                 tone="critical"
                 text={isDeletingAll ? 'Se șterg toate…' : 'Șterge toate'}
-                onClick={handleDeleteAll}
-                disabled={isDeletingAll || filtered.length === 0 || isLoading}
+                onClick={deleteAll}
+                disabled={isDeletingAll || filteredEntries.length === 0 || isLoading}
               />
             </Flex>
           </Box>
