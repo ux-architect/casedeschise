@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { signupSubmit } from '@/app/actions/signupSubmit'
 import { SignupFormType } from '@/types';
 import { PortableText } from '@portabletext/react';
@@ -11,8 +11,9 @@ import './signup-form.inputs.scss';
 
 export default function SignupForm({ formSetup, city }: { formSetup: SignupFormType, city: string }) {
 
-  const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
-  const [errors, setErrors] = useState<Record<string, string[]>>({})
+  const [status, setStatus] = useState<'' | 'disabled' | 'loading' | 'success' | 'validation-errors' | 'error'>('disabled')
+  const [clientValidationErrors, setClientValidationErrors] = useState<Record<string, string[]>>({})
+  const [submittedEmail, setSubmittedEmail] = useState('')
 
   const allProjects = [
     ...(formSetup.s1_projects || []),
@@ -33,56 +34,71 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
     const selectedProjectsRaw = formData.get('selectedProjects')?.toString() || '[]'
 
     let selectedProjects: Array<{ name: string; code: string; info: string }> = []
-    try {
-      selectedProjects = JSON.parse(selectedProjectsRaw)
-    } catch {
-      selectedProjects = []
-    }
+    try { selectedProjects = JSON.parse(selectedProjectsRaw)}
+    catch { selectedProjects = []}
 
-    const nextErrors: Record<string, string[]> = {}
+    const validationErrors: Record<string, string[]> = {}
 
-    if (!name) nextErrors.name = ['Numele este obligatoriu']
-    if (!phone) nextErrors.phone = ['Telefonul este obligatoriu']
-    if(options.length === 0) nextErrors.options = ['Selectati cel puțin un proiect de interes']
-    if (selectedProjects.length === 0) nextErrors.options = ['Selectati cel puțin un proiect de interes']
+    if (!name) validationErrors.name = ['Numele este obligatoriu']
+    if (!phone) validationErrors.phone = ['Telefonul este obligatoriu']
+    if(options.length === 0) validationErrors.options = ['Selectati cel puțin un proiect de interes']
+    if (selectedProjects.length === 0) validationErrors.options = ['Selectati cel puțin un proiect de interes']
     if (!email) {
-      nextErrors.email = ['Emailul este obligatoriu']
+      validationErrors.email = ['Emailul este obligatoriu']
     } else {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
-      if (!emailRegex.test(email)) { nextErrors.email = ['Email invalid']}
+      if (!emailRegex.test(email)) { validationErrors.email = ['Email invalid']}
     }
-    if (hasTermsCheckbox && !termsAccepted) nextErrors.termsAccepted = ['Trebuie sa acceptati termenii si conditiile']
+    if (hasTermsCheckbox && !termsAccepted) validationErrors.termsAccepted = ['Trebuie sa acceptati termenii si conditiile']
 
-    return nextErrors
+    
+    if (Object.keys(validationErrors).length > 0) {
+      validationErrors.validationSummary = Object.values(validationErrors).flat()
+    }
+
+    return validationErrors
   }
 
-  const handleSubmit = async (formData: FormData) => {
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault()
+      const formData = new FormData(event.currentTarget)
 
-    const selectedCodes = formData.getAll('options').map((value) => value.toString().trim()).filter(Boolean)
+      const emailValue = formData.get('email')?.toString().trim() || ''
 
-    const selectedProjects = allProjects
-      .filter((project) => project.code && selectedCodes.includes(project.code))
-      .map((project) => ({code: project.code || '', name: project.name || '', info: project.info || ''}))
+      const selectedCodes = formData.getAll('options').map((value) => value.toString().trim()).filter(Boolean)
 
-    formData.set('selectedProjects', JSON.stringify(selectedProjects))
-    formData.set('city', city)
-    
-    const clientErrors = validateFormData(formData)
-    
-    if (Object.keys(clientErrors).length > 0) {
-      setStatus('error')
-      setErrors(clientErrors)
-      return
-    }
+      const selectedProjects = allProjects
+        .filter((project) => project.code && selectedCodes.includes(project.code))
+        .map((project) => ({code: project.code || '', name: project.name || '', info: project.info || ''}))
 
-    setStatus('loading')
-    const result = await signupSubmit(formData)
+      formData.set('selectedProjects', JSON.stringify(selectedProjects))
+      formData.set('city', city)
+      
+      const nextClientValidationErrors = validateFormData(formData)
 
-    if (result.success) {
-      setStatus('success')
-    } else {
-      setStatus('error')
-    }
+      if (Object.keys(nextClientValidationErrors).length > 0) { setStatus('validation-errors'); setClientValidationErrors(nextClientValidationErrors); return }
+
+      setStatus('loading'); setClientValidationErrors({});
+      const result = await signupSubmit(formData)
+
+      if (result.success) { setSubmittedEmail(emailValue); setStatus('success') }
+      else { setStatus('error')}
+  }
+
+  const cssClass_sectionDisabled = (status === 'disabled') ? 'section-disabled' : '';
+  let useDefaultContactValues = process.env.NODE_ENV === 'development' ? true : false;
+  // useDefaultContactValues = false;
+
+  if (status === 'success') {
+    return (
+      <div className="nsc--signup-form nsc--signup-form-success layout-container clearfix">
+        <div className="success-screen">
+            <p className="success-message">Înscriere confirmată! <br/>  Vei primi un email cu cod QR pe adresa "{submittedEmail}".</p>
+            <a className="btn btn-black btn-large margin-0-auto" href={`/${city.toLowerCase()}`}>OK</a>
+        </div>
+         <style>{`#custom-responsive-nav, .cover{display:none;}`}</style>
+      </div>
+    )
   }
 
   return (
@@ -90,7 +106,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
       
       {/* <h2>{formSetup.title}</h2> */}
 
-      <form action={handleSubmit} className={` contact-form clearfix`}>
+      <form onSubmit={handleSubmit} className={` contact-form clearfix`}>
         <section className={`top-section position-relative float-left`} >
 
           {hasTermsContent && (
@@ -102,44 +118,49 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
               )}
               {hasTermsCheckbox && (
                 <label className="terms-checkbox" >
-                  <input id="termsAccepted" type="checkbox" name="termsAccepted" value="yes" required />
-                  <span>{formSetup.terms_checkbox_label}</span>
+                  <input id="termsAccepted" type="checkbox" name="termsAccepted" value="yes" className={clientValidationErrors.termsAccepted ? 'input-validation-error' : ''} required onChange={(e) => setStatus(e.target.checked ? '' : 'disabled')} />
+                  <span>
+                    <span className="font-weight-bold">{formSetup.terms_checkbox_label}</span>
+                    <span> ( * obligatoriu pentru a continua inscrierea )</span>
+                  </span>
                 </label>
               )}
             </label>
           )}
-
-
-          <div className={` inputs-section clearfix`}>
-              <div className='form-group name'>
-                <input className={''} name="name" placeholder='Nume și prenume' defaultValue="Vasile Amariei"/>
-                {errors.name && <p className="input-validation">{errors.name.join(', ')}</p>}
-              </div>
-
-              <div className='form-group phone'>
-                <input className={''} name="phone" placeholder='Telefon' defaultValue="0741234567"/>
-                {errors.phone && <p className="input-validation">{errors.phone.join(', ')}</p>}
-              </div>
-
-              <div className='form-group email'>
-                <input className={''} name="email" placeholder='Email' defaultValue="ux.studio.sibiu@gmail.com"/>
-                {errors.email && <p className="input-validation">{errors.email.join(', ')}</p>}
-              </div>
-          </div>
-
         </section>
 
-        <FormSection sectionClassName="s1-section" title={formSetup.s1_title} subtitle={formSetup.s1_subtitle} projects={formSetup.s1_projects} optionalItems={formSetup.s1_optionalItems} />
-        <FormSection sectionClassName="s2-section" title={formSetup.s2_title} subtitle={formSetup.s2_subtitle} projects={formSetup.s2_projects} optionalItems={formSetup.s2_optionalItems} />
-        <FormSection sectionClassName="s3-section" title={formSetup.s3_title} subtitle={formSetup.s3_subtitle} projects={formSetup.s3_projects} optionalItems={formSetup.s3_optionalItems} />
+        
+        <section className={`inputs-section float-left clearfix ${cssClass_sectionDisabled}`}>
+            <div className='form-group name'>
+              <input className={clientValidationErrors.name ? 'input-validation-error' : ''} name="name" placeholder='* Nume și prenume' {...(useDefaultContactValues ? { defaultValue: "Vasile Amariei" } : {})}/>
+              {clientValidationErrors.name && <p className="input-validation">{clientValidationErrors.name.join(', ')}</p>}
+            </div>
 
-        <div id="submit" className='w-100'>
-            {errors.termsAccepted && <p className="input-validation">{errors.termsAccepted.join(', ')}</p>}
+            <div className='form-group phone'>
+              <input type="tel" className={clientValidationErrors.phone ? 'input-validation-error' : ''} name="phone" placeholder='* Telefon' {...(useDefaultContactValues ? { defaultValue: "0741234567" } : {})}/>
+              {clientValidationErrors.phone && <p className="input-validation">{clientValidationErrors.phone.join(', ')}</p>}
+            </div>
+
+            <div className='form-group email'>
+              <input type="email" className={clientValidationErrors.email ? 'input-validation-error' : ''} name="email" placeholder='* Email' {...(useDefaultContactValues ? { defaultValue: "ux.studio.sibiu@gmail.com" } : {})}/>
+              {clientValidationErrors.email && <p className="input-validation">{clientValidationErrors.email.join(', ')}</p>}
+            </div>
+        </section>
+
+        <FormSection className={`s1-section ${cssClass_sectionDisabled}`} title={formSetup.s1_title} subtitle={formSetup.s1_subtitle} projects={formSetup.s1_projects} optionalItems={formSetup.s1_optionalItems} />
+        <FormSection className={`s2-section ${cssClass_sectionDisabled}`} title={formSetup.s2_title} subtitle={formSetup.s2_subtitle} projects={formSetup.s2_projects} optionalItems={formSetup.s2_optionalItems} />
+        <FormSection className={`s3-section ${cssClass_sectionDisabled}`} title={formSetup.s3_title} subtitle={formSetup.s3_subtitle} projects={formSetup.s3_projects} optionalItems={formSetup.s3_optionalItems} />
+
+        {clientValidationErrors.validationSummary &&
+        <section className="validation-summary float-left w-100">
+          {clientValidationErrors.validationSummary.map((error, idx) => (
+            <span key={idx} className="w-100 float-left input-validation">{error}</span>
+          ))}
+        </section>}
+
+        <section id="submit" className={`w-100 ${cssClass_sectionDisabled}`}>
               <button type="submit" disabled={status === 'loading'} className={`btn btn-primary btn-invert ${'diff-sibiu-valcea'}`}>Trimite</button>
-              {status === 'success' && <div className="success">Mesaj trimis cu succes!</div>}
-            {errors.options && <p className="input-validation">{errors.options.join(', ')}</p>}
-
-        </div>
+        </section>
 
       </form>
     </div>

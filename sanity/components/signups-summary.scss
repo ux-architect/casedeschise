@@ -1,0 +1,101 @@
+.signups-summary {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100vh;
+  overflow: hidden;
+
+  /* make the inner Stack fill the card */
+  > [data-ui="Stack"] {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+}
+
+.signups-summary__table-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+  max-height: calc(100vh - 300px);
+}
+
+.signups-summary__table-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border-color);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.signups-summary__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  white-space: nowrap;
+
+  th,
+  td {
+    padding: 6px 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+  }
+
+  th {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg-color);
+    font-weight: 600;
+    z-index: 1;
+    border-bottom-width: 2px;
+  }
+
+  tbody tr:hover {
+    background: var(--card-code-bg-color, rgba(0, 0, 0, 0.03));
+  }
+}
+
+.signups-summary__cell--num {
+  color: var(--card-muted-fg-color);
+  width: 40px;
+  text-align: right;
+}
+
+.signups-summary__cell--contact {
+  white-space: normal;
+
+  span {
+    display: block;
+    line-height: 1.4;
+  }
+}
+
+.signups-summary__cell--objectives {
+  max-width: 280px;
+  white-space: normal;
+  word-break: break-word;
+}
+
+.signups-summary__cell--actions {
+  width: 90px;
+  white-space: nowrap;
+}
+
+.signups-summary__delete-btn,
+.signups-summary__delete-btn:hover,
+.signups-summary__delete-btn:focus,
+.signups-summary__delete-btn:active {
+  border: 1px solid var(--card-border-color) !important;
+  border-radius: 3px;
+}
+
+.signups-summary__footer-cell {
+  padding: 6px 10px !important;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--card-muted-fg-color);
+  background: var(--card-bg-color);
+  border-top: 1px solid var(--card-border-color);
+}

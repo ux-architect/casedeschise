@@ -5,15 +5,15 @@ import ProjectCard from './project-card';
 import './form-section.scss';
 
 interface FormSectionProps {
-  sectionClassName: string; title?: string; subtitle?: PortableTextBlock[]; projects?: SignupFormProjectType[]; optionalItems?: SignupFormOptionalItems;
+  className: string; title?: string; subtitle?: PortableTextBlock[]; projects?: SignupFormProjectType[]; optionalItems?: SignupFormOptionalItems;
 }
 
-export default function FormSection({ sectionClassName, title, subtitle, projects, optionalItems }: FormSectionProps) {
+export default function FormSection({ className, title, subtitle, projects, optionalItems }: FormSectionProps) {
   
     if (!projects || projects.length === 0) {return null;}
 
   return (
-    <section className={`${sectionClassName} project-section position-relative float-left`}>
+    <section className={`${className} project-section position-relative float-left`}>
       <h6 className="diff-sibiu-valcea">{title}</h6>
       {subtitle && subtitle.length > 0 && (<div className="project-section-subtitle"> <PortableText value={subtitle} /></div>)}
 

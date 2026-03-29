@@ -11,61 +11,58 @@
       float:left;
       width:100%;
       overflow:hidden;
-    
-      .inputs-section{
-         width: 100%;
-         position:relative;
-         z-index:1;
-         padding:100px 0 0 0 ;
+   
+      .terms-section{
+         padding:10px 30px;
 
-         .form-group.name{ width:33.33%;float:left;}
-         .form-group.phone{ width: calc(33.33% - 30px); margin-left:30px; float:left;}
-         .form-group.email{ width: calc(33.33% - 30px); margin-left:30px; float:left;}
+         .terms-and-conditions{
+         float:left;
+         width:100%;
+         margin-bottom:20px;
+         font-size:16px;
+         line-height:1.5;
+         color:#000;
 
-         .form-group.details{
-               width:100%;
-               float:left;
-               clear:both;
-               margin-top:20px;
-
-               textarea{height:200px;}
-            
-         }
-
+         p:last-child{margin-bottom:0;}
       }
 
-       .terms-section{
-            padding:10px 30px;
+      .terms-checkbox{
+         float:left;
+         width:100%;
+         color:#000;
+         display:flex;
+         align-items:flex-start;
+         gap:10px;
+         margin-bottom:20px;
+         cursor:pointer;
 
-            .terms-and-conditions{
-            float:left;
-            width:100%;
-            margin-bottom:20px;
-            font-size:16px;
-            line-height:1.5;
-            color:#000;
+         span{ line-height:30px;}
 
-            p:last-child{margin-bottom:0;}
-         }
-
-         .terms-checkbox{
-            float:left;
-            width:100%;
-            color:#000;
-            display:flex;
-            align-items:flex-start;
-            gap:10px;
-            margin-bottom:20px;
-            cursor:pointer;
-
-            span{ line-height:30px; font-weight: bold;}
-
-         }
-         }
+      }
+      }
 
    }
 
-   div#submit{
+   section.inputs-section{
+      width: 100%;
+      position:relative;
+      z-index:1;
+      margin: 80px 0 50px 0;
+
+      .form-group.name{ width:33.33%;float:left;}
+      .form-group.phone{ width: calc(33.33% - 30px); margin-left:30px; float:left;}
+      .form-group.email{ width: calc(33.33% - 30px); margin-left:30px; float:left;}
+
+      .form-group.details{
+            width:100%;
+            float:left;
+            clear:both;
+            margin-top:20px;
+      }
+
+   }
+
+   section#submit{
       float:left;
       margin-top:30px;
       padding:30px;
@@ -81,32 +78,63 @@
             font-size:20px;
          
       }
-
-      div.success{
-         float:left;
-         color:#fff;
-         font-size:30px;
-         font-weight:600;
-         width:100%;
-         text-align: center;
-         margin-top: 20px;
-         position: absolute;
+      // div.success{
+      //    float:left;
+      //    color:#fff;
+      //    font-size:30px;
+      //    font-weight:600;
+      //    width:100%;
+      //    text-align: center;
+      //    margin-top: 20px;
+      //    position: absolute;
          
-      }
+      // }
    }
 
    @media (max-width: 900px) {
       
-      section.top-section 
-      {
-         .terms-section{margin-top:0px;}
-         .inputs-section {  
-            padding: 0 30px;
-            
-            .form-group{ width:100% !important; margin:0 !important; margin-top:30px !important;}
-         }
+      section.top-section { .terms-section{margin-top:0px;} }
+
+      section.inputs-section {  
+         padding: 0 30px;
+         
+         .form-group{ width:100% !important; margin:0 !important; margin-top:30px !important;}
       }
 
    }
 
+.section-disabled{
+   opacity:0.2;
+   pointer-events:none;
+   // display:none;
+}
+
+}
+
+.nsc--signup-form-success {
+   min-height: calc(100vh - 40px);
+   display: flex;
+   align-items: center;
+   justify-content: center;
+
+   .success-screen {
+      width: 100%;
+      max-width: 760px;
+      text-align: center;
+      padding: 30px;
+   }
+
+   .success-message {
+      font-size: 18px;
+      line-height: 1.4;
+      color: #000;
+      margin: 0 0 24px 0;
+   }
+
+   // button {
+   //    min-width: 120px;
+   //    height: 48px;
+   //    border-radius: 24px;
+   //    text-transform: uppercase;
+   // }
 }

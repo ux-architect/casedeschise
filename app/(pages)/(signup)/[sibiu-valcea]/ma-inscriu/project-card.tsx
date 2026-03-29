@@ -9,7 +9,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project, className = '' }: ProjectCardProps) {
   return (
-    <label className={`project float-left diff-sibiu-valcea diff-background ${className}`.trim()}>
+    <label className={`project float-left diff-sibiu-valcea diff-background cursor-pointer ${className}`.trim()}>
       <div className="project-image cursor-pointer">
         <Image unoptimized fill alt={project.name || ''}
           src={project.image || "/should-not-happen.jpg"}
