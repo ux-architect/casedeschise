@@ -30,6 +30,7 @@ export async function signupSubmit(formData: FormData) {
   const name = formData.get('name')?.toString().trim() || ''
   const phone = formData.get('phone')?.toString().trim() || ''
   const email = formData.get('email')?.toString().trim() || ''
+  const optionalItems = formData.getAll('optionalItems').map((value) => value.toString().trim()).filter(Boolean)
 
   const selectedProjectsRaw = formData.get('selectedProjects')?.toString() || '[]'
 
@@ -46,6 +47,7 @@ export async function signupSubmit(formData: FormData) {
   })()
 
   const selectedProjectsString= selectedProjects.map((project) => project.code).join(';')
+  const optionalItemsString = optionalItems.join('; ')
   
   // email not send
   if(!city || !name || !email || !phone || selectedProjects.length === 0) {return { success: false, error: 'Email not send!' }}
@@ -71,6 +73,7 @@ export async function signupSubmit(formData: FormData) {
       status: 1,
     })),
     contact: { name, email, phone },
+    optionalItems: optionalItemsString,
     details: new Date().toISOString(),
     metadata: { year: '2026', index: formData.get('index')?.toString().trim() || '',},
   });

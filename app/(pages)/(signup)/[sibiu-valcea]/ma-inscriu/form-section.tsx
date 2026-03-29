@@ -15,10 +15,7 @@ export default function FormSection({ sectionClassName, title, subtitle, project
   return (
     <section className={`${sectionClassName} project-section position-relative float-left`}>
       <h6 className="diff-sibiu-valcea">{title}</h6>
-
-      {subtitle && subtitle.length > 0 && (
-        <div className="project-section-subtitle"> <PortableText value={subtitle} /></div>
-      )}
+      {subtitle && subtitle.length > 0 && (<div className="project-section-subtitle"> <PortableText value={subtitle} /></div>)}
 
       <div className="projects-flex-container">
         {projects.map((project, idx) => ( <ProjectCard key={idx} project={project} />))}
@@ -39,7 +36,7 @@ export default function FormSection({ sectionClassName, title, subtitle, project
           {optionalItems.checkboxes.map((item, idx) => (
             item.text && (
               <label key={idx} className="optional-checkbox cursor-pointer">
-                <input type="checkbox" name="options" value={item.text} />
+                  <input type="checkbox" name="optionalItems" value={item.text} />
                 <span>{item.text}</span>
               </label>
             )

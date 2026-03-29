@@ -129,37 +129,17 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
 
         </section>
 
-        <FormSection
-          sectionClassName="s1-section"
-          title={formSetup.s1_title}
-          subtitle={formSetup.s1_subtitle}
-          projects={formSetup.s1_projects}
-          optionalItems={formSetup.s1_optionalItems}
-        />
+        <FormSection sectionClassName="s1-section" title={formSetup.s1_title} subtitle={formSetup.s1_subtitle} projects={formSetup.s1_projects} optionalItems={formSetup.s1_optionalItems} />
+        <FormSection sectionClassName="s2-section" title={formSetup.s2_title} subtitle={formSetup.s2_subtitle} projects={formSetup.s2_projects} optionalItems={formSetup.s2_optionalItems} />
+        <FormSection sectionClassName="s3-section" title={formSetup.s3_title} subtitle={formSetup.s3_subtitle} projects={formSetup.s3_projects} optionalItems={formSetup.s3_optionalItems} />
 
-        <FormSection
-          sectionClassName="s2-section"
-          title={formSetup.s2_title}
-          subtitle={formSetup.s2_subtitle}
-          projects={formSetup.s2_projects}
-          optionalItems={formSetup.s2_optionalItems}
-        />
-
-        <FormSection
-          sectionClassName="s3-section"
-          title={formSetup.s3_title}
-          subtitle={formSetup.s3_subtitle}
-          projects={formSetup.s3_projects}
-          optionalItems={formSetup.s3_optionalItems}
-        />
-
-                  <div id="submit" className='w-100'>
+        <div id="submit" className='w-100'>
             {errors.termsAccepted && <p className="input-validation">{errors.termsAccepted.join(', ')}</p>}
               <button type="submit" disabled={status === 'loading'} className={`btn btn-primary btn-invert ${'diff-sibiu-valcea'}`}>Trimite</button>
               {status === 'success' && <div className="success">Mesaj trimis cu succes!</div>}
             {errors.options && <p className="input-validation">{errors.options.join(', ')}</p>}
 
-          </div>
+        </div>
 
       </form>
     </div>
