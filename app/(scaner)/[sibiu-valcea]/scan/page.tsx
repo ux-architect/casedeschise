@@ -21,7 +21,7 @@ export default async function ScanPage({ params}: {params: Promise<{ "sibiu-valc
   )
 
   return(
-  <main className={`nsc--page-scan`}>
+  <main className={`nsc--page-scan diff-sibiu-valcea diff-background`}>
     <div className='layout-container'>
       <ScannerClient validateSignup={validateSignup} objectives={objectives} />
     </div>
