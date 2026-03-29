@@ -14,9 +14,9 @@
 
   .layout-container{padding: 0px;}
 
-    @media (max-width: 900px) {  .cover {height: 65vh; .page-title{ font-size: 70px; bottom: -13px;} }}
-    @media (max-width: 600px) {  .cover .page-title{ font-size: 50px; bottom: -9px; letter-spacing: 0px;} }
-    @media (max-width: 420px) {  .cover .page-title{ font-size: 35px; bottom: -7px;} }
+    @media (max-width: 900px) {  .cover {height: 65vh; .page-title{ font-size: 70px; bottom: 17px;} }}
+    @media (max-width: 600px) {  .cover {height: 40vh; .page-title{ font-size: 50px; bottom: 17px; letter-spacing: 0px;} }}
+    @media (max-width: 420px) {  .cover .page-title{ font-size: 35px; bottom: 17px;} }
   
 
 }

@@ -43,6 +43,8 @@
       width:100%;
       grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
       gap: 20px;
+      @media (max-width: 460px) {grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;}
+     
    }
 
    .optional-texts{
@@ -70,8 +72,5 @@
    }
 }
 
-@media (max-width: 900px) {
-   .project-section{
-      padding-right:20px;
-   }
-}
+@media (max-width: 900px) { .project-section{padding-right:20px; } }
+@media (max-width: 460px) { .project-section{padding-left:20px !important; padding-right:10px; } }
