@@ -97,7 +97,6 @@ export default function ScannerClient({ validateSignup, objectives = [] }: Scann
   return (
     <>
       <div style={{ marginBottom: 12 }}>
-        <label htmlFor="objective-select" style={{ display: 'block', marginBottom: 6 }}> Obiectiv </label>
         <select id="objective-select" value={selectedObjectiveState}
           onChange={(e) => {
             selectedObjectiveRef.current = e.target.value
