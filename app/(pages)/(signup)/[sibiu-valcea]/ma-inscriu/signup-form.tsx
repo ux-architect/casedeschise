@@ -110,22 +110,22 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
         <section className={`top-section position-relative float-left`} >
 
           {hasTermsContent && (
-            <label className="terms-section diff-sibiu-valcea diff-background fl mt-30 clearfix display-block cursor-pointer" htmlFor="termsAccepted">
+            <div className="terms-section diff-sibiu-valcea diff-background fl mt-30 clearfix display-block">
               {formSetup.terms_conditions && formSetup.terms_conditions.length > 0 && (
                 <div className="terms-and-conditions">
                   <PortableText value={formSetup.terms_conditions} />
                 </div>
               )}
               {hasTermsCheckbox && (
-                <label className="terms-checkbox" >
+                <div className="terms-checkbox" >
                   <input id="termsAccepted" type="checkbox" name="termsAccepted" value="yes" className={clientValidationErrors.termsAccepted ? 'input-validation-error' : ''} required onChange={(e) => setStatus(e.target.checked ? '' : 'disabled')} />
                   <span>
                     <span className="font-weight-bold">{formSetup.terms_checkbox_label}</span>
                     <span> ( * obligatoriu pentru a continua inscrierea )</span>
                   </span>
-                </label>
+                </div>
               )}
-            </label>
+            </div>
           )}
         </section>
 

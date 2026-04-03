@@ -130,7 +130,7 @@ export type EventType = {
 
 export type SignupFormOptionalItems = {
   texts?: { text?: PortableTextBlock[] }[],
-  checkboxes?: { text?: string }[],
+  checkboxes?: { checkboxLabel?: string, infoText?: PortableTextBlock[] }[],
 }
 
 export type SignupFormType = {

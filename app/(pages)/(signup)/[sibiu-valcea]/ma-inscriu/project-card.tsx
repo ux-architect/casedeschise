@@ -2,12 +2,7 @@ import Image from "next/image";
 import { SignupFormProjectType } from "@/types";
 import './project-card.scss';
 
-interface ProjectCardProps {
-  project: SignupFormProjectType;
-  className?: string;
-}
-
-export default function ProjectCard({ project, className = '' }: ProjectCardProps) {
+export default function ProjectCard({ project, className = '' }: { project: SignupFormProjectType; className?: string;}) {
   return (
     <label className={`project float-left diff-sibiu-valcea diff-background cursor-pointer ${className}`.trim()}>
       <div className="project-image cursor-pointer">
@@ -20,7 +15,15 @@ export default function ProjectCard({ project, className = '' }: ProjectCardProp
       <div className="project-name">{project.name}</div>
       <div className="project-info">
         <span className="svg-icon svg-icon-clock float-left"></span>
-        <span className="float-left">{project.info}</span>
+        <span className="float-left">
+          {(() => {
+            const infoParts = (project.info || '').split('///').map((part) => part.trim()).filter(Boolean);
+
+            return infoParts.map((part, idx) => (
+              <span key={idx}> {part} {idx < infoParts.length - 1 && <br/>} </span>
+            ));
+          })()}
+        </span>
         </div>
     </label>
   );

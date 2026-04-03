@@ -1,5 +1,57 @@
 import { defineType, defineField } from "sanity";
 
+const portableTextToPlain = (blocks?: { children?: { text?: string }[] }[]) => {
+  if (!blocks || blocks.length === 0) {
+    return '';
+  }
+
+  return blocks
+    .map((block) => (block.children || []).map((child) => child.text || '').join(''))
+    .join(' ')
+    .replace(/\s+/g, ' ')
+    .trim();
+};
+
+const optionalTextsField = () =>
+  defineField({
+    name: 'texts',
+    title: 'Paragrafe opționale',
+    type: 'array',
+    of: [
+      {
+        type: 'object', 
+        name: 'text_item',
+        title: 'Paragraf',
+        fields: [{ name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }] }],
+      },
+    ],
+  });
+
+const optionalCheckboxesField = () =>
+  defineField({
+    name: 'checkboxes',
+    title: 'Bife opționale',
+    description: "secțiunea cu bife va fi activă doar când minim 1 proiect vizitabil e selectat",
+    type: 'array',
+    of: [{
+      type: 'object',
+      name: 'checkbox_item',
+      title: 'Bifă',
+      fields: [
+        { name: 'infoText', title: 'Paragraf informativ bifă', description: "câmp opțional, vizibil doar dacă conține text", type: 'array', of: [{ type: 'block' }] },
+        { name: 'checkboxLabel', title: 'Text bifă', type: 'string' },
+      ],
+      preview: {
+        select: { checkboxLabel: 'checkboxLabel', infoText: 'infoText' },
+        prepare({ checkboxLabel, infoText }) {
+          const infoTextPlain = portableTextToPlain(infoText as { children?: { text?: string }[] }[]);
+          if (!checkboxLabel) {return { title: 'Bifă fără text' };}
+          return {title: infoTextPlain ? `${checkboxLabel} (${infoTextPlain})` : checkboxLabel,};
+        },
+      },
+    }],
+  });
+
 
 export const signupForm_Fieldsets = [
   { name: "section1", title: "Secțiunea 1", options: { collapsible: true, collapsed: false } }, 
@@ -40,10 +92,10 @@ export const signupFormFields = [
             {
             type: 'object',
             fields: [
-              { name: 'image', title: 'Imagine', description: "(dimensiune fixa: 200x130 px)", type: 'image', options: { hotspot: true } },
+              { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
               { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
-              { name: 'info', title: 'Info', type: 'string' },
+              { name: 'info', title: 'Info', description:"ar putea fi omis cuvantul 'deschis:'", type: 'string' },
             ]
      }],
      
@@ -51,37 +103,14 @@ export const signupFormFields = [
 
     defineField({
           name: 's1_optionalItems',
-          title: 'Optionale (s1)',
+          title: 'Opționale (s1)',
           type: 'object',
+          options: { collapsible: true, collapsed: true },
           fieldset: "section1",
           fields: [
-            defineField({
-              name: 'texts',
-              title: 'Paragrafe optionale',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  name: 'text_item',
-                  title: 'Paragraf',
-                  fields: [ { name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }], },],
-                },
-              ],
-            }),
-            defineField({
-              name: 'checkboxes',
-              title: 'Bife optionale',
-              type: 'array',
-              of: [
-                {
-                  type: 'object',
-                  name: 'checkbox_item',
-                  title: 'Bifa',
-                  fields: [ { name: 'text', title: 'Text', type: 'string' },],
-                },
-              ],
-            }),
-          ],
+            optionalTextsField(),
+            optionalCheckboxesField(),
+          ],  
     }),
 
 
@@ -105,32 +134,23 @@ export const signupFormFields = [
             {
             type: 'object',
             fields: [
-              { name: 'image', title: 'Imagine', description: "(dimensiune fixa: 200x130 px)", type: 'image', options: { hotspot: true } },
+              { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
               { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
-              { name: 'info', title: 'Info', type: 'string' },
+              { name: 'info', title: 'Info', description:"ar putea fi omis cuvantul 'deschis:'", type: 'string' },
             ]
      }],
     }),
 
     defineField({
           name: 's2_optionalItems',
-          title: 'Optionale (s2)',
+          title: 'Opționale (s2)',
           type: 'object',
+          options: { collapsible: true, collapsed: true },
           fieldset: "section2",
           fields: [
-            defineField({
-              name: 'texts',
-              title: 'Paragrafe optionale',
-              type: 'array',
-              of: [{ type: 'object', name: 'text_item', title: 'Paragraf', fields: [{ name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }] }] }],
-            }),
-            defineField({
-              name: 'checkboxes',
-              title: 'Bife optionale',
-              type: 'array',
-              of: [{ type: 'object', name: 'checkbox_item', title: 'Bifa', fields: [{ name: 'text', title: 'Text', type: 'string' }] }],
-            }),
+            optionalTextsField(),
+            optionalCheckboxesField(),
           ],
     }),
 
@@ -152,32 +172,23 @@ export const signupFormFields = [
             {
             type: 'object',
             fields: [
-              { name: 'image', title: 'Imagine ', description: "(dimensiune fixa: 200x130 px)", type: 'image', options: { hotspot: true } },
+              { name: 'image', title: 'Imagine ', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
               { name: 'name', title: 'Nume', type: 'string' },
               { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta",   validation: (rule) => rule.required() },
-              { name: 'info', title: 'Info', type: 'string' },
+              { name: 'info', title: 'Info', description:"ar putea fi omis cuvantul 'deschis:'", type: 'string' },
             ]
      }],
     }),
 
     defineField({
           name: 's3_optionalItems',
-          title: 'Optionale (s3)',
+          title: 'Opționale (s3)',
           type: 'object',
+          options: { collapsible: true, collapsed: true },
           fieldset: "section3",
           fields: [
-            defineField({
-              name: 'texts',
-              title: 'Paragrafe optionale',
-              type: 'array',
-              of: [{ type: 'object', name: 'text_item', title: 'Paragraf', fields: [{ name: 'text', title: 'Text', type: 'array', of: [{ type: 'block' }] }] }],
-            }),
-            defineField({
-              name: 'checkboxes',
-              title: 'Bife optionale',
-              type: 'array',
-              of: [{ type: 'object', name: 'checkbox_item', title: 'Bifa', fields: [{ name: 'text', title: 'Text', type: 'string' }] }],
-            }),
+            optionalTextsField(),
+            optionalCheckboxesField(),
           ],
     }),
 
