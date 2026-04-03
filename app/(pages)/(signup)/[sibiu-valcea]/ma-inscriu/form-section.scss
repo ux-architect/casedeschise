@@ -41,7 +41,7 @@
       display: grid;
       float:left;
       width:100%;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
       @media (max-width: 460px) {grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;}
      

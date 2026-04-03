@@ -24,8 +24,14 @@ export default function AddCityClassToBody() {
   const pathname = usePathname(); 
 
   useEffect(() => {
+    if (pathname.startsWith('/studio')) {
+      document.body.classList.remove('still-loading');
+      document.body.classList.remove('city-is-sibiu', 'city-is-valcea');
+      return;
+    }
+
     
-    const img = document.querySelector('img[data-wait-for-image]') as HTMLImageElement;
+    const img = document.querySelector('img[data-wait-for-image]') as HTMLImageElement | null;
     
     // Determine the class based on pathname
     const city = pathname.split('/').find((segment) => ['sibiu', 'valcea'].includes(segment)) || null;
@@ -33,6 +39,12 @@ export default function AddCityClassToBody() {
 
     // Remove old classes before adding new one
     document.body.classList.remove('city-is-sibiu', 'city-is-valcea');
+
+    if (!img) {
+      document.body.classList.remove('still-loading');
+      if(cssClass) {document.body.classList.add(cssClass);}
+      return;
+    }
 
     waitForImageLoad(img).then(() => {
       

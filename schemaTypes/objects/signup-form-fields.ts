@@ -52,6 +52,28 @@ const optionalCheckboxesField = () =>
     }],
   });
 
+type SignupProjectsFieldConfig = { name: string; title: string; fieldset: "section1" | "section2" | "section3"; };
+
+const signupProjectsField = ({ name, title, fieldset }: SignupProjectsFieldConfig) =>
+  defineField({
+    name,
+    title,
+    type: 'array',
+    fieldset,
+    of: [
+      {
+        type: 'object',
+        fields: [
+          { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
+          { name: 'name', title: 'Nume', type: 'string' },
+          { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
+          { name: 'info', title: 'Info data', description: "ar putea fi omis cuvantul 'deschis:'", type: 'string' },
+          { name: 'address', title: 'Adresa', type: 'string' },
+        ],
+      },
+    ],
+  });
+
 
 export const signupForm_Fieldsets = [
   { name: "section1", title: "Secțiunea 1", options: { collapsible: true, collapsed: false } }, 
@@ -83,23 +105,7 @@ export const signupFormFields = [
       fieldset: "section1",
       of: [{ type: "block" }],
     }),
-    defineField({
-          name: 's1_projects',
-          title: 'Obiective (s1)',
-          type: 'array',
-          fieldset: "section1",
-          of: [
-            {
-            type: 'object',
-            fields: [
-              { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
-              { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
-              { name: 'info', title: 'Info', description:"ar putea fi omis cuvantul 'deschis:'", type: 'string' },
-            ]
-     }],
-     
-    }),
+    signupProjectsField({ name: 's1_projects', title: 'Obiective (s1)', fieldset: 'section1' }),
 
     defineField({
           name: 's1_optionalItems',
@@ -125,22 +131,7 @@ export const signupFormFields = [
       fieldset: "section2",
       of: [{ type: "block" }],
     }),
-    defineField({
-          name: 's2_projects',
-          title: 'Obiective (s2)',
-          type: 'array',
-          fieldset: "section2",
-          of: [
-            {
-            type: 'object',
-            fields: [
-              { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
-              { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
-              { name: 'info', title: 'Info', description:"ar putea fi omis cuvantul 'deschis:'", type: 'string' },
-            ]
-     }],
-    }),
+    signupProjectsField({ name: 's2_projects', title: 'Obiective (s2)', fieldset: 'section2' }),
 
     defineField({
           name: 's2_optionalItems',
@@ -163,22 +154,7 @@ export const signupFormFields = [
       fieldset: "section3",
       of: [{ type: "block" }],
     }),
-    defineField({
-          name: 's3_projects',
-          title: 'Obiective (s3)',
-          type: 'array',
-          fieldset: "section3", 
-          of: [
-            {
-            type: 'object',
-            fields: [
-              { name: 'image', title: 'Imagine ', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
-              { name: 'name', title: 'Nume', type: 'string' },
-              { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta",   validation: (rule) => rule.required() },
-              { name: 'info', title: 'Info', description:"ar putea fi omis cuvantul 'deschis:'", type: 'string' },
-            ]
-     }],
-    }),
+    signupProjectsField({ name: 's3_projects', title: 'Obiective (s3)', fieldset: 'section3' }),
 
     defineField({
           name: 's3_optionalItems',

@@ -12,19 +12,21 @@ export default function ProjectCard({ project, className = '' }: { project: Sign
         />
         <input className="custom-checkbox diff-sibiu-valcea diff-background" type="checkbox" name="options" value={project.code} />
       </div>
+
       <div className="project-name">{project.name}</div>
+
+
+      {project.address?.trim() && <div className="project-address">
+          <span className="svg-icon svg-icon-location-pin float-left"></span>
+          <span className="float-left">{project.address}</span>
+        </div>
+      }
+
       <div className="project-info">
         <span className="svg-icon svg-icon-clock float-left"></span>
-        <span className="float-left">
-          {(() => {
-            const infoParts = (project.info || '').split('///').map((part) => part.trim()).filter(Boolean);
+        <span className="float-left">{project.info}</span>
+      </div>
 
-            return infoParts.map((part, idx) => (
-              <span key={idx}> {part} {idx < infoParts.length - 1 && <br/>} </span>
-            ));
-          })()}
-        </span>
-        </div>
     </label>
   );
 }

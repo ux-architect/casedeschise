@@ -5,11 +5,13 @@ import { createElement } from 'react'
 
 const singletonId_generalInfo = '6c8bd2f5-2f82-4863-a435-f7a8946d69cf';
 const singletonId_faqList = '38ee018f-cb08-48d8-a23a-ed0a3bb9f9cc';
+const SANITY_API_VERSION = '2024-06-01';
 
 function yearSchema(S: StructureBuilder, year: string, type: string) {
   return S.listItem().title(`${getSchemaTitle(type)} (${year})`)
     .child(
       S.documentList().title(`${getSchemaTitle(type)} (${year})`).schemaType(type)
+        .apiVersion(SANITY_API_VERSION)
         .filter('_type == $type && metadata.year == $year')
         .params({ type, year })
         .defaultOrdering([
@@ -92,6 +94,7 @@ function uncategorizedWithSection(S: StructureBuilder, type: string) {
     .title(`${getSchemaTitle(type)} (Neîncadrate)`)
     .child(
       S.documentList().title(`${getSchemaTitle(type)} (Neîncadrate)`).schemaType(type)
+        .apiVersion(SANITY_API_VERSION)
         .filter('_type == $type && (!defined(metadata) || !defined(metadata.year) || metadata.year == "" || !defined(metadata.section) || metadata.section == "" || metadata.section == "null")')
         .params({ type })
     )
@@ -102,6 +105,7 @@ function uncategorizedWithoutSection(S: StructureBuilder,type: string) {
     .title(`${getSchemaTitle(type)} (Neîncadrate)`)
     .child(
       S.documentList().title(`${getSchemaTitle(type)} (Neîncadrate)`).schemaType(type)
+        .apiVersion(SANITY_API_VERSION)
         .filter('_type == $type && (!defined(metadata) || !defined(metadata.year) || metadata.year == "")')
         .params({ type })
     )
