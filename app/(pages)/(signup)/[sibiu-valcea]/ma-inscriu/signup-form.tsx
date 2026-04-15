@@ -33,16 +33,23 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
     const options = formData.getAll('options').map((value) => value.toString().trim()).filter(Boolean)
     const selectedProjectsRaw = formData.get('selectedProjects')?.toString() || '[]'
 
-    let selectedProjects: Array<{ name: string; code: string; info: string }> = []
+    let selectedProjects: Array<{ name: string; code: string; info: string; address: string }> = []
     try { selectedProjects = JSON.parse(selectedProjectsRaw)}
     catch { selectedProjects = []}
 
     const validationErrors: Record<string, string[]> = {}
 
     if (!name) validationErrors.name = ['Numele este obligatoriu']
-    if (!phone) validationErrors.phone = ['Telefonul este obligatoriu']
+    if (!phone) {validationErrors.phone = ['Telefonul este obligatoriu']}
+    else{
+      const phoneRegex = /^\+?[0-9\s\-\(\)]{7,20}$/
+      if (!phoneRegex.test(phone)) { validationErrors.phone = ['Număr de telefon invalid'] }
+    }
+
+
     if(options.length === 0) validationErrors.options = ['Selectati cel puțin un proiect de interes']
     if (selectedProjects.length === 0) validationErrors.options = ['Selectati cel puțin un proiect de interes']
+    
     if (!email) {
       validationErrors.email = ['Emailul este obligatoriu']
     } else {
@@ -69,7 +76,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
 
       const selectedProjects = allProjects
         .filter((project) => project.code && selectedCodes.includes(project.code))
-        .map((project) => ({code: project.code || '', name: project.name || '', info: project.info || ''}))
+        .map((project) => ({code: project.code || '', name: project.name || '', info: project.info || '', address: project.address || ''}))
 
       formData.set('selectedProjects', JSON.stringify(selectedProjects))
       formData.set('city', city)
@@ -93,7 +100,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
     return (
       <div className="nsc--signup-form nsc--signup-form-success layout-container clearfix">
         <div className="success-screen">
-            <p className="success-message">Înscriere confirmată! <br/>  Vei primi un email cu cod QR pe adresa "{submittedEmail}".</p>
+            <p className="success-message">Înscriere confirmată! <br/>  Vei primi un email cu cod QR pe adresa <b>{submittedEmail}</b>.</p>
             <a className="btn btn-black btn-large margin-0-auto" href={`/${city.toLowerCase()}`}>OK</a>
         </div>
          <style>{`#custom-responsive-nav, .cover{display:none;}`}</style>

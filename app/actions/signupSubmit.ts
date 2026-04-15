@@ -19,11 +19,7 @@ export async function generateQR(text: string): Promise<string> {
 
 const resend = new Resend(process.env.RESEND_API_KEY)
 
-type SelectedProject = {
-  name: string
-  code: string
-  info: string
-}
+type SelectedProject = { name: string; code: string; info: string; address: string }
 
 export async function signupSubmit(formData: FormData) {
   const city = formData.get('city')?.toString().trim() || ''
@@ -31,6 +27,9 @@ export async function signupSubmit(formData: FormData) {
   const phone = formData.get('phone')?.toString().trim() || ''
   const email = formData.get('email')?.toString().trim() || ''
   const optionalItems = formData.getAll('optionalItems').map((value) => value.toString().trim()).filter(Boolean)
+
+  const optionalTransportRequested = optionalItems.length > 0;
+  const url_tourInfo = `https://casedeschise.ro/${city.toLowerCase()}#tururi`;
 
   const selectedProjectsRaw = formData.get('selectedProjects')?.toString() || '[]'
 
@@ -40,7 +39,7 @@ export async function signupSubmit(formData: FormData) {
       return Array.isArray(parsed)
         ? parsed.filter(
             (item): item is SelectedProject =>
-              !!item && typeof item === 'object' && typeof (item as any).name === 'string' && typeof (item as any).code === 'string' && typeof (item as any).info === 'string'
+              !!item && typeof item === 'object' && typeof (item as any).name === 'string' && typeof (item as any).code === 'string' && typeof (item as any).info === 'string' && typeof (item as any).address === 'string'
           )
         : []
     } catch {return []}
@@ -87,9 +86,15 @@ export async function signupSubmit(formData: FormData) {
         <p>Salut <strong> ${name} </strong> !</p>
         <p><strong>Te-ai înscris la următoarele obiective:</strong></p>
         <ul>
-          ${selectedProjects.map((project) => `<li><strong>${project.name}</strong> - ${project.info}</li>`).join('')}
+          ${selectedProjects.map((project) => `<li><strong>${project.name}</strong> - ${project.info}  (${project.address})</li>`).join('')}
         </ul>
+
+        ${optionalTransportRequested ? 
+          `<p>Ați optat pentru transport asigurat pentru turul din mediul rural. Detalii suplimentare despre tur gasiți <a href="${url_tourInfo}">aici</a></p>` : ''
+        }
+
         <p>Accesul la vizite în cadrul evenimentului se face prin prezentarea codului QR</p>
+        
       `,
       attachments: [ {filename: 'qr-code-contact.png', content: qrCodeBase64, contentType: 'image/png', contentId: 'qr-code-contact',},],
     })
