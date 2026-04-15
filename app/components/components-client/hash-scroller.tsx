@@ -11,7 +11,7 @@ export default function HashScroller() {
         // Small delay to ensure layout is complete
         setTimeout(() => {
           element.scrollIntoView({ behavior: 'smooth' });
-        }, 200);
+        }, 700);
       }
     }
   }, []);
