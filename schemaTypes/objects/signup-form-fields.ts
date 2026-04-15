@@ -70,6 +70,12 @@ const signupProjectsField = ({ name, title, fieldset }: SignupProjectsFieldConfi
           { name: 'info', title: 'Info data', description: "ar putea fi omis cuvantul 'deschis:'", type: 'string' },
           { name: 'address', title: 'Adresa', type: 'string' },
         ],
+        preview: {
+          select: { title: 'name', code: 'code', media: 'image' },
+          prepare({ title, code, media }) {
+            return { title: code ? `${title || ''} (${code})` : title || '', media }
+          },
+        },
       },
     ],
   });

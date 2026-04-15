@@ -1,0 +1,78 @@
+.signups-overview {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-height: 100vh;
+  overflow: auto;
+
+  > [data-ui="Stack"] {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: auto;
+  }
+}
+
+.signups-overview__table-panel {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--card-border-color);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.signups-overview__table-wrap {
+  flex: 1;
+  min-height: 0;
+  overflow: auto;
+}
+
+.signups-overview__table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+
+  th,
+  td {
+    padding: 8px 12px;
+    text-align: left;
+    border-bottom: 1px solid var(--card-border-color);
+  }
+
+  th {
+    position: sticky;
+    top: 0;
+    background: var(--card-bg-color);
+    font-weight: 600;
+    z-index: 1;
+    border-bottom-width: 2px;
+  }
+
+  tbody tr:hover {
+    background: var(--card-code-bg-color, rgba(0, 0, 0, 0.03));
+  }
+
+  tfoot td {
+    border-top: 2px solid var(--card-border-color);
+    border-bottom: none;
+    background: var(--card-bg-color);
+  }
+}
+
+.signups-overview__cell--index {
+  color: var(--card-muted-fg-color);
+  width: 40px;
+  text-align: right;
+}
+
+.signups-overview__cell--num {
+  text-align: right;
+  width: 100px;
+}
+
+.signups-overview__section-title {
+  padding: 8px 12px;
+  border-bottom: 1px solid var(--card-border-color);
+  background: var(--card-code-bg-color, rgba(0, 0, 0, 0.03));
+}

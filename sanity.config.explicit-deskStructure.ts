@@ -1,6 +1,7 @@
 import { StructureBuilder } from 'sanity/structure'
 import { getSchemaTitle } from './schemaTypes'
 import SignupsSummary from './sanity/components/signups-summary'
+import SignupsOverview from './sanity/components/signups-overview'
 import { createElement } from 'react'
 
 const singletonId_generalInfo = '6c8bd2f5-2f82-4863-a435-f7a8946d69cf';
@@ -66,23 +67,35 @@ function year2026(S: StructureBuilder) {
           S.listItem().title('Formular înscrieri Sibiu (2026)')
             .child(S.document().title('înscrieri Sibiu').documentId('formular-sibiu-2026').schemaType('signup-form-sibiu')),
 
-          S.listItem().title('Formular înscrieri Valcea (2026)')
-            .child(S.document().title('înscrieri Valcea').documentId('formular-valcea-2026').schemaType('signup-form-valcea')),
+          S.listItem().title('Formular înscrieri Vâlcea (2026)')
+            .child(S.document().title('înscrieri Vâlcea').documentId('formular-valcea-2026').schemaType('signup-form-valcea')),
 
           S.divider(),
           // yearSchema(S, '2026', 'signups-sibiu'),
           // yearSchema(S, '2026', 'signups-valcea'),
 
           S.divider(),
-          S.listItem().title('Sumar înscrieri Sibiu (2026)')
+          S.listItem().title('Înscrieri Sibiu (2026)')
             .child(
               S.component(() => createElement(SignupsSummary, { schemaType: 'signups-sibiu', title: 'Sumar înscrieri Sibiu' }))
+                .title('Înscrieri Sibiu')
+            ),
+          S.listItem().title('Înscrieri Vâlcea (2026)')
+            .child(
+              S.component(() => createElement(SignupsSummary, { schemaType: 'signups-valcea', title: 'Sumar înscrieri Vâlcea' }))
+                .title('Înscrieri Vâlcea')
+            ),
+
+          S.divider(),
+          S.listItem().title('Sumar înscrieri Sibiu (2026)')
+            .child(
+              S.component(() => createElement(SignupsOverview, { schemaType: 'signups-sibiu', title: 'Sumar obiective Sibiu' }))
                 .title('Sumar înscrieri Sibiu')
             ),
-          S.listItem().title('Sumar înscrieri Valcea (2026)')
+          S.listItem().title('Sumar înscrieri Vâlcea (2026)')
             .child(
-              S.component(() => createElement(SignupsSummary, { schemaType: 'signups-valcea', title: 'Sumar înscrieri Valcea' }))
-                .title('Sumar înscrieri Valcea')
+              S.component(() => createElement(SignupsOverview, { schemaType: 'signups-valcea', title: 'Sumar obiective Vâlcea' }))
+                .title('Sumar înscrieri Vâlcea')
             ),
         ])
     )
