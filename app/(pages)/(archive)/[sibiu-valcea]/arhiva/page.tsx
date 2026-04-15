@@ -23,7 +23,8 @@ export default async function Archive({ params}: {params: Promise<{ year:string,
     return acc;
   }, {} as Record<string, ProjectType[]>);
 
-  const allYears = Array.from({ length: new Date().getFullYear() - 2024 + 1 },(_, index) => String(2024 + index),).reverse();
+  const activeYear = parseInt(generalInfo?.currentYear, 10);
+  const allYears = Array.from({ length: activeYear - 2024 + 1 },(_, index) => String(2024 + index),).reverse();
 
   const sortBySection = (left: ProjectType, right: ProjectType) =>
     parseInt(left.metadata?.section ?? "0", 10) - parseInt(right.metadata?.section ?? "0", 10);

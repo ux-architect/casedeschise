@@ -234,7 +234,7 @@ const generalInfo = {
       initialValue: (new Date().getFullYear()).toString(),
       validation: (rule) => rule.required().error("O valoare e musai"),
       options: {
-        list: ['2024', '2025', '2026']
+        list: ['2024', '2025', '2026', '2027', '2028']
       }}),
 
       defineField({
