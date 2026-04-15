@@ -27,16 +27,8 @@
       }
    }
 
-   .project-name { color: #000; padding:10px; padding-bottom:0px; font-size: 19px;}
-   // .project-address { color: #000; padding:10px; font-size: 13px;
-   //    .svg-icon{
-   //          width:16px;
-   //          height:16px;
-   //          margin-right:5px;
-   //          flex: 0 0 16px;
-   //      }
-   
-   // }
+   .project-name { position:relative; color: #000; padding:10px; padding-bottom:0px; font-size: 19px;}
+   .project-name.project-has-long-name{font-size: 16px; line-height: 22px;}
 
    .project-info,
    .project-address { 
@@ -60,9 +52,25 @@
          line-height: 16px;
       }
          > span:last-child { flex: 1; }
+
+         &.project-has-long-address span{
+            font-size: 10.5px;
+         }
     }
 
-    .project-address { 
-      bottom:24px;
-    }
+    .project-address {  bottom:24px; }
+
+      @media (max-width: 610px) {
+               .project-info span,
+               .project-address span{ font-size:10.5px; }
+            }
+
+      @media (max-width: 490px) {
+         height:280px;
+         .project-image {height:160px;}
+
+         .project-info span,
+         .project-address span{ font-size:13px !important; }
+      }
+
 }

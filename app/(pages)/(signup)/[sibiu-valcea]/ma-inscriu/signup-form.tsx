@@ -119,7 +119,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
           {hasTermsContent && (
             <div className="terms-section diff-sibiu-valcea diff-background fl mt-30 clearfix display-block">
               {formSetup.terms_conditions && formSetup.terms_conditions.length > 0 && (
-                <div className="terms-and-conditions">
+                <div className="terms-and-conditions has-portable-text">
                   <PortableText value={formSetup.terms_conditions} />
                 </div>
               )}

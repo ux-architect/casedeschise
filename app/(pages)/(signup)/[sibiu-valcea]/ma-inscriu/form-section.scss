@@ -41,9 +41,14 @@
       display: grid;
       float:left;
       width:100%;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
       gap: 20px;
-      @media (max-width: 460px) {grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px;}
+      @media (max-width: 610px) {
+         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); 
+         gap: 15px;
+         .project-info span,
+         .project-address span{ font-size:10.5px; }
+      }
      
    }
 
@@ -73,4 +78,4 @@
 }
 
 @media (max-width: 900px) { .project-section{padding-right:20px; } }
-@media (max-width: 460px) { .project-section{padding-left:20px !important; padding-right:10px; } }
+@media (max-width: 610px) { .project-section{padding-left:20px !important; padding-right:10px; } }
