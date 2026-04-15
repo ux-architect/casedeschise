@@ -64,7 +64,7 @@ const signupProjectsField = ({ name, title, fieldset }: SignupProjectsFieldConfi
       {
         type: 'object',
         fields: [
-          { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 200x130 px)", type: 'image', options: { hotspot: true } },
+          { name: 'image', title: 'Imagine', description: "(dimensiune fixă: 500x330 px)", type: 'image', options: { hotspot: true } },
           { name: 'name', title: 'Nume', type: 'string' },
           { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
           { name: 'info', title: 'Info data', description: "ar putea fi omis cuvantul 'deschis:'", type: 'string' },
