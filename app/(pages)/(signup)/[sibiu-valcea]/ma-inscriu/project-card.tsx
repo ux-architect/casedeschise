@@ -18,7 +18,7 @@ export default function ProjectCard({ project, className = '' }: { project: Sign
       </div>
 
       <div className={`project-name ${cssClass_longName}`}>{project.name}</div>
-
+      {project.subtitle?.trim() && <div className="project-subtitle hide-long-text" title={project.subtitle}>{project.subtitle}</div>}
 
       {project.address?.trim() && <div className={`project-address ${cssClass_longAddress}`}>
           <span className="svg-icon svg-icon-location-pin float-left"></span>

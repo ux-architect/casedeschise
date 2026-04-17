@@ -15,7 +15,7 @@
       .terms-section{
          padding:10px 30px;
 
-         @media (max-width: 540px) { padding:10px 20px;}
+         // @media (max-width: 540px) { padding:10px 20px;}
 
          .terms-and-conditions{
             float:left;
@@ -25,6 +25,8 @@
             font-size:16px;
             line-height:1.5;
             color:#000;
+
+            br{ display:none;}
 
             p:last-child{margin-bottom:0;}
              @media (max-width: 540px) { font-size:14px;}
@@ -37,7 +39,6 @@
          display:flex;
          align-items:flex-start;
          gap:10px;
-         margin-bottom:20px;
 
          span{ line-height:30px;}
 

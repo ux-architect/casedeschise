@@ -124,13 +124,15 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
                 </div>
               )}
               {hasTermsCheckbox && (
-                <div className="terms-checkbox" >
-                  <input id="termsAccepted" type="checkbox" name="termsAccepted" value="yes" className={clientValidationErrors.termsAccepted ? 'input-validation-error' : ''} required onChange={(e) => setStatus(e.target.checked ? '' : 'disabled')} />
-                  <span>
-                    <span className="font-weight-bold">{formSetup.terms_checkbox_label}</span>
-                    <span> ( Te rugăm să bifezi pentru a continua )</span>
-                  </span>
-                </div>
+                <>
+                  <div className="terms-checkbox mt-10 mb-0">
+                    <input id="termsAccepted" type="checkbox" name="termsAccepted" value="yes" className={clientValidationErrors.termsAccepted ? 'input-validation-error' : ''} required onChange={(e) => setStatus(e.target.checked ? '' : 'disabled')} />
+                    <span>
+                      <span className="font-weight-bold">{formSetup.terms_checkbox_label}</span>
+                      <span className="hide-on-mobile"> ( Te rugăm să bifezi pentru a continua )</span>
+                    </span>
+                  </div><span className="hide-on-desktop mt-20 mb-10" style={{ color: "#000", fontSize: "14px" }}>Te rugăm să bifezi pentru a continua</span>
+                </>
               )}
             </div>
           )}

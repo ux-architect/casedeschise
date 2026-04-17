@@ -1,7 +1,7 @@
 
 
 .nsc--signup-form .projects-flex-container .project {
-    height: 240px;
+    height: 250px;
     position:relative;
     user-select: none;
     
@@ -29,6 +29,7 @@
 
    .project-name { position:relative; color: #000; padding:10px; padding-bottom:0px; font-size: 19px;}
    .project-name.project-has-long-name{font-size: 16px; line-height: 22px;}
+   .project-subtitle { color: #000000; padding: 2px 10px 0; font-size: 13px; line-height: 18px; }
 
    .project-info,
    .project-address { 
