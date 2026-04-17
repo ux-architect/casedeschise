@@ -109,6 +109,14 @@
   word-break: break-word;
 }
 
+.signups-summary__optional-summary {
+  td {
+    border-bottom: none;
+    padding: 3px 10px;
+    font-size: 13px;
+  }
+}
+
 .signups-summary__delete-btn,
 .signups-summary__delete-btn:hover,
 .signups-summary__delete-btn:focus,

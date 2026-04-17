@@ -163,6 +163,18 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
 
   const filteredEntryIds = useMemo(() => filteredEntries.map((entry) => entry._id), [filteredEntries])
 
+  const optionalItemCounts = useMemo(() => {
+    const counts: Record<string, number> = {}
+    filteredEntries.forEach((entry) => {
+      if (!entry.optionalItems) return
+      entry.optionalItems.split(';').forEach((item) => {
+        const trimmed = item.trim()
+        if (trimmed) counts[trimmed] = (counts[trimmed] || 0) + 1
+      })
+    })
+    return Object.entries(counts).sort((a, b) => b[1] - a[1])
+  }, [filteredEntries])
+
   const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(tsvText)
@@ -300,6 +312,17 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
                     </tr>
                   )}
                 </tbody>
+                {optionalItemCounts.length > 0 && (
+                  <tfoot className="signups-summary__optional-summary">
+                    <tr><td colSpan={7} style={{ fontWeight: 600, paddingTop: 12 }}>Rezumat opționale:</td></tr>
+                    {optionalItemCounts.map(([value, count]) => (
+                      <tr key={value}>
+                        <td colSpan={5} style={{ textAlign: 'right', color: 'var(--card-muted-fg-color)' }}>{value}</td>
+                        <td style={{ fontWeight: 600 }}>{count}</td>
+                      </tr>
+                    ))}
+                  </tfoot>
+                )}
               </table>
             </Box>
             <Flex className="signups-summary__footer-cell" align="center" justify="space-between" gap={2}>

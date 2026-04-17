@@ -8,9 +8,12 @@ type SignupObjective = { _key?: string; status?: number }
 type SignupEntry = {
   _id: string
   objectives?: SignupObjective[]
+  optionalItems?: string
 }
 
 type SignupFormProject = { code?: string; name?: string }
+
+type SignupFormCheckbox = { checkboxCode?: string; checkboxLabel?: string }
 
 type SignupFormProjectsResponse = {
   s1_title?: string
@@ -19,6 +22,9 @@ type SignupFormProjectsResponse = {
   s1_projects?: SignupFormProject[]
   s2_projects?: SignupFormProject[]
   s3_projects?: SignupFormProject[]
+  s1_optionalItems?: { checkboxes?: SignupFormCheckbox[] }
+  s2_optionalItems?: { checkboxes?: SignupFormCheckbox[] }
+  s3_optionalItems?: { checkboxes?: SignupFormCheckbox[] }
 }
 
 type ObjectiveRow = {
@@ -33,6 +39,8 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
   const [signupEntries, setSignupEntries] = useState<SignupEntry[]>([])
   const [objectiveLabelByCode, setObjectiveLabelByCode] = useState<Record<string, string>>({})
   const [objectiveSectionByCode, setObjectiveSectionByCode] = useState<Record<string, string>>({})
+  const [optionalItemLabelByCode, setOptionalItemLabelByCode] = useState<Record<string, string>>({})
+  const [optionalItemSectionByCode, setOptionalItemSectionByCode] = useState<Record<string, string>>({})
   const [sectionTitles, setSectionTitles] = useState<Record<string, string>>({})
   const [isLoading, setIsLoading] = useState(true)
   const [errorMessage, setErrorMessage] = useState<string | null>(null)
@@ -46,7 +54,7 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
         setErrorMessage(null)
 
         const entriesData = await client.fetch<SignupEntry[]>(
-          `*[_type == $schemaType]{ _id, objectives[]{ _key, status } }`,
+          `*[_type == $schemaType]{ _id, objectives[]{ _key, status }, optionalItems }`,
           { schemaType }
         )
 
@@ -58,7 +66,7 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
 
         if (signupFormType) {
           const signupFormData = await client.fetch<SignupFormProjectsResponse>(
-            `*[_type == $signupFormType][0]{ s1_title, s2_title, s3_title, s1_projects[]{ code, name }, s2_projects[]{ code, name }, s3_projects[]{ code, name } }`,
+            `*[_type == $signupFormType][0]{ s1_title, s2_title, s3_title, s1_projects[]{ code, name }, s2_projects[]{ code, name }, s3_projects[]{ code, name }, s1_optionalItems{ checkboxes[]{ checkboxCode, checkboxLabel } }, s2_optionalItems{ checkboxes[]{ checkboxCode, checkboxLabel } }, s3_optionalItems{ checkboxes[]{ checkboxCode, checkboxLabel } } }`,
             { signupFormType }
           )
           const allProjects = [
@@ -79,9 +87,32 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
           mapProjects(signupFormData?.s1_projects || [], 's1')
           mapProjects(signupFormData?.s2_projects || [], 's2')
           mapProjects(signupFormData?.s3_projects || [], 's3')
+
+          const optLabels: Record<string, string> = {}
+          const optSections: Record<string, string> = {}
+          const mapCheckboxes = (checkboxes: SignupFormCheckbox[], section: string) => {
+            checkboxes.forEach((cb) => {
+              const code = (cb.checkboxCode || '').trim()
+              const label = (cb.checkboxLabel || '').trim()
+              if (code) {
+                optLabels[code] = label || code
+                optSections[code] = section
+              }
+              if (label && label !== code) {
+                optLabels[label] = label
+                optSections[label] = section
+              }
+            })
+          }
+          mapCheckboxes(signupFormData?.s1_optionalItems?.checkboxes || [], 's1')
+          mapCheckboxes(signupFormData?.s2_optionalItems?.checkboxes || [], 's2')
+          mapCheckboxes(signupFormData?.s3_optionalItems?.checkboxes || [], 's3')
+
           if (mounted) {
             setObjectiveLabelByCode(labelsByCode)
             setObjectiveSectionByCode(sectionByCode)
+            setOptionalItemLabelByCode(optLabels)
+            setOptionalItemSectionByCode(optSections)
             setSectionTitles({
               s1: signupFormData?.s1_title || 'Secțiunea 1',
               s2: signupFormData?.s2_title || 'Secțiunea 2',
@@ -92,6 +123,8 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
         } else if (mounted) {
           setObjectiveLabelByCode({})
           setObjectiveSectionByCode({})
+          setOptionalItemLabelByCode({})
+          setOptionalItemSectionByCode({})
           setSectionTitles({})
         }
 
@@ -130,6 +163,22 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
       .sort((a, b) => a.name.localeCompare(b.name, 'ro'))
   }, [signupEntries, objectiveLabelByCode])
 
+  const optionalItemRows = useMemo(() => {
+    const counts: Record<string, number> = {}
+    for (const entry of signupEntries) {
+      if (!entry.optionalItems) continue
+      entry.optionalItems.split(';').forEach((item) => {
+        const trimmed = item.trim()
+        if (trimmed) counts[trimmed] = (counts[trimmed] || 0) + 1
+      })
+    }
+    return Object.entries(counts).map(([code, total]) => {
+      const label = optionalItemLabelByCode[code]
+      const displayName = label && label !== code ? `${label} (${code})` : code
+      return { code, name: displayName, total }
+    })
+  }, [signupEntries, optionalItemLabelByCode])
+
   const sectionOrder = ['s1', 's2', 's3', 'other']
   const groupedSections = useMemo(() => {
     const groups: Record<string, ObjectiveRow[]> = { s1: [], s2: [], s3: [], other: [] }
@@ -139,8 +188,13 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
     }
     return sectionOrder
       .filter((s) => groups[s].length > 0)
-      .map((s) => ({ key: s, title: sectionTitles[s] || s, rows: groups[s] }))
-  }, [rows, objectiveSectionByCode, sectionTitles])
+      .map((s) => ({
+        key: s,
+        title: sectionTitles[s] || s,
+        rows: groups[s],
+        optionalRows: optionalItemRows.filter((o) => (optionalItemSectionByCode[o.code] || 'other') === s),
+      }))
+  }, [rows, objectiveSectionByCode, sectionTitles, optionalItemRows, optionalItemSectionByCode])
 
   const grandTotal = useMemo(() => rows.reduce((sum, r) => sum + r.totalSignups, 0), [rows])
   const grandValidated = useMemo(() => rows.reduce((sum, r) => sum + r.validatedSignups, 0), [rows])
@@ -184,10 +238,18 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
                       <tfoot>
                         <tr>
                           <td></td>
-                          <td><strong>Subtotal</strong></td>
+                          <td><strong>Total</strong></td>
                           <td className="signups-overview__cell--num"><strong>{sectionTotal}</strong></td>
                           <td className="signups-overview__cell--num"><strong>{sectionValidated}</strong></td>
                         </tr>
+                        {section.optionalRows.length > 0 && section.optionalRows.map((opt) => (
+                          <tr key={opt.code} className="signups-overview__optional-row">
+                            <td></td>
+                            <td style={{ fontStyle: 'italic' }}>{opt.name}</td>
+                            <td className="signups-overview__cell--num">{opt.total}</td>
+                            <td></td>
+                          </tr>
+                        ))}
                       </tfoot>
                     </table>
                   </Box>
