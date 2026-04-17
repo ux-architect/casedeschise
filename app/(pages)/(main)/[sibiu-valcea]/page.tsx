@@ -20,7 +20,8 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
   if (city !== "sibiu" && city !== "valcea") { notFound();}
 
   const generalInfo: SiteInfoType = await getGeneralInfo();
-  const year = generalInfo?.currentYear;
+  let year = generalInfo?.currentYear;
+  // year = "2026";
 
   const projects: ProjectType[] = await getProjects("projects-" + city, year);
   const projects_section1 = projects.filter((p) => p.metadata?.section === "1");
@@ -70,17 +71,27 @@ export default async function Main({ params}: {params: Promise<{"sibiu-valcea": 
       <MissionSection page={city} className="hide-on-mobile"/>
 
       {tours.length > 0 && (
-        <section id="tururi" className="clearfix float-left">
+        <section id="tururi" className="clearfix w-100 float-left">
           <div  className="event-title-on-mobile event-title-guided-tours mt-10 font-safiro hide-on-desktop diff-sibiu-valcea ">{sectionTitle_onMobile}</div>
           <section id="tours-section" className="swiper-section"><Swiper_Tours tours={tours} /></section>
         </section>
       )}
 
-      <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
-      {events_section1.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>)}
       
-      <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop font-safiro hide-on-desktop diff-sibiu-valcea mt-10">Activități copii</div>
-      {events_section2_kids.length > 0 && (<section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} title="Activități copii" className="title-to-right"/></section>)}
+      {events_section1.length > 0 && (
+        <>
+          <div id="evenimente" className="event-title-on-mobile font-safiro hide-on-desktop diff-sibiu-valcea">Evenimente</div>
+          <section className="swiper-section"><Swiper_Events events={events_section1} title="Evenimente"/></section>
+        </>
+      )}
+      
+      
+      {events_section2_kids.length > 0 && (
+        <>
+          <div id="activitati-copii" className="event-title-on-mobile event-title-kids-workshop font-safiro hide-on-desktop diff-sibiu-valcea mt-10">Activități copii</div>
+          <section className="swiper-section"><Swiper_Events events={events_section2_kids} odd={true} title="Activități copii" className="title-to-right"/></section>
+        </>
+      )}
 
       <TeamSection page={city} id="echipa" className="desktop-version hide-on-mobile mt-50 mb-50"/>
       <FaqSection city={city} />
