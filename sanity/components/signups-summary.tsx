@@ -61,7 +61,8 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
   const [searchQuery, setSearchQuery] = useState('')
   const [selectedObjectiveCode, setSelectedObjectiveCode] = useState('')
   const [objectiveLabelByCode, setObjectiveLabelByCode] = useState<Record<string, string>>({})
-  const [deletingEntryId, setDeletingEntryId] = useState<string | null>(null)
+  const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set())
+  const [isDeletingChecked, setIsDeletingChecked] = useState(false)
   const [isDeletingAll, setIsDeletingAll] = useState(false)
 
   useEffect(() => {
@@ -138,7 +139,7 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
       if (!matchesObjective) return false
       if (!normalizedQuery) return true
 
-      const haystack = [entry.contact?.name, entry.contact?.email, entry.contact?.phone, entry.optionalItems, formatObjectives(entry.objectives), entry.metadata?.year]
+      const haystack = [entry.contact?.name, entry.contact?.email, entry.contact?.phone, entry.optionalItems, formatObjectives(entry.objectives), entry.metadata?.year, formatDate(entry.details), formatDate(entry._createdAt)]
         .filter(Boolean).join(' ').toLowerCase()
 
       return haystack.includes(normalizedQuery)
@@ -170,21 +171,48 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
     }
   }, [tsvText])
 
-  const deleteEntry = useCallback(async (id: string) => {
-    const confirmed = window.confirm('Sigur vrei să ștergi această înscriere?')
+  const toggleCheck = useCallback((id: string) => {
+    setCheckedIds((prev) => {
+      const next = new Set(prev)
+      if (next.has(id)) next.delete(id)
+      else next.add(id)
+      return next
+    })
+  }, [])
+
+  const toggleCheckAll = useCallback(() => {
+    setCheckedIds((prev) => {
+      const allFilteredIds = filteredEntries.map((e) => e._id)
+      const allChecked = allFilteredIds.length > 0 && allFilteredIds.every((id) => prev.has(id))
+      if (allChecked) return new Set()
+      return new Set(allFilteredIds)
+    })
+  }, [filteredEntries])
+
+  const deleteChecked = useCallback(async () => {
+    const idsToDelete = Array.from(checkedIds)
+    if (idsToDelete.length === 0) return
+
+    const confirmed = window.confirm(`Sigur vrei să ștergi cele ${idsToDelete.length} înscrieri selectate?`)
     if (!confirmed) return
 
     try {
-      setDeletingEntryId(id)
+      setIsDeletingChecked(true)
       setErrorMessage(null)
-      await client.delete(id)
-      setSignupEntries((prev) => prev.filter((entry) => entry._id !== id))
+
+      const tx = client.transaction()
+      idsToDelete.forEach((id) => tx.delete(id))
+      await tx.commit()
+
+      const deleted = new Set(idsToDelete)
+      setSignupEntries((prev) => prev.filter((entry) => !deleted.has(entry._id)))
+      setCheckedIds(new Set())
     } catch {
-      setErrorMessage('Ștergerea înscrierii a eșuat.')
+      setErrorMessage('Ștergerea înscrierilor selectate a eșuat.')
     } finally {
-      setDeletingEntryId((current) => (current === id ? null : current))
+      setIsDeletingChecked(false)
     }
-  }, [client])
+  }, [client, checkedIds])
 
   const deleteAll = useCallback(async () => {
     if (filteredEntryIds.length === 0) return
@@ -248,10 +276,11 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
           <Box className="signups-summary__table-panel">
             <Box className="signups-summary__table-wrap">
               <table className="signups-summary__table">
-                <thead><tr><th>#</th><th>Contact</th><th>Data înscriere</th><th>Obiective</th><th>Date opționale</th><th>Acțiuni</th></tr></thead>
+                <thead><tr><th style={{ width: 36, textAlign: 'center' }}><input type="checkbox" checked={filteredEntries.length > 0 && filteredEntries.every((e) => checkedIds.has(e._id))} onChange={toggleCheckAll} /></th><th>#</th><th>Contact</th><th>Data înscriere</th><th>Obiective</th><th>Date opționale</th></tr></thead>
                 <tbody>
                   {filteredEntries.map((entry, i) => (
                     <tr key={entry._id}>
+                      <td style={{ textAlign: 'center' }}><input type="checkbox" checked={checkedIds.has(entry._id)} onChange={() => toggleCheck(entry._id)} /></td>
                       <td className="signups-summary__cell--num">{i + 1}</td>
                       <td className="signups-summary__cell--contact">
                         {entry.contact?.name && <span>{entry.contact.name}</span>}
@@ -260,17 +289,12 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
                       </td>
                       <td>{formatDate(entry.details)}</td>
                       <td className="signups-summary__cell--objectives">{formatObjectives(entry.objectives)}</td>
-                      <td>{entry.optionalItems}</td>
-                      <td className="signups-summary__cell--actions">
-                        <Flex gap={1} align="center" wrap="nowrap">
-                          <Button className="signups-summary__delete-btn" mode="default" tone="critical" text={deletingEntryId === entry._id ? 'Se șterge…' : 'Șterge'} onClick={() => deleteEntry(entry._id)} disabled={deletingEntryId === entry._id || isDeletingAll} />
-                        </Flex>
-                      </td>
+                      <td className="signups-summary__cell--optional">{entry.optionalItems}</td>
                     </tr>
                   ))}
                   {filteredEntries.length === 0 && (
                     <tr>
-                      <td colSpan={6} style={{ textAlign: 'center', padding: '1rem' }}>
+                      <td colSpan={7} style={{ textAlign: 'center', padding: '1rem' }}>
                         {searchQuery || selectedObjectiveCode ? 'Niciun rezultat pentru filtrele curente.' : 'Nicio înscriere.'}
                       </td>
                     </tr>
@@ -280,14 +304,24 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
             </Box>
             <Flex className="signups-summary__footer-cell" align="center" justify="space-between" gap={2}>
               <Text size={1}>Afișate: {filteredEntries.length} din {signupEntries.length} înscrieri</Text>
-              <Button
-                className="signups-summary__delete-btn"
-                mode="default"
-                tone="critical"
-                text={isDeletingAll ? 'Se șterg toate…' : 'Șterge toate'}
-                onClick={deleteAll}
-                disabled={isDeletingAll || filteredEntries.length === 0 || isLoading}
-              />
+              <Flex gap={2}>
+                <Button
+                  className="signups-summary__delete-btn"
+                  mode="default"
+                  tone="critical"
+                  text={isDeletingChecked ? 'Se șterg…' : `Șterge selectate (${checkedIds.size})`}
+                  onClick={deleteChecked}
+                  disabled={isDeletingChecked || isDeletingAll || checkedIds.size === 0}
+                />
+                <Button
+                  className="signups-summary__delete-btn"
+                  mode="default"
+                  tone="critical"
+                  text={isDeletingAll ? 'Se șterg toate…' : 'Șterge toate'}
+                  onClick={deleteAll}
+                  disabled={isDeletingAll || isDeletingChecked || filteredEntries.length === 0 || isLoading}
+                />
+              </Flex>
             </Flex>
           </Box>
         )}

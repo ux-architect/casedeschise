@@ -66,7 +66,7 @@ export default function FormSection({ className, title, subtitle, projects, opti
                 {item.infoText && item.infoText.length > 0 && ( <div className="optional-checkbox-info"><PortableText value={item.infoText} /></div>)}
                 
                 <label className="optional-checkbox cursor-pointer">
-                  <input type="checkbox" name="optionalItems" value={item.checkboxLabel} />
+                  <input type="checkbox" name="optionalItems" value={item.checkboxCode || item.checkboxLabel} />
                   <span>{item.checkboxLabel}</span>
                 </label>
                 

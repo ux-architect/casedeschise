@@ -103,9 +103,10 @@
   word-break: break-word;
 }
 
-.signups-summary__cell--actions {
-  width: 90px;
-  white-space: nowrap;
+.signups-summary__cell--optional {
+  max-width: 150px;
+  white-space: normal;
+  word-break: break-word;
 }
 
 .signups-summary__delete-btn,

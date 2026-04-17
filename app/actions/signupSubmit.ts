@@ -31,9 +31,7 @@ export async function signupSubmit(formData: FormData) {
   const phone = formData.get('phone')?.toString().trim() || ''
   const email = formData.get('email')?.toString().trim() || ''
   const optionalItems = formData.getAll('optionalItems').map((value) => value.toString().trim()).filter(Boolean)
-
   const optionalTransportRequested = optionalItems.length > 0;
-  const url_tourInfo = `https://casedeschise.ro/${city.toLowerCase()}#tururi`;
 
   const selectedProjectsRaw = formData.get('selectedProjects')?.toString() || '[]'
 
@@ -73,10 +71,7 @@ export async function signupSubmit(formData: FormData) {
     _id: uniqueId,
     _type: "signups-" + city,
     id: uniqueId,
-    objectives: selectedProjects.map((project) => ({
-      _key: project.code,
-      status: 1,
-    })),
+    objectives: selectedProjects.map((project) => ({_key: project.code, status: 1,})),
     contact: { name, email, phone },
     optionalItems: optionalItemsString,
     details: new Date().toISOString(),
@@ -92,7 +87,7 @@ export async function signupSubmit(formData: FormData) {
     const bodyRaw = template?.split('__________')[1] || '';
     const paragraf_transport = bodyRaw.match(/-----------\n([\s\S]*?)\n-----------/)?.[1]?.trim()|| "";
     const emailBody = bodyRaw.replace(/\n?-----------\n[\s\S]*?\n-----------\n?/, '')
-    const lista_obiective = `<ul style="margin:0; padding-left: 20px;">${selectedProjects.map((p) => `<li><strong>${escapeHtml(p.name)}</strong> - ${escapeHtml(p.info)}  (${escapeHtml(p.address)})</li>`).join('')}</ul>`;
+    const lista_obiective = `<ul style="margin:0; padding-left: 20px;">${selectedProjects.map((p) => `<li><strong>${escapeHtml(p.name)} </strong> - ${escapeHtml(p.info)}  (${escapeHtml(p.address)})</li>`).join('')}</ul>`;
 
 
     // Process body: replace placeholders, convert markdown bold to HTML, then convert lines to <p> tags
@@ -104,7 +99,7 @@ export async function signupSubmit(formData: FormData) {
       .replace(/\n/g, '<br>');
 
 
-    const finalHtml = `<img style="margin-bottom:0px;" src="cid:qr-code-contact" alt="QR code contact" width="300" height="300" /> <br> ${bodyHtml}`;
+    const finalHtml = `<img style="margin-bottom:0px;" src="cid:qr-code-contact" alt="QR code contact" width="300" height="300" /> <br> <div style="font-family: 'Calibri Light', 'Helvetica Light', sans-serif; font-size:12pt; line-height:1.5;">${bodyHtml}</div>`;
 
     const { error } = await resend.emails.send({
       from: 'OAR Sibiu-Valcea <contact@oarsbvl.ro>',

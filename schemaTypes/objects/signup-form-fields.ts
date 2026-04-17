@@ -40,13 +40,15 @@ const optionalCheckboxesField = () =>
       fields: [
         { name: 'infoText', title: 'Paragraf informativ bifă', description: "câmp opțional, vizibil doar dacă conține text", type: 'array', of: [{ type: 'block' }] },
         { name: 'checkboxLabel', title: 'Text bifă', type: 'string' },
+        { name: 'checkboxCode', title: 'Cod bifă', type: 'string' },
       ],
       preview: {
-        select: { checkboxLabel: 'checkboxLabel', infoText: 'infoText' },
-        prepare({ checkboxLabel, infoText }) {
+        select: { checkboxLabel: 'checkboxLabel', checkboxCode: 'checkboxCode', infoText: 'infoText' },
+        prepare({ checkboxLabel, checkboxCode, infoText }) {
           const infoTextPlain = portableTextToPlain(infoText as { children?: { text?: string }[] }[]);
           if (!checkboxLabel) {return { title: 'Bifă fără text' };}
-          return {title: infoTextPlain ? `${checkboxLabel} (${infoTextPlain})` : checkboxLabel,};
+          const codeStr = checkboxCode ? ` [${checkboxCode}]` : '';
+          return {title: infoTextPlain ? `${checkboxLabel}${codeStr} (${infoTextPlain})` : `${checkboxLabel}${codeStr}`,};
         },
       },
     }],
