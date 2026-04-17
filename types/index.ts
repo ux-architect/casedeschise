@@ -153,6 +153,8 @@ export type SignupFormType = {
   s3_subtitle?: PortableTextBlock[],
   s3_projects?: SignupFormProjectType[],
   s3_optionalItems?: SignupFormOptionalItems,
+
+  email_template?: string,
 }
 
 export type SignupFormProjectType = {

@@ -277,6 +277,7 @@ export const getSignupForm = unstable_cache(
         s3_subtitle,
         s3_projects[]{ "image": image.asset->url, name, code, info, address },
         s3_optionalItems{ texts[]{ text }, checkboxes[]{ checkboxLabel, infoText } },
+        email_template,
       }`,
       { eventType },
     );

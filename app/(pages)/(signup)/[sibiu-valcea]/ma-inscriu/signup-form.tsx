@@ -128,7 +128,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
                   <input id="termsAccepted" type="checkbox" name="termsAccepted" value="yes" className={clientValidationErrors.termsAccepted ? 'input-validation-error' : ''} required onChange={(e) => setStatus(e.target.checked ? '' : 'disabled')} />
                   <span>
                     <span className="font-weight-bold">{formSetup.terms_checkbox_label}</span>
-                    <span> ( * obligatoriu pentru a continua inscrierea )</span>
+                    <span> ( Te rugăm să bifezi pentru a continua )</span>
                   </span>
                 </div>
               )}
@@ -152,6 +152,7 @@ export default function SignupForm({ formSetup, city }: { formSetup: SignupFormT
               <input type="email" className={clientValidationErrors.email ? 'input-validation-error' : ''} name="email" placeholder='* Email' {...(useDefaultContactValues ? { defaultValue: "ux.studio.sibiu@gmail.com" } : {})}/>
               {clientValidationErrors.email && <p className="input-validation">{clientValidationErrors.email.join(', ')}</p>}
             </div>
+            <span className='float-left mt-30 w-100'>* câmp obligatoriu pentru a finaliza înscrierea </span>
         </section>
 
         <FormSection className={`s1-section ${cssClass_sectionDisabled}`} title={formSetup.s1_title} subtitle={formSetup.s1_subtitle} projects={formSetup.s1_projects} optionalItems={formSetup.s1_optionalItems} />

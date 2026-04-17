@@ -4,6 +4,10 @@ import { Resend } from 'resend'
 import QRCode from 'qrcode'
 import sanity from '../../sanity/sanity.client';
 
+function escapeHtml(str: string): string {
+  return str.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;')
+}
+
 export async function generateQR(text: string): Promise<string> {
   try {
     return await QRCode.toDataURL(text, {
@@ -48,8 +52,10 @@ export async function signupSubmit(formData: FormData) {
   const selectedProjectsString= selectedProjects.map((project) => project.code).join(';')
   const optionalItemsString = optionalItems.join('; ')
   
-  // email not send
+  // email will not be send
   if(!city || !name || !email || !phone || selectedProjects.length === 0) {return { success: false, error: 'Email not send!' }}
+
+
 
   try {
 
@@ -77,25 +83,34 @@ export async function signupSubmit(formData: FormData) {
     metadata: { year: '2026', index: formData.get('index')?.toString().trim() || '',},
   });
 
+
+    // build email
+    const result = await sanity.fetch<{ email_template?: string }>(`*[_type == $type][0]{ email_template }`, { type: `signup-form-${city}` });
+
+    const template = result?.email_template;
+    const emailTitle = template?.split('__________')[0]?.trim() || "";
+    const bodyRaw = template?.split('__________')[1] || '';
+    const paragraf_transport = bodyRaw.match(/-----------\n([\s\S]*?)\n-----------/)?.[1]?.trim()|| "";
+    const emailBody = bodyRaw.replace(/\n?-----------\n[\s\S]*?\n-----------\n?/, '')
+    const lista_obiective = `<ul style="margin:0; padding-left: 20px;">${selectedProjects.map((p) => `<li><strong>${escapeHtml(p.name)}</strong> - ${escapeHtml(p.info)}  (${escapeHtml(p.address)})</li>`).join('')}</ul>`;
+
+
+    // Process body: replace placeholders, convert markdown bold to HTML, then convert lines to <p> tags
+    const bodyHtml =  emailBody
+      .replace(/##nume_inscris##/g, escapeHtml(name))
+      .replace(/##paragraf_transport##/g, optionalTransportRequested ? paragraf_transport : '')
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/##lista_obiective##/g, lista_obiective)
+      .replace(/\n/g, '<br>');
+
+
+    const finalHtml = `<img style="margin-bottom:0px;" src="cid:qr-code-contact" alt="QR code contact" width="300" height="300" /> <br> ${bodyHtml}`;
+
     const { error } = await resend.emails.send({
       from: 'OAR Sibiu-Valcea <contact@oarsbvl.ro>',
       to: email,
-      subject: `Înscriere Case Deschise ${new Date().getFullYear()}`,
-      html: `
-        <img src="cid:qr-code-contact" alt="QR code contact" width="300" height="300" />
-        <p>Salut <strong> ${name} </strong> !</p>
-        <p><strong>Te-ai înscris la următoarele obiective:</strong></p>
-        <ul>
-          ${selectedProjects.map((project) => `<li><strong>${project.name}</strong> - ${project.info}  (${project.address})</li>`).join('')}
-        </ul>
-
-        ${optionalTransportRequested ? 
-          `<p>Ați optat pentru transport asigurat pentru turul din mediul rural. Detalii suplimentare despre tur gasiți <a href="${url_tourInfo}">aici</a></p>` : ''
-        }
-
-        <p>Accesul la vizite în cadrul evenimentului se face prin prezentarea codului QR</p>
-        
-      `,
+      subject : emailTitle,
+      html: finalHtml,
       attachments: [ {filename: 'qr-code-contact.png', content: qrCodeBase64, contentType: 'image/png', contentId: 'qr-code-contact',},],
     })
 

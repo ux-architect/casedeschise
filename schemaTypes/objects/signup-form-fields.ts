@@ -174,4 +174,14 @@ export const signupFormFields = [
           ],
     }),
 
+    // Email template
+    defineField({
+      name: 'email_template',
+      title: 'Email',
+      type: 'text',
+      rows: 14,
+      description: 'Prima linie e titlul (subject); ** marcheaza text bold; Se poate modifica textul, ordinea secțiunilor, spatierea, dar nu variablilele tip ##nume_inscris##, sau delimitarile __________ si -----------',
+      initialValue: `Înscriere Case Deschise ##year##\n\nSalut **##name##** !\n**Te-ai înscris la următoarele obiective:**\n##projects##\n##transport##\nAccesul la vizite în cadrul evenimentului se face prin prezentarea codului QR`,
+    }),
+
   ];
