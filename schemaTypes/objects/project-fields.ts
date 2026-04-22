@@ -91,6 +91,14 @@ export const projectFields = [
     },
 
     defineField({
+      name: 'requiresSignup',
+      title: 'Necesită înscriere',
+      description: 'Dacă este bifat, pe pagina proiectului va fi afișat butonul „ÎNSCRIE-TE"',
+      type: 'boolean',
+      initialValue: true,
+    }),
+
+    defineField({
       name: "slug",
       type: "slug",
       title: "Slug",

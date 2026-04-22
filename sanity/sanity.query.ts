@@ -87,6 +87,7 @@ export const getProject = unstable_cache(
         transport,
         gps,
         tags,
+        requiresSignup,
         description,
         otherInfo,
       }`,
@@ -115,6 +116,7 @@ export const getProjects = unstable_cache(
           transport,
           gps,
           tags,
+          requiresSignup,
           description,
           otherInfo,
         }
@@ -144,6 +146,7 @@ export const getArchiveProjects = unstable_cache(
           transport,
           gps,
           tags,
+          requiresSignup,
           description,
           otherInfo,
         }

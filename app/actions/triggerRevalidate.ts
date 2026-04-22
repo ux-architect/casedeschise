@@ -1,5 +1,7 @@
 'use server'
 
+//http://localhost:3000/api/revalidate-trigger?tag=projects-sibiu
+
 type RevalidatePayload = {
   _type?: string
   slug?: { current?: string }

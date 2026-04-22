@@ -83,6 +83,8 @@ export type ProjectType = {
 
   tags?: ('bikeParking' | 'noPhotos' | 'yesPhotos' | 'accesible' | 'forChildren')[];
 
+  requiresSignup?: boolean;
+
   description: PortableTextBlock[],
   otherInfo: PortableTextBlock[],
 
