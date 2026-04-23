@@ -9,7 +9,7 @@ const singletonId_faqList = '38ee018f-cb08-48d8-a23a-ed0a3bb9f9cc';
 const SANITY_API_VERSION = '2024-06-01';
 
 function yearSchema(S: StructureBuilder, year: string, type: string) {
-  return S.listItem().title(`${getSchemaTitle(type)} (${year})`)
+  return S.listItem().id(`${type}-${year}`).title(`${getSchemaTitle(type)} (${year})`)
     .child(
       S.documentList().title(`${getSchemaTitle(type)} (${year})`).schemaType(type)
         .apiVersion(SANITY_API_VERSION)
@@ -70,7 +70,7 @@ function year2026(S: StructureBuilder) {
           S.listItem().title('Formular înscrieri Vâlcea (2026)')
             .child(S.document().title('înscrieri Vâlcea').documentId('formular-valcea-2026').schemaType('signup-form-valcea')),
 
-          S.divider(),
+          // S.divider(),
           // yearSchema(S, '2026', 'signups-sibiu'),
           // yearSchema(S, '2026', 'signups-valcea'),
 

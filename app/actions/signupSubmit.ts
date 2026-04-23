@@ -71,7 +71,7 @@ export async function signupSubmit(formData: FormData) {
     _id: uniqueId,
     _type: "signups-" + city,
     id: uniqueId,
-    objectives: selectedProjects.map((project) => ({_key: project.code, status: 1,})),
+    objectives: selectedProjects.map((project) => ({_key: project.code, code: project.code, status: 1,})),
     contact: { name, email, phone },
     optionalItems: optionalItemsString,
     details: new Date().toISOString(),

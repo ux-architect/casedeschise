@@ -160,7 +160,7 @@ export type SignupFormType = {
 }
 
 export type SignupFormProjectType = {
-  image?: string, name?: string, subtitle?: string, code?: string, info?: string, address?: string,
+  image?: string, name?: string, subtitle?: string, code?: string, info?: string, address?: string, soldOut?: boolean,
 }
 
 export type CityKey = 'sibiu' | 'valcea';

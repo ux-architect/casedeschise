@@ -72,6 +72,7 @@ const signupProjectsField = ({ name, title, fieldset }: SignupProjectsFieldConfi
           { name: 'code', title: 'Cod', type: 'string', description: "cod unic, succint, (prefix sb- sau vl-) ex: sb-ca-file, vl-mu-arta", validation: (rule) => rule.required() },
           { name: 'info', title: 'Info data', description: "ar putea fi omis cuvantul 'deschis:'", type: 'string' },
           { name: 'address', title: 'Adresa', type: 'string' },
+          { name: 'soldOut', title: 'Sold out', type: 'boolean' },
         ],
         preview: {
           select: { title: 'name', code: 'code', media: 'image' },
