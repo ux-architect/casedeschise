@@ -6,6 +6,11 @@
             
             position:relative;
             user-select: none;
+
+            &.sold-out{
+               pointer-events:none;
+            }
+
          .project-contents{
             height: 250px;
             
