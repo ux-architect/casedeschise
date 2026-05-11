@@ -199,6 +199,7 @@ export default function SignupsOverview({ schemaType, title }: { schemaType: str
   const grandTotal = useMemo(() => rows.reduce((sum, r) => sum + r.totalSignups, 0), [rows])
   const grandValidated = useMemo(() => rows.reduce((sum, r) => sum + r.validatedSignups, 0), [rows])
 
+
   return (
     <Card padding={4} sizing="border" className="signups-overview">
       <Stack space={4}>

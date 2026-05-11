@@ -64,6 +64,10 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
   const [checkedIds, setCheckedIds] = useState<Set<string>>(new Set())
   const [isDeletingChecked, setIsDeletingChecked] = useState(false)
   const [isDeletingAll, setIsDeletingAll] = useState(false)
+  const [copyEmailsLabel, setCopyEmailsLabel] = useState('Copiază emailuri')
+  const [copyPhonesLabel, setCopyPhonesLabel] = useState('Copiază telefoane')
+  const [showExportMenu, setShowExportMenu] = useState(false)
+  const [highlightDuplicates, setHighlightDuplicates] = useState(false)
 
   useEffect(() => {
     let mounted = true
@@ -147,11 +151,13 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
   }, [searchQuery, selectedObjectiveCode, signupEntries])
 
   const tsvText = useMemo(() => {
-    const header = ['An', 'Contact', 'Data înscriere', 'Obiective', 'Date opționale', 'Creat la'].join('\t')
+    const header = ['An', 'Nume', 'Email', 'Telefon', 'Data înscriere', 'Obiective', 'Date opționale', 'Creat la'].join('\t')
     const rows = filteredEntries.map((entry) =>
       [
         toTsvCell(entry.metadata?.year),
-        toTsvCell([entry.contact?.name, entry.contact?.email, entry.contact?.phone].filter(Boolean).join(' | ')),
+        toTsvCell(entry.contact?.name),
+        toTsvCell(entry.contact?.email),
+        toTsvCell(entry.contact?.phone),
         toTsvCell(formatDate(entry.details)),
         toTsvCell(formatObjectives(entry.objectives)),
         toTsvCell(entry.optionalItems),
@@ -175,9 +181,53 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
     return Object.entries(counts).sort((a, b) => b[1] - a[1])
   }, [filteredEntries])
 
+  const duplicateEmails = useMemo(() => {
+    const counts: Record<string, number> = {}
+    filteredEntries.forEach((e) => {
+      const email = e.contact?.email?.trim().toLowerCase()
+      if (email) counts[email] = (counts[email] || 0) + 1
+    })
+    return new Set(Object.keys(counts).filter((k) => counts[k] > 1))
+  }, [filteredEntries])
+
+  const filteredEmails = useMemo(() => {
+    const emails = filteredEntries
+      .map((e) => e.contact?.email?.trim())
+      .filter((e): e is string => !!e)
+    return [...new Set(emails)]
+  }, [filteredEntries])
+
+  const filteredPhones = useMemo(() => {
+    const phones = filteredEntries
+      .map((e) => e.contact?.phone?.trim())
+      .filter((e): e is string => !!e)
+    return [...new Set(phones)]
+  }, [filteredEntries])
+
+  const handleCopyEmails = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(filteredEmails.join(', '))
+      setCopyEmailsLabel(`Copiat! (${filteredEmails.length})`)
+      setTimeout(() => setCopyEmailsLabel('Copiază emailuri'), 2000)
+    } catch {
+      setErrorMessage('Copierea emailurilor a eșuat.')
+    }
+  }, [filteredEmails])
+
+  const handleCopyPhones = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText(filteredPhones.join(', '))
+      setCopyPhonesLabel(`Copiat! (${filteredPhones.length})`)
+      setTimeout(() => setCopyPhonesLabel('Copiază telefoane'), 2000)
+    } catch {
+      setErrorMessage('Copierea telefoanelor a eșuat.')
+    }
+  }, [filteredPhones])
+
   const handleCopy = useCallback(async () => {
     try {
       await navigator.clipboard.writeText(tsvText)
+      setShowExportMenu(false)
     } catch {
       setErrorMessage('Copierea automată a eșuat. Selectează textul și copiază manual.')
     }
@@ -257,7 +307,6 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
           <Text size={2} weight="semibold">{title}</Text>
           <Flex align="center" gap={2}>
             <Text size={1} muted>{filteredEntries.length} / {signupEntries.length} înscrieri</Text>
-            <Button mode="ghost" text="Copiază TSV" onClick={handleCopy} disabled={isLoading || filteredEntries.length === 0} />
           </Flex>
         </Flex>
 
@@ -296,7 +345,7 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
                       <td className="signups-summary__cell--num">{i + 1}</td>
                       <td className="signups-summary__cell--contact">
                         {entry.contact?.name && <span>{entry.contact.name}</span>}
-                        {entry.contact?.email && <span>{entry.contact.email}</span>}
+                        {entry.contact?.email && <span style={highlightDuplicates && duplicateEmails.has(entry.contact.email.trim().toLowerCase()) ? { color: 'var(--card-badge-critical-fg-color)', fontWeight: 600 } : undefined}>{entry.contact.email}</span>}
                         {entry.contact?.phone && <span>{entry.contact.phone}</span>}
                       </td>
                       <td>{formatDate(entry.details)}</td>
@@ -327,7 +376,27 @@ export default function SignupsSummary({ schemaType, title }: { schemaType: stri
             </Box>
             <Flex className="signups-summary__footer-cell" align="center" justify="space-between" gap={2}>
               <Text size={1}>Afișate: {filteredEntries.length} din {signupEntries.length} înscrieri</Text>
-              <Flex gap={2}>
+              <Flex gap={2} align="center">
+                <Flex as="label" align="center" gap={2} style={{ cursor: duplicateEmails.size === 0 ? 'default' : 'pointer', opacity: duplicateEmails.size === 0 ? 0.4 : 1, marginRight: 12 }}>
+                  <input type="checkbox" checked={highlightDuplicates} onChange={() => setHighlightDuplicates((v) => !v)} disabled={duplicateEmails.size === 0} style={highlightDuplicates ? { accentColor: 'var(--card-badge-critical-fg-color)' } : undefined} />
+                  <Text size={1} muted>Vezi duplicate (email)</Text>
+                </Flex>
+                <Box style={{ position: 'relative', display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <Button
+                    mode="ghost"
+                    text="Copiază ▾"
+                    onClick={() => setShowExportMenu((v) => !v)}
+                    disabled={filteredEntries.length === 0}
+                  />
+                  {showExportMenu && (
+                    <Box style={{ position: 'absolute', bottom: '100%', right: 0, marginBottom: 4, background: 'var(--card-bg-color)', border: '1px solid var(--card-border-color)', borderRadius: 3, zIndex: 10, minWidth: 200, padding: '6px 4px', display: 'flex', flexDirection: 'column', gap: 2 }}>
+                      <Button style={{ width: '100%' }} mode="bleed" text={copyEmailsLabel} onClick={handleCopyEmails} disabled={filteredEmails.length === 0} />
+                      <Button style={{ width: '100%' }} mode="bleed" text={copyPhonesLabel} onClick={handleCopyPhones} disabled={filteredPhones.length === 0} />
+                      <Button style={{ width: '100%' }} mode="bleed" text="Copiază înregistrări in format TSV (paste in excel)" onClick={handleCopy} />
+                      <Text size={1} muted style={{ display: 'flex', padding: '12px 12px 10px', borderTop: '1px solid var(--card-border-color)', paddingTop: 12, textAlign: 'center', lineHeight: '1.4', opacity: 0.5 }}>Se copiază doar înregistrările unice vizibile (filtrate) din tabel</Text>
+                    </Box>
+                  )}
+                </Box>
                 <Button
                   className="signups-summary__delete-btn"
                   mode="default"
